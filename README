@@ -1,0 +1,33 @@
+De client: grafische interface om regels te maken.
+
+Compileren
+----------
+Om de client te compileren moeten minstens volgende stukken software geinstalleerd zijn: cmake, automake (make), qt4-dev-tools (qmake), libqt4-dev
+
+Compileren doe je vervolgens door het 'compile.sh' script uit te voeren:
+./compile.sh
+
+
+Uitvoeren
+---------
+Het programma kan je uitvoeren door de 'ruleCreator' applicatie uit te voeren.
+Gebruik eenvoudig weg:
+./runclient.sh
+
+Dit toont de software in het Nederlands, hiervoor moet je het programma oproepen vanuit een folder die de vertalingsfiles bevat (translations/ in ons geval).
+
+Gebruik
+-------
+Regels maak je door te blokken in het regel veld te slepen, en deze aan elkaar te hangen. Elk regel veld kan maar 1 regel bevatten, maar er is geen limiet op het aantal regelvelden dat je gebruikt.
+
+Om je pokerbot naar de server te sturen moet je eerst die zijn settings invullen:
+- Ga naar Instellingen -> Instelling aanpassen.
+- Duw op de toetsencombinatie 'Ctrl-K' om de server instellingen aan te passen.
+- Voor een server op dezelfde computer vul je in: host=localhost port=20000 unique id=1 (voor 1ste spelers, je kan er bij maken voor 2, 3, etc)
+- Duw op 'add'
+Je kan nu je bot naar deze server sturen door op 'Exporteren' te duwen, en de juist aangemaakte server te selecteren.
+
+
+Bij problemen of vragen kan je mailen naar:
+"Thomas Fannes" <thomas.fannes@cs.kuleuven.be>
+of "Tias Guns" <Tias.Guns@cs.kuleuven.be>

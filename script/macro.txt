@@ -1,0 +1,66 @@
+macro(INSTALL_HEADERS_WITH_DIRECTORY LOCATION HEADER_LIST)
+	foreach(HEADER ${${HEADER_LIST}})
+		string(REGEX MATCH "(.*)[/\\]" DIR ${HEADER})
+		install(FILES ${HEADER} DESTINATION include/${LOCATION}/${DIR})
+	endforeach(HEADER)
+endmacro(INSTALL_HEADERS_WITH_DIRECTORY)
+
+macro(INCLUDE_QT_SUBDIRECTORY_HEADER_SOURCES DIR)
+	add_subdirectory(${DIR})
+	set(cur_cpp )
+	set(cur_hpp )
+	set(cur_moc )
+	set(cur_ui )
+	set(cur_res )
+
+	get_directory_property(cur_cpp DIRECTORY ${DIR} DEFINITION SOURCES)
+	get_directory_property(cur_hpp DIRECTORY ${DIR} DEFINITION HEADERS)
+	get_directory_property(cur_moc DIRECTORY ${DIR} DEFINITION Q_MOC_HPP)
+	get_directory_property(cur_ui  DIRECTORY ${DIR} DEFINITION Q_UI)
+	get_directory_property(cur_res DIRECTORY ${DIR} DEFINITION Q_RES)
+
+	
+	
+	foreach(item ${cur_cpp})
+		list(APPEND SOURCES ${DIR}/${item})
+	endforeach(item)
+
+	foreach(item ${cur_hpp})
+		list(APPEND HEADERS ${DIR}/${item})
+	endforeach(item)
+	
+	foreach(item ${cur_moc})
+		list(APPEND Q_MOC_HPP ${DIR}/${item})
+	endforeach(item)
+	
+	foreach(item ${cur_ui})
+		list(APPEND Q_UI ${DIR}/${item})
+	endforeach(item)
+	
+	foreach(item ${cur_res})
+		list(APPEND Q_RES ${DIR}/${item})
+	endforeach(item)
+endmacro(INCLUDE_QT_SUBDIRECTORY_HEADER_SOURCES)
+
+macro(INCLUDE_ALL_QT_SUBDIRECTORIES_HEADER_SOURCES DIRS)
+	foreach(dir ${${DIRS}})
+		INCLUDE_QT_SUBDIRECTORY_HEADER_SOURCES(${dir})
+	endforeach(dir)
+endmacro(INCLUDE_ALL_QT_SUBDIRECTORIES_HEADER_SOURCES)
+
+MACRO(CREATE_SIMPLE_QT_TEST FILENAME CLASSNAME)
+	SET(HWQ_MOC_CPP )
+  QT4_WRAP_CPP(HWQ_MOC_CPP ${FILENAME}.hpp)
+  include_directories(${CMAKE_CURRENT_BINARY_DIR} .)
+
+	set(MAIN_FILENAME ${CMAKE_CURRENT_BINARY_DIR}/main_${FILENAME})
+  add_custom_command(
+		OUTPUT ${MAIN_FILENAME}.cpp
+		COMMAND CreateTest ${FILENAME}.hpp ${CLASSNAME} ${MAIN_FILENAME}.cpp
+		DEPENDS CreateTest
+)
+
+  add_executable(${CLASSNAME} ${FILENAME}.cpp ${FILENAME}.hpp ${MAIN_FILENAME}.cpp ${HWQ_MOC_CPP})
+  target_link_libraries(${CLASSNAME} ${QT_LIBRARIES} ${LIBRARIES})
+  add_test(${CLASSNAME} ${CLASSNAME})
+ENDMACRO(CREATE_SIMPLE_QT_TEST)

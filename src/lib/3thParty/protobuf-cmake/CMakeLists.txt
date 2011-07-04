@@ -1,0 +1,15 @@
+project(Protobuf)
+cmake_minimum_required(VERSION 2.6)
+
+if (NOT PROTOBUF_ROOT)
+  message(FATAL_ERROR "PROTOBUF_ROOT must be set to the location of protobuf sources.")
+endif()
+
+if (UNIX)
+  if (NOT EXISTS ${PROTOBUF_ROOT}/config.h)
+    message(FATAL_ERROR "You need to run configure in ${PROTOBUF_ROOT} before running CMake.")
+  endif()
+endif()
+
+message(STATUS "Protobuf sources in ${PROTOBUF_ROOT}")
+add_subdirectory(libprotobuf)

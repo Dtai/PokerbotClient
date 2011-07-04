@@ -1,0 +1,57 @@
+<RCC>
+    <qresource prefix="/element">
+        <file alias="puzzle_blue">element/puzzle_blue.png</file>
+        <file alias="puzzle_white">element/puzzle_white.png</file>
+        <file alias="puzzle_purple">element/puzzle_purple.png</file>
+        <file alias="puzzle_green">element/puzzle_green.png</file>
+        <file alias="puzzle_yellow">element/puzzle_yellow.png</file>
+        <file alias="puzzle_orange">element/puzzle_orange.png</file>
+        <file alias="triangle_blue">element/triangle_blue.png</file>
+        <file alias="triangle_white">element/triangle_white.png</file>
+        <file alias="triangle_purple">element/triangle_purple.png</file>
+        <file alias="triangle_green">element/triangle_green.png</file>
+        <file alias="triangle_yellow">element/triangle_yellow.png</file>
+        <file alias="triangle_orange">element/triangle_orange.png</file>
+        <file alias="tstuk_blue">element/tstuk_blue.png</file>
+        <file alias="tstuk_white">element/tstuk_white.png</file>
+        <file alias="tstuk_purple">element/tstuk_purple.png</file>
+        <file alias="tstuk_green">element/tstuk_green.png</file>
+        <file alias="tstuk_yellow">element/tstuk_yellow.png</file>
+        <file alias="tstuk_orange">element/tstuk_orange.png</file>
+        <file alias="kroon_white">element/kroon_white.png</file>
+        <file alias="kroon_red">element/kroon_red.png</file>
+        <file alias="leeg_blue">element/leeg_blue.png</file>
+        <file alias="leeg_white">element/leeg_white.png</file>
+        <file alias="h_puzzle_blue">element/h_puzzle_blue.png</file>
+        <file alias="h_puzzle_white">element/h_puzzle_white.png</file>
+        <file alias="h_puzzle_purple">element/h_puzzle_purple.png</file>
+        <file alias="h_puzzle_green">element/h_puzzle_green.png</file>
+        <file alias="h_puzzle_yellow">element/h_puzzle_yellow.png</file>
+        <file alias="h_puzzle_orange">element/h_puzzle_orange.png</file>
+        <file alias="h_triangle_blue">element/h_triangle_blue.png</file>
+        <file alias="h_triangle_white">element/h_triangle_white.png</file>
+        <file alias="h_triangle_purple">element/h_triangle_purple.png</file>
+        <file alias="h_triangle_green">element/h_triangle_green.png</file>
+        <file alias="h_triangle_yellow">element/h_triangle_yellow.png</file>
+        <file alias="h_triangle_orange">element/h_triangle_orange.png</file>
+        <file alias="h_tstuk_blue">element/h_tstuk_blue.png</file>
+        <file alias="h_tstuk_white">element/h_tstuk_white.png</file>
+        <file alias="h_tstuk_purple">element/h_tstuk_purple.png</file>
+        <file alias="h_tstuk_green">element/h_tstuk_green.png</file>
+        <file alias="h_tstuk_yellow">element/h_tstuk_yellow.png</file>
+        <file alias="h_tstuk_orange">element/h_tstuk_orange.png</file>
+        <file alias="h_kroon_white">element/h_kroon_white.png</file>
+        <file alias="h_kroon_red">element/h_kroon_red.png</file>
+        <file alias="h_leeg_blue">element/h_leeg_blue.png</file>
+        <file alias="h_leeg_white">element/h_leeg_white.png</file>
+        <file alias="h_kroon_yellow">element/h_kroon_yellow.png</file>
+        <file alias="kroon_yellow">element/kroon_yellow.png</file>
+    </qresource>
+    <qresource prefix="/card">
+        <file alias="club">card/club.png</file>
+        <file alias="diamond">card/diamond.png</file>
+        <file alias="heart">card/heart.png</file>
+        <file alias="spade">card/spade.png</file>
+        <file alias="unknown">card/unknown.png</file>
+    </qresource>
+</RCC>

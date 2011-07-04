@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="garbage">garbage can.jpg</file>
+        <file alias="arrow_up">arrow_up.png</file>
+        <file alias="arrow_down">arrow_down.png</file>
+        <file alias="delete">delete.png</file>
+        <file alias="arrow_up_gray">arrow_up_gray.png</file>
+        <file alias="arrow_down_gray">arrow_down_gray.png</file>
+    </qresource>
+</RCC>
