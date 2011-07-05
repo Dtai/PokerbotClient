@@ -25,8 +25,8 @@
 
 #include "prologsocket.hpp"
 #include <QtNetwork/QTcpSocket>
-#include "WW10_protocol.pb.h"
 #include "../settingsmanager.hpp"
+#include "JSONCreator.hpp"
 
 PrologSocket::PrologSocket(const ConnectionTarget & target, QObject * parent)
   : QObject(parent),
@@ -43,12 +43,12 @@ QString PrologSocket::sendPrologCode(const QString & code)
 	if(!_socket->waitForConnected(1000) || !_socket->isWritable() || !_socket->isValid())
 		return QString(tr("invalid socket: %1")).arg(_socket->errorString());
 
-	ww10::PrologBotDescription d;
-	d.set_id(_target.id-1);
-	d.set_name(qPrintable(SettingsManager::Instance()->name()));
-	d.set_prolog(qPrintable(code));
+        JSONCreator *jc = new JSONCreator();
+        jc->setId(_target.id-1);
+        jc->setName(SettingsManager::Instance()->name());
+        jc->setPrologCode(code);
 
-	std::string data = d.SerializeAsString();
+        std::string data = jc->toStdString();
 	_socket->write(data.c_str(), data.size());
 
 	if(!_socket->waitForBytesWritten(3000))
