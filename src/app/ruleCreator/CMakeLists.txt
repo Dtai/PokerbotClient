@@ -22,9 +22,9 @@ set (SOURCES
 	rulelistwidget.cpp
 	settingsmanager.cpp
 	settingsdialog.cpp
-  connectiontarget.cpp
-	network/WW10_protocol.pb.cc
-  network/prologsocket.cpp
+    connectiontarget.cpp
+    network/prologsocket.cpp
+    network/JSONCreator.cpp
 	)
 
 set (HEADERS
@@ -41,9 +41,9 @@ set (HEADERS
 	rulelistwidget.hpp
 	settingsmanager.hpp
 	settingsdialog.hpp
-	connectiontarget.hpp
-	network/WW10_protocol.pb.h
-  network/prologsocket.hpp
+    connectiontarget.hpp
+    network/prologsocket.hpp
+    network/JSONCreator.hpp
 )
 
 set (Q_MOC_HPP
@@ -59,7 +59,7 @@ set (Q_MOC_HPP
 	rulelistwidget.hpp
 	settingsmanager.hpp
 	settingsdialog.hpp
-  network/prologsocket.hpp
+    network/prologsocket.hpp
 )
 
 set (Q_UI
@@ -77,12 +77,10 @@ QT4_WRAP_CPP(HWQ_MOC_CPP ${Q_MOC_HPP})
 QT4_WRAP_UI(HWQ_UI_CPP ${Q_UI})
 QT4_ADD_RESOURCES(HWQ_RES_H ${Q_RES})
 
-get_target_property(PROTOBUF_INCLUDE_DIR libprotobuf includeDir)
 include_directories(${CMAKE_CURRENT_BINARY_DIR} . ${PROTOBUF_INCLUDE_DIR} ${MY_INCLUDE_DIRS})
 
 list(APPEND SOURCES ${HWQ_MOC_CPP} ${HWQ_UI_CPP} ${HWQ_RES_H})
 list(APPEND LIBRARIES ${QT_LIBRARIES} )
-
 
 foreach(lang ${LANGUAGES})
 	set(in_trans_file ${TRANSLATION_DIR}/${PROGNAME}_${lang}.ts)
@@ -99,4 +97,4 @@ foreach(transFile ${TRANSFILES})
 endforeach(transFile)
 
 add_executable(${PROGNAME} ${SOURCES} ${HEADERS} ${QM})
-target_link_libraries( ${PROGNAME} ${LIBRARIES} ruleSystem pokerRuleSystem libprotobuf)
+target_link_libraries( ${PROGNAME} ${LIBRARIES} ruleSystem pokerRuleSystem)
