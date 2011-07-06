@@ -33,12 +33,12 @@
 
 #define TYPEID_ROOT(Name) \
 public: \
-			static const TypeIdentifier & TypeID() { static TypeIdentifier id = TypeIdentifier::CreateRoot(Name); return id; } \
+                        static const TypeIdentifier & TypeID() { const static TypeIdentifier id = TypeIdentifier::CreateRoot(Name); return id; } \
 			virtual const TypeIdentifier & typeID() const { return TypeID(); }
 
 #define TYPEID_INHERIT(Name, Superclass) \
 public: \
-			static const TypeIdentifier & TypeID() { static TypeIdentifier id = TypeIdentifier::Inherit(Name, Superclass::TypeID()); return id; } \
+                        static const TypeIdentifier & TypeID() { const static TypeIdentifier id = TypeIdentifier::Inherit(Name, Superclass::TypeID()); return id; } \
 			virtual const TypeIdentifier & typeID() const { return TypeID(); }
 
 	class TypeIdentifier

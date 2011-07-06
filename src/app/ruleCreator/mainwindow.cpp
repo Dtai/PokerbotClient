@@ -62,6 +62,8 @@
 #include "network/prologsocket.hpp"
 #include <ruleSystem/util/translator.hpp>
 
+#include "helpWindow.hpp"
+
 using namespace ruleSystem;
 using namespace ruleSystem::graphicsView;
 using namespace poker;
@@ -107,7 +109,6 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(_docController, SIGNAL(error(QString,QString)), this, SLOT(showError(QString,QString)));
 
     connect(ui->actionShow_Information, SIGNAL(triggered()), this, SLOT(showInformation()));
-    connect(ui->actionCreate_Table, SIGNAL(triggered()), this, SLOT(createTable()));
 
 	showMaximized();
 
@@ -126,11 +127,8 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::showInformation(){
-
-}
-
-void MainWindow::createTable(){
-
+    HelpWindow *hw = new HelpWindow();
+    hw->show();
 }
 
 void MainWindow::showError(const QString & title, const QString & errorMessage)

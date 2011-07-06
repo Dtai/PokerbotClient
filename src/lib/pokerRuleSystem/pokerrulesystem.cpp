@@ -263,7 +263,6 @@ namespace poker
 			factory()->registerElementCreator(new ActionGraphicsCreator);
 			factory()->registerElementCreator(new RaiseActionGraphicsCreator);
 			//			factory()->registerElementCreator(new IfThenElseGraphicsCreator);
-
 		}
 	}
 

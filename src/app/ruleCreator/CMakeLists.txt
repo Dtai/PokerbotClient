@@ -26,7 +26,7 @@ set (SOURCES
     network/prologsocket.cpp
     network/JSONCreator.cpp
     network/JSONTableCreator.cpp
-    network/JSONPlayerAdder.cpp
+        helpWindow.cpp
 	)
 
 set (HEADERS
@@ -47,7 +47,7 @@ set (HEADERS
     network/prologsocket.hpp
     network/JSONCreator.hpp
     network/JSONTableCreator.hpp
-    network/JSONPlayerAdder.hpp
+        helpWindow.hpp
 )
 
 set (Q_MOC_HPP
@@ -64,6 +64,7 @@ set (Q_MOC_HPP
 	settingsmanager.hpp
 	settingsdialog.hpp
     network/prologsocket.hpp
+        helpWindow.hpp
 )
 
 set (Q_UI
@@ -71,6 +72,7 @@ set (Q_UI
 	rulewidget.ui
 	settingsdialog.ui
 	view/predefinedrulesdescriptor.ui
+        helpWindow.ui
 )
 set (Q_RES
  resources/resources.qrc

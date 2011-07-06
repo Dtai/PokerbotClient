@@ -57,7 +57,7 @@ ElementModel::ElementModel(ElementModel::ElementDescriber * describer, const QLi
 
 ElementModel::~ElementModel()
 {
-	delete _describer;
+        delete _describer;
 	qDeleteAll(_elements);
 }
 
@@ -98,8 +98,9 @@ QVariant ElementModel::data(const QModelIndex & index, int role) const
 
 	{
 	case Qt::DisplayRole:
-		return _describer->data(_elements.at(index.row()), index.column());
-		break;
+            //return _elements.at(index.row())->name();
+            return _describer->data(_elements.at(index.row()), index.column());
+            break;
 
 	case Qt::ToolTipRole:
 		return _elements.at(index.row())->description();

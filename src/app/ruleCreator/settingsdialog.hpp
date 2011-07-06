@@ -64,7 +64,7 @@ private:
 	Ui::SettingsDialog *ui;
 	bool _isSuperUser;
 	QListWidgetItem * _curSelected;
-	SettingsManager * _settingsManager;
+        SettingsManager * _settingsManager;
 };
 
 #endif // SETTINGSDIALOG_HPP

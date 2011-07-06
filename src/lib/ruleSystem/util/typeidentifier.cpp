@@ -47,7 +47,7 @@ private:
 };
 
 TypeIdentifier::TypeIdentifier(const QString & name)
-	: _name(name)
+        : _name(name)
 {
 }
 
@@ -70,6 +70,11 @@ TypeIdentifier TypeIdentifier::Inherit(const QString & name, const TypeIdentifie
 {
 	TypeIdentifier id(name);
 	id._tree = superclass._tree;
+
+        TreeDetail * psup = superclass._tree.get();
+        TreeDetail * pchild = id._tree.get();
+
+        bool val = id._tree == superclass._tree;
 
 	int keyPos = id._tree->createKeyPos();
 	id._key = superclass._key;

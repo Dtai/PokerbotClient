@@ -65,7 +65,6 @@ private slots:
 	void exportCode(QAction * action);
 
     void showInformation();
-    void createTable();
 
 	void numberOfRulesChanged(int numberOfRealRules);
 
@@ -87,7 +86,7 @@ private:
 	RuleListWidget * _ruleList;
 	DocumentController * _docController;
 	SettingsManager * _settings;
-	PredefinedElementModel _predefModel;
+        PredefinedElementModel _predefModel;
 };
 
 #endif // MAINWINDOW_HPP

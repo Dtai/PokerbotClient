@@ -318,7 +318,7 @@ namespace ruleSystem
 			drag->setMimeData(mime);
 
 			// create a picture for the drag
-			drag->setPixmap(elementToPixmap(this));
+                        drag->setPixmap(elementToPixmap(this));
 			drag->setHotSpot(hotSpot);
 
 			// we will remove this item for now, the rest will be done afterwards by the listeners
@@ -499,13 +499,12 @@ namespace ruleSystem
 
 		QPixmap elementToPixmap(ruleSystem::graphicsView::ElementGraphicsItem * item, QPoint * hotSpot)
 		{
-			QPixmap pixmap(item->boundingRect().size().toSize() + QSize(1, 1));
+                        QPixmap pixmap(item->boundingRect().size().toSize() + QSize(1, 1));
 			pixmap.fill(QColor(0, 0, 0, 0));
 
 			QPainter painter(&pixmap);
 			painter.setWorldTransform(QTransform::fromTranslate(-item->pos().x()-item->boundingRect().left(), -item->boundingRect().top()-item->pos().y()), false);
-			\
-					drawElementToPixmapHelper(item, &painter);
+                        drawElementToPixmapHelper(item, &painter);
 
 			if(hotSpot)
 				(*hotSpot) = -item->boundingRect().topLeft().toPoint();

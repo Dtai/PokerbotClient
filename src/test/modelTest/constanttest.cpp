@@ -52,6 +52,8 @@ void ConstantTest::testDeletion()
 void ConstantTest::testCasting()
 {
 	Constant * c1 = new Constant(type::booleanType(), QVariant(true));
+        c1->typeID();
+        c1->TypeID();
 
 	QCOMPARE(element_cast<Evaluatable>(c1), c1);
 	QCOMPARE(element_cast<Element>(c1), c1);

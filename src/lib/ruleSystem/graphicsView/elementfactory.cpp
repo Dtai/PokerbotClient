@@ -104,7 +104,7 @@ namespace ruleSystem
 			for(LayoutMap::iterator i = _registeredLayouts.begin(); i != _registeredLayouts.end(); i++)
 				delete i.value();
 
-			qDeleteAll(_registeredCreators);
+                        qDeleteAll(_registeredCreators);
 		}
 
 		ElementGraphicsItem * ElementFactory::createGraphicsItem(Element * element)
@@ -123,7 +123,7 @@ namespace ruleSystem
 		}
 
 		ElementGraphicsItem * ElementFactory::createGraphicsItem(const Type & type, const TypeIdentifier & /*identifier*/)
-		{
+                {
 			ElementCreator * c = findCreator(_registeredCreators, type, 0);
 			if(c == 0)
 			{
@@ -135,11 +135,11 @@ namespace ruleSystem
 		}
 
 		void ElementFactory::registerElementCreator(ElementCreator * creator)
-		{
+                {
 			if(creator == 0)
-				return;
+                                return;
 
-			_registeredCreators << creator;
+                        _registeredCreators << creator;
 		}
 
 		const ElementLayout * ElementFactory::findLayout(const Type & type, const TypeIdentifier & identifier)

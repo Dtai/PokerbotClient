@@ -32,7 +32,7 @@
          <x>0</x>
          <y>0</y>
          <width>534</width>
-         <height>740</height>
+         <height>746</height>
         </rect>
        </property>
       </widget>
@@ -46,7 +46,7 @@
      <x>0</x>
      <y>0</y>
      <width>829</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -57,8 +57,6 @@
     <addaction name="action_Open"/>
     <addaction name="action_Save"/>
     <addaction name="action_Save_As"/>
-    <addaction name="separator"/>
-    <addaction name="actionCreate_Table"/>
     <addaction name="separator"/>
     <addaction name="actionE_xit"/>
    </widget>
@@ -307,11 +305,6 @@
   <action name="actionShow_Information">
    <property name="text">
     <string>Show Information</string>
-   </property>
-  </action>
-  <action name="actionCreate_Table">
-   <property name="text">
-    <string>Create Table</string>
    </property>
   </action>
  </widget>
