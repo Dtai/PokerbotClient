@@ -102,9 +102,12 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(ui->actionEdit_Settings, SIGNAL(triggered()), this, SLOT(showSettingsDialog()));
 	connect(_settings, SIGNAL(settingsChanged()), this, SLOT(updateExportMenu()));
 	connect(ui->menuExport, SIGNAL(triggered(QAction *)), this, SLOT(exportCode(QAction *)));
-	connect(ui->actionShow_Code, SIGNAL(triggered()), this, SLOT(showCode()));
+    connect(ui->actionShow_Code, SIGNAL(triggered()), this, SLOT(showCode()));
 	connect(_docController, SIGNAL(numberOfRulesChanged(int)), this, SLOT(numberOfRulesChanged(int)));
 	connect(_docController, SIGNAL(error(QString,QString)), this, SLOT(showError(QString,QString)));
+
+    connect(ui->actionShow_Information, SIGNAL(triggered()), this, SLOT(showInformation()));
+    connect(ui->actionCreate_Table, SIGNAL(triggered()), this, SLOT(createTable()));
 
 	showMaximized();
 
@@ -120,6 +123,14 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
 	delete ui;
+}
+
+void MainWindow::showInformation(){
+
+}
+
+void MainWindow::createTable(){
+
 }
 
 void MainWindow::showError(const QString & title, const QString & errorMessage)
