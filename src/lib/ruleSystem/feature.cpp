@@ -28,6 +28,8 @@
 
 namespace ruleSystem
 {
+        TYPEID_INHERIT_SOURCE("Feature", Evaluatable, Feature)
+
 	Feature::Feature(const Type & type, const QString & name)
 		: Evaluatable(type, name),
 		_db(0)

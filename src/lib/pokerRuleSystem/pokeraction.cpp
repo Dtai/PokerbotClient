@@ -30,6 +30,8 @@ using namespace ruleSystem;
 
 namespace poker
 {
+        TYPEID_INHERIT_SOURCE("PokerAction", ruleSystem::Action, PokerAction)
+
 	PokerAction::PokerAction(const QString & actionName)
 		: Action(actionName, type::booleanType())
 	{

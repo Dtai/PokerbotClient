@@ -31,15 +31,25 @@
 #include "macro.hpp"
 #include <boost/shared_ptr.hpp>
 
-#define TYPEID_ROOT(Name) \
+#define TYPEID_ROOT_HEADER(Name) \
 public: \
-                        static const TypeIdentifier & TypeID() { const static TypeIdentifier id = TypeIdentifier::CreateRoot(Name); return id; } \
-			virtual const TypeIdentifier & typeID() const { return TypeID(); }
+                        static const TypeIdentifier & TypeID(); \
+                        virtual const TypeIdentifier & typeID() const;
 
-#define TYPEID_INHERIT(Name, Superclass) \
+#define TYPEID_INHERIT_HEADER(Name, Superclass) \
 public: \
-                        static const TypeIdentifier & TypeID() { const static TypeIdentifier id = TypeIdentifier::Inherit(Name, Superclass::TypeID()); return id; } \
-			virtual const TypeIdentifier & typeID() const { return TypeID(); }
+                        static const TypeIdentifier & TypeID(); \
+                        virtual const TypeIdentifier & typeID() const;
+
+#define TYPEID_ROOT_SOURCE(Name, Classname) \
+    const TypeIdentifier & Classname::TypeID() { const static TypeIdentifier id = TypeIdentifier::CreateRoot(Name); return id; } \
+    const TypeIdentifier & Classname::typeID() const { return TypeID(); }
+
+
+
+#define TYPEID_INHERIT_SOURCE(Name, Superclass, Classname) \
+    const TypeIdentifier & Classname::TypeID() { const static TypeIdentifier id = TypeIdentifier::Inherit(Name, Superclass::TypeID()); return id; } \
+    const TypeIdentifier & Classname::typeID() const { return TypeID(); }
 
 	class TypeIdentifier
 	{

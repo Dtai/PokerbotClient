@@ -33,6 +33,8 @@ using namespace ruleSystem;
 
 namespace poker
 {
+        TYPEID_INHERIT_SOURCE("RaiseAction", PokerAction, RaiseAction)
+
 	RaiseAction::RaiseAction()
 		: PokerAction(Translator::AddTranslation("raise", Translator::tr("raise")))
 	{

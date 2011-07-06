@@ -33,7 +33,7 @@ namespace poker
 {
 	class RaiseAction : public PokerAction
 	{
-		TYPEID_INHERIT("RaiseAction", PokerAction);
+                TYPEID_INHERIT_HEADER("RaiseAction", PokerAction);
 
 	public:
 		RaiseAction();

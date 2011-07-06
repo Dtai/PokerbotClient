@@ -28,6 +28,8 @@
 
 namespace ruleSystem
 {
+    TYPEID_INHERIT_SOURCE("Action", Element, Action)
+
 	const QString Action::InputPosition()
 	{
 		return QString("input_Action");

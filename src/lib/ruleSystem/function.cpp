@@ -29,6 +29,8 @@
 
 namespace ruleSystem
 {
+    TYPEID_INHERIT_SOURCE("Function", Evaluatable, Function)
+
 	Function::Function(const Calculator * calculator)
 		: Evaluatable(calculator->outputType(), calculator->name()),
 		_calculator(calculator)

@@ -36,7 +36,7 @@ namespace ruleSystem
 	class Action : public Element
 	{
 	public:
-		TYPEID_INHERIT("Action", Element);
+                TYPEID_INHERIT_HEADER("Action", Element)
 
 		static const QString InputPosition();
 

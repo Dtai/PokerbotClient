@@ -33,7 +33,7 @@ namespace ruleSystem
 	class Constant : public Evaluatable
 	{
 	public:
-		TYPEID_INHERIT("Constant", Evaluatable);
+                TYPEID_INHERIT_HEADER("Constant", Evaluatable)
 
 		Constant(const Type & type, const QVariant & value = QVariant());
 
