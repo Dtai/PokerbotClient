@@ -25,6 +25,8 @@ set (SOURCES
     connectiontarget.cpp
     network/prologsocket.cpp
     network/JSONCreator.cpp
+    network/JSONTableCreator.cpp
+    network/JSONPlayerAdder.cpp
 	)
 
 set (HEADERS
@@ -44,6 +46,8 @@ set (HEADERS
     connectiontarget.hpp
     network/prologsocket.hpp
     network/JSONCreator.hpp
+    network/JSONTableCreator.hpp
+    network/JSONPlayerAdder.hpp
 )
 
 set (Q_MOC_HPP
