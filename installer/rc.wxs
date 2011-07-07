@@ -1,0 +1,36 @@
+<?xml version="1.0"?><Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="21EC2020-3AEA-1069-A2DD-08002B30309D" Name="Regelmaker" Language="1033" Version="1.0.0.0" Manufacturer="KUL" UpgradeCode="21EC2020-3AEA-1069-A2DD-08002B30309D">
+		<Package Description="Regelmaker" Comments="Hiermee wordt het programma Regelmaker geinstalleerd" Manufacturer="KUL" InstallerVersion="200" Compressed="yes" />
+		<Media Id="1" Cabinet="product.cab" EmbedCab="yes" />
+		
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="APPLICATIONROOTDIRECTORY" Name="Regelmaker"/>
+			</Directory>
+			<Directory Id="ProgramMenuFolder">
+				<Directory Id="ApplicationProgramsFolder" Name="Regelmaker"/>
+			</Directory>
+		</Directory>
+		
+		<DirectoryRef Id="APPLICATIONROOTDIRECTORY">
+			<Component Id="ruleCreator" Guid="21EC2020-3AEA-1069-A2DD-08002B30309D">
+				<File Id="rc" Name="ruleCreator.exe" DiskId="1" Source="ruleCreator.exe" />
+				<File Id="lrs" Name="libruleSystem.dll" DiskId="1" Source="libruleSystem.dll" />
+				<File Id="lprs" Name="libpokerRuleSystem.dll" DiskId="1" Source="libpokerRuleSystem.dll" />
+			</Component>
+		</DirectoryRef>
+		
+		<DirectoryRef Id="ApplicationProgramsFolder">
+			<Component Id="ApplicationShortcut" Guid="21EC2020-3AEA-1069-A2DD-08002B30309A">
+				<Shortcut Id="ApplicationStartMenuShortcut" Name="Regelmaker" Description="Uitleg over regelmaker" Target="[APPLICATIONROOTDIRECTORY]ruleCreator.exe" WorkingDirectory="APPLICATIONROOTDIRECTORY"/>
+                <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall"/>
+                <RegistryValue Root="HKCU" Key="Software\RegelMaker" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+			</Component>
+        </DirectoryRef>
+		
+		<Feature Id="MyFeature" Title="My 1st Feature" Level="1">
+			<ComponentRef Id="ruleCreator" />
+			<ComponentRef Id="ApplicationShortcut" />
+		</Feature>
+	</Product>
+</Wix>
