@@ -1,11 +1,19 @@
 find_package(Qt4 REQUIRED)
 set(QT_USE_QTTEST TRUE)
 set(QT_USE_QTNETWORK TRUE)
+SET( QT_USE_QTWEBKIT TRUE )
 include(${QT_USE_FILE})
 
 #set(CMAKE_CXX_FLAGS "-g -ggdb -Wall")
 
 set (PROGNAME ruleCreator)
+
+ FIND_PATH(QT_QTWEBKIT_INCLUDE_DIR QtWebKit
+		PATHS
+		${QT_INCLUDE_DIR}/QtWebKit
+		${QT_LIBRARY_DIR}/QtWebKit.framework/Headers
+		NO_DEFAULT_PATH
+		)
 
 set (SOURCES
 	main.cpp
@@ -22,11 +30,12 @@ set (SOURCES
 	rulelistwidget.cpp
 	settingsmanager.cpp
 	settingsdialog.cpp
-    connectiontarget.cpp
-    network/prologsocket.cpp
-    network/JSONCreator.cpp
-    network/JSONTableCreator.cpp
-        helpWindow.cpp
+	connectiontarget.cpp
+	network/prologsocket.cpp
+	network/JSONCreator.cpp
+	network/JSONTableCreator.cpp
+	helpWindow.cpp
+	visualiseWindow.cpp
 	)
 
 set (HEADERS
@@ -47,7 +56,8 @@ set (HEADERS
     network/prologsocket.hpp
     network/JSONCreator.hpp
     network/JSONTableCreator.hpp
-        helpWindow.hpp
+	helpWindow.hpp
+	visualiseWindow.hpp
 )
 
 set (Q_MOC_HPP
@@ -64,7 +74,8 @@ set (Q_MOC_HPP
 	settingsmanager.hpp
 	settingsdialog.hpp
     network/prologsocket.hpp
-        helpWindow.hpp
+	helpWindow.hpp
+	visualiseWindow.hpp
 )
 
 set (Q_UI
@@ -72,18 +83,20 @@ set (Q_UI
 	rulewidget.ui
 	settingsdialog.ui
 	view/predefinedrulesdescriptor.ui
-        helpWindow.ui
+	helpWindow.ui
+	visualiseWindow.ui
 )
 set (Q_RES
  resources/resources.qrc
 )
+
 set (LIBRARIES )
 
 QT4_WRAP_CPP(HWQ_MOC_CPP ${Q_MOC_HPP})
 QT4_WRAP_UI(HWQ_UI_CPP ${Q_UI})
 QT4_ADD_RESOURCES(HWQ_RES_H ${Q_RES})
 
-include_directories(${CMAKE_CURRENT_BINARY_DIR} . ${PROTOBUF_INCLUDE_DIR} ${MY_INCLUDE_DIRS})
+include_directories(${CMAKE_CURRENT_BINARY_DIR} .  ${MY_INCLUDE_DIRS})
 
 list(APPEND SOURCES ${HWQ_MOC_CPP} ${HWQ_UI_CPP} ${HWQ_RES_H})
 list(APPEND LIBRARIES ${QT_LIBRARIES} )

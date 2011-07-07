@@ -63,6 +63,7 @@
 #include <ruleSystem/util/translator.hpp>
 
 #include "helpWindow.hpp"
+#include "visualiseWindow.hpp"
 
 using namespace ruleSystem;
 using namespace ruleSystem::graphicsView;
@@ -109,6 +110,7 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(_docController, SIGNAL(error(QString,QString)), this, SLOT(showError(QString,QString)));
 
     connect(ui->actionShow_Information, SIGNAL(triggered()), this, SLOT(showInformation()));
+	connect(ui->actionShow_Visualisation, SIGNAL(triggered()), this, SLOT(showVisualisation()));
 
 	showMaximized();
 
@@ -129,6 +131,11 @@ MainWindow::~MainWindow()
 void MainWindow::showInformation(){
     HelpWindow *hw = new HelpWindow();
     hw->show();
+}
+
+void MainWindow::showVisualisation(){
+	VisualiseWindow *vw = new VisualiseWindow();
+	vw->show();
 }
 
 void MainWindow::showError(const QString & title, const QString & errorMessage)

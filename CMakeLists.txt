@@ -6,7 +6,6 @@ ENABLE_TESTING()
 find_package(Boost REQUIRED)
 find_package(Qt4 REQUIRED)
 
-
 set(MY_INCLUDE_DIRS ${Boost_INCLUDE_DIRS})
 
 set (CMAKE_CXX_FLAGS "-g")

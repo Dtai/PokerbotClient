@@ -65,6 +65,7 @@ private slots:
 	void exportCode(QAction * action);
 
     void showInformation();
+	void showVisualisation();
 
 	void numberOfRulesChanged(int numberOfRealRules);
 
