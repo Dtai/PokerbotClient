@@ -2,6 +2,7 @@
 #define HELPWINDOW_HPP
 
 #include <QWidget>
+#include <QAction>
 
 namespace Ui {
 class HelpWindow;
@@ -16,12 +17,18 @@ public:
         ~HelpWindow();
 
 private slots:
-        void showHelpConnection();
-        void showHelpCreateRules();
-        void showHelpSendRules();
+		void menuSelection(QAction*);
 
 private:
         Ui::HelpWindow *ui;
+		QString *connectToTable;
+		QString *makeRules;
+		QString *sendRules;
+
+		void showHelpConnection();
+		void showHelpCreateRules();
+		void showHelpSendRules();
+		void clear();
 };
 
 #endif // HELPWINDOW_HPP
