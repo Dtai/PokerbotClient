@@ -85,10 +85,6 @@ private:
 	CodeInformation * _information;
 };
 
-template <class T> void PrologWriter::RegisterWriter()
-{
-	RegisterWriter(new T);
-}
 } // namespace ruleSystem
 
 #endif // PROLOGWRITER_HPP

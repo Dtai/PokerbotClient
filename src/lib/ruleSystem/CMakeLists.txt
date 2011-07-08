@@ -67,7 +67,7 @@ endforeach(lang)
 add_custom_target(${LIBNAME}_trans DEPENDS ${QM})
 add_dependencies(update_translations ${LIBNAME}_trans)
 
-add_library ( ${LIBNAME} SHARED ${SOURCES} ${HEADERS})
+add_library ( ${LIBNAME} STATIC ${SOURCES} ${HEADERS})
 target_link_libraries( ${LIBNAME} ${LIBRARIES} )
 
 install (TARGETS ${LIBNAME} DESTINATION lib)

@@ -29,46 +29,63 @@
 #include "../../util/typeidentifier.hpp"
 #include <QCoreApplication>
 
-namespace ruleSystem
-{
-	class Element;
-}
+#include "../../feature.hpp"
+#include "../../function.hpp"
+#include "../../constant.hpp"
 
 namespace serialization
 {
-	namespace qt
-	{
-		class ElementSerializer
-		{
-		public:
-			ElementSerializer();
-			virtual ~ElementSerializer();
+namespace qt
+{
+class ElementSerializer
+{
+public:
+    ElementSerializer();
+    virtual ~ElementSerializer();
 
-			virtual const TypeIdentifier & identifier() const = 0;
-			virtual ruleSystem::Element * deserialize(QDataStream & stream) const = 0;
-			virtual void serialize(QDataStream & stream, ruleSystem::Element * element) const = 0;
+    virtual const TypeIdentifier & identifier() const = 0;
+    virtual ruleSystem::Element * deserialize(QDataStream & stream) const = 0;
+    virtual void serialize(QDataStream & stream, ruleSystem::Element * element) const = 0;
 
-			static const ElementSerializer * FindSerializer(ruleSystem::Element * element);
-			static const ElementSerializer * FindSerializer(const QString & name);
-			template <class T> static void RegisterSerializer();
+    static const ElementSerializer * FindSerializer(ruleSystem::Element * element);
+    static const ElementSerializer * FindSerializer(const QString & name);
+    template <class T> static void RegisterSerializer() { RegisterSerializer(new T); }
 
-		private:
-			static void RegisterSerializer(ElementSerializer * serializer);
-		};
+private:
+    static void RegisterSerializer(ElementSerializer * serializer);
+};
 
-		template <class T> void ElementSerializer::RegisterSerializer()
-		{
-			RegisterSerializer(new T);
-		}
+template <class T> class SerializerHelper : public ElementSerializer
+{
+        virtual const TypeIdentifier & identifier() const
+        {
+                return T::TypeID();
+        }
+};
 
-		template <class T> struct ElementRegisterer
-		{
-			ElementRegisterer()
-			{
-				ElementSerializer::RegisterSerializer<T>();
-			}
-		};
-	}
+class FeatureSerializer : public SerializerHelper<ruleSystem::Feature>
+{
+public:
+        virtual ruleSystem::Element * deserialize(QDataStream & stream) const;
+        virtual void serialize(QDataStream & stream, ruleSystem::Element * element) const;
+};
+
+class FunctionSerializer : public SerializerHelper<ruleSystem::Function>
+{
+public:
+        virtual ruleSystem::Element * deserialize(QDataStream & stream) const;
+        virtual void serialize(QDataStream & stream, ruleSystem::Element * element) const;
+};
+
+class ConstantSerializer : public SerializerHelper<ruleSystem::Constant>
+{
+public:
+        virtual ruleSystem::Element * deserialize(QDataStream & stream) const;
+        virtual void serialize(QDataStream & stream, ruleSystem::Element *element) const;
+
+};
+
+}
 }
 
 QDataStream & operator<<(QDataStream & stream, ruleSystem::Element* element);

@@ -23,7 +23,8 @@
 * OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************/
 
-#include <ruleSystem/serialization/qt/elementserializer.hpp>
+#include "elementserializer.hpp"
+
 #include "pokeraction.hpp"
 #include "raiseaction.hpp"
 #include <ruleSystem/evaluatable.hpp>
@@ -33,75 +34,64 @@ using namespace poker;
 
 namespace serialization
 {
-	namespace qt
-	{
-		class PokerActionSerializer : public ElementSerializer
-		{
-		public:
-			const TypeIdentifier & identifier() const
-			{
-				return PokerAction::TypeID();
-			}
+namespace qt
+{
 
-			Element * deserialize(QDataStream & stream) const
-			{
-				QString n;
-				Element * e;
-				stream >> n >> e;
+const TypeIdentifier & PokerActionSerializer::identifier() const
+{
+    return PokerAction::TypeID();
+}
+
+Element * PokerActionSerializer::deserialize(QDataStream & stream) const
+{
+    QString n;
+    Element * e;
+    stream >> n >> e;
 
 
-				PokerAction * a = new PokerAction(n);
-				a->setInput(Action::InputPosition(), e);
-				return a;
-			}
+    PokerAction * a = new PokerAction(n);
+    a->setInput(Action::InputPosition(), e);
+    return a;
+}
 
-			void serialize(QDataStream & stream, Element *element) const
-			{
-				PokerAction * a = element_cast<PokerAction>(element);
+void PokerActionSerializer::serialize(QDataStream & stream, Element *element) const
+{
+    PokerAction * a = element_cast<PokerAction>(element);
 
-				stream << a->name();
-				stream << a->inputAt(Action::InputPosition());
-			}
-		};
+    stream << a->name();
+    stream << a->inputAt(Action::InputPosition());
+}
 
-		class RaiseActionSerializer : public ElementSerializer
-		{
-		public:
-			const TypeIdentifier & identifier() const
-			{
-				return RaiseAction::TypeID();
-			}
+const TypeIdentifier & RaiseActionSerializer::identifier() const
+{
+    return RaiseAction::TypeID();
+}
 
-			Element * deserialize(QDataStream & stream) const
-			{
-				Element * e;
-				Element * v;
-				stream >> e >> v;
+Element * RaiseActionSerializer::deserialize(QDataStream & stream) const
+{
+    Element * e;
+    Element * v;
+    stream >> e >> v;
 
 
-				RaiseAction * a = new RaiseAction();
-				a->setInput(Action::InputPosition(), e);
-				a->setInput(RaiseAction::BetSizePosition(), v);
+    RaiseAction * a = new RaiseAction();
+    a->setInput(Action::InputPosition(), e);
+    a->setInput(RaiseAction::BetSizePosition(), v);
 
-				return a;
-			}
+    return a;
+}
 
-			void serialize(QDataStream & stream, Element *element) const
-			{
-				RaiseAction * a = element_cast<RaiseAction>(element);
+void RaiseActionSerializer::serialize(QDataStream & stream, Element *element) const
+{
+    RaiseAction * a = element_cast<RaiseAction>(element);
 
-				stream << a->inputAt(Action::InputPosition());
-				stream << a->inputAt(RaiseAction::BetSizePosition());
-			}
-		};
+    stream << a->inputAt(Action::InputPosition());
+    stream << a->inputAt(RaiseAction::BetSizePosition());
+}
 
 
-		namespace
-		{
-			ElementRegisterer<PokerActionSerializer> c1;
-			ElementRegisterer<RaiseActionSerializer> c2;
-		}
-	}
+
+}
 }
 
 

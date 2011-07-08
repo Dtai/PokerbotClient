@@ -38,186 +38,166 @@ using namespace ruleSystem;
 
 namespace serialization
 {
-	namespace qt
-	{
-		namespace
-		{
-			QMap<QString, boost::shared_ptr<ElementSerializer> > & serializersMap()
-			{
-				static QMap<QString, boost::shared_ptr<ElementSerializer> > map;
-				return map;
-			}
-		}
+namespace qt
+{
+namespace
+{
+QMap<QString, boost::shared_ptr<ElementSerializer> > & serializersMap()
+{
+    static QMap<QString, boost::shared_ptr<ElementSerializer> > map;
+    return map;
+}
+}
 
-		ElementSerializer::ElementSerializer()
-		{
-		}
+ElementSerializer::ElementSerializer()
+{
+}
 
-		ElementSerializer::~ElementSerializer()
-		{
-		}
+ElementSerializer::~ElementSerializer()
+{
+}
 
-		void ElementSerializer::RegisterSerializer(ElementSerializer * serializer)
-		{
-			if(serializer == 0)
-				return;
+void ElementSerializer::RegisterSerializer(ElementSerializer * serializer)
+{
+    if(serializer == 0)
+        return;
 
-			serializersMap()[serializer->identifier().name()] = boost::shared_ptr<ElementSerializer>(serializer);
-		}
+    serializersMap()[serializer->identifier().name()] = boost::shared_ptr<ElementSerializer>(serializer);
+}
 
-		const ElementSerializer * ElementSerializer::FindSerializer(const QString & name)
-		{
-			QMap<QString, boost::shared_ptr<ElementSerializer> >::iterator i = serializersMap().find(name);
-			if(i == serializersMap().end())
-				return 0;
-			else
-				return i.value().get();
-		}
+const ElementSerializer * ElementSerializer::FindSerializer(const QString & name)
+{
+    QMap<QString, boost::shared_ptr<ElementSerializer> >::iterator i = serializersMap().find(name);
+    if(i == serializersMap().end())
+        return 0;
+    else
+        return i.value().get();
+}
 
-		const ElementSerializer * ElementSerializer::FindSerializer(Element * element)
-		{
-			if(element == 0)
-				return 0;
+const ElementSerializer * ElementSerializer::FindSerializer(Element * element)
+{
+    if(element == 0)
+        return 0;
 
-			return FindSerializer(element->typeID().name());
-		}
-	}
+    return FindSerializer(element->typeID().name());
+}
+
+
+
+ruleSystem::Element * FeatureSerializer::deserialize(QDataStream & stream) const
+{
+    QString n, d;
+    Type t;
+    DBWrapper w;
+
+    stream >> t >> n >> w >> d;
+
+    Feature * f = new Feature(t, n);
+    f->setDB(w.db());
+    f->setDescription(d);
+
+    return f;
+}
+void FeatureSerializer::serialize(QDataStream & stream, ruleSystem::Element * element) const
+{
+    Feature * f = element_cast<Feature>(element);
+
+    DBWrapper w(f->db());
+
+    stream << f->type() << f->name() << w << f->description();
+
+}
+
+
+ruleSystem::Element * FunctionSerializer::deserialize(QDataStream & stream) const
+{
+    QString n, d;
+    const Calculator * c;
+    QList<Element*> e;
+
+    stream >> c >> e >> d;
+    Function * f = new Function(c);
+    f->setDescription(d);
+    for(int i = 0; i < e.size(); i++)
+        f->setFunctionInput(i, e.at(i));
+
+
+    return f;
+}
+void FunctionSerializer::serialize(QDataStream & stream, ruleSystem::Element * element) const
+{
+    Function * f = element_cast<Function>(element);
+
+    stream << f->calculator() << f->functionInputs() << f->description();
+}
+
+Element * ConstantSerializer::deserialize(QDataStream & stream) const
+{
+    QString d;
+    Type t;
+    QVariant v;
+
+    stream >> d >> t >> v;
+
+    Constant * c = new Constant(t);
+    c->setValue(v);
+    c->setDescription(d);
+
+    return c;
+}
+
+void ConstantSerializer::serialize(QDataStream & stream, Element *element) const
+{
+    Constant * c = element_cast<Constant>(element);
+    stream << c->description() << c->type() << c->value();
+}
+
+}
 }
 
 using namespace serialization::qt;
 
 QDataStream & operator<<(QDataStream & stream, ruleSystem::Element* element)
 {
-	if(element == 0)
-	{
-		stream << QString();
-		return stream;
-	}
+    if(element == 0)
+    {
+        stream << QString();
+        return stream;
+    }
 
-	const ElementSerializer * s = ElementSerializer::FindSerializer(element);
+    const ElementSerializer * s = ElementSerializer::FindSerializer(element);
 
-	if(s == 0)
-		throw Exception(Exception::tr("Unable to find a valid serializer"), Exception::tr("ElementSerializer::FindSerializer"));
+    if(s == 0)
+        throw Exception(Exception::tr("Unable to find a valid serializer"), Exception::tr("ElementSerializer::FindSerializer"));
 
 
-	stream << element->typeID().name();
-	s->serialize(stream, element);
+    stream << element->typeID().name();
+    s->serialize(stream, element);
 
-	return stream;
+    return stream;
 }
 
 QDataStream & operator>>(QDataStream & stream, ruleSystem::Element * & element)
 {
-	element = 0;
-	QString name;
-	stream >> name;
+    element = 0;
+    QString name;
+    stream >> name;
 
-	if(name == QString())
-	{
-		element = 0;
-		return stream;
-	}
+    if(name == QString())
+    {
+        element = 0;
+        return stream;
+    }
 
-	const ElementSerializer * s = ElementSerializer::FindSerializer(name);
-	if(s == 0)
-		throw Exception(Exception::tr("Unable to find a valid deserializer"), Exception::tr("ElementSerializer::FindSerializer"));
+    const ElementSerializer * s = ElementSerializer::FindSerializer(name);
+    if(s == 0)
+        throw Exception(Exception::tr("Unable to find a valid deserializer"), Exception::tr("ElementSerializer::FindSerializer"));
 
 
-	element = s->deserialize(stream);
+    element = s->deserialize(stream);
 
-	return stream;
+    return stream;
 }
 
-namespace
-{
-	template <class T> class MySerializer : public ElementSerializer
-	{
-		virtual const TypeIdentifier & identifier() const
-		{
-			return T::TypeID();
-		}
-	};
-
-	class FeatureSerializer : public MySerializer<Feature>
-	{
-	public:
-		virtual ruleSystem::Element * deserialize(QDataStream & stream) const
-		{
-			QString n, d;
-			Type t;
-			DBWrapper w;
-
-			stream >> t >> n >> w >> d;
-
-			Feature * f = new Feature(t, n);
-			f->setDB(w.db());
-			f->setDescription(d);
-
-			return f;
-		}
-		virtual void serialize(QDataStream & stream, ruleSystem::Element * element) const
-		{
-			Feature * f = element_cast<Feature>(element);
-
-			DBWrapper w(f->db());
-
-			stream << f->type() << f->name() << w << f->description();
-
-		}
-	};
-
-	class FunctionSerializer : public MySerializer<Function>
-	{
-	public:
-		virtual ruleSystem::Element * deserialize(QDataStream & stream) const
-		{
-			QString n, d;
-			const Calculator * c;
-			QList<Element*> e;
-
-			stream >> c >> e >> d;
-			Function * f = new Function(c);
-			f->setDescription(d);
-			for(int i = 0; i < e.size(); i++)
-				f->setFunctionInput(i, e.at(i));
 
 
-			return f;
-		}
-		virtual void serialize(QDataStream & stream, ruleSystem::Element * element) const
-		{
-			Function * f = element_cast<Function>(element);
-
-			stream << f->calculator() << f->functionInputs() << f->description();
-		}
-	};
-
-	class ConstantSerializer : public MySerializer<Constant>
-	{
-	public:
-		virtual Element * deserialize(QDataStream & stream) const
-		{
-			QString d;
-			Type t;
-			QVariant v;
-
-			stream >> d >> t >> v;
-
-			Constant * c = new Constant(t);
-			c->setValue(v);
-			c->setDescription(d);
-
-			return c;
-		}
-
-		virtual void serialize(QDataStream & stream, Element *element) const
-		{
-			Constant * c = element_cast<Constant>(element);
-			stream << c->description() << c->type() << c->value();
-		}
-	};
-
-	ElementRegisterer<ConstantSerializer> c;
-	ElementRegisterer<FunctionSerializer> f1;
-	ElementRegisterer<FeatureSerializer> f2;
-}

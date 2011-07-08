@@ -24,7 +24,31 @@
 *******************************************************************/
 
 
-#ifndef ELEMENTSERIALIZER_HPP
-#define ELEMENTSERIALIZER_HPP
+#ifndef RULE_ELEMENTSERIALIZER_HPP
+#define RULE_ELEMENTSERIALIZER_HPP
 
-#endif // ELEMENTSERIALIZER_HPP
+#include <ruleSystem/serialization/qt/elementserializer.hpp>
+
+namespace serialization
+{
+namespace qt
+{
+    class PokerActionSerializer : public ElementSerializer
+    {
+    public:
+            const TypeIdentifier & identifier() const;
+            ruleSystem::Element * deserialize(QDataStream & stream) const;
+            void serialize(QDataStream & stream, ruleSystem::Element *element) const;
+    };
+
+    class RaiseActionSerializer : public ElementSerializer
+    {
+    public:
+            const TypeIdentifier & identifier() const;
+            ruleSystem::Element * deserialize(QDataStream & stream) const;
+            void serialize(QDataStream & stream, ruleSystem::Element *element) const;
+    };
+}
+}
+
+#endif // RULE_ELEMENTSERIALIZER_HPP

@@ -40,20 +40,18 @@ public:
 	virtual QString writeCode(Element * element, PrologWriter::CodeInformation & info) const = 0;
 };
 
-template <class T> struct TElementWriterRegisterer
+class BooleanConstantWriter : public ElementWriter
 {
-	TElementWriterRegisterer()
-	{
-		PrologWriter::RegisterWriter(new T);
-	}
+public:
+        virtual float scoreElement(Element * element) const;
+        virtual QString writeCode(Element * element, PrologWriter::CodeInformation & /*info*/) const;
 };
 
-struct ElementWriterRegisterer
+class FeatureWriter : public ElementWriter
 {
-	ElementWriterRegisterer(ElementWriter * writer)
-	{
-		PrologWriter::RegisterWriter(writer);
-	}
+public:
+    virtual float scoreElement(Element * element) const;
+    virtual QString writeCode(Element * element, PrologWriter::CodeInformation & info) const;
 };
 
 } // namespace prolog

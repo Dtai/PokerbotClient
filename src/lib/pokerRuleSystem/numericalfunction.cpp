@@ -30,74 +30,65 @@ using namespace ruleSystem;
 
 namespace poker
 {
-	namespace function
-	{
-		namespace
-		{
-			CalculatorRegisterer<AddFunctor> addR;
-			CalculatorRegisterer<SubtractFunctor> subR;
-			CalculatorRegisterer<MultiplyFunctor> mulR;
-			CalculatorRegisterer<DivideFunctor> divR;
-			CalculatorRegisterer<InvertFunctor> invR;
-		}
+namespace function
+{
+const Function::InputList AddFunctor::InputTypes()
+{
+    return Function::InputList::CreateUncountedList(type::numericalType(), 2);
+}
+const Function::InputList MultiplyFunctor::InputTypes()
+{
+    return Function::InputList::CreateUncountedList(type::numericalType(), 2);
+}
+const Function::InputList SubtractFunctor::InputTypes()
+{
+    return Function::InputList::CreateCountedList(type::numericalType(), 2);
+}
+const Function::InputList DivideFunctor::InputTypes()
+{
+    return Function::InputList::CreateCountedList(type::numericalType(), 2);
+}
+const Function::InputList InvertFunctor::InputTypes()
+{
+    return Function::InputList::CreateCountedList(type::numericalType(), 1);
+}
 
-		const Function::InputList AddFunctor::InputTypes()
-		{
-			return Function::InputList::CreateUncountedList(type::numericalType(), 2);
-		}
-		const Function::InputList MultiplyFunctor::InputTypes()
-		{
-			return Function::InputList::CreateUncountedList(type::numericalType(), 2);
-		}
-		const Function::InputList SubtractFunctor::InputTypes()
-		{
-			return Function::InputList::CreateCountedList(type::numericalType(), 2);
-		}
-		const Function::InputList DivideFunctor::InputTypes()
-		{
-			return Function::InputList::CreateCountedList(type::numericalType(), 2);
-		}
-		const Function::InputList InvertFunctor::InputTypes()
-		{
-			return Function::InputList::CreateCountedList(type::numericalType(), 1);
-		}
+QVariant AddFunctor::operator()(const QList<Evaluatable*> & vals) const
+{
+    float value = 0;
 
-		QVariant AddFunctor::operator()(const QList<Evaluatable*> & vals) const
-		{
-			float value = 0;
-
-			for(int i = 0; i < vals.size(); i++)
-				value += vals[i]->calculateValue().toFloat();
+    for(int i = 0; i < vals.size(); i++)
+        value += vals[i]->calculateValue().toFloat();
 
 
-			return QVariant::fromValue<float>(value);
-		}
+    return QVariant::fromValue<float>(value);
+}
 
-		QVariant SubtractFunctor::operator()(const QList<Evaluatable*> & val) const
-		{
-			return QVariant::fromValue<float>(val[0]->calculateValue().toFloat() - val[1]->calculateValue().toFloat());
-		}
+QVariant SubtractFunctor::operator()(const QList<Evaluatable*> & val) const
+{
+    return QVariant::fromValue<float>(val[0]->calculateValue().toFloat() - val[1]->calculateValue().toFloat());
+}
 
-		QVariant MultiplyFunctor::operator()(const QList<Evaluatable*> & val) const
-		{
-			float value = 1;
+QVariant MultiplyFunctor::operator()(const QList<Evaluatable*> & val) const
+{
+    float value = 1;
 
-			for(int i = 0; i < val.size(); i++)
-				value *= val[i]->calculateValue().toFloat();
+    for(int i = 0; i < val.size(); i++)
+        value *= val[i]->calculateValue().toFloat();
 
-			return QVariant::fromValue<float>(value);
-		}
+    return QVariant::fromValue<float>(value);
+}
 
-		QVariant DivideFunctor::operator()(const QList<Evaluatable*> & val) const
-		{
-			return QVariant::fromValue<float>(val[0]->calculateValue().toFloat() / val[1]->calculateValue().toFloat());
-		}
+QVariant DivideFunctor::operator()(const QList<Evaluatable*> & val) const
+{
+    return QVariant::fromValue<float>(val[0]->calculateValue().toFloat() / val[1]->calculateValue().toFloat());
+}
 
-		QVariant InvertFunctor::operator()(const QList<ruleSystem::Evaluatable*> & val) const
-		{
-			return QVariant::fromValue<float>(- val[0]->calculateValue().toFloat());
-		}
-	}
+QVariant InvertFunctor::operator()(const QList<ruleSystem::Evaluatable*> & val) const
+{
+    return QVariant::fromValue<float>(- val[0]->calculateValue().toFloat());
+}
+}
 }
 
 

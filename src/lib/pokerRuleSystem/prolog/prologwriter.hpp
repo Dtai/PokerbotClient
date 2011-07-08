@@ -35,6 +35,8 @@ namespace poker
 {
 namespace prolog
 {
+    void initializePrologWriter();
+
 
 class PokerCodeInformation : public ruleSystem::PrologWriter::CodeInformation
 {

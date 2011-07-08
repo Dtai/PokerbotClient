@@ -32,14 +32,6 @@ namespace poker
 {
 	namespace function
 	{
-		namespace
-		{
-			CalculatorRegisterer<ORFunctor> orR;
-			CalculatorRegisterer<ANDFunctor> andR;
-			CalculatorRegisterer<NOTFunctor> notR;
-			CalculatorRegisterer<XORFunctor> xorR;
-		}
-
 		const Function::InputList ORFunctor::InputTypes()
 		{
 			return Function::InputList::CreateUncountedList(type::booleanType(), 2);

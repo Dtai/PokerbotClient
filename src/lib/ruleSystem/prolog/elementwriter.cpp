@@ -32,66 +32,55 @@
 namespace ruleSystem {
 namespace prolog {
 
-class BooleanConstantWriter : public ElementWriter
+float BooleanConstantWriter::scoreElement(Element * element) const
 {
-	virtual float scoreElement(Element * element) const
-	{
-		Constant * c = element_cast<Constant>(element);
-		if(!c)
-			return 0;
+    Constant * c = element_cast<Constant>(element);
+    if(!c)
+        return 0;
 
-		if(c->type() == type::booleanType())
-			return 1.0f;
-		else
-			return 0;
-	}
-
-	virtual QString writeCode(Element * element, PrologWriter::CodeInformation & /*info*/) const
-	{
-		Constant * c = element_cast<Constant>(element);
-		if(!c || c->type() != type::booleanType())
-			throw Exception(Exception::tr("The supplied element is not an boolean constant"), "BooleanConstantWriter::writeCode");
-
-		if(c->value().toBool())
-			return "true";
-		else
-			return "false";
-	}
-};
-
-class FeatureWriter : public ElementWriter
-{
-	virtual float scoreElement(Element * element) const
-	{
-		Feature * f = element_cast<Feature>(element);
-		if(f)
-			return 1;
-		else
-			return 0;
-	}
-
-	virtual QString writeCode(Element * element, PrologWriter::CodeInformation & info) const
-	{
-		Feature * f = element_cast<Feature>(element);
-		if(!f)
-			throw Exception(Exception::tr("The supplied element is not a feature"), "FeatureWriter::writeCode");
-
-		if(f->type() == type::booleanType())
-			return f->name();
-
-		QString var = info.getUniqueVariable();
-		QString varDef = QString("%1(%2)").arg(f->name()).arg(var);
-		info.addPreDefinition(varDef);
-
-		return var;
-	}
-};
-
-namespace
-{
-	TElementWriterRegisterer<BooleanConstantWriter> w2;
-	TElementWriterRegisterer<FeatureWriter> w3;
+    if(c->type() == type::booleanType())
+        return 1.0f;
+    else
+        return 0;
 }
+
+QString BooleanConstantWriter::writeCode(Element * element, PrologWriter::CodeInformation & /*info*/) const
+{
+    Constant * c = element_cast<Constant>(element);
+    if(!c || c->type() != type::booleanType())
+        throw Exception(Exception::tr("The supplied element is not an boolean constant"), "BooleanConstantWriter::writeCode");
+
+    if(c->value().toBool())
+        return "true";
+    else
+        return "false";
+}
+
+float FeatureWriter::scoreElement(Element * element) const
+{
+    Feature * f = element_cast<Feature>(element);
+    if(f)
+        return 1;
+    else
+        return 0;
+}
+
+QString FeatureWriter::writeCode(Element * element, PrologWriter::CodeInformation & info) const
+{
+    Feature * f = element_cast<Feature>(element);
+    if(!f)
+        throw Exception(Exception::tr("The supplied element is not a feature"), "FeatureWriter::writeCode");
+
+    if(f->type() == type::booleanType())
+        return f->name();
+
+    QString var = info.getUniqueVariable();
+    QString varDef = QString("%1(%2)").arg(f->name()).arg(var);
+    info.addPreDefinition(varDef);
+
+    return var;
+}
+
 
 } // namespace prolog
 } // namespace ruleSystem
