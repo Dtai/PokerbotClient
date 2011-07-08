@@ -33,7 +33,7 @@ namespace ruleSystem
 	class Evaluatable : public Element
 	{
 	public:
-		TYPEID_INHERIT("Evaluatable", Element);
+                TYPEID_INHERIT_HEADER("Evaluatable", Element);
 
 		Evaluatable(const Type & type, const QString & name);
 

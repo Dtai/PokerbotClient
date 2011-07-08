@@ -27,6 +27,8 @@
 
 namespace ruleSystem
 {
+    TYPEID_INHERIT_SOURCE("Evaluatable", Element, Evaluatable)
+
 	Evaluatable::Evaluatable(const Type & type, const QString & name)
 		: Element(type, name)
 	{

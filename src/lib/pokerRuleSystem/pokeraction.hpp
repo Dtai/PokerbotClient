@@ -32,7 +32,7 @@ namespace poker
 {
 	class PokerAction : public ruleSystem::Action
 	{
-		TYPEID_INHERIT("PokerAction", ruleSystem::Action);
+                TYPEID_INHERIT_HEADER("PokerAction", ruleSystem::Action);
 
 	public:
 		PokerAction(const QString & actionName);

@@ -27,6 +27,7 @@
 
 namespace ruleSystem
 {
+        TYPEID_INHERIT_SOURCE("Constant", Evaluatable, Constant)
 
 	Constant::Constant(const Type & type, const QVariant & value)
 		: Evaluatable(type, "")

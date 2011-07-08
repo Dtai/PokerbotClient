@@ -35,7 +35,7 @@ namespace ruleSystem
 	class Feature : public Evaluatable
 	{
 	public:
-		TYPEID_INHERIT("Feature", Evaluatable);
+                TYPEID_INHERIT_HEADER("Feature", Evaluatable);
 
 		Feature(const Type & type, const QString & name);
 

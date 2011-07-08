@@ -28,6 +28,9 @@
 
 namespace ruleSystem
 {
+        TYPEID_ROOT_SOURCE("Element", Element)
+
+
 	namespace
 	{
 		void tryToDetachElement(Element * element)
