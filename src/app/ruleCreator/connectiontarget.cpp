@@ -32,7 +32,7 @@ ConnectionTarget::ConnectionTarget()
 
 QString ConnectionTarget::format() const
 {
-	return QString("%4 [%1@%2:%3]").arg(id).arg(ipAddress).arg(portNumber).arg(name);
+	return QString("%4 [%1@%2:%3]").arg(id).arg(ipAddress).arg(portNumber).arg(connectionName);
 }
 
 QString ConnectionTarget::extendedFormat() const
@@ -42,17 +42,17 @@ QString ConnectionTarget::extendedFormat() const
 
 bool ConnectionTarget::operator==(const ConnectionTarget & rhs) const
 {
-	return rhs.name == name && rhs.id == id && rhs.ipAddress == ipAddress && rhs.portNumber == portNumber;
+	return rhs.connectionName == connectionName && rhs.id == id && rhs.ipAddress == ipAddress && rhs.portNumber == portNumber;
 }
 
 QDataStream & operator<<(QDataStream & out, const ConnectionTarget & cd)
 {
-	out << cd.ipAddress << cd.portNumber << cd.id << cd.name << cd.emptyRuleSetExporter;
+	out << cd.ipAddress << cd.portNumber << cd.id << cd.connectionName << cd.emptyRuleSetExporter;
 	return out;
 }
 
 QDataStream & operator>>(QDataStream & in, ConnectionTarget & cd)
 {
-	in >> cd.ipAddress >> cd.portNumber >> cd.id >> cd.name >> cd.emptyRuleSetExporter;
+	in >> cd.ipAddress >> cd.portNumber >> cd.id >> cd.connectionName >> cd.emptyRuleSetExporter;
 	return in;
 }

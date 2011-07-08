@@ -23,7 +23,6 @@
 * OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************/
 
-
 #include "settingsdialog.hpp"
 #include "ui_settingsdialog.h"
 #include "settingsmanager.hpp"
@@ -49,19 +48,19 @@ SettingsDialog::SettingsDialog(SettingsManager * manager, QWidget *parent)
 		ui->connectionsWidget->addItem(i);
 	}
 
-	ui->name->setText(_settingsManager->name());
+	ui->connectionName->setText(_settingsManager->name());
 
 	connect(ui->deleteButton, SIGNAL(clicked()), this, SLOT(onDeleteConnection()));
 	connect(ui->connectionsWidget, SIGNAL(activated(QModelIndex)), this, SLOT(onItemSelectionChanged()));
 	connect(ui->newButton, SIGNAL(clicked()), this, SLOT(onNewConnection()));
-//	connect(ui->address, SIGNAL(textChanged(QString)), this, SLOT(onConnectionChanged()));
-//	connect(ui->port, SIGNAL(valueChanged(int)), this, SLOT(onConnectionChanged()));
-//	connect(ui->id, SIGNAL(valueChanged(int)), this, SLOT(onConnectionChanged()));
-	connect(ui->connectionName, SIGNAL(textChanged(QString)), this, SLOT(onConnectionChanged()));
-	connect(ui->emptyRuleSetExporter, SIGNAL(stateChanged(int)), this, SLOT(onConnectionChanged()));
-
 	connect(ui->okButton, SIGNAL(clicked()), this, SLOT(onOKClicked()));
 	connect(ui->cancelButton, SIGNAL(clicked()), this, SLOT(onCancelClicked()));
+
+	connect(ui->playerName, SIGNAL(textChanged(QString)), this, SLOT(onConnectionChanged()));
+	connect(ui->tableName, SIGNAL(textChanged(QString)), this, SLOT(onConnectionChanged));
+	connect(ui->connectionName, SIGNAL(textChanged(QString)), this, SLOT(onConnectionChanged()));
+
+	connect(ui->emptyRuleSetExporter, SIGNAL(stateChanged(int)), this, SLOT(onConnectionChanged()));	
 }
 
 SettingsDialog::~SettingsDialog()
@@ -76,10 +75,8 @@ void SettingsDialog::onDeleteConnection()
 	delete i;
 	_curSelected = 0;
 
-//	ui->id->setValue(0);
-//	ui->address->setText("");
-//	ui->port->setValue(ConnectionTarget::DefaultPort());
-	ui->connectionName->setText("");
+	ui->playerName->setText("");
+	ui->tableName->setText("");
 	ui->emptyRuleSetExporter->setCheckState(Qt::Unchecked);
 }
 
@@ -88,10 +85,8 @@ void SettingsDialog::onNewConnection()
 	if(_curSelected != 0)
 	{
 		_curSelected = 0;
-//		ui->id->setValue(0);
-//		ui->address->setText("");
-//		ui->port->setValue(ConnectionTarget::DefaultPort());
-		ui->connectionName->setText("");
+		ui->playerName->setText("");
+		ui->tableName->setText("");
 		ui->emptyRuleSetExporter->setCheckState(Qt::Unchecked);
 
 		onNewConnection();
@@ -100,10 +95,10 @@ void SettingsDialog::onNewConnection()
 
 	// add the new connection
 	ConnectionTarget d;
-//	d.id = ui->id->value();
-//	d.ipAddress = ui->address->text();
-//	d.portNumber = ui->port->value();
-	d.name = ui->connectionName->text();
+
+	d.playerName = ui->playerName->text();
+	d.tableName = ui->tableName->text();
+	d.connectionName = ui->connectionName->text();
 	d.emptyRuleSetExporter = (ui->emptyRuleSetExporter->checkState() == Qt::Checked);
 
 	_curSelected = new QListWidgetItem(d.format());
@@ -126,11 +121,10 @@ void SettingsDialog::onItemSelectionChanged()
 		d = _curSelected->data(Qt::UserRole).value<ConnectionTarget>();
 
 	// update the fields
-//	ui->address->setText(d.ipAddress);
-//	ui->port->setValue(d.portNumber);
-//	ui->id->setValue(d.id);
+	ui->playerName->setText(d.playerName);
+	ui->tableName->setText(d.tableName);
+	ui->connectionName->setText(d.connectionName);
 	ui->emptyRuleSetExporter->setCheckState(d.emptyRuleSetExporter ? Qt::Checked : Qt::Unchecked);
-	ui->connectionName->setText(d.name);
 }
 
 void SettingsDialog::onConnectionChanged()
@@ -139,10 +133,9 @@ void SettingsDialog::onConnectionChanged()
 		return;
 
 	ConnectionTarget d = _curSelected->data(Qt::UserRole).value<ConnectionTarget>();
-//	d.id = ui->id->value();
-//	d.portNumber = ui->port->value();
-//	d.ipAddress = ui->address->text();
-	d.name = ui->connectionName->text();
+	d.playerName = ui->playerName->text();
+	d.tableName = ui->tableName->text();
+	d.connectionName = ui->connectionName->text();
 	d.emptyRuleSetExporter = ui->emptyRuleSetExporter->checkState() == Qt::Checked;
 
 	_curSelected->setData(Qt::UserRole, QVariant::fromValue<ConnectionTarget>(d));
@@ -163,7 +156,7 @@ void SettingsDialog::onOKClicked()
 	for(int i = 0; i < ui->connectionsWidget->count(); i++)
 		_settingsManager->addConnection(ui->connectionsWidget->item(i)->data(Qt::UserRole).value<ConnectionTarget>());
 
-	_settingsManager->setName(ui->name->text());
+	_settingsManager->setName(ui->connectionName->text());
 
 	_settingsManager->writeSettings();
 

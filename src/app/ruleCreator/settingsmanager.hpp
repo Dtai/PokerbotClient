@@ -47,7 +47,6 @@ public:
 	static const QString Name() { return "name"; }
 	static const QString PredefinedElements() { return "predefElements"; }
 
-
 private:
 	explicit SettingsManager(QObject * parent = 0);
 
@@ -61,7 +60,6 @@ public:
 
 signals:
 	void settingsChanged();
-
 
 private:
 	RefVarGetSet(QList<PredefinedElement>, predefinedElements, PredefinedElements);
