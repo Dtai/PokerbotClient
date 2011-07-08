@@ -26,7 +26,7 @@
 #define BOOST_SPIRIT_USE_OLD_NAMESPACE
 
 #include "rankparser.hpp"
-#include "regex.h"
+#include <boost/regex.hpp>
 #include <boost/spirit/include/classic.hpp>
 #include <boost/spirit/include/classic_assign_actor.hpp>
 #include <boost/bind.hpp>
