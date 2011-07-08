@@ -35,7 +35,6 @@
 SettingsDialog::SettingsDialog(SettingsManager * manager, QWidget *parent)
 	: QWidget(parent),
 		ui(new Ui::SettingsDialog),
-		_isSuperUser(false),
 		_curSelected(0),
 		_settingsManager(manager)
 {
@@ -55,46 +54,19 @@ SettingsDialog::SettingsDialog(SettingsManager * manager, QWidget *parent)
 	connect(ui->deleteButton, SIGNAL(clicked()), this, SLOT(onDeleteConnection()));
 	connect(ui->connectionsWidget, SIGNAL(activated(QModelIndex)), this, SLOT(onItemSelectionChanged()));
 	connect(ui->newButton, SIGNAL(clicked()), this, SLOT(onNewConnection()));
-	connect(ui->address, SIGNAL(textChanged(QString)), this, SLOT(onConnectionChanged()));
-	connect(ui->port, SIGNAL(valueChanged(int)), this, SLOT(onConnectionChanged()));
-	connect(ui->id, SIGNAL(valueChanged(int)), this, SLOT(onConnectionChanged()));
+//	connect(ui->address, SIGNAL(textChanged(QString)), this, SLOT(onConnectionChanged()));
+//	connect(ui->port, SIGNAL(valueChanged(int)), this, SLOT(onConnectionChanged()));
+//	connect(ui->id, SIGNAL(valueChanged(int)), this, SLOT(onConnectionChanged()));
 	connect(ui->connectionName, SIGNAL(textChanged(QString)), this, SLOT(onConnectionChanged()));
 	connect(ui->emptyRuleSetExporter, SIGNAL(stateChanged(int)), this, SLOT(onConnectionChanged()));
 
 	connect(ui->okButton, SIGNAL(clicked()), this, SLOT(onOKClicked()));
 	connect(ui->cancelButton, SIGNAL(clicked()), this, SLOT(onCancelClicked()));
-
-	updateSuperUserStatus();
-
 }
 
 SettingsDialog::~SettingsDialog()
 {
 	delete ui;
-}
-
-void SettingsDialog::keyReleaseEvent(QKeyEvent * event)
-{
-	if(event->key() == Qt::Key_K && event->modifiers().testFlag(Qt::ControlModifier))
-	{
-		_isSuperUser = !_isSuperUser;
-		updateSuperUserStatus();
-	}
-
-}
-
-void SettingsDialog::updateSuperUserStatus()
-{
-	ui->address->setEnabled(_isSuperUser);
-	ui->port->setEnabled(_isSuperUser);
-	ui->id->setEnabled(_isSuperUser);
-	ui->connectionName->setEnabled(_isSuperUser);
-	ui->emptyRuleSetExporter->setEnabled(_isSuperUser);
-
-	ui->connectionsWidget->setEnabled(_isSuperUser);
-
-	ui->newButton->setEnabled(_isSuperUser);
-	ui->deleteButton->setEnabled(_isSuperUser && ui->connectionsWidget->selectedItems().size() != 0);
 }
 
 void SettingsDialog::onDeleteConnection()
@@ -104,9 +76,9 @@ void SettingsDialog::onDeleteConnection()
 	delete i;
 	_curSelected = 0;
 
-	ui->id->setValue(0);
-	ui->address->setText("");
-	ui->port->setValue(ConnectionTarget::DefaultPort());
+//	ui->id->setValue(0);
+//	ui->address->setText("");
+//	ui->port->setValue(ConnectionTarget::DefaultPort());
 	ui->connectionName->setText("");
 	ui->emptyRuleSetExporter->setCheckState(Qt::Unchecked);
 }
@@ -116,9 +88,9 @@ void SettingsDialog::onNewConnection()
 	if(_curSelected != 0)
 	{
 		_curSelected = 0;
-		ui->id->setValue(0);
-		ui->address->setText("");
-		ui->port->setValue(ConnectionTarget::DefaultPort());
+//		ui->id->setValue(0);
+//		ui->address->setText("");
+//		ui->port->setValue(ConnectionTarget::DefaultPort());
 		ui->connectionName->setText("");
 		ui->emptyRuleSetExporter->setCheckState(Qt::Unchecked);
 
@@ -128,9 +100,9 @@ void SettingsDialog::onNewConnection()
 
 	// add the new connection
 	ConnectionTarget d;
-	d.id = ui->id->value();
-	d.ipAddress = ui->address->text();
-	d.portNumber = ui->port->value();
+//	d.id = ui->id->value();
+//	d.ipAddress = ui->address->text();
+//	d.portNumber = ui->port->value();
 	d.name = ui->connectionName->text();
 	d.emptyRuleSetExporter = (ui->emptyRuleSetExporter->checkState() == Qt::Checked);
 
@@ -145,7 +117,7 @@ void SettingsDialog::onNewConnection()
 void SettingsDialog::onItemSelectionChanged()
 {
 	_curSelected = ui->connectionsWidget->currentItem();
-	ui->deleteButton->setEnabled(_isSuperUser && _curSelected != 0);
+	ui->deleteButton->setEnabled(_curSelected != 0);
 
 	ConnectionTarget d;
 
@@ -154,9 +126,9 @@ void SettingsDialog::onItemSelectionChanged()
 		d = _curSelected->data(Qt::UserRole).value<ConnectionTarget>();
 
 	// update the fields
-	ui->address->setText(d.ipAddress);
-	ui->port->setValue(d.portNumber);
-	ui->id->setValue(d.id);
+//	ui->address->setText(d.ipAddress);
+//	ui->port->setValue(d.portNumber);
+//	ui->id->setValue(d.id);
 	ui->emptyRuleSetExporter->setCheckState(d.emptyRuleSetExporter ? Qt::Checked : Qt::Unchecked);
 	ui->connectionName->setText(d.name);
 }
@@ -167,9 +139,9 @@ void SettingsDialog::onConnectionChanged()
 		return;
 
 	ConnectionTarget d = _curSelected->data(Qt::UserRole).value<ConnectionTarget>();
-	d.id = ui->id->value();
-	d.portNumber = ui->port->value();
-	d.ipAddress = ui->address->text();
+//	d.id = ui->id->value();
+//	d.portNumber = ui->port->value();
+//	d.ipAddress = ui->address->text();
 	d.name = ui->connectionName->text();
 	d.emptyRuleSetExporter = ui->emptyRuleSetExporter->checkState() == Qt::Checked;
 

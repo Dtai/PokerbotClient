@@ -61,6 +61,8 @@
 #include "settingsmanager.hpp"
 #include "network/prologsocket.hpp"
 #include <ruleSystem/util/translator.hpp>
+#include <QInputDialog>
+#include <QWebView>
 
 #include "helpWindow.hpp"
 #include "visualiseWindow.hpp"
@@ -103,7 +105,6 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(ui->action_Open, SIGNAL(triggered()), _docController, SLOT(open()));
 	connect(ui->action_New, SIGNAL(triggered()), _docController, SLOT(newFile()));
 
-	connect(ui->actionEdit_Settings, SIGNAL(triggered()), this, SLOT(showSettingsDialog()));
 	connect(_settings, SIGNAL(settingsChanged()), this, SLOT(updateExportMenu()));
 	connect(ui->menuExport, SIGNAL(triggered(QAction *)), this, SLOT(exportCode(QAction *)));
     connect(ui->actionShow_Code, SIGNAL(triggered()), this, SLOT(showCode()));
@@ -111,24 +112,26 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(_docController, SIGNAL(error(QString,QString)), this, SLOT(showError(QString,QString)));
 
 	connect(ui->actionShow_information, SIGNAL(triggered()), this, SLOT(showInformation()));
-
-	ui->wvCommon->settings()->setAttribute(QWebSettings::PluginsEnabled, true);
-	ui->wvCommon->setUrl(QUrl("http://wulffmorgenthaler.com"));
-
-	ui->wvOwn->settings()->setAttribute(QWebSettings::PluginsEnabled, true);
-	ui->wvOwn->setUrl(QUrl("http://xkcd.com"));
+	connect(ui->actionAdd_table, SIGNAL(triggered()), this, SLOT(addTable()));
+	connect(ui->actionConnect_to_table, SIGNAL(triggered()), this, SLOT(showConnectToTable()));
 
 	showMaximized();
 	showWelcomeWindow();
 
+	QWebView *tab1 = new QWebView(ui->tabWidget);
+	ui->tabWidget->addTab(tab1, "Common table");
+	tab1->setUrl(QUrl("http://wulffmorgenthaler.com"));
+
+	QWebView *tab2 = new QWebView(ui->tabWidget);
+	ui->tabWidget->addTab(tab2, "Test table");
+	tab2->setUrl(QUrl("http://xkcd.com"));
+
 	_settings->reloadSettings();
 	if(_settings->connections().size() == 0)
-		showSettingsDialog();
+		showConnectToTable();
 
 	_predefModel.renewModel(_settings->predefinedElements());
 }
-
-
 
 MainWindow::~MainWindow()
 {
@@ -152,12 +155,30 @@ void MainWindow::showVisualisation(){
 	vw->show();
 }
 
+void MainWindow::addTable(){
+	QString nameTable;
+
+	QInputDialog id;
+	id.setLabelText("Wat is de naam van de tafel?");
+	int res = id.exec();
+
+	if(res == QDialog::Accepted){
+		nameTable = id.textValue();
+	} else {
+		return;
+	}
+
+	QWebView *tab = new QWebView(ui->tabWidget);
+	ui->tabWidget->addTab(tab, nameTable);
+	tab->setUrl(QUrl("http://google.com"));
+}
+
 void MainWindow::showError(const QString & title, const QString & errorMessage)
 {
 	QMessageBox::critical(0, title, errorMessage);
 }
 
-void MainWindow::showSettingsDialog()
+void MainWindow::showConnectToTable()
 {
 	_settings->reloadSettings();
 

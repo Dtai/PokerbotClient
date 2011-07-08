@@ -59,13 +59,14 @@ public slots:
 
 private slots:
 	void onDeleteRule(int rule);
-	void showSettingsDialog();
 	void showCode();
 	void updateExportMenu();
 	void exportCode(QAction * action);
 
     void showInformation();
 	void showVisualisation();
+	void addTable();
+	void showConnectToTable();
 
 	void numberOfRulesChanged(int numberOfRealRules);
 
