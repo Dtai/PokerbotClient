@@ -97,7 +97,6 @@ namespace ruleSystem
 
 		ElementFactory::ElementFactory()
 		{
-                    std::cout << "Created a factory" << std::endl;
 		}
 
 		ElementFactory::~ElementFactory()

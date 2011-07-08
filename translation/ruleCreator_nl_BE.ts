@@ -115,148 +115,148 @@
 <context>
     <name>MainWindow</name>
     <message>
-<<<<<<< HEAD
-        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="255"/>
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="307"/>
         <source>MainWindow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="256"/>
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="308"/>
         <source>&amp;new</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="257"/>
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="309"/>
         <source>Ctrl+N</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="258"/>
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="310"/>
         <source>&amp;Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="259"/>
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="311"/>
         <source>Ctrl+O</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="260"/>
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="312"/>
         <source>Save &amp;As</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="261"/>
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="313"/>
         <source>E&amp;xit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="262"/>
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="314"/>
         <source>Ctrl+Q</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="263"/>
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="315"/>
         <source>&amp;Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="264"/>
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="316"/>
         <source>Ctrl+S</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="265"/>
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="317"/>
         <source>Sluiten</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="266"/>
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="318"/>
         <source>Ctrl+W</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="267"/>
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="319"/>
         <source>Naar &amp;Prolog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="268"/>
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="320"/>
         <source>Change Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="269"/>
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="321"/>
         <source>Show rules (prolog code)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="270"/>
-        <source>Show Information</source>
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="322"/>
+        <source>Show information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="271"/>
-        <source>Show visualisation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="272"/>
-        <source>&amp;File</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="273"/>
-        <source>Export</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="274"/>
-        <source>Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="275"/>
-        <source>Help</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="276"/>
-        <source>Visualisation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="277"/>
-        <source>Eigenschappen</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="278"/>
-        <source>Constanten</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="279"/>
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="323"/>
         <source>Functies</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="280"/>
-        <source>Acties</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="281"/>
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="324"/>
         <source>Voorgedefinieerde elementen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="201"/>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="218"/>
-=======
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="325"/>
+        <source>Acties</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="326"/>
+        <source>Constanten</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="327"/>
+        <source>Eigenschappen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="328"/>
+        <source>Regels</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="329"/>
+        <source>Gemeenschappelijke tafel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="330"/>
+        <source>Testtafel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="331"/>
+        <source>&amp;File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="332"/>
+        <source>Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="333"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_mainwindow.h" line="334"/>
+        <source>Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/app/ruleCreator/mainwindow.cpp" line="215"/>
         <location filename="../src/app/ruleCreator/mainwindow.cpp" line="232"/>
->>>>>>> 7c7948e4033a18a7746101b3b724b848e863aa5c
         <source>Error sending prolog code</source>
         <translation type="unfinished"></translation>
     </message>
@@ -490,149 +490,6 @@
         <source>Error for rule %1: %2</source>
         <translation type="unfinished"></translation>
     </message>
-<<<<<<< HEAD
-=======
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="307"/>
-        <source>MainWindow</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="308"/>
-        <source>&amp;new</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="309"/>
-        <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="310"/>
-        <source>&amp;Open</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="311"/>
-        <source>Ctrl+O</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="312"/>
-        <source>Save &amp;As</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="313"/>
-        <source>E&amp;xit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="314"/>
-        <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="315"/>
-        <source>&amp;Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="316"/>
-        <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="317"/>
-        <source>Sluiten</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="318"/>
-        <source>Ctrl+W</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="319"/>
-        <source>Naar &amp;Prolog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="320"/>
-        <source>Change Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="321"/>
-        <source>Show rules (prolog code)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="322"/>
-        <source>Show information</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="328"/>
-        <source>Regels</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="329"/>
-        <source>Gemeenschappelijke tafel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="330"/>
-        <source>Testtafel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="331"/>
-        <source>&amp;File</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="332"/>
-        <source>Export</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="333"/>
-        <source>Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="334"/>
-        <source>Help</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="327"/>
-        <source>Eigenschappen</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="326"/>
-        <source>Constanten</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="323"/>
-        <source>Functies</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="325"/>
-        <source>Acties</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="324"/>
-        <source>Voorgedefinieerde elementen</source>
-        <translation type="unfinished"></translation>
-    </message>
->>>>>>> 7c7948e4033a18a7746101b3b724b848e863aa5c
 </context>
 <context>
     <name>PredefinedElementView</name>
@@ -788,22 +645,22 @@
 <context>
     <name>WelcomeWindow</name>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_welcomeWindow.h" line="86"/>
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_welcomeWindow.h" line="86"/>
         <source>Welkom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_welcomeWindow.h" line="87"/>
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_welcomeWindow.h" line="87"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_welcomeWindow.h" line="88"/>
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_welcomeWindow.h" line="88"/>
         <source>Naam:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_welcomeWindow.h" line="89"/>
+        <location filename="../../build/pokerbot/src/app/ruleCreator/ui_welcomeWindow.h" line="89"/>
         <source>Tafelnaam:</source>
         <translation type="unfinished"></translation>
     </message>
