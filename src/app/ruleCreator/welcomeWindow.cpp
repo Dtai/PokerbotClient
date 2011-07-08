@@ -9,7 +9,6 @@ WelcomeWindow::WelcomeWindow(QWidget *parent)
 		  ui(new Ui::WelcomeWindow)
 {
 		ui->setupUi(this);
-
 		connect(ui->btnOk, SIGNAL(clicked()), this, SLOT(sendInformation()));
 }
 

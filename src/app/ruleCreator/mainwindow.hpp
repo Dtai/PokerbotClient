@@ -75,6 +75,7 @@ protected:
 
 private:
 	void createDockWidgets();
+	void showWelcomeWindow();
 
 	QList<ruleSystem::Element*> createAllFeatures();
 	QList<ruleSystem::Element*> createAllFunctions();
@@ -87,7 +88,7 @@ private:
 	RuleListWidget * _ruleList;
 	DocumentController * _docController;
 	SettingsManager * _settings;
-        PredefinedElementModel _predefModel;
+	PredefinedElementModel _predefModel;
 };
 
 #endif // MAINWINDOW_HPP

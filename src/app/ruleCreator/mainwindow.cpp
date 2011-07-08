@@ -64,6 +64,7 @@
 
 #include "helpWindow.hpp"
 #include "visualiseWindow.hpp"
+#include "welcomeWindow.hpp"
 
 using namespace ruleSystem;
 using namespace ruleSystem::graphicsView;
@@ -109,10 +110,16 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(_docController, SIGNAL(numberOfRulesChanged(int)), this, SLOT(numberOfRulesChanged(int)));
 	connect(_docController, SIGNAL(error(QString,QString)), this, SLOT(showError(QString,QString)));
 
-    connect(ui->actionShow_Information, SIGNAL(triggered()), this, SLOT(showInformation()));
-	connect(ui->actionShow_Visualisation, SIGNAL(triggered()), this, SLOT(showVisualisation()));
+	connect(ui->actionShow_information, SIGNAL(triggered()), this, SLOT(showInformation()));
+
+	ui->wvCommon->settings()->setAttribute(QWebSettings::PluginsEnabled, true);
+	ui->wvCommon->setUrl(QUrl("http://wulffmorgenthaler.com"));
+
+	ui->wvOwn->settings()->setAttribute(QWebSettings::PluginsEnabled, true);
+	ui->wvOwn->setUrl(QUrl("http://xkcd.com"));
 
 	showMaximized();
+	showWelcomeWindow();
 
 	_settings->reloadSettings();
 	if(_settings->connections().size() == 0)
@@ -126,6 +133,13 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
 	delete ui;
+}
+
+void MainWindow::showWelcomeWindow(){
+	WelcomeWindow *ww = new WelcomeWindow();
+	ww->setWindowModality(Qt::ApplicationModal);
+	ww->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowTitleHint);
+	ww->show();
 }
 
 void MainWindow::showInformation(){
