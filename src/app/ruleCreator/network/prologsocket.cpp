@@ -26,7 +26,7 @@
 #include "prologsocket.hpp"
 #include <QtNetwork/QTcpSocket>
 #include "../settingsmanager.hpp"
-#include "JSONCreator.hpp"
+#include "JSON/JSONCreator.hpp"
 
 PrologSocket::PrologSocket(const ConnectionTarget & target, QObject * parent)
   : QObject(parent),

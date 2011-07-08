@@ -32,11 +32,14 @@ set (SOURCES
 	settingsdialog.cpp
 	connectiontarget.cpp
 	network/prologsocket.cpp
-	network/JSONCreator.cpp
-	network/JSONTableCreator.cpp
 	helpWindow.cpp
 	visualiseWindow.cpp
-	)
+	welcomeWindow.cpp
+
+	JSON/JSONCreator.cpp
+	JSON/JSONTableCreator.cpp
+	JSON/helloCreator.cpp
+)
 
 set (HEADERS
 	mainwindow.hpp
@@ -54,10 +57,13 @@ set (HEADERS
 	settingsdialog.hpp
     connectiontarget.hpp
     network/prologsocket.hpp
-    network/JSONCreator.hpp
-    network/JSONTableCreator.hpp
 	helpWindow.hpp
 	visualiseWindow.hpp
+	welcomeWindow.hpp
+
+	JSON/JSONCreator.hpp
+	JSON/JSONTableCreator.hpp
+	JSON/helloCreator.hpp
 )
 
 set (Q_MOC_HPP
@@ -76,6 +82,7 @@ set (Q_MOC_HPP
     network/prologsocket.hpp
 	helpWindow.hpp
 	visualiseWindow.hpp
+	welcomeWindow.hpp
 )
 
 set (Q_UI
@@ -85,6 +92,7 @@ set (Q_UI
 	view/predefinedrulesdescriptor.ui
 	helpWindow.ui
 	visualiseWindow.ui
+	welcomeWindow.ui
 )
 set (Q_RES
  resources/resources.qrc
