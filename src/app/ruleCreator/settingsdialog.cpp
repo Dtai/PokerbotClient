@@ -26,6 +26,7 @@
 #include "settingsdialog.hpp"
 #include "ui_settingsdialog.h"
 #include "settingsmanager.hpp"
+#include "JSON/helloCreator.hpp"
 
 #include <QListWidgetItem>
 #include <QListWidget>
@@ -57,7 +58,7 @@ SettingsDialog::SettingsDialog(SettingsManager * manager, QWidget *parent)
 	connect(ui->cancelButton, SIGNAL(clicked()), this, SLOT(onCancelClicked()));
 
 	connect(ui->playerName, SIGNAL(textChanged(QString)), this, SLOT(onConnectionChanged()));
-	connect(ui->tableName, SIGNAL(textChanged(QString)), this, SLOT(onConnectionChanged));
+	connect(ui->tableName, SIGNAL(textChanged(QString)), this, SLOT(onConnectionChanged()));
 	connect(ui->connectionName, SIGNAL(textChanged(QString)), this, SLOT(onConnectionChanged()));
 
 	connect(ui->emptyRuleSetExporter, SIGNAL(stateChanged(int)), this, SLOT(onConnectionChanged()));	
@@ -96,6 +97,8 @@ void SettingsDialog::onNewConnection()
 	// add the new connection
 	ConnectionTarget d;
 
+	d.ipAddress = "127.0.0.1";
+	d.portNumber = 20000;
 	d.playerName = ui->playerName->text();
 	d.tableName = ui->tableName->text();
 	d.connectionName = ui->connectionName->text();
@@ -105,8 +108,30 @@ void SettingsDialog::onNewConnection()
 	_curSelected->setData(Qt::UserRole, QVariant::fromValue<ConnectionTarget>(d));
 	ui->connectionsWidget->addItem(_curSelected);
 
+	sendHello(d);
+
 	// and select this item
 	ui->connectionsWidget->setCurrentItem(_curSelected);
+}
+
+void SettingsDialog::sendHello(ConnectionTarget d){
+	HelloCreator hc;
+	hc.setPlayerName(d.playerName);
+	hc.setTableName(d.tableName);
+
+	QByteArray data;
+	data.append(hc.toJSONString());
+
+	//QNetworkAccessManager * m = new QNetworkAccessManager(this);
+	//QNetworkRequest request;
+	//request.setUrl(QUrl("http://posttestserver.com/post.php"));
+	//request.setRawHeader("User-Agent", "MyOwnBrowser 1.0");
+	//QNetworkReply *reply;
+
+	//connect(reply, SIGNAL(readyRead()), this, SLOT(close()));
+	//reply = m->post(request, data);
+
+	std::cout << hc.toJSONString().toStdString() << std::endl;
 }
 
 void SettingsDialog::onItemSelectionChanged()

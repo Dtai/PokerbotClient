@@ -7,14 +7,14 @@ class JSONCreator
 {
 
 public:
-    JSONCreator();
-    void setId(int id);
+	JSONCreator();
+	void setTableName(QString tableName);
     void setName(QString name);
     void setPrologCode(QString prologCode);
-    std::string toStdString();
+	QString toJSONString();
 
 private:
-    int id;
+	QString tableName;
     QString name;
     QString prologCode;
 };

@@ -26,33 +26,33 @@
 #include "connectiontarget.hpp"
 
 ConnectionTarget::ConnectionTarget()
-	: ipAddress(QString()), portNumber(DefaultPort()), id(1), emptyRuleSetExporter(false)
+	: ipAddress(QString()), portNumber(DefaultPort()), emptyRuleSetExporter(false)
 {
 }
 
 QString ConnectionTarget::format() const
 {
-	return QString("%4 [%1@%2:%3]").arg(id).arg(ipAddress).arg(portNumber).arg(connectionName);
+	return QString("%1:[%2@%3]").arg(connectionName).arg(playerName).arg(tableName);
 }
 
 QString ConnectionTarget::extendedFormat() const
 {
-	return QString("%1@%2").arg(QObject::tr("empty")).arg(format());
+	return format();
 }
 
 bool ConnectionTarget::operator==(const ConnectionTarget & rhs) const
 {
-	return rhs.connectionName == connectionName && rhs.id == id && rhs.ipAddress == ipAddress && rhs.portNumber == portNumber;
+	return rhs.connectionName == connectionName && rhs.ipAddress == ipAddress && rhs.portNumber == portNumber;
 }
 
 QDataStream & operator<<(QDataStream & out, const ConnectionTarget & cd)
 {
-	out << cd.ipAddress << cd.portNumber << cd.id << cd.connectionName << cd.emptyRuleSetExporter;
+	out << cd.ipAddress << cd.portNumber << cd.connectionName << cd.tableName << cd.playerName << cd.emptyRuleSetExporter;
 	return out;
 }
 
 QDataStream & operator>>(QDataStream & in, ConnectionTarget & cd)
 {
-	in >> cd.ipAddress >> cd.portNumber >> cd.id >> cd.connectionName >> cd.emptyRuleSetExporter;
+	in >> cd.ipAddress >> cd.portNumber >> cd.connectionName >> cd.tableName >> cd.playerName >> cd.emptyRuleSetExporter;
 	return in;
 }

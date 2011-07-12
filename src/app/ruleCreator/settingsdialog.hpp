@@ -29,6 +29,7 @@
 
 #include <QWidget>
 #include <QList>
+#include "connectiontarget.hpp"
 
 class SettingsManager;
 class QListWidgetItem;
@@ -58,6 +59,8 @@ private:
 	Ui::SettingsDialog *ui;
 	QListWidgetItem * _curSelected;
 	SettingsManager * _settingsManager;
+
+	void sendHello(ConnectionTarget d);
 };
 
 #endif // SETTINGSDIALOG_HPP

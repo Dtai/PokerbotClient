@@ -3,18 +3,41 @@
 #include "JSON/helloCreator.hpp"
 #include <QNetworkReply>
 #include <iostream>
+#include "connectiontarget.hpp"
 
 WelcomeWindow::WelcomeWindow(QWidget *parent)
         : QWidget(parent),
 		  ui(new Ui::WelcomeWindow)
 {
 		ui->setupUi(this);
-		connect(ui->btnOk, SIGNAL(clicked()), this, SLOT(sendInformation()));
+		connect(ui->btnOk, SIGNAL(clicked()), this, SLOT(saveAndSend()));
 }
 
 WelcomeWindow::~WelcomeWindow()
 {
         delete ui;
+}
+
+void WelcomeWindow::saveAndSend(){
+	saveInformation();
+	sendInformation();
+}
+
+void WelcomeWindow::saveInformation(){
+	// add the new connection
+	ConnectionTarget d;
+	d.ipAddress = ui->address->text();
+	d.portNumber = 20000;
+	d.playerName = ui->lePlayerName->text();
+	d.tableName = ui->leTableName->text();
+	d.emptyRuleSetExporter = (ui->emptyRuleSetExporter->checkState() == Qt::Checked);
+
+	_curSelected = new QListWidgetItem(d.format());
+	_curSelected->setData(Qt::UserRole, QVariant::fromValue<ConnectionTarget>(d));
+	ui->connectionsWidget->addItem(_curSelected);
+
+	// and select this item
+	ui->connectionsWidget->setCurrentItem(_curSelected);
 }
 
 void WelcomeWindow::sendInformation(){

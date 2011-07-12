@@ -34,7 +34,6 @@ set (SOURCES
 	network/prologsocket.cpp
 	helpWindow.cpp
 	visualiseWindow.cpp
-	welcomeWindow.cpp
 
 	JSON/JSONCreator.cpp
 	JSON/JSONTableCreator.cpp
@@ -59,7 +58,6 @@ set (HEADERS
     network/prologsocket.hpp
 	helpWindow.hpp
 	visualiseWindow.hpp
-	welcomeWindow.hpp
 
 	JSON/JSONCreator.hpp
 	JSON/JSONTableCreator.hpp
@@ -82,7 +80,6 @@ set (Q_MOC_HPP
     network/prologsocket.hpp
 	helpWindow.hpp
 	visualiseWindow.hpp
-	welcomeWindow.hpp
 )
 
 set (Q_UI
@@ -92,7 +89,6 @@ set (Q_UI
 	view/predefinedrulesdescriptor.ui
 	helpWindow.ui
 	visualiseWindow.ui
-	welcomeWindow.ui
 )
 set (Q_RES
  resources/resources.qrc

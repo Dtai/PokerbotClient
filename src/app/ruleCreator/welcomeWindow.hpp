@@ -16,6 +16,8 @@ public:
 		~WelcomeWindow();
 
 private slots:
+		void saveAndSend();
+		void saveInformation();
 		void sendInformation();
 
 private:

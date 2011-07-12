@@ -16,8 +16,8 @@
 		<DirectoryRef Id="APPLICATIONROOTDIRECTORY">
 			<Component Id="ruleCreator" Guid="21EC2020-3AEA-1069-A2DD-08002B30309D">
 				<File Id="rc" Name="ruleCreator.exe" DiskId="1" Source="ruleCreator.exe" />
-				<File Id="lrs" Name="libruleSystem.dll" DiskId="1" Source="libruleSystem.dll" />
-				<File Id="lprs" Name="libpokerRuleSystem.dll" DiskId="1" Source="libpokerRuleSystem.dll" />
+				<File Id="lrs" Name="libruleSystem.a" DiskId="1" Source="libruleSystem.a" />
+				<File Id="lprs" Name="libpokerRuleSystem.a" DiskId="1" Source="libpokerRuleSystem.a" />
 			</Component>
 		</DirectoryRef>
 		

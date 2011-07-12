@@ -139,10 +139,16 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::showWelcomeWindow(){
-	WelcomeWindow *ww = new WelcomeWindow();
-	ww->setWindowModality(Qt::ApplicationModal);
-	ww->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowTitleHint);
-	ww->show();
+//	WelcomeWindow *ww = new WelcomeWindow();
+//	ww->setWindowModality(Qt::ApplicationModal);
+//	ww->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowTitleHint);
+//	ww->show();
+
+	_settings->reloadSettings();
+
+	SettingsDialog * d = new SettingsDialog(_settings);
+	d->setWindowModality(Qt::ApplicationModal);
+	d->show();
 }
 
 void MainWindow::showInformation(){

@@ -15,8 +15,8 @@ void HelloCreator::setTableName(QString tableName){
 QString HelloCreator::toJSONString(){
 	QString json;
 	json.append("{\n");
-	json.append("\t\"Type\":\"Hello\"\n");
-	json.append("\t\"TableName\":\""); json.append(tableName); json.append("\"\n");
+	json.append("\t\"Type\":\"Hello\",\n");
+	json.append("\t\"TableName\":\""); json.append(tableName); json.append("\",\n");
 	json.append("\t\"PlayerName\":\""); json.append(playerName); json.append("\"\n");
 	json.append("}");
 

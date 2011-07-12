@@ -42,7 +42,6 @@ public:
 	QString tableName;
 	QString ipAddress;
 	quint16 portNumber;
-	int id;
 	bool emptyRuleSetExporter;
 
 	QString format() const;

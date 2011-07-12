@@ -40,16 +40,20 @@ QString PrologSocket::sendPrologCode(const QString & code)
 	connect(_socket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(onSocketError()));
 	_socket->connectToHost(_target.ipAddress, _target.portNumber, QIODevice::WriteOnly);
 
+	//---------------------TODO: this block must be moved under the socket check----------
+	JSONCreator *jc = new JSONCreator();
+	jc->setTableName(_target.tableName);
+	jc->setName(_target.playerName);
+	jc->setPrologCode(code);
+
+	QString data = jc->toJSONString();
+	std::cout << data.toStdString() << std::endl;
+	//------------------------------------------------------------------------------------
+
 	if(!_socket->waitForConnected(1000) || !_socket->isWritable() || !_socket->isValid())
 		return QString(tr("invalid socket: %1")).arg(_socket->errorString());
 
-        JSONCreator *jc = new JSONCreator();
-        jc->setId(_target.id-1);
-        jc->setName(SettingsManager::Instance()->name());
-        jc->setPrologCode(code);
-
-        std::string data = jc->toStdString();
-	_socket->write(data.c_str(), data.size());
+	_socket->write(data.toStdString().c_str(), data.size());
 
 	if(!_socket->waitForBytesWritten(3000))
 		return _socket->errorString();
