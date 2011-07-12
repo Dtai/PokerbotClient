@@ -108,8 +108,6 @@ void SettingsDialog::onNewConnection()
 	_curSelected->setData(Qt::UserRole, QVariant::fromValue<ConnectionTarget>(d));
 	ui->connectionsWidget->addItem(_curSelected);
 
-	sendHello(d);
-
 	// and select this item
 	ui->connectionsWidget->setCurrentItem(_curSelected);
 }
@@ -180,6 +178,12 @@ void SettingsDialog::onOKClicked()
 
 	for(int i = 0; i < ui->connectionsWidget->count(); i++)
 		_settingsManager->addConnection(ui->connectionsWidget->item(i)->data(Qt::UserRole).value<ConnectionTarget>());
+
+	for(int i=0; i<_settingsManager->connections().size(); ++i){
+		if(!_settingsManager->connections().at(i).sentHello){
+			sendHello(_settingsManager->connections().at(i));
+		}
+	}
 
 	_settingsManager->setName(ui->connectionName->text());
 

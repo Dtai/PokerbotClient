@@ -44,6 +44,8 @@ public:
 	quint16 portNumber;
 	bool emptyRuleSetExporter;
 
+	bool sentHello;
+
 	QString format() const;
 	QString extendedFormat() const;
 

@@ -26,7 +26,7 @@
 #include "connectiontarget.hpp"
 
 ConnectionTarget::ConnectionTarget()
-	: ipAddress(QString()), portNumber(DefaultPort()), emptyRuleSetExporter(false)
+	: ipAddress(QString()), portNumber(DefaultPort()), emptyRuleSetExporter(false), sentHello(false)
 {
 }
 
