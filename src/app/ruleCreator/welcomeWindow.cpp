@@ -18,7 +18,6 @@ WelcomeWindow::WelcomeWindow(SettingsManager *manager, QWidget *parent)
 
 	statusBar->setSizeGripEnabled(false);
 	statusBar->showMessage("Welcome");
-	qApp->processEvents();
 
 	ui->setupUi(this);
 	connect(ui->btnOk, SIGNAL(clicked()), this, SLOT(onOKClicked()));

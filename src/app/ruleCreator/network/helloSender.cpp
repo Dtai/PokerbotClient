@@ -25,6 +25,9 @@
 
 #include "helloSender.hpp"
 
+#include <QMessageBox>
+#include <iostream>
+
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
 #include <QtNetwork/QNetworkRequest>
@@ -49,11 +52,15 @@ void HelloSender::send(){
 	params.addQueryItem("tableName", _target.tableName);
 	data = params.encodedQuery();
 
-	QNetworkReply *reply = m->post(request, data);
+	reply = m->post(request, data);
 
 	connect(reply, SIGNAL(finished()), this, SLOT(finish()));
 }
 
 void HelloSender::finish(){
-	emit finished();
+	if(reply->error() == QNetworkReply::NoError){
+		emit finished();
+	} else {
+		std::cout << "Error " << reply->error() << std::endl;
+	}
 }

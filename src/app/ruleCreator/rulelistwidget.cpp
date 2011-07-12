@@ -168,7 +168,7 @@ void RuleListWidget::updateRuleList()
 
 RuleWidget * RuleListWidget::createWidgetAt(int position)
 {
-	RuleWidget * w = new RuleWidget();
+	RuleWidget * w = new RuleWidget(this);
 	w->setPosition(position);
 	w->show();
 

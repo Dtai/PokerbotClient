@@ -27,6 +27,7 @@
 #define HELLOSENDER_HPP
 
 #include <QObject>
+#include <QNetworkReply>
 #include "../connectiontarget.hpp"
 
 class HelloSender : public QObject
@@ -45,6 +46,7 @@ private slots:
 
 private:
 	ConnectionTarget _target;
+	QNetworkReply *reply;
 };
 
 #endif // HELLOSENDER_HPP
