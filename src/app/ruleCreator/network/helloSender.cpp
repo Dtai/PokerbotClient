@@ -23,33 +23,37 @@
 * OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************/
 
-#ifndef CONNECTIONTARGET_HPP
-#define CONNECTIONTARGET_HPP
+#include "helloSender.hpp"
 
-#include <QString>
-#include <QList>
-#include <QVariant>
+#include <QtNetwork/QNetworkAccessManager>
+#include <QtNetwork/QNetworkReply>
+#include <QtNetwork/QNetworkRequest>
 
-class ConnectionTarget
+HelloSender::HelloSender(const ConnectionTarget & target, QObject * parent)
+  : QObject(parent),
+	 _target(target)
 {
-public:
-	ConnectionTarget();
+}
 
-	QString playerName;
-	QString tableName;
-	bool emptyRuleSetExporter;
+void HelloSender::send(){
+	QNetworkAccessManager *m = new QNetworkAccessManager(this);
 
-	QString format() const;
-	QString extendedFormat() const;
+	//QNetworkRequest request(QUrl("http://tias.pagekite.me/hello.php"));
+	QNetworkRequest request(QUrl("http://posttestserver.com/post.php"));
+	request.setRawHeader("User-Agent", "MyOwnBrowser 1.0");
 
-	bool operator==(const ConnectionTarget & rhs) const;
-};
+	QByteArray data;
+	QUrl params;
 
-Q_DECLARE_METATYPE(ConnectionTarget)
-Q_DECLARE_METATYPE(QList<ConnectionTarget>)
+	params.addQueryItem("playerName", _target.playerName);
+	params.addQueryItem("tableName", _target.tableName);
+	data = params.encodedQuery();
 
-QDataStream &operator<<(QDataStream & out, const ConnectionTarget & connectionDetails);
-QDataStream &operator>>(QDataStream & in, ConnectionTarget & connectionDetails);
+	QNetworkReply *reply = m->post(request, data);
 
+	connect(reply, SIGNAL(finished()), this, SLOT(finish()));
+}
 
-#endif // CONNECTIONTARGET_HPP
+void HelloSender::finish(){
+	emit finished();
+}

@@ -1,66 +1,51 @@
+#include <QNetworkReply>
+#include <QLineEdit>
+
 #include "welcomeWindow.hpp"
 #include "ui_welcomeWindow.h"
-#include "JSON/helloCreator.hpp"
-#include <QNetworkReply>
-#include <iostream>
 #include "connectiontarget.hpp"
+#include "settingsmanager.hpp"
 
-WelcomeWindow::WelcomeWindow(QWidget *parent)
+#include "network/helloSender.hpp"
+
+WelcomeWindow::WelcomeWindow(SettingsManager *manager, QWidget *parent)
         : QWidget(parent),
-		  ui(new Ui::WelcomeWindow)
+		  ui(new Ui::WelcomeWindow),
+		  _settingsManager(manager)
 {
-		ui->setupUi(this);
-		connect(ui->btnOk, SIGNAL(clicked()), this, SLOT(saveAndSend()));
+	statusBar = new QStatusBar(this);
+	statusBar->setGeometry(0, this->heightMM(), 100, 20);
+
+	statusBar->setSizeGripEnabled(false);
+	statusBar->showMessage("Welcome");
+	qApp->processEvents();
+
+	ui->setupUi(this);
+	connect(ui->btnOk, SIGNAL(clicked()), this, SLOT(onOKClicked()));
 }
 
 WelcomeWindow::~WelcomeWindow()
 {
-        delete ui;
+	delete ui;
 }
 
-void WelcomeWindow::saveAndSend(){
-	saveInformation();
-	sendInformation();
+void WelcomeWindow::onOKClicked(){
+	while(_settingsManager->connections().size() != 0)
+		_settingsManager->removeConnection(0);
+
+	ConnectionTarget ct;
+	ct.playerName = ui->lePlayerName->text();
+	ct.tableName = ui->leTableName->text();
+	_settingsManager->addConnection(ct);
+
+	_settingsManager->writeSettings();
+
+	HelloSender *hs = new HelloSender(ct);
+	hs->send();
+	connect(hs, SIGNAL(finished()), this, SLOT(deleteLater()));
+	statusBar->showMessage("Sending data");
 }
 
-void WelcomeWindow::saveInformation(){
-	// add the new connection
-	ConnectionTarget d;
-	d.ipAddress = ui->address->text();
-	d.portNumber = 20000;
-	d.playerName = ui->lePlayerName->text();
-	d.tableName = ui->leTableName->text();
-	d.emptyRuleSetExporter = (ui->emptyRuleSetExporter->checkState() == Qt::Checked);
-
-	_curSelected = new QListWidgetItem(d.format());
-	_curSelected->setData(Qt::UserRole, QVariant::fromValue<ConnectionTarget>(d));
-	ui->connectionsWidget->addItem(_curSelected);
-
-	// and select this item
-	ui->connectionsWidget->setCurrentItem(_curSelected);
-}
-
-void WelcomeWindow::sendInformation(){
-	QString playerName = ui->lePlayerName->text();
-	QString tableName = ui->leTableName->text();
-
-	HelloCreator hc;
-	hc.setPlayerName(playerName);
-	hc.setTableName(tableName);
-
-	QByteArray data;
-	data.append(hc.toJSONString());
-
-	QNetworkAccessManager * m = new QNetworkAccessManager(this);
-	QNetworkRequest request;
-	request.setUrl(QUrl("http://posttestserver.com/post.php"));
-	request.setRawHeader("User-Agent", "MyOwnBrowser 1.0");
-	QNetworkReply *reply;
-
-	//connect(reply, SIGNAL(readyRead()), this, SLOT(close()));
-	//reply = m->post(request, data);
-
-	std::cout << hc.toJSONString().toStdString() << std::endl;
-
-	close();
+void WelcomeWindow::onCancelClicked(){
+	deleteLater();
 }

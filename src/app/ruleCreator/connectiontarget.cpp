@@ -26,13 +26,13 @@
 #include "connectiontarget.hpp"
 
 ConnectionTarget::ConnectionTarget()
-	: ipAddress(QString()), portNumber(DefaultPort()), emptyRuleSetExporter(false), sentHello(false)
+	: emptyRuleSetExporter(false)
 {
 }
 
 QString ConnectionTarget::format() const
 {
-	return QString("%1:[%2@%3]").arg(connectionName).arg(playerName).arg(tableName);
+	return QString("%1@%2").arg(playerName).arg(tableName);
 }
 
 QString ConnectionTarget::extendedFormat() const
@@ -42,17 +42,17 @@ QString ConnectionTarget::extendedFormat() const
 
 bool ConnectionTarget::operator==(const ConnectionTarget & rhs) const
 {
-	return rhs.connectionName == connectionName && rhs.ipAddress == ipAddress && rhs.portNumber == portNumber;
+	return rhs.playerName == playerName && rhs.tableName == tableName;
 }
 
 QDataStream & operator<<(QDataStream & out, const ConnectionTarget & cd)
 {
-	out << cd.ipAddress << cd.portNumber << cd.connectionName << cd.tableName << cd.playerName << cd.emptyRuleSetExporter;
+	out << cd.tableName << cd.playerName << cd.emptyRuleSetExporter;
 	return out;
 }
 
 QDataStream & operator>>(QDataStream & in, ConnectionTarget & cd)
 {
-	in >> cd.ipAddress >> cd.portNumber >> cd.connectionName >> cd.tableName >> cd.playerName >> cd.emptyRuleSetExporter;
+	in >> cd.tableName >> cd.playerName >> cd.emptyRuleSetExporter;
 	return in;
 }

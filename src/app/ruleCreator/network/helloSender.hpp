@@ -23,33 +23,28 @@
 * OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************/
 
-#ifndef CONNECTIONTARGET_HPP
-#define CONNECTIONTARGET_HPP
+#ifndef HELLOSENDER_HPP
+#define HELLOSENDER_HPP
 
-#include <QString>
-#include <QList>
-#include <QVariant>
+#include <QObject>
+#include "../connectiontarget.hpp"
 
-class ConnectionTarget
+class HelloSender : public QObject
 {
+	Q_OBJECT
+
 public:
-	ConnectionTarget();
+	explicit HelloSender(const ConnectionTarget & target, QObject * parent = 0);
+	void send();
 
-	QString playerName;
-	QString tableName;
-	bool emptyRuleSetExporter;
+signals:
+	void finished();
 
-	QString format() const;
-	QString extendedFormat() const;
+private slots:
+	void finish();
 
-	bool operator==(const ConnectionTarget & rhs) const;
+private:
+	ConnectionTarget _target;
 };
 
-Q_DECLARE_METATYPE(ConnectionTarget)
-Q_DECLARE_METATYPE(QList<ConnectionTarget>)
-
-QDataStream &operator<<(QDataStream & out, const ConnectionTarget & connectionDetails);
-QDataStream &operator>>(QDataStream & in, ConnectionTarget & connectionDetails);
-
-
-#endif // CONNECTIONTARGET_HPP
+#endif // HELLOSENDER_HPP

@@ -59,8 +59,6 @@ private:
 	Ui::SettingsDialog *ui;
 	QListWidgetItem * _curSelected;
 	SettingsManager * _settingsManager;
-
-	void sendHello(ConnectionTarget d);
 };
 
 #endif // SETTINGSDIALOG_HPP

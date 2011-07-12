@@ -27,14 +27,11 @@
 #include "ui_settingsdialog.h"
 #include "settingsmanager.hpp"
 #include "JSON/helloCreator.hpp"
+#include "network/helloSender.hpp"
 
 #include <QListWidgetItem>
 #include <QListWidget>
 #include <QKeyEvent>
-
-#include <QtNetwork/QNetworkAccessManager>
-#include <QtNetwork/QNetworkReply>
-#include <QtNetwork/QNetworkRequest>
 
 SettingsDialog::SettingsDialog(SettingsManager * manager, QWidget *parent)
 	: QWidget(parent),
@@ -53,8 +50,6 @@ SettingsDialog::SettingsDialog(SettingsManager * manager, QWidget *parent)
 		ui->connectionsWidget->addItem(i);
 	}
 
-	ui->connectionName->setText(_settingsManager->name());
-
 	connect(ui->deleteButton, SIGNAL(clicked()), this, SLOT(onDeleteConnection()));
 	connect(ui->connectionsWidget, SIGNAL(activated(QModelIndex)), this, SLOT(onItemSelectionChanged()));
 	connect(ui->newButton, SIGNAL(clicked()), this, SLOT(onNewConnection()));
@@ -63,7 +58,6 @@ SettingsDialog::SettingsDialog(SettingsManager * manager, QWidget *parent)
 
 	connect(ui->playerName, SIGNAL(textChanged(QString)), this, SLOT(onConnectionChanged()));
 	connect(ui->tableName, SIGNAL(textChanged(QString)), this, SLOT(onConnectionChanged()));
-	connect(ui->connectionName, SIGNAL(textChanged(QString)), this, SLOT(onConnectionChanged()));
 
 	connect(ui->emptyRuleSetExporter, SIGNAL(stateChanged(int)), this, SLOT(onConnectionChanged()));	
 }
@@ -101,11 +95,8 @@ void SettingsDialog::onNewConnection()
 	// add the new connection
 	ConnectionTarget d;
 
-	d.ipAddress = "134.58.39.45";
-	d.portNumber = 20000;
 	d.playerName = ui->playerName->text();
 	d.tableName = ui->tableName->text();
-	d.connectionName = ui->connectionName->text();
 	d.emptyRuleSetExporter = (ui->emptyRuleSetExporter->checkState() == Qt::Checked);
 
 	_curSelected = new QListWidgetItem(d.format());
@@ -114,25 +105,6 @@ void SettingsDialog::onNewConnection()
 
 	// and select this item
 	ui->connectionsWidget->setCurrentItem(_curSelected);
-}
-
-void SettingsDialog::sendHello(ConnectionTarget d){
-	QNetworkAccessManager *m = new QNetworkAccessManager(this);
-
-	QNetworkRequest request(QUrl("http://tias.pagekite.me/hello.php"));
-	//QNetworkRequest request(QUrl("http://posttestserver.com/post.php"));
-	request.setRawHeader("User-Agent", "MyOwnBrowser 1.0");
-
-	QByteArray *data = new QByteArray();
-	QUrl params;
-
-	params.addQueryItem("playerName", d.playerName);
-	params.addQueryItem("tableName", d.tableName);
-	data = &params.encodedQuery();
-
-	QNetworkReply *reply = m->post(request, *data);
-
-	connect(reply, SIGNAL(finished()), this, SLOT(deleteLater()));
 }
 
 void SettingsDialog::onItemSelectionChanged()
@@ -149,7 +121,6 @@ void SettingsDialog::onItemSelectionChanged()
 	// update the fields
 	ui->playerName->setText(d.playerName);
 	ui->tableName->setText(d.tableName);
-	ui->connectionName->setText(d.connectionName);
 	ui->emptyRuleSetExporter->setCheckState(d.emptyRuleSetExporter ? Qt::Checked : Qt::Unchecked);
 }
 
@@ -161,7 +132,6 @@ void SettingsDialog::onConnectionChanged()
 	ConnectionTarget d = _curSelected->data(Qt::UserRole).value<ConnectionTarget>();
 	d.playerName = ui->playerName->text();
 	d.tableName = ui->tableName->text();
-	d.connectionName = ui->connectionName->text();
 	d.emptyRuleSetExporter = ui->emptyRuleSetExporter->checkState() == Qt::Checked;
 
 	_curSelected->setData(Qt::UserRole, QVariant::fromValue<ConnectionTarget>(d));
@@ -182,16 +152,17 @@ void SettingsDialog::onOKClicked()
 	for(int i = 0; i < ui->connectionsWidget->count(); i++)
 		_settingsManager->addConnection(ui->connectionsWidget->item(i)->data(Qt::UserRole).value<ConnectionTarget>());
 
-	_settingsManager->setName(ui->connectionName->text());
-
 	_settingsManager->writeSettings();
+
+	HelloSender *hs;
 
 	for(int i=0; i<_settingsManager->connections().size(); ++i){
 		//if(!_settingsManager->connections().at(i).sentHello){
-			sendHello(_settingsManager->connections().at(i));
+		hs = new HelloSender(_settingsManager->connections().at(i));
+		hs->send();
 		//}
 	}
 
 	// and close this widget
-	//deleteLater();
+	connect(hs, SIGNAL(finished()), this, SLOT(deleteLater()));
 }
