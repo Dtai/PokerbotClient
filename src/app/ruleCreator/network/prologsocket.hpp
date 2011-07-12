@@ -43,6 +43,7 @@ signals:
 
 private slots:
 	void onSocketError();
+	void ready();
 
 private:
 	ConnectionTarget _target;

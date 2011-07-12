@@ -32,6 +32,10 @@
 #include <QListWidget>
 #include <QKeyEvent>
 
+#include <QtNetwork/QNetworkAccessManager>
+#include <QtNetwork/QNetworkReply>
+#include <QtNetwork/QNetworkRequest>
+
 SettingsDialog::SettingsDialog(SettingsManager * manager, QWidget *parent)
 	: QWidget(parent),
 		ui(new Ui::SettingsDialog),
@@ -97,7 +101,7 @@ void SettingsDialog::onNewConnection()
 	// add the new connection
 	ConnectionTarget d;
 
-	d.ipAddress = "127.0.0.1";
+	d.ipAddress = "134.58.39.45";
 	d.portNumber = 20000;
 	d.playerName = ui->playerName->text();
 	d.tableName = ui->tableName->text();
@@ -113,23 +117,22 @@ void SettingsDialog::onNewConnection()
 }
 
 void SettingsDialog::sendHello(ConnectionTarget d){
-	HelloCreator hc;
-	hc.setPlayerName(d.playerName);
-	hc.setTableName(d.tableName);
+	QNetworkAccessManager *m = new QNetworkAccessManager(this);
 
-	QByteArray data;
-	data.append(hc.toJSONString());
+	QNetworkRequest request(QUrl("http://tias.pagekite.me/hello.php"));
+	//QNetworkRequest request(QUrl("http://posttestserver.com/post.php"));
+	request.setRawHeader("User-Agent", "MyOwnBrowser 1.0");
 
-	//QNetworkAccessManager * m = new QNetworkAccessManager(this);
-	//QNetworkRequest request;
-	//request.setUrl(QUrl("http://posttestserver.com/post.php"));
-	//request.setRawHeader("User-Agent", "MyOwnBrowser 1.0");
-	//QNetworkReply *reply;
+	QByteArray *data = new QByteArray();
+	QUrl params;
 
-	//connect(reply, SIGNAL(readyRead()), this, SLOT(close()));
-	//reply = m->post(request, data);
+	params.addQueryItem("playerName", d.playerName);
+	params.addQueryItem("tableName", d.tableName);
+	data = &params.encodedQuery();
 
-	std::cout << hc.toJSONString().toStdString() << std::endl;
+	QNetworkReply *reply = m->post(request, *data);
+
+	connect(reply, SIGNAL(finished()), this, SLOT(deleteLater()));
 }
 
 void SettingsDialog::onItemSelectionChanged()
@@ -179,16 +182,16 @@ void SettingsDialog::onOKClicked()
 	for(int i = 0; i < ui->connectionsWidget->count(); i++)
 		_settingsManager->addConnection(ui->connectionsWidget->item(i)->data(Qt::UserRole).value<ConnectionTarget>());
 
-	for(int i=0; i<_settingsManager->connections().size(); ++i){
-		if(!_settingsManager->connections().at(i).sentHello){
-			sendHello(_settingsManager->connections().at(i));
-		}
-	}
-
 	_settingsManager->setName(ui->connectionName->text());
 
 	_settingsManager->writeSettings();
 
+	for(int i=0; i<_settingsManager->connections().size(); ++i){
+		//if(!_settingsManager->connections().at(i).sentHello){
+			sendHello(_settingsManager->connections().at(i));
+		//}
+	}
+
 	// and close this widget
-	deleteLater();
+	//deleteLater();
 }

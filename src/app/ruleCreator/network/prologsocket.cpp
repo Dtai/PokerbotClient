@@ -27,6 +27,9 @@
 #include <QtNetwork/QTcpSocket>
 #include "../settingsmanager.hpp"
 #include "JSON/JSONCreator.hpp"
+#include <QtNetwork/QNetworkAccessManager>
+#include <QtNetwork/QNetworkReply>
+#include <QtNetwork/QNetworkRequest>
 
 PrologSocket::PrologSocket(const ConnectionTarget & target, QObject * parent)
   : QObject(parent),
@@ -37,28 +40,27 @@ PrologSocket::PrologSocket(const ConnectionTarget & target, QObject * parent)
 
 QString PrologSocket::sendPrologCode(const QString & code)
 {
-	connect(_socket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(onSocketError()));
-	_socket->connectToHost(_target.ipAddress, _target.portNumber, QIODevice::WriteOnly);
+	QNetworkAccessManager *m = new QNetworkAccessManager(this);
 
-	//---------------------TODO: this block must be moved under the socket check----------
-	JSONCreator *jc = new JSONCreator();
-	jc->setTableName(_target.tableName);
-	jc->setName(_target.playerName);
-	jc->setPrologCode(code);
+	QNetworkRequest request(QUrl("http://tias.pagekite.me/joinTable.php"));
+	request.setRawHeader("User-Agent", "MyOwnBrowser 1.0");
 
-	QString data = jc->toJSONString();
-	std::cout << data.toStdString() << std::endl;
-	//------------------------------------------------------------------------------------
+	QByteArray *data = new QByteArray();
+	QUrl params;
 
-	if(!_socket->waitForConnected(1000) || !_socket->isWritable() || !_socket->isValid())
-		return QString(tr("invalid socket: %1")).arg(_socket->errorString());
+	params.addQueryItem("tableName", _target.tableName);
+	params.addQueryItem("playerName", _target.playerName);
+	params.addQueryItem("description", code);
+	data = &params.encodedQuery();
 
-	_socket->write(data.toStdString().c_str(), data.size());
+	QNetworkReply *reply = m->post(request, *data);
 
-	if(!_socket->waitForBytesWritten(3000))
-		return _socket->errorString();
-	else
-		return QString();
+	connect(reply, SIGNAL(finished()), this, SLOT(ready()));
+	return QString();
+}
+
+void PrologSocket::ready(){
+	std::cout << "Ready" << std::endl;
 }
 
 void PrologSocket::onSocketError()

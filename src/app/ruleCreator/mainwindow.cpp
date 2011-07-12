@@ -120,11 +120,11 @@ MainWindow::MainWindow(QWidget *parent)
 
 	QWebView *tab1 = new QWebView(ui->tabWidget);
 	ui->tabWidget->addTab(tab1, "Common table");
-	tab1->setUrl(QUrl("http://wulffmorgenthaler.com"));
+	tab1->setUrl(QUrl("http://134.58.39.45"));
 
 	QWebView *tab2 = new QWebView(ui->tabWidget);
 	ui->tabWidget->addTab(tab2, "Test table");
-	tab2->setUrl(QUrl("http://xkcd.com"));
+	tab2->setUrl(QUrl("http://134.58.39.45"));
 
 	_settings->reloadSettings();
 	if(_settings->connections().size() == 0)
@@ -176,7 +176,11 @@ void MainWindow::addTable(){
 
 	QWebView *tab = new QWebView(ui->tabWidget);
 	ui->tabWidget->addTab(tab, nameTable);
-	tab->setUrl(QUrl("http://google.com"));
+	QString url;
+	url.append("http://tias.pagekite.me/ObserveTable.php?\"tableName=");
+	url.append(nameTable);
+	url.append("\"");
+	tab->setUrl(QUrl(url));
 }
 
 void MainWindow::showError(const QString & title, const QString & errorMessage)
@@ -203,8 +207,6 @@ void MainWindow::showCode()
 	QString code = writePrologCode(validActions);
 	QMessageBox::information(0, "Prolog code", code);
 }
-
-
 
 void MainWindow::updateExportMenu()
 {
@@ -252,11 +254,11 @@ void MainWindow::exportCode(QAction * action)
 	if(code.isEmpty())
 		return;
 
-	PrologSocket s(d);
-	QString error = s.sendPrologCode(code);
+	PrologSocket *s = new PrologSocket(d);
+	QString error = s->sendPrologCode(code);
 
-	if(!error.isEmpty())
-		showError(tr("Error sending prolog code"), error);
+//	if(!error.isEmpty())
+//		showError(tr("Error sending prolog code"), error);
 }
 
 void MainWindow::numberOfRulesChanged(int numberOfRealRules)
