@@ -11,11 +11,22 @@
 			<Directory Id="ProgramMenuFolder">
 				<Directory Id="ApplicationProgramsFolder" Name="Regelmaker"/>
 			</Directory>
+			<Directory Id="DesktopFolder" Name="Desktop"/>
 		</Directory>
 		
 		<DirectoryRef Id="APPLICATIONROOTDIRECTORY">
 			<Component Id="ruleCreator" Guid="21EC2020-3AEA-1069-A2DD-08002B30309D">
-				<File Id="rc" Name="ruleCreator.exe" DiskId="1" Source="ruleCreator.exe" />
+				<File Id="rc" Name="ruleCreator.exe" DiskId="1" Source="ruleCreator.exe">
+					<Shortcut Advertise="yes"
+						Id="MyProductDesktopShortcut"
+						Directory="DesktopFolder"
+						Name="Regelmaker"
+						WorkingDirectory="INSTALLLOCATION"
+						Description="Some description"
+						Icon="Icon.exe">
+						<Icon Id="Icon.exe" SourceFile="ruleCreator.exe" />
+					</Shortcut>
+				</File>
 				<File Id="gcc" Name="libgcc_s_dw2-1.dll" DiskId="1" Source="libgcc_s_dw2-1.dll" />
 				<File Id="mingw" Name="mingwm10.dll" DiskId="1" Source="mingwm10.dll" />
 				<File Id="phonon" Name="phonon4.dll" DiskId="1" Source="phonon4.dll" />
@@ -42,15 +53,16 @@
 		<!-- User Interface -->
 		<UI>
 			<UIRef Id="WixUI_InstallDir" />
-			<Publish Dialog="ExitDialog" Control="Finish" Event="DoAction" Value="LaunchApplication">
-				WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1
-			</Publish>
 		</UI>
 		<Property Id="WIXUI_INSTALLDIR" Value="APPLICATIONROOTDIRECTORY" />
-		<Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Voer regelmaker uit" />
 		
 		<!-- Custom actions -->
-		<Property Id="WixShellExecTarget" Value="ruleCreator.exe" />
-		<CustomAction Id="LaunchApplication" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
+		<CustomAction Id="StartAppOnExit" FileKey="rc" ExeCommand="" Execute="immediate" Impersonate="yes" Return="asyncNoWait" />
+		<Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Launch RuleCreator on exit" />
+		<UI>
+			<Publish Dialog="ExitDialog" Control="Finish" Order="1" Event="DoAction" Value="StartAppOnExit">
+				WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT
+			</Publish>
+		</UI>
 	</Product>
 </Wix>
