@@ -144,12 +144,6 @@ void MainWindow::showWelcomeWindow(){
 	ww->setWindowModality(Qt::ApplicationModal);
 	ww->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowTitleHint);
 	ww->show();
-
-//	_settings->reloadSettings();
-
-//	SettingsDialog * d = new SettingsDialog(_settings);
-//	d->setWindowModality(Qt::ApplicationModal);
-//	d->show();
 }
 
 void MainWindow::showInformation(){

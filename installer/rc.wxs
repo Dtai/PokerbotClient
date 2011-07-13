@@ -16,8 +16,13 @@
 		<DirectoryRef Id="APPLICATIONROOTDIRECTORY">
 			<Component Id="ruleCreator" Guid="21EC2020-3AEA-1069-A2DD-08002B30309D">
 				<File Id="rc" Name="ruleCreator.exe" DiskId="1" Source="ruleCreator.exe" />
-				<File Id="lrs" Name="libruleSystem.a" DiskId="1" Source="libruleSystem.a" />
-				<File Id="lprs" Name="libpokerRuleSystem.a" DiskId="1" Source="libpokerRuleSystem.a" />
+				<File Id="gcc" Name="libgcc_s_dw2-1.dll" DiskId="1" Source="libgcc_s_dw2-1.dll" />
+				<File Id="mingw" Name="mingwm10.dll" DiskId="1" Source="mingwm10.dll" />
+				<File Id="phonon" Name="phonon4.dll" DiskId="1" Source="phonon4.dll" />
+				<File Id="core" Name="QtCore4.dll" DiskId="1" Source="QtCore4.dll" />
+				<File Id="gui" Name="QtGui4.dll" DiskId="1" Source="QtGui4.dll" />
+				<File Id="network" Name="QtNetwork4.dll" DiskId="1" Source="QtNetwork4.dll" />
+				<File Id="webkit" Name="QtWebKit4.dll" DiskId="1" Source="QtWebKit4.dll" />
 			</Component>
 		</DirectoryRef>
 		

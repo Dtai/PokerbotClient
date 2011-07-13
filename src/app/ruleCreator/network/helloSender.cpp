@@ -58,6 +58,7 @@ void HelloSender::send(){
 }
 
 void HelloSender::finish(){
+	QByteArray ba = reply->readAll();
 	if(reply->error() == QNetworkReply::NoError){
 		emit finished();
 	} else {
