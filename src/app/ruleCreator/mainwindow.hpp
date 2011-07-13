@@ -56,6 +56,7 @@ public:
 
 public slots:
 	void showError(const QString & title, const QString & errorMessage);
+	void addTab(QString nameTab);
 
 private slots:
 	void onDeleteRule(int rule);
@@ -69,6 +70,9 @@ private slots:
 	void showConnectToTable();
 
 	void numberOfRulesChanged(int numberOfRealRules);
+
+	void correctExportCode();
+	void incorrectExportCode();
 
 protected:
 	void changeEvent(QEvent * e);
@@ -90,6 +94,7 @@ private:
 	DocumentController * _docController;
 	SettingsManager * _settings;
 	PredefinedElementModel _predefModel;
+	QVector<QString> *tabs;
 };
 
 #endif // MAINWINDOW_HPP

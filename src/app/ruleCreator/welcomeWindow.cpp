@@ -1,5 +1,6 @@
 #include <QNetworkReply>
 #include <QLineEdit>
+#include <iostream>
 
 #include "welcomeWindow.hpp"
 #include "ui_welcomeWindow.h"
@@ -8,8 +9,8 @@
 
 #include "network/helloSender.hpp"
 
-WelcomeWindow::WelcomeWindow(SettingsManager *manager, QWidget *parent)
-        : QWidget(parent),
+WelcomeWindow::WelcomeWindow(SettingsManager *manager, QWidget *parent1, QWidget *parent2)
+		: QWidget(parent2),
 		  ui(new Ui::WelcomeWindow),
 		  _settingsManager(manager)
 {
@@ -21,6 +22,7 @@ WelcomeWindow::WelcomeWindow(SettingsManager *manager, QWidget *parent)
 
 	ui->setupUi(this);
 	connect(ui->btnOk, SIGNAL(clicked()), this, SLOT(onOKClicked()));
+	this->parent1 = parent1;
 }
 
 WelcomeWindow::~WelcomeWindow()
@@ -41,10 +43,17 @@ void WelcomeWindow::onOKClicked(){
 
 	HelloSender *hs = new HelloSender(ct);
 	hs->send();
-	connect(hs, SIGNAL(finished()), this, SLOT(deleteLater()));
+	connect(hs, SIGNAL(finished()), this, SLOT(correctData()));
+	connect(hs, SIGNAL(errored()), this, SLOT(incorrectData()));
 	statusBar->showMessage("Sending data");
 }
 
-void WelcomeWindow::onCancelClicked(){
+void WelcomeWindow::correctData(){
+	connect(this, SIGNAL(sendTableName(QString)), parent1, SLOT(addTab(QString)));
+	deleteLater();
+	emit sendTableName(ui->leTableName->text());
+}
+
+void WelcomeWindow::incorrectData(){
 	deleteLater();
 }

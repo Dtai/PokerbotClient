@@ -18,20 +18,23 @@ class WelcomeWindow : public QWidget
 	Q_OBJECT
 
 public:
-	WelcomeWindow(SettingsManager *manager, QWidget *parent = 0);
+	WelcomeWindow(SettingsManager *manager, QWidget *parent1, QWidget *parent2 = 0);
 	~WelcomeWindow();
 
+signals:
+	void sendTableName(QString tableName);
+
 private slots:
-	void onCancelClicked();
 	void onOKClicked();
+	void correctData();
+	void incorrectData();
 
 private:
 	Ui::WelcomeWindow *ui;
 	QListWidgetItem * _curSelected;
 	SettingsManager * _settingsManager;
 	QStatusBar *statusBar;
-
-	void sendHello(ConnectionTarget d);
+	QWidget *parent1;
 };
 
 #endif // WELCOMEWINDOW_HPP

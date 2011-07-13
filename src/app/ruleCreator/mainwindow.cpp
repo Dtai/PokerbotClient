@@ -96,6 +96,7 @@ MainWindow::MainWindow(QWidget *parent)
 	ui->setupUi(this);
 	createDockWidgets();
 	ui->scrollArea->setWidget(_ruleList);
+	ui->statusbar->showMessage("Welcome");
 
 	connect(_ruleList, SIGNAL(ruleWantsDeletion(int)), this, SLOT(onDeleteRule(int)));
 
@@ -114,16 +115,10 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(ui->actionAdd_table, SIGNAL(triggered()), this, SLOT(addTable()));
 	connect(ui->actionConnect_to_table, SIGNAL(triggered()), this, SLOT(showConnectToTable()));
 
+	tabs = new QVector<QString>();
+
 	showMaximized();
 	showWelcomeWindow();
-
-	QWebView *tab1 = new QWebView(ui->tabWidget);
-	ui->tabWidget->addTab(tab1, "Common table");
-	tab1->setUrl(QUrl("http://134.58.39.45"));
-
-	QWebView *tab2 = new QWebView(ui->tabWidget);
-	ui->tabWidget->addTab(tab2, "Test table");
-	tab2->setUrl(QUrl("http://134.58.39.45"));
 
 	_predefModel.renewModel(_settings->predefinedElements());
 }
@@ -135,7 +130,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::showWelcomeWindow(){
 	_settings->reloadSettings();
-	WelcomeWindow *ww = new WelcomeWindow(_settings);
+	WelcomeWindow *ww = new WelcomeWindow(_settings, this);
 	ww->setWindowModality(Qt::ApplicationModal);
 	ww->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowTitleHint);
 	ww->show();
@@ -164,13 +159,14 @@ void MainWindow::addTable(){
 		return;
 	}
 
-	QWebView *tab = new QWebView(ui->tabWidget);
-	ui->tabWidget->addTab(tab, nameTable);
-	QString url;
-	url.append("http://tias.pagekite.me/ObserveTable.php?\"tableName=");
-	url.append(nameTable);
-	url.append("\"");
-	tab->setUrl(QUrl(url));
+	addTab(nameTable);
+}
+
+void MainWindow::addTab(QString tabName){
+	tabs->push_back(tabName);
+	QWebView *tab1 = new QWebView(ui->tabWidget);
+	ui->tabWidget->addTab(tab1, tabName);
+	tab1->setUrl(QUrl("http://google.com"));
 }
 
 void MainWindow::showError(const QString & title, const QString & errorMessage)
@@ -223,6 +219,7 @@ void MainWindow::updateExportMenu()
 
 void MainWindow::exportCode(QAction * action)
 {
+	ui->statusbar->showMessage("Exporting code");
 	ConnectionTarget d = action->data().value<ConnectionTarget>();
 	QList<Action*> validActions = _docController->checkAllRules();
 
@@ -243,6 +240,18 @@ void MainWindow::exportCode(QAction * action)
 
 	CodeSender *cs = new CodeSender(d, code);
 	cs->send();
+	connect(cs, SIGNAL(finished()), this, SLOT(correctExportCode()));
+	connect(cs, SIGNAL(errored()), this, SLOT(incorrectExportCode()));
+
+	ui->tabWidget->setCurrentIndex(tabs->indexOf(d.tableName)+1);
+}
+
+void MainWindow::correctExportCode(){
+	ui->statusbar->showMessage("Code correct exported");
+}
+
+void MainWindow::incorrectExportCode(){
+	ui->statusbar->showMessage("Code incorrect exported");
 }
 
 void MainWindow::numberOfRulesChanged(int numberOfRealRules)

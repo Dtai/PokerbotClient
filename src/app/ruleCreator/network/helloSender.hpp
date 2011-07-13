@@ -42,6 +42,7 @@ public:
 
 signals:
 	void finished();
+	void errored();
 
 private slots:
 	void finish();

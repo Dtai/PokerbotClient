@@ -38,6 +38,10 @@ public:
 	explicit CodeSender(const ConnectionTarget &target, const QString &code, QObject * parent = 0);
 	void send();
 
+signals:
+	void finished();
+	void errored();
+
 private slots:
 	void finish();
 

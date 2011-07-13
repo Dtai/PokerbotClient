@@ -73,13 +73,16 @@ void CodeSender::finish(){
 		if(type.toString() == "error"){
 			QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, "Error", message.toString());
 			qmb->show();
+			emit errored();
 		} else if(type.toString() == "Acknowledge"){
 			QMessageBox *qmb = new QMessageBox(QMessageBox::Information, "Information", "Everything went fine!");
 			qmb->show();
+			emit finished();
 		}
 
 	} else {
 		QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, "Connection error", reply->errorString());
 		qmb->show();
+		emit errored();
 	}
 }
