@@ -28,6 +28,7 @@
 
 #include <QObject>
 #include <QNetworkReply>
+#include <QVector>
 #include "../connectiontarget.hpp"
 
 class HelloSender : public QObject
@@ -37,6 +38,7 @@ class HelloSender : public QObject
 public:
 	explicit HelloSender(const ConnectionTarget & target, QObject * parent = 0);
 	void send();
+	bool alreadySent(const ConnectionTarget &target);
 
 signals:
 	void finished();
@@ -48,5 +50,7 @@ private:
 	ConnectionTarget _target;
 	QNetworkReply *reply;
 };
+
+static QVector<ConnectionTarget> *targets = new QVector<ConnectionTarget>();
 
 #endif // HELLOSENDER_HPP

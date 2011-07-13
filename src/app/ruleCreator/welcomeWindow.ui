@@ -29,7 +29,7 @@
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>130</y>
+     <y>140</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -44,7 +44,7 @@
      <x>60</x>
      <y>70</y>
      <width>194</width>
-     <height>48</height>
+     <height>71</height>
     </rect>
    </property>
    <layout class="QFormLayout" name="formLayout">
@@ -67,6 +67,13 @@
     </item>
     <item row="1" column="1">
      <widget class="QLineEdit" name="leTableName"/>
+    </item>
+    <item row="2" column="1">
+     <widget class="QCheckBox" name="checkBox">
+      <property name="text">
+       <string>Maak testtafel?</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>

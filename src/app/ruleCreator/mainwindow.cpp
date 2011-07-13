@@ -126,10 +126,6 @@ MainWindow::MainWindow(QWidget *parent)
 	ui->tabWidget->addTab(tab2, "Test table");
 	tab2->setUrl(QUrl("http://134.58.39.45"));
 
-	_settings->reloadSettings();
-	if(_settings->connections().size() == 0)
-		showConnectToTable();
-
 	_predefModel.renewModel(_settings->predefinedElements());
 }
 

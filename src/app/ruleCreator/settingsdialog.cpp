@@ -155,14 +155,22 @@ void SettingsDialog::onOKClicked()
 	_settingsManager->writeSettings();
 
 	HelloSender *hs;
+	bool sending = false;
 
 	for(int i=0; i<_settingsManager->connections().size(); ++i){
-		//if(!_settingsManager->connections().at(i).sentHello){
 		hs = new HelloSender(_settingsManager->connections().at(i));
-		hs->send();
-		//}
+		if(!hs->alreadySent(_settingsManager->connections().at(i))){
+			hs->send();
+			sending = true;
+		}
 	}
 
 	// and close this widget
-	connect(hs, SIGNAL(finished()), this, SLOT(deleteLater()));
+	if(sending){
+		connect(hs, SIGNAL(finished()), this, SLOT(deleteLater()));
+	} else {
+		deleteLater();
+	}
+
+
 }
