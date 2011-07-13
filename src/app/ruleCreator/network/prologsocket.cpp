@@ -25,11 +25,13 @@
 
 #include "prologsocket.hpp"
 #include <QtNetwork/QTcpSocket>
+#include <QMessageBox>
 #include "../settingsmanager.hpp"
 #include "JSON/JSONCreator.hpp"
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
 #include <QtNetwork/QNetworkRequest>
+#include "qjson/src/json_parser.hh"
 
 PrologSocket::PrologSocket(const ConnectionTarget & target, QObject * parent)
   : QObject(parent),
@@ -53,17 +55,44 @@ QString PrologSocket::sendPrologCode(const QString & code)
 	params.addQueryItem("description", code);
 	data = &params.encodedQuery();
 
-	QNetworkReply *reply = m->post(request, *data);
+	reply = m->post(request, *data);
 
 	connect(reply, SIGNAL(finished()), this, SLOT(ready()));
+
 	return QString();
 }
 
 void PrologSocket::ready(){
-	std::cout << "Ready" << std::endl;
+	if(reply->error() == QNetworkReply::NoError){
+		QByteArray ba = reply->readAll();
+
+		QJson::Parser parser;
+		bool ok;
+		QVariantMap result = parser.parse(ba, &ok).toMap();
+		QVariant type = result.value("type");
+		QVariant message = result.value("message");
+
+		if(type.toString() == "error"){
+			QMessageBox *qmb = new QMessageBox(0);
+			qmb->setText(message.toString());
+			qDebug() << message.toString();
+			qmb->show();
+		} else if(type.toString() == "Acknowledge"){
+			QMessageBox *qmb = new QMessageBox(0);
+			qmb->setText("Everything went fine!");
+			qDebug() << "Everything went fine!";
+			qmb->show();
+		}
+
+	} else {
+		QMessageBox *qmb = new QMessageBox(0);
+		qmb->setText(reply->errorString());
+		qDebug() << reply->errorString();
+		qmb->show();
+	}
 }
 
 void PrologSocket::onSocketError()
 {
-		emit error(_socket->errorString());
+	emit error(_socket->errorString());
 }

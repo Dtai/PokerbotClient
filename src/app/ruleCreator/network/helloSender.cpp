@@ -31,6 +31,7 @@
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
 #include <QtNetwork/QNetworkRequest>
+#include "qjson/src/json_parser.hh"
 
 HelloSender::HelloSender(const ConnectionTarget & target, QObject * parent)
   : QObject(parent),
@@ -41,8 +42,8 @@ HelloSender::HelloSender(const ConnectionTarget & target, QObject * parent)
 void HelloSender::send(){
 	QNetworkAccessManager *m = new QNetworkAccessManager(this);
 
-	//QNetworkRequest request(QUrl("http://tias.pagekite.me/hello.php"));
-	QNetworkRequest request(QUrl("http://posttestserver.com/post.php"));
+	QNetworkRequest request(QUrl("http://tias.pagekite.me/hello.php"));
+	//QNetworkRequest request(QUrl("http://posttestserver.com/post.php"));
 	request.setRawHeader("User-Agent", "MyOwnBrowser 1.0");
 
 	QByteArray data;
@@ -62,10 +63,33 @@ bool HelloSender::alreadySent(const ConnectionTarget &target){
 }
 
 void HelloSender::finish(){
-	QByteArray ba = reply->readAll();
 	if(reply->error() == QNetworkReply::NoError){
-		emit finished();
+		QByteArray ba = reply->readAll();
+
+		QJson::Parser parser;
+		bool ok;
+		QVariantMap result = parser.parse(ba, &ok).toMap();
+		QVariant type = result.value("type");
+		QVariant message = result.value("message");
+
+		if(type.toString() == "InvalidInput"){
+			QMessageBox *qmb = new QMessageBox(0);
+			qDebug() << message.toString();
+			qmb->setText(message.toString());
+			qmb->show();
+		} else if(type.toString() == "Acknowledge"){
+			QMessageBox *qmb = new QMessageBox(0);
+			qmb->setText("Everything went fine!");
+			qDebug() << "Everything went fine!";
+			qmb->show();
+		}
+
 	} else {
-		std::cout << "Error " << reply->error() << std::endl;
+		QMessageBox *qmb = new QMessageBox(0);
+		qDebug() << reply->errorString();
+		qmb->setText(reply->errorString());
+		qmb->show();
 	}
+
+	emit finished();
 }

@@ -29,6 +29,7 @@
 #include <QObject>
 #include "../connectiontarget.hpp"
 #include <QtNetwork/QAbstractSocket>
+#include <QNetworkReply>
 
 class PrologSocket : public QObject
 {
@@ -48,6 +49,7 @@ private slots:
 private:
 	ConnectionTarget _target;
 	QAbstractSocket * _socket;
+	QNetworkReply *reply;
 };
 
 #endif // PROLOGSOCKET_HPP

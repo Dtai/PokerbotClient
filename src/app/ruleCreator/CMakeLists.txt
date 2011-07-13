@@ -129,4 +129,4 @@ foreach(transFile ${TRANSFILES})
 endforeach(transFile)
 
 add_executable(${PROGNAME} ${SOURCES} ${HEADERS} ${QM})
-target_link_libraries( ${PROGNAME} ${LIBRARIES} ruleSystem pokerRuleSystem)
+target_link_libraries( ${PROGNAME} ${LIBRARIES} ruleSystem pokerRuleSystem qjson)
