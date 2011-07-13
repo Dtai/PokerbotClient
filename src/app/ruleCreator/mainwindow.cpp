@@ -26,23 +26,27 @@
 #include "mainwindow.hpp"
 #include "ui_mainwindow.h"
 
+#include <ruleSystem/dbwrapper.hpp>
 #include <ruleSystem/feature.hpp>
 #include <ruleSystem/function.hpp>
 #include <ruleSystem/constant.hpp>
 #include <ruleSystem/graphicsView/elementfactory.hpp>
 #include <ruleSystem/graphicsView/elementgraphicsitem.hpp>
 #include <ruleSystem/graphicsView/elementgraphicsscene.hpp>
-
+#include <ruleSystem/prolog/prologwriter.hpp>
+#include <ruleSystem/util/translator.hpp>
 
 #include <pokerRuleSystem/pokerrulesystem.hpp>
 #include <pokerRuleSystem/pokeraction.hpp>
 #include <pokerRuleSystem/raiseaction.hpp>
 #include <pokerRuleSystem/booleanfunction.hpp>
 #include <pokerRuleSystem/simpledb.hpp>
+#include <pokerRuleSystem/prolog/prologwriter.hpp>
 
 #include "model/elementmodel.hpp"
 #include "model/predefinedelementmodel.hpp"
 #include "view/elementview.hpp"
+#include "network/codeSender.hpp"
 
 #include <QDockWidget>
 #include <QTreeView>
@@ -51,19 +55,14 @@
 #include <QDebug>
 #include <QGraphicsView>
 #include <QMessageBox>
-#include "rulewidget.hpp"
-#include "rulelistwidget.hpp"
-#include "documentcontroller.hpp"
-#include <ruleSystem/prolog/prologwriter.hpp>
-#include <ruleSystem/dbwrapper.hpp>
-#include <pokerRuleSystem/prolog/prologwriter.hpp>
-#include "settingsdialog.hpp"
-#include "settingsmanager.hpp"
-#include "network/prologsocket.hpp"
-#include <ruleSystem/util/translator.hpp>
 #include <QInputDialog>
 #include <QWebView>
 
+#include "rulewidget.hpp"
+#include "rulelistwidget.hpp"
+#include "documentcontroller.hpp"
+#include "settingsmanager.hpp"
+#include "settingsdialog.hpp"
 #include "helpWindow.hpp"
 #include "visualiseWindow.hpp"
 #include "welcomeWindow.hpp"
@@ -229,11 +228,8 @@ void MainWindow::exportCode(QAction * action)
 
 	if(action->objectName() == emptyRuleSetSender())
 	{
-		PrologSocket s(d);
-		QString error = s.sendPrologCode("do(call, 1) :- true.");
-		if(!error.isEmpty())
-			showError(tr("Error sending prolog code"), error);
-
+		CodeSender *cs = new CodeSender(d, "do(call, 1) :- true.");
+		cs->send();
 		return;
 	}
 
@@ -245,11 +241,8 @@ void MainWindow::exportCode(QAction * action)
 	if(code.isEmpty())
 		return;
 
-	PrologSocket *s = new PrologSocket(d);
-	QString error = s->sendPrologCode(code);
-
-//	if(!error.isEmpty())
-//		showError(tr("Error sending prolog code"), error);
+	CodeSender *cs = new CodeSender(d, code);
+	cs->send();
 }
 
 void MainWindow::numberOfRulesChanged(int numberOfRealRules)

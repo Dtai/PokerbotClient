@@ -30,13 +30,13 @@ set (SOURCES
 	rulelistwidget.cpp
 	settingsmanager.cpp
 	settingsdialog.cpp
-	connectiontarget.cpp
-	network/prologsocket.cpp
+	connectiontarget.cpp	
 	helpWindow.cpp
 	visualiseWindow.cpp
 	welcomeWindow.cpp
 
 	network/helloSender.cpp
+	network/codeSender.cpp
 
 	JSON/JSONCreator.cpp
 	JSON/JSONTableCreator.cpp
@@ -58,12 +58,12 @@ set (HEADERS
 	settingsmanager.hpp
 	settingsdialog.hpp
     connectiontarget.hpp
-    network/prologsocket.hpp
 	helpWindow.hpp
 	visualiseWindow.hpp
 	welcomeWindow.hpp
 
 	network/helloSender.hpp
+	network/codeSender.hpp
 
 	JSON/JSONCreator.hpp
 	JSON/JSONTableCreator.hpp
@@ -83,11 +83,11 @@ set (Q_MOC_HPP
 	rulelistwidget.hpp
 	settingsmanager.hpp
 	settingsdialog.hpp
-    network/prologsocket.hpp
 	helpWindow.hpp
 	visualiseWindow.hpp
 	welcomeWindow.hpp
 	network/helloSender.hpp
+	network/codeSender.hpp
 )
 
 set (Q_UI

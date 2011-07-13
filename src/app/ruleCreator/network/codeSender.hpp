@@ -23,33 +23,28 @@
 * OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************/
 
-#ifndef PROLOGSOCKET_HPP
-#define PROLOGSOCKET_HPP
+#ifndef CODESENDER_HPP
+#define CODESENDER_HPP
 
 #include <QObject>
 #include "../connectiontarget.hpp"
-#include <QtNetwork/QAbstractSocket>
 #include <QNetworkReply>
 
-class PrologSocket : public QObject
+class CodeSender : public QObject
 {
 	Q_OBJECT
 
 public:
-	explicit PrologSocket(const ConnectionTarget & target, QObject * parent = 0);
-	QString sendPrologCode(const QString & code);
-
-signals:
-	void error(const QString & message);
+	explicit CodeSender(const ConnectionTarget &target, const QString &code, QObject * parent = 0);
+	void send();
 
 private slots:
-	void onSocketError();
-	void ready();
+	void finish();
 
 private:
 	ConnectionTarget _target;
-	QAbstractSocket * _socket;
+	QString _code;
 	QNetworkReply *reply;
 };
 
-#endif // PROLOGSOCKET_HPP
+#endif // CODESENDER_HPP

@@ -23,8 +23,7 @@
 * OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************/
 
-#include "prologsocket.hpp"
-#include <QtNetwork/QTcpSocket>
+#include "codeSender.hpp"
 #include <QMessageBox>
 #include "../settingsmanager.hpp"
 #include "JSON/JSONCreator.hpp"
@@ -33,14 +32,14 @@
 #include <QtNetwork/QNetworkRequest>
 #include "qjson/src/json_parser.hh"
 
-PrologSocket::PrologSocket(const ConnectionTarget & target, QObject * parent)
+CodeSender::CodeSender(const ConnectionTarget & target, const QString &code, QObject * parent)
   : QObject(parent),
      _target(target),
-    _socket(new QTcpSocket(this))
+	_code(code)
 {
 }
 
-QString PrologSocket::sendPrologCode(const QString & code)
+void CodeSender::send()
 {
 	QNetworkAccessManager *m = new QNetworkAccessManager(this);
 
@@ -52,17 +51,16 @@ QString PrologSocket::sendPrologCode(const QString & code)
 
 	params.addQueryItem("tableName", _target.tableName);
 	params.addQueryItem("playerName", _target.playerName);
-	params.addQueryItem("description", code);
+	params.addQueryItem("description", _code);
 	data = &params.encodedQuery();
 
 	reply = m->post(request, *data);
 
-	connect(reply, SIGNAL(finished()), this, SLOT(ready()));
-
-	return QString();
+	connect(reply, SIGNAL(finished()), this, SLOT(finish()));
 }
 
-void PrologSocket::ready(){
+void CodeSender::finish(){
+	int a = 5;
 	if(reply->error() == QNetworkReply::NoError){
 		QByteArray ba = reply->readAll();
 
@@ -73,26 +71,15 @@ void PrologSocket::ready(){
 		QVariant message = result.value("message");
 
 		if(type.toString() == "error"){
-			QMessageBox *qmb = new QMessageBox(0);
-			qmb->setText(message.toString());
-			qDebug() << message.toString();
+			QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, "Error", message.toString());
 			qmb->show();
 		} else if(type.toString() == "Acknowledge"){
-			QMessageBox *qmb = new QMessageBox(0);
-			qmb->setText("Everything went fine!");
-			qDebug() << "Everything went fine!";
+			QMessageBox *qmb = new QMessageBox(QMessageBox::Information, "Information", "Everything went fine!");
 			qmb->show();
 		}
 
 	} else {
-		QMessageBox *qmb = new QMessageBox(0);
-		qmb->setText(reply->errorString());
-		qDebug() << reply->errorString();
+		QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, "Connection error", reply->errorString());
 		qmb->show();
 	}
-}
-
-void PrologSocket::onSocketError()
-{
-	emit error(_socket->errorString());
 }

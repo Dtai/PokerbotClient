@@ -26,7 +26,6 @@
 #include "documentcontroller.hpp"
 #include "rulelistwidget.hpp"
 #include "serialization/qt/ruleserialization.hpp"
-#include "network/prologsocket.hpp"
 
 #include <QFileDialog>
 #include <QDebug>

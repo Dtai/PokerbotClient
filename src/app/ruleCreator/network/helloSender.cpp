@@ -73,21 +73,15 @@ void HelloSender::finish(){
 		QVariant message = result.value("message");
 
 		if(type.toString() == "InvalidInput"){
-			QMessageBox *qmb = new QMessageBox(0);
-			qDebug() << message.toString();
-			qmb->setText(message.toString());
+			QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, "Invalid input", message.toString());
 			qmb->show();
 		} else if(type.toString() == "Acknowledge"){
-			QMessageBox *qmb = new QMessageBox(0);
-			qmb->setText("Everything went fine!");
-			qDebug() << "Everything went fine!";
+			QMessageBox *qmb = new QMessageBox(QMessageBox::Information, "Information", "Successfully connected to the table.");
 			qmb->show();
 		}
 
 	} else {
-		QMessageBox *qmb = new QMessageBox(0);
-		qDebug() << reply->errorString();
-		qmb->setText(reply->errorString());
+		QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, "Connection error", reply->errorString());
 		qmb->show();
 	}
 
