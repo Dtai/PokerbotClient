@@ -1,4 +1,4 @@
 del setup.msi
 candle rc.wxs
-light rc.wixobj -cultures:nl-be;en-us -ext WixUIExtension.dll -ext WixUtilExtension.dll
+light rc.wixobj -loc nl.wxl -ext WixUIExtension.dll -ext WixUtilExtension.dll
 rename rc.msi setup.msi

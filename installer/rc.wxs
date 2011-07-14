@@ -34,6 +34,8 @@
 				<File Id="gui" Name="QtGui4.dll" DiskId="1" Source="QtGui4.dll" />
 				<File Id="network" Name="QtNetwork4.dll" DiskId="1" Source="QtNetwork4.dll" />
 				<File Id="webkit" Name="QtWebKit4.dll" DiskId="1" Source="QtWebKit4.dll" />
+				<File Id="config" Name="config.json" DiskId="1" Source="config.json" />
+				<File Id="json" Name="libqjson.dll" DiskId="1" Source="libqjson.dll" />
 			</Component>
 		</DirectoryRef>
 		
