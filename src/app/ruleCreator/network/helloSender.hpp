@@ -38,7 +38,8 @@ class HelloSender : public QObject
 public:
 	explicit HelloSender(const ConnectionTarget & target, QObject * parent = 0);
 	void send();
-	bool alreadySent(const ConnectionTarget &target);
+	static bool alreadySent(const ConnectionTarget &target);
+	static void add(ConnectionTarget target);
 
 signals:
 	void finished(ConnectionTarget target, QString testTable);

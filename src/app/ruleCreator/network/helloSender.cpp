@@ -67,6 +67,10 @@ bool HelloSender::alreadySent(const ConnectionTarget &target){
 	return targets->contains(target);
 }
 
+void HelloSender::add(ConnectionTarget target){
+	targets->push_back(target);
+}
+
 void HelloSender::finish(){
 	if(reply->error() == QNetworkReply::NoError){
 		QByteArray ba = reply->readAll();

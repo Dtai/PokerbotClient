@@ -152,7 +152,7 @@ void SettingsDialog::onOKClicked()
 
 	for(int i=0; i<ui->connectionsWidget->count(); ++i){
 		ConnectionTarget t = ui->connectionsWidget->item(i)->data(Qt::UserRole).value<ConnectionTarget>();
-		if(!hellos->last()->alreadySent(t)){
+		if(!HelloSender::alreadySent(t)){
 			hellos->push_back(new HelloSender(t));
 			hellos->last()->setObjectName(ui->tableName->text());
 			hellos->last()->send();
@@ -183,7 +183,13 @@ void SettingsDialog::incorrectData(){
 }
 
 void SettingsDialog::correctData(ConnectionTarget target, QString testTable){
+	ConnectionTarget testTarget;
+	testTarget.playerName = target.playerName;
+	testTarget.tableName = testTable;
+	HelloSender::add(testTarget);
+
 	_settingsManager->addConnection(target);
+	_settingsManager->addConnection(testTarget);
 	_settingsManager->writeSettings();
 
 	connect(this, SIGNAL(sendTableName(QString)), parent1, SLOT(addTab(QString)));

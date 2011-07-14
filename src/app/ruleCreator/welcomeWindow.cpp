@@ -42,7 +42,13 @@ void WelcomeWindow::onOKClicked(){
 }
 
 void WelcomeWindow::correctData(ConnectionTarget target, QString testTable){
+	ConnectionTarget testTarget;
+	testTarget.playerName = target.playerName;
+	testTarget.tableName = testTable;
+	HelloSender::add(testTarget);
+
 	_settingsManager->addConnection(target);
+	_settingsManager->addConnection(testTarget);
 	_settingsManager->writeSettings();
 
 	connect(this, SIGNAL(sendTableName(QString)), parent1, SLOT(addTab(QString)));
