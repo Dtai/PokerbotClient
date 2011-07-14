@@ -60,11 +60,12 @@
 		
 		<!-- Custom actions -->
 		<CustomAction Id="StartAppOnExit" FileKey="rc" ExeCommand="" Execute="immediate" Impersonate="yes" Return="asyncNoWait" />
-		<Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Launch RuleCreator on exit" />
+		<Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Voer regelmaker uit" />
 		<UI>
 			<Publish Dialog="ExitDialog" Control="Finish" Order="1" Event="DoAction" Value="StartAppOnExit">
-				WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT
+				WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 and NOT Installed
 			</Publish>
-		</UI>
+		</UI>		
 	</Product>
 </Wix>
+ 
