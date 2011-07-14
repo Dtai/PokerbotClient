@@ -23,35 +23,56 @@
 * OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************/
 
-#ifndef CODESENDER_HPP
-#define CODESENDER_HPP
+#include "reader.hpp"
+#include "qjson/src/json_parser.hh"
 
-#include "../connectiontarget.hpp"
+#include <iostream>
+#include <QFile>
 
-#include <QObject>
-#include <QNetworkReply>
-
-class CodeSender : public QObject
+Reader::Reader()
 {
-	Q_OBJECT
+	readJSON();
+}
 
-public:
-	explicit CodeSender(const ConnectionTarget &target, const QString &code, QObject * parent = 0);
-	void send();
+void Reader::readJSON(){
+	QFile file("config.json");
+	if (!file.open (QIODevice::ReadOnly)){
+		std::cout << "Error" << std::endl;
+		return;
+	}
 
-signals:
-	void finished();
-	void errored();
+	json = file.readAll();
 
-private slots:
-	void finish();
+	file.close();
+}
 
-private:
-	ConnectionTarget _target;
-	QString _code;
-	QNetworkReply *reply;
+QUrl Reader::getURL(){
+	QJson::Parser parser;
+	bool ok;
+	QVariantMap result = parser.parse(json, &ok).toMap();
+	QVariant url = result.value("URL");
 
-	QUrl getURL();
-};
+	return QUrl(url.toString());
+}
 
-#endif // CODESENDER_HPP
+QUrl Reader::getHelloURL(){
+	QUrl base = getURL();
+
+	QJson::Parser parser;
+	bool ok;
+	QVariantMap result = parser.parse(json, &ok).toMap();
+	QVariant postfix = result.value("hello");
+
+	return QUrl(base.toString() + "/" + postfix.toString());
+}
+
+QUrl Reader::getJoinTableURL(){
+	QUrl base = getURL();
+
+	QJson::Parser parser;
+	bool ok;
+	QVariantMap result = parser.parse(json, &ok).toMap();
+	QVariant postfix = result.value("joinTable");
+
+	return QUrl(base.toString() + "/" + postfix.toString());
+}

@@ -41,6 +41,8 @@ set (SOURCES
 	JSON/JSONCreator.cpp
 	JSON/JSONTableCreator.cpp
 	JSON/helloCreator.cpp
+
+	config/reader.cpp
 )
 
 set (HEADERS
@@ -68,6 +70,8 @@ set (HEADERS
 	JSON/JSONCreator.hpp
 	JSON/JSONTableCreator.hpp
 	JSON/helloCreator.hpp
+
+	config/reader.hpp
 )
 
 set (Q_MOC_HPP
@@ -130,3 +134,5 @@ endforeach(transFile)
 
 add_executable(${PROGNAME} ${SOURCES} ${HEADERS} ${QM})
 target_link_libraries( ${PROGNAME} ${LIBRARIES} ruleSystem pokerRuleSystem qjson)
+
+file(COPY config.json DESTINATION ${CMAKE_BINARY_DIR}/bin)

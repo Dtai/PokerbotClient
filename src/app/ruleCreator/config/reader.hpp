@@ -23,35 +23,23 @@
 * OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************/
 
-#ifndef CODESENDER_HPP
-#define CODESENDER_HPP
+#ifndef READER_HPP
+#define READER_HPP
 
-#include "../connectiontarget.hpp"
+#include <QUrl>
 
-#include <QObject>
-#include <QNetworkReply>
-
-class CodeSender : public QObject
+class Reader
 {
-	Q_OBJECT
 
 public:
-	explicit CodeSender(const ConnectionTarget &target, const QString &code, QObject * parent = 0);
-	void send();
-
-signals:
-	void finished();
-	void errored();
-
-private slots:
-	void finish();
+	Reader();
+	QUrl getURL();
+	QUrl getJoinTableURL();
+	QUrl getHelloURL();
 
 private:
-	ConnectionTarget _target;
-	QString _code;
-	QNetworkReply *reply;
-
-	QUrl getURL();
+	QByteArray json;
+	void readJSON();
 };
 
-#endif // CODESENDER_HPP
+#endif // READER_HPP

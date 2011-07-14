@@ -26,11 +26,11 @@
 #include "codeSender.hpp"
 #include <QMessageBox>
 #include "../settingsmanager.hpp"
-#include "JSON/JSONCreator.hpp"
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
 #include <QtNetwork/QNetworkRequest>
 #include "qjson/src/json_parser.hh"
+#include "config/reader.hpp"
 
 CodeSender::CodeSender(const ConnectionTarget & target, const QString &code, QObject * parent)
   : QObject(parent),
@@ -39,11 +39,17 @@ CodeSender::CodeSender(const ConnectionTarget & target, const QString &code, QOb
 {
 }
 
+QUrl CodeSender::getURL(){
+	Reader r;
+	QString u = r.getJoinTableURL().toString();
+	return QUrl("http://tias.pagekite.me/joinTable.php");
+}
+
 void CodeSender::send()
 {
 	QNetworkAccessManager *m = new QNetworkAccessManager(this);
 
-	QNetworkRequest request(QUrl("http://tias.pagekite.me/joinTable.php"));
+	QNetworkRequest request(getURL());
 	request.setRawHeader("User-Agent", "MyOwnBrowser 1.0");
 
 	QByteArray *data = new QByteArray();

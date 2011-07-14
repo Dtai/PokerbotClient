@@ -32,6 +32,7 @@
 #include <QtNetwork/QNetworkReply>
 #include <QtNetwork/QNetworkRequest>
 #include "qjson/src/json_parser.hh"
+#include "config/reader.hpp"
 
 HelloSender::HelloSender(const ConnectionTarget & target, QObject * parent)
   : QObject(parent),
@@ -39,11 +40,15 @@ HelloSender::HelloSender(const ConnectionTarget & target, QObject * parent)
 {
 }
 
+QUrl getURL(){
+	Reader r;
+	return r.getHelloURL();
+}
+
 void HelloSender::send(){
 	QNetworkAccessManager *m = new QNetworkAccessManager(this);
 
-	QNetworkRequest request(QUrl("http://tias.pagekite.me/hello.php"));
-	//QNetworkRequest request(QUrl("http://posttestserver.com/post.php"));
+	QNetworkRequest request(getURL());
 	request.setRawHeader("User-Agent", "MyOwnBrowser 1.0");
 
 	QByteArray data;
@@ -54,6 +59,11 @@ void HelloSender::send(){
 	data = params.encodedQuery();
 
 	targets->push_back(_target);
+
+	QString s = request.url().toString();
+	QString ss = params.toString();
+
+
 	reply = m->post(request, data);
 	connect(reply, SIGNAL(finished()), this, SLOT(finish()));
 }
