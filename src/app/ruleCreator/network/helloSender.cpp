@@ -26,8 +26,6 @@
 #include "helloSender.hpp"
 
 #include <QMessageBox>
-#include <iostream>
-
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
 #include <QtNetwork/QNetworkRequest>

@@ -28,9 +28,8 @@
 #define SETTINGSDIALOG_HPP
 
 #include <QMainWindow>
-#include <QList>
+
 #include "connectiontarget.hpp"
-#include <QStatusBar>
 #include "network/helloSender.hpp"
 
 class SettingsManager;

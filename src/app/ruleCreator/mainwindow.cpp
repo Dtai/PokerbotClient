@@ -64,7 +64,6 @@
 #include "settingsmanager.hpp"
 #include "settingsdialog.hpp"
 #include "helpWindow.hpp"
-#include "visualiseWindow.hpp"
 #include "welcomeWindow.hpp"
 
 using namespace ruleSystem;
@@ -138,11 +137,6 @@ void MainWindow::showWelcomeWindow(){
 void MainWindow::showInformation(){
     HelpWindow *hw = new HelpWindow();
     hw->show();
-}
-
-void MainWindow::showVisualisation(){
-	VisualiseWindow *vw = new VisualiseWindow();
-	vw->show();
 }
 
 void MainWindow::addTab(QString tabName){

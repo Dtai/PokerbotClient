@@ -32,15 +32,10 @@ set (SOURCES
 	settingsdialog.cpp
 	connectiontarget.cpp	
 	helpWindow.cpp
-	visualiseWindow.cpp
 	welcomeWindow.cpp
 
 	network/helloSender.cpp
 	network/codeSender.cpp
-
-	JSON/JSONCreator.cpp
-	JSON/JSONTableCreator.cpp
-	JSON/helloCreator.cpp
 
 	config/reader.cpp
 )
@@ -61,15 +56,10 @@ set (HEADERS
 	settingsdialog.hpp
     connectiontarget.hpp
 	helpWindow.hpp
-	visualiseWindow.hpp
 	welcomeWindow.hpp
 
 	network/helloSender.hpp
 	network/codeSender.hpp
-
-	JSON/JSONCreator.hpp
-	JSON/JSONTableCreator.hpp
-	JSON/helloCreator.hpp
 
 	config/reader.hpp
 )
@@ -88,7 +78,6 @@ set (Q_MOC_HPP
 	settingsmanager.hpp
 	settingsdialog.hpp
 	helpWindow.hpp
-	visualiseWindow.hpp
 	welcomeWindow.hpp
 	network/helloSender.hpp
 	network/codeSender.hpp
@@ -100,7 +89,6 @@ set (Q_UI
 	settingsdialog.ui
 	view/predefinedrulesdescriptor.ui
 	helpWindow.ui
-	visualiseWindow.ui
 	welcomeWindow.ui
 )
 set (Q_RES

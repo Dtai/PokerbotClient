@@ -26,7 +26,6 @@
 #include "settingsdialog.hpp"
 #include "ui_settingsdialog.h"
 #include "settingsmanager.hpp"
-#include "JSON/helloCreator.hpp"
 
 #include <QListWidgetItem>
 #include <QListWidget>

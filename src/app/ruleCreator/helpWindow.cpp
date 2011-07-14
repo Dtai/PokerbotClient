@@ -1,7 +1,6 @@
 #include "helpWindow.hpp"
 #include "ui_helpWindow.h"
 #include <QMenu>
-#include <iostream>
 
 HelpWindow::HelpWindow(QWidget *parent)
         : QWidget(parent),

@@ -2,8 +2,6 @@
 #define WELCOMEWINDOW_HPP
 
 #include <QMainWindow>
-#include <QList>
-#include <QStatusBar>
 #include "connectiontarget.hpp"
 
 class SettingsManager;

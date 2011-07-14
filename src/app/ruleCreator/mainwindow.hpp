@@ -64,8 +64,7 @@ private slots:
 	void updateExportMenu();
 	void exportCode(QAction * action);
 
-    void showInformation();
-	void showVisualisation();
+	void showInformation();
 	void showConnectToTable();
 
 	void numberOfRulesChanged(int numberOfRealRules);

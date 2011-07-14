@@ -1,10 +1,5 @@
-#include <QNetworkReply>
-#include <QLineEdit>
-#include <iostream>
-
 #include "welcomeWindow.hpp"
 #include "ui_welcomeWindow.h"
-#include "connectiontarget.hpp"
 #include "settingsmanager.hpp"
 
 #include "network/helloSender.hpp"
@@ -19,6 +14,10 @@ WelcomeWindow::WelcomeWindow(SettingsManager *manager, QWidget *parent1, QWidget
 	this->parent1 = parent1;
 
 	ui->statusbar->showMessage("Welcome");
+
+	while(_settingsManager->connections().size() != 0)
+		_settingsManager->removeConnection(0);
+	_settingsManager->writeSettings();
 }
 
 WelcomeWindow::~WelcomeWindow()
@@ -27,9 +26,6 @@ WelcomeWindow::~WelcomeWindow()
 }
 
 void WelcomeWindow::onOKClicked(){
-	while(_settingsManager->connections().size() != 0)
-		_settingsManager->removeConnection(0);
-
 	ConnectionTarget ct;
 	ct.playerName = ui->lePlayerName->text();
 	ct.tableName = ui->leTableName->text();

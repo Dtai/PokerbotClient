@@ -26,7 +26,6 @@
 #include "reader.hpp"
 #include "qjson/src/json_parser.hh"
 
-#include <iostream>
 #include <QFile>
 
 Reader::Reader()
