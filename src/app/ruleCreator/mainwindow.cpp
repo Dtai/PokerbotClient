@@ -178,7 +178,7 @@ void MainWindow::showConnectToTable()
 {
 	_settings->reloadSettings();
 
-	SettingsDialog * d = new SettingsDialog(_settings);
+	SettingsDialog * d = new SettingsDialog(_settings, this);
 	d->setWindowModality(Qt::ApplicationModal);
 	d->show();
 }

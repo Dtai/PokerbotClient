@@ -27,9 +27,10 @@
 #ifndef SETTINGSDIALOG_HPP
 #define SETTINGSDIALOG_HPP
 
-#include <QWidget>
+#include <QMainWindow>
 #include <QList>
 #include "connectiontarget.hpp"
+#include <QStatusBar>
 
 class SettingsManager;
 class QListWidgetItem;
@@ -38,13 +39,16 @@ namespace Ui {
 class SettingsDialog;
 }
 
-class SettingsDialog : public QWidget
+class SettingsDialog : public QMainWindow
 {
 	Q_OBJECT
 
 public:
-	explicit SettingsDialog(SettingsManager * manager, QWidget *parent = 0);
+	explicit SettingsDialog(SettingsManager * manager, QWidget *parent1, QWidget *parent2 = 0);
 	~SettingsDialog();
+
+signals:
+	void sendTableName(QString tableName);
 
 private slots:
 	void onDeleteConnection();
@@ -55,10 +59,15 @@ private slots:
 	void onCancelClicked();
 	void onOKClicked();
 
+	void incorrectData();
+	void correctData();
+
 private:
 	Ui::SettingsDialog *ui;
 	QListWidgetItem * _curSelected;
 	SettingsManager * _settingsManager;
+	QWidget *parent1;
+	QStatusBar *statusBar;
 };
 
 #endif // SETTINGSDIALOG_HPP

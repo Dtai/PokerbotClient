@@ -85,15 +85,16 @@ void HelloSender::finish(){
 		if(type.toString() == "InvalidInput"){
 			QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, "Invalid input", message.toString());
 			qmb->show();
+			emit errored();
 		} else if(type.toString() == "Acknowledge"){
 			QMessageBox *qmb = new QMessageBox(QMessageBox::Information, "Information", "Successfully connected to the table.");
 			qmb->show();
+			emit finished();
 		}
 
 	} else {
 		QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, "Connection error", reply->errorString());
 		qmb->show();
+		emit errored();
 	}
-
-	emit finished();
 }

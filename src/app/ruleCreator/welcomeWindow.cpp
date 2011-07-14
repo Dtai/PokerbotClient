@@ -10,19 +10,15 @@
 #include "network/helloSender.hpp"
 
 WelcomeWindow::WelcomeWindow(SettingsManager *manager, QWidget *parent1, QWidget *parent2)
-		: QWidget(parent2),
+		: QMainWindow(parent2),
 		  ui(new Ui::WelcomeWindow),
 		  _settingsManager(manager)
 {
-	statusBar = new QStatusBar(this);
-	statusBar->setGeometry(0, this->heightMM(), 100, 20);
-
-	statusBar->setSizeGripEnabled(false);
-	statusBar->showMessage("Welcome");
-
 	ui->setupUi(this);
 	connect(ui->btnOk, SIGNAL(clicked()), this, SLOT(onOKClicked()));
 	this->parent1 = parent1;
+
+	ui->statusbar->showMessage("Welcome");
 }
 
 WelcomeWindow::~WelcomeWindow()
@@ -45,13 +41,13 @@ void WelcomeWindow::onOKClicked(){
 	hs->send();
 	connect(hs, SIGNAL(finished()), this, SLOT(correctData()));
 	connect(hs, SIGNAL(errored()), this, SLOT(incorrectData()));
-	statusBar->showMessage("Sending data");
+	ui->statusbar->showMessage("Sending data");
 }
 
 void WelcomeWindow::correctData(){
 	connect(this, SIGNAL(sendTableName(QString)), parent1, SLOT(addTab(QString)));
-	deleteLater();
 	emit sendTableName(ui->leTableName->text());
+	deleteLater();
 }
 
 void WelcomeWindow::incorrectData(){

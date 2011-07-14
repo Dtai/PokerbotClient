@@ -1,7 +1,7 @@
 #ifndef WELCOMEWINDOW_HPP
 #define WELCOMEWINDOW_HPP
 
-#include <QWidget>
+#include <QMainWindow>
 #include <QList>
 #include <QStatusBar>
 #include "connectiontarget.hpp"
@@ -13,7 +13,7 @@ namespace Ui {
 class WelcomeWindow;
 }
 
-class WelcomeWindow : public QWidget
+class WelcomeWindow : public QMainWindow
 {
 	Q_OBJECT
 
@@ -33,7 +33,6 @@ private:
 	Ui::WelcomeWindow *ui;
 	QListWidgetItem * _curSelected;
 	SettingsManager * _settingsManager;
-	QStatusBar *statusBar;
 	QWidget *parent1;
 };
 

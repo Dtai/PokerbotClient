@@ -52,15 +52,15 @@ void CodeSender::send()
 	QNetworkRequest request(getURL());
 	request.setRawHeader("User-Agent", "MyOwnBrowser 1.0");
 
-	QByteArray *data = new QByteArray();
+	QByteArray data;
 	QUrl params;
 
 	params.addQueryItem("tableName", _target.tableName);
 	params.addQueryItem("playerName", _target.playerName);
 	params.addQueryItem("description", _code);
-	data = &params.encodedQuery();
+	data = params.encodedQuery();
 
-	reply = m->post(request, *data);
+	reply = m->post(request, data);
 
 	connect(reply, SIGNAL(finished()), this, SLOT(finish()));
 }
