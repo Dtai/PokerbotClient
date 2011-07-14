@@ -33,20 +33,21 @@ void WelcomeWindow::onOKClicked(){
 	ConnectionTarget ct;
 	ct.playerName = ui->lePlayerName->text();
 	ct.tableName = ui->leTableName->text();
-	_settingsManager->addConnection(ct);
-
-	_settingsManager->writeSettings();
 
 	HelloSender *hs = new HelloSender(ct);
 	hs->send();
-	connect(hs, SIGNAL(finished()), this, SLOT(correctData()));
+	connect(hs, SIGNAL(finished(ConnectionTarget, QString)), this, SLOT(correctData(ConnectionTarget, QString)));
 	connect(hs, SIGNAL(errored()), this, SLOT(incorrectData()));
 	ui->statusbar->showMessage("Sending data");
 }
 
-void WelcomeWindow::correctData(){
+void WelcomeWindow::correctData(ConnectionTarget target, QString testTable){
+	_settingsManager->addConnection(target);
+	_settingsManager->writeSettings();
+
 	connect(this, SIGNAL(sendTableName(QString)), parent1, SLOT(addTab(QString)));
 	emit sendTableName(ui->leTableName->text());
+	emit sendTableName(testTable);
 	deleteLater();
 }
 

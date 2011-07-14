@@ -115,367 +115,362 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="290"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="286"/>
         <source>MainWindow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="291"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="287"/>
         <source>&amp;new</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="292"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="288"/>
         <source>Ctrl+N</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="293"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="289"/>
         <source>&amp;Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="294"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="290"/>
         <source>Ctrl+O</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="295"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="291"/>
         <source>Save &amp;As</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="296"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="292"/>
         <source>E&amp;xit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="297"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="293"/>
         <source>Ctrl+Q</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="298"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="294"/>
         <source>&amp;Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="299"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="295"/>
         <source>Ctrl+S</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="300"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="296"/>
         <source>Sluiten</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="301"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="297"/>
         <source>Ctrl+W</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="302"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="298"/>
         <source>Naar &amp;Prolog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="303"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="299"/>
         <source>Show rules (prolog code)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="304"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="300"/>
         <source>Show information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="305"/>
-        <source>Add table</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="306"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="301"/>
         <source>Connect to table</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="307"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="302"/>
         <source>Functies</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="311"/>
-        <source>Voorgedefinieerde elementen</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="308"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="303"/>
         <source>Acties</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="309"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="304"/>
         <source>Constanten</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="310"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="305"/>
         <source>Eigenschappen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="312"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="306"/>
+        <source>Voorgedefinieerde elementen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="307"/>
         <source>Regels</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="313"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="308"/>
         <source>&amp;File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="314"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="309"/>
         <source>Export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="315"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="310"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="316"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="311"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="297"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="280"/>
         <source>Verwijder regel %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="298"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="281"/>
         <source>Ben je zeker dat je regel %1 wil verwijderen?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="325"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="308"/>
         <source>Is the game in pre-flop-phase?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="326"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="309"/>
         <source>Is the game in flop-phase?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="327"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="310"/>
         <source>Is the game in turn fase?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="328"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="311"/>
         <source>Is the game in river-phase?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="329"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="312"/>
         <source>Is the game in post-flop-phase?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="330"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="313"/>
         <source>Am I second in row?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="331"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="314"/>
         <source>Am I first in row?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="332"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="315"/>
         <source>Am I last in row?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="334"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="317"/>
         <source>How much many should I add to call?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="335"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="318"/>
         <source>How much money do I still have?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="336"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="319"/>
         <source>How much many is there in the pot?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="337"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="320"/>
         <source>How many players haven&apos;t folded yet?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="338"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="321"/>
         <source>How many players haven&apos;t folded yet and are not all in?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="339"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="322"/>
         <source>How much many can I maximally win?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="340"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="323"/>
         <source>What&apos;s the minimum I should raise?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="341"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="324"/>
         <source>What&apos;s the maximum I can raise?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="342"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="325"/>
         <source>How many times has there been raised this round?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="343"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="326"/>
         <source>random</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="343"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="326"/>
         <source>A random number between zero and one.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="345"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="328"/>
         <source>What are my hand cards?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="346"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="329"/>
         <source>What cards are there on the table?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="347"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="330"/>
         <source>What cards do I have in my hand or are on the table?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="356"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="339"/>
         <source>This function returns true if all the inputs are true</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="357"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="340"/>
         <source>This function returns true as soon as one if the inputs is tru</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="358"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="341"/>
         <source>This function return true to false and vice versa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="360"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="343"/>
         <source>This function returns true if two numbers are equal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="361"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="344"/>
         <source>This function returns true if number one is smaller than the second number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="362"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="345"/>
         <source>This function returns true if number one is smalleror equal  than the second number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="363"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="346"/>
         <source>This function returns true if number one is larger than the second number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="364"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="347"/>
         <source>This function returns true if number one is larger or equal than the second number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="366"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="349"/>
         <source>This function returns true if both the inputs have the same value</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="368"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="351"/>
         <source>This functions calculates the sum of the inputs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="369"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="352"/>
         <source>This functions calculates the product of the inputs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="370"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="353"/>
         <source>This functions calculates the difference of the inputs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="371"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="354"/>
         <source>This functions divides number one by number two</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="373"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="356"/>
         <source>This functions checks if the cardlist matches the cardequation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="382"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="365"/>
         <source>A boolean constant, true or false</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="383"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="366"/>
         <source>A rational number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="384"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="367"/>
         <source>A cardequation consisting out of one or more cards</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="393"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="376"/>
         <source>call if the input is true</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="394"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="377"/>
         <source>fold if the input is true</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="395"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="378"/>
         <source>raise with a certain value if the input is true</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="437"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="420"/>
         <source>Error creating prolog code</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="438"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="421"/>
         <source>Error for rule %1: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -546,16 +541,6 @@
 </context>
 <context>
     <name>SettingsDialog</name>
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_settingsdialog.h" line="224"/>
-        <source>Jouw Naam:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../build/src/app/ruleCreator/ui_settingsdialog.h" line="219"/>
-        <source>Connectie</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="../build/src/app/ruleCreator/ui_settingsdialog.h" line="202"/>
         <source>MainWindow</source>
@@ -642,6 +627,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../build/src/app/ruleCreator/ui_settingsdialog.h" line="219"/>
+        <source>Connectie</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../build/src/app/ruleCreator/ui_settingsdialog.h" line="220"/>
         <source>Nieuw</source>
         <translation type="unfinished"></translation>
@@ -652,17 +642,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_settingsdialog.h" line="222"/>
+        <location filename="../build/src/app/ruleCreator/ui_settingsdialog.h" line="225"/>
         <source>Naam tafel:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_settingsdialog.h" line="223"/>
+        <location filename="../build/src/app/ruleCreator/ui_settingsdialog.h" line="222"/>
         <source>Ook een lege regelset exporteren?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_settingsdialog.h" line="225"/>
+        <location filename="../build/src/app/ruleCreator/ui_settingsdialog.h" line="223"/>
+        <source>Jouw Naam:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/src/app/ruleCreator/ui_settingsdialog.h" line="224"/>
         <source>Maak testtafel?</source>
         <translation type="unfinished"></translation>
     </message>

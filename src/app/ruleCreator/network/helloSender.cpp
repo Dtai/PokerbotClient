@@ -57,12 +57,7 @@ void HelloSender::send(){
 	params.addQueryItem("playerName", _target.playerName);
 	params.addQueryItem("tableName", _target.tableName);
 	data = params.encodedQuery();
-
 	targets->push_back(_target);
-
-	QString s = request.url().toString();
-	QString ss = params.toString();
-
 
 	reply = m->post(request, data);
 	connect(reply, SIGNAL(finished()), this, SLOT(finish()));
@@ -81,6 +76,7 @@ void HelloSender::finish(){
 		QVariantMap result = parser.parse(ba, &ok).toMap();
 		QVariant type = result.value("type");
 		QVariant message = result.value("message");
+		QVariant testTable = result.value("testTable");
 
 		if(type.toString() == "InvalidInput"){
 			QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, "Invalid input", message.toString());
@@ -89,7 +85,7 @@ void HelloSender::finish(){
 		} else if(type.toString() == "Acknowledge"){
 			QMessageBox *qmb = new QMessageBox(QMessageBox::Information, "Information", "Successfully connected to the table.");
 			qmb->show();
-			emit finished();
+			emit finished(_target, testTable.toString());
 		}
 
 	} else {

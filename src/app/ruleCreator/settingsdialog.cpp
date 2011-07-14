@@ -27,7 +27,6 @@
 #include "ui_settingsdialog.h"
 #include "settingsmanager.hpp"
 #include "JSON/helloCreator.hpp"
-#include "network/helloSender.hpp"
 
 #include <QListWidgetItem>
 #include <QListWidget>
@@ -148,28 +147,30 @@ void SettingsDialog::onOKClicked()
 {
 
 	ui->statusbar->showMessage("Sending data");
-	// write the settings
-	while(_settingsManager->connections().size() != 0)
-		_settingsManager->removeConnection(0);
 
-	for(int i = 0; i < ui->connectionsWidget->count(); i++)
-		_settingsManager->addConnection(ui->connectionsWidget->item(i)->data(Qt::UserRole).value<ConnectionTarget>());
+	hellos = new QVector<HelloSender*>();
 
-	_settingsManager->writeSettings();
-
-	QVector<HelloSender*> *hellos = new QVector<HelloSender*>();
-	QVector<QString> *tables = new QVector<QString>();
-
-	for(int i=0; i<_settingsManager->connections().size(); ++i){
-		hellos->push_back(new HelloSender(_settingsManager->connections().at(i)));
-		tables->push_back(ui->tableName->text());
-
-		if(hellos->last()->alreadySent(_settingsManager->connections().at(i))){
+	for(int i=0; i<ui->connectionsWidget->count(); ++i){
+		ConnectionTarget t = ui->connectionsWidget->item(i)->data(Qt::UserRole).value<ConnectionTarget>();
+		if(!hellos->last()->alreadySent(t)){
+			hellos->push_back(new HelloSender(t));
+			hellos->last()->setObjectName(ui->tableName->text());
 			hellos->last()->send();
-
+			connect(hellos->last(), SIGNAL(finished(ConnectionTarget, QString)), this, SLOT(correctData(ConnectionTarget, QString)));
+			connect(hellos->last(), SIGNAL(errored()), this, SLOT(incorrectData()));
 		}
-		connect(hellos->last(), SIGNAL(finished()), this, SLOT(correctData()));
-		connect(hellos->last(), SIGNAL(errored()), this, SLOT(incorrectData()));
+	}
+
+	if(hellos->isEmpty()){
+		deleteLater();
+	}
+}
+
+void SettingsDialog::checkForDeletion(QString senderName){
+	for(int i=0; i<hellos->size(); ++i){
+		if(hellos->at(i)->objectName() == senderName){
+			hellos->remove(i);
+		}
 	}
 
 	if(hellos->isEmpty()){
@@ -178,21 +179,15 @@ void SettingsDialog::onOKClicked()
 }
 
 void SettingsDialog::incorrectData(){
-	QObject *o = this->sender();
-
-
-	//Hier de helloSender uit de vector verwijderen.
-	//Hier de naam van de tafel uit de vector verwijderen.
-	deleteLater();
+	checkForDeletion(sender()->objectName());
 }
 
-void SettingsDialog::correctData(){
-	QObject *o = this->sender();
+void SettingsDialog::correctData(ConnectionTarget target, QString testTable){
+	_settingsManager->addConnection(target);
+	_settingsManager->writeSettings();
 
 	connect(this, SIGNAL(sendTableName(QString)), parent1, SLOT(addTab(QString)));
-//	emit sendTableName(ui->leTableName->text());
-	//Hier de helloSender uit de vector verwijderen
-	//Hier de naam van de  tafel doorsturen naar parent1
-	//Hier de naam van de tafel uit de vector verwijderen
-	deleteLater();
+	emit sendTableName(sender()->objectName());
+	emit sendTableName(testTable);
+	checkForDeletion(sender()->objectName());
 }

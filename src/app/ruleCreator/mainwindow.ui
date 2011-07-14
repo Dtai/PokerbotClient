@@ -251,7 +251,6 @@
      <string>Settings</string>
     </property>
     <addaction name="actionShow_Code"/>
-    <addaction name="actionAdd_table"/>
     <addaction name="actionConnect_to_table"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -324,11 +323,6 @@
   <action name="actionShow_information">
    <property name="text">
     <string>Show information</string>
-   </property>
-  </action>
-  <action name="actionAdd_table">
-   <property name="text">
-    <string>Add table</string>
    </property>
   </action>
   <action name="actionConnect_to_table">

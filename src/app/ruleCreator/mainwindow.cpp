@@ -112,7 +112,6 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(_docController, SIGNAL(error(QString,QString)), this, SLOT(showError(QString,QString)));
 
 	connect(ui->actionShow_information, SIGNAL(triggered()), this, SLOT(showInformation()));
-	connect(ui->actionAdd_table, SIGNAL(triggered()), this, SLOT(addTable()));
 	connect(ui->actionConnect_to_table, SIGNAL(triggered()), this, SLOT(showConnectToTable()));
 
 	tabs = new QVector<QString>();
@@ -144,22 +143,6 @@ void MainWindow::showInformation(){
 void MainWindow::showVisualisation(){
 	VisualiseWindow *vw = new VisualiseWindow();
 	vw->show();
-}
-
-void MainWindow::addTable(){
-	QString nameTable;
-
-	QInputDialog id;
-	id.setLabelText("Wat is de naam van de tafel?");
-	int res = id.exec();
-
-	if(res == QDialog::Accepted){
-		nameTable = id.textValue();
-	} else {
-		return;
-	}
-
-	addTab(nameTable);
 }
 
 void MainWindow::addTab(QString tabName){

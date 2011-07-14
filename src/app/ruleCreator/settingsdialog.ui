@@ -29,7 +29,7 @@
          <string>Connectie</string>
         </property>
         <layout class="QGridLayout" name="gridLayout">
-         <item row="4" column="1">
+         <item row="6" column="1">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
            <item>
             <widget class="QPushButton" name="newButton">
@@ -60,20 +60,7 @@
            </item>
           </layout>
          </item>
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_5">
-           <property name="text">
-            <string>Naam tafel:</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLineEdit" name="tableName"/>
-         </item>
-         <item row="2" column="1">
+         <item row="4" column="1">
           <widget class="QCheckBox" name="emptyRuleSetExporter">
            <property name="text">
             <string>Ook een lege regelset exporteren?</string>
@@ -93,12 +80,25 @@
            </property>
           </widget>
          </item>
-         <item row="3" column="1">
+         <item row="5" column="1">
           <widget class="QCheckBox" name="checkBox">
            <property name="text">
             <string>Maak testtafel?</string>
            </property>
           </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>Naam tafel:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLineEdit" name="tableName"/>
          </item>
         </layout>
        </widget>

@@ -41,7 +41,7 @@ public:
 	bool alreadySent(const ConnectionTarget &target);
 
 signals:
-	void finished();
+	void finished(ConnectionTarget target, QString testTable);
 	void errored();
 
 private slots:

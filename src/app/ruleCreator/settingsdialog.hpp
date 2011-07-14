@@ -31,6 +31,7 @@
 #include <QList>
 #include "connectiontarget.hpp"
 #include <QStatusBar>
+#include "network/helloSender.hpp"
 
 class SettingsManager;
 class QListWidgetItem;
@@ -60,14 +61,16 @@ private slots:
 	void onOKClicked();
 
 	void incorrectData();
-	void correctData();
+	void correctData(ConnectionTarget target, QString testTable);
 
 private:
 	Ui::SettingsDialog *ui;
 	QListWidgetItem * _curSelected;
 	SettingsManager * _settingsManager;
 	QWidget *parent1;
-	QStatusBar *statusBar;
+	QVector<HelloSender*> *hellos;
+
+	void checkForDeletion(QString senderName);
 };
 
 #endif // SETTINGSDIALOG_HPP

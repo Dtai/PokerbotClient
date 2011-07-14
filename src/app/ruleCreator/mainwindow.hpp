@@ -66,7 +66,6 @@ private slots:
 
     void showInformation();
 	void showVisualisation();
-	void addTable();
 	void showConnectToTable();
 
 	void numberOfRulesChanged(int numberOfRealRules);
