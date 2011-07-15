@@ -47,10 +47,14 @@ signals:
 
 private slots:
 	void finish();
+	void showNoConfigFile();
+	void showWrongConfigFile();
 
 private:
 	ConnectionTarget _target;
 	QNetworkReply *reply;
+
+	QUrl getURL();
 };
 
 static QVector<ConnectionTarget> *targets = new QVector<ConnectionTarget>();

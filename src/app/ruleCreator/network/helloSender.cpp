@@ -38,15 +38,34 @@ HelloSender::HelloSender(const ConnectionTarget & target, QObject * parent)
 {
 }
 
-QUrl getURL(){
+QUrl HelloSender::getURL(){
 	Reader r;
+	connect(&r, SIGNAL(noConfigFile()), this, SLOT(showNoConfigFile()));
+	connect(&r, SIGNAL(wrongConfigFile()), this, SLOT(showWrongConfigFile()));
 	return r.getHelloURL();
+}
+
+void HelloSender::showNoConfigFile(){
+	QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, "Error", "Can't open config file");
+	qmb->show();
+	emit errored();
+}
+
+void HelloSender::showWrongConfigFile(){
+	QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, "Error", "Can't parse config file");
+	qmb->show();
+	emit errored();
 }
 
 void HelloSender::send(){
 	QNetworkAccessManager *m = new QNetworkAccessManager(this);
 
 	QNetworkRequest request(getURL());
+	if(request.url().toString() == "/"){
+		emit errored();
+		return;
+	}
+
 	request.setRawHeader("User-Agent", "MyOwnBrowser 1.0");
 
 	QByteArray data;

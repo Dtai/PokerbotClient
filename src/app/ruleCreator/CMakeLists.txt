@@ -81,6 +81,7 @@ set (Q_MOC_HPP
 	welcomeWindow.hpp
 	network/helloSender.hpp
 	network/codeSender.hpp
+	config/reader.hpp
 )
 
 set (Q_UI

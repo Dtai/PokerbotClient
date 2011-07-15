@@ -26,18 +26,19 @@ WelcomeWindow::~WelcomeWindow()
 }
 
 void WelcomeWindow::onOKClicked(){
+	ui->statusbar->showMessage("Sending data");
 	ConnectionTarget ct;
 	ct.playerName = ui->lePlayerName->text();
 	ct.tableName = ui->leTableName->text();
 
 	HelloSender *hs = new HelloSender(ct);
-	hs->send();
 	connect(hs, SIGNAL(finished(ConnectionTarget, QString)), this, SLOT(correctData(ConnectionTarget, QString)));
 	connect(hs, SIGNAL(errored()), this, SLOT(incorrectData()));
-	ui->statusbar->showMessage("Sending data");
+	hs->send();
 }
 
 void WelcomeWindow::correctData(ConnectionTarget target, QString testTable){
+	ui->statusbar->showMessage("Successfully connected");
 	ConnectionTarget testTarget;
 	testTarget.playerName = target.playerName;
 	testTarget.tableName = testTable;
@@ -54,5 +55,6 @@ void WelcomeWindow::correctData(ConnectionTarget target, QString testTable){
 }
 
 void WelcomeWindow::incorrectData(){
+	ui->statusbar->showMessage("An error occured");
 	deleteLater();
 }

@@ -27,19 +27,30 @@
 #define READER_HPP
 
 #include <QUrl>
+#include <QObject>
 
-class Reader
+class Reader : public QObject
 {
+	Q_OBJECT
 
 public:
-	Reader();
+	Reader(QObject *parent=0);
 	QUrl getURL();
 	QUrl getJoinTableURL();
 	QUrl getHelloURL();
 	QUrl getShowTable();
+
+signals:
+	void noConfigFile();
+	void wrongConfigFile();
+
 private:
 	QByteArray json;
+	bool read;
+	bool errored;
+
 	void readJSON();
+	QString value(QString key);
 };
 
 #endif // READER_HPP

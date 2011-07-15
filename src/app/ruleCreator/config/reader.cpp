@@ -28,61 +28,57 @@
 
 #include <QFile>
 
-Reader::Reader()
+Reader::Reader(QObject *parent)
+	:QObject(parent)
 {
-	readJSON();
+	read = false;
+	errored = false;
 }
 
 void Reader::readJSON(){
+	read = true;
 	QFile file("config.json");
 	if (!file.open (QIODevice::ReadOnly)){
-		std::cout << "Error" << std::endl;
+		emit noConfigFile();
 		return;
 	}
 
 	json = file.readAll();
-
 	file.close();
 }
 
 QUrl Reader::getURL(){
-	QJson::Parser parser;
-	bool ok;
-	QVariantMap result = parser.parse(json, &ok).toMap();
-	QVariant url = result.value("URL");
-
-	return QUrl(url.toString());
+	return QUrl(value("URL"));
 }
 
 QUrl Reader::getHelloURL(){
-	QUrl base = getURL();
-
-	QJson::Parser parser;
-	bool ok;
-	QVariantMap result = parser.parse(json, &ok).toMap();
-	QVariant postfix = result.value("hello");
-
-	return QUrl(base.toString() + "/" + postfix.toString());
+	return QUrl(value("URL") + "/" + value("hello"));
 }
 
 QUrl Reader::getJoinTableURL(){
-	QUrl base = getURL();
-
-	QJson::Parser parser;
-	bool ok;
-	QVariantMap result = parser.parse(json, &ok).toMap();
-	QVariant postfix = result.value("joinTable");
-
-	return QUrl(base.toString() + "/" + postfix.toString());
+	return QUrl(value("URL")+ "/" + value("joinTable"));
 }
 
 QUrl Reader::getShowTable(){
-	QUrl base = getURL();
+	return QUrl(value("URL") + "/" + value("showTable"));
+}
+
+QString Reader::value(QString key){
+	if(!read){
+		readJSON();
+	}
 
 	QJson::Parser parser;
 	bool ok;
 	QVariantMap result = parser.parse(json, &ok).toMap();
-	QVariant postfix = result.value("showTable");
+	if(!ok){
+		if(!errored){
+			errored = true;
+			emit wrongConfigFile();
+		}
+	}
 
-	return QUrl(base.toString() + "/" + postfix.toString());
+	QVariant postfix = result.value(key);
+
+	return postfix.toString();
 }
