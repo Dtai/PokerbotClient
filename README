@@ -1,20 +1,36 @@
 De client: grafische interface om regels te maken.
 
-Compileren
+Compileren (algemeen)
 ----------
-Om de client te compileren moeten minstens volgende stukken software geinstalleerd zijn: cmake, automake (make), qt4-dev-tools (qmake), libqt4-dev
+Om de client te compileren moeten minstens volgende stukken software geinstalleerd zijn: cmake, automake (make), qt4-dev-tools (qmake), libqt4-dev, boost
 
+
+Compileren (GNU/Linux)
+----------
 Compileren doe je vervolgens door het 'compile.sh' script uit te voeren:
 ./compile.sh
 
 
-Uitvoeren
+Compileren (Windows)
+----------
+Compileren doe je door in Qt Creator het in de root geplaatste bestand CMakeLists.txt te openen.
+Vervolgens moet een gewenste build directory gekozen worden.
+Daarna zorgt de toetsencombinatie CTRL+SHIFT+B ervoor dat het programma gebuild wordt, er kan ook op de knop "Build All" geklikt worden.
+
+
+Uitvoeren (GNU/Linux)
 ---------
 Het programma kan je uitvoeren door de 'ruleCreator' applicatie uit te voeren.
 Gebruik eenvoudig weg:
 ./runclient.sh
 
 Dit toont de software in het Nederlands, hiervoor moet je het programma oproepen vanuit een folder die de vertalingsfiles bevat (translations/ in ons geval).
+
+
+Uitvoeren (Windows)
+---------
+In Qt Creator op CTRL+R drukken ofwel op "Run" klikken.
+
 
 Gebruik
 -------
