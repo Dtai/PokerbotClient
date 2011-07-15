@@ -75,3 +75,14 @@ QUrl Reader::getJoinTableURL(){
 
 	return QUrl(base.toString() + "/" + postfix.toString());
 }
+
+QUrl Reader::getShowTable(){
+	QUrl base = getURL();
+
+	QJson::Parser parser;
+	bool ok;
+	QVariantMap result = parser.parse(json, &ok).toMap();
+	QVariant postfix = result.value("showTable");
+
+	return QUrl(base.toString() + "/" + postfix.toString());
+}

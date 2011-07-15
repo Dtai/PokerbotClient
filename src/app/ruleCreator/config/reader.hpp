@@ -36,7 +36,7 @@ public:
 	QUrl getURL();
 	QUrl getJoinTableURL();
 	QUrl getHelloURL();
-
+	QUrl getShowTable();
 private:
 	QByteArray json;
 	void readJSON();

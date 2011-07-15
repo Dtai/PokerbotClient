@@ -66,6 +66,8 @@
 #include "helpWindow.hpp"
 #include "welcomeWindow.hpp"
 
+#include "config/reader.hpp"
+
 using namespace ruleSystem;
 using namespace ruleSystem::graphicsView;
 using namespace poker;
@@ -143,7 +145,8 @@ void MainWindow::addTab(QString tabName){
 	tabs->push_back(tabName);
 	QWebView *tab1 = new QWebView(ui->tabWidget);
 	ui->tabWidget->addTab(tab1, tabName);
-	tab1->setUrl(QUrl("http://google.com"));
+	Reader r;
+	tab1->setUrl(r.getShowTable());
 }
 
 void MainWindow::showError(const QString & title, const QString & errorMessage)
