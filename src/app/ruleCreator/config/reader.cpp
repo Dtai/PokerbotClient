@@ -59,8 +59,8 @@ QUrl Reader::getJoinTableURL(){
 	return QUrl(value("URL")+ "/" + value("joinTable"));
 }
 
-QUrl Reader::getShowTable(){
-	return QUrl(value("URL") + "/" + value("showTable"));
+QUrl Reader::getWatchTable(){
+	return QUrl(value("URL") + "/" + value("watchTable"));
 }
 
 QString Reader::value(QString key){

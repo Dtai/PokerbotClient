@@ -146,8 +146,8 @@ void MainWindow::addTab(QString tabName){
 	QWebView *tab1 = new QWebView(ui->tabWidget);
 	ui->tabWidget->addTab(tab1, tabName);
 	Reader r;
-	QUrl url = r.getShowTable();
-	url.addQueryItem("tableName", tabName);
+	QUrl url = r.getWatchTable();
+	url.addQueryItem("name", tabName);
 	tab1->setUrl(url);
 }
 
