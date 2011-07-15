@@ -1,2 +1,2 @@
-cd translation/
-../src/app/ruleCreator/ruleCreator
+cd build/bin
+./ruleCreator
