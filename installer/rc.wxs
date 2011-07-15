@@ -55,17 +55,19 @@
 		<!-- User Interface -->
 		<UI>
 			<UIRef Id="WixUI_InstallDir" />
+			<Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="InstallDirDlg" Order="2">1</Publish>
+			<Publish Dialog="InstallDirDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg" Order="2">1</Publish>
 		</UI>
 		<Property Id="WIXUI_INSTALLDIR" Value="APPLICATIONROOTDIRECTORY" />
 		
 		<!-- Custom actions -->
 		<CustomAction Id="StartAppOnExit" FileKey="rc" ExeCommand="" Execute="immediate" Impersonate="yes" Return="asyncNoWait" />
 		<Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Voer regelmaker uit" />
-		<UI>
+		<UI>	
 			<Publish Dialog="ExitDialog" Control="Finish" Order="1" Event="DoAction" Value="StartAppOnExit">
 				WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 and NOT Installed
 			</Publish>
-		</UI>		
+		</UI>
 	</Product>
 </Wix>
  

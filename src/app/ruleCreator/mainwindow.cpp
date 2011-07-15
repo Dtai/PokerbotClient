@@ -146,7 +146,9 @@ void MainWindow::addTab(QString tabName){
 	QWebView *tab1 = new QWebView(ui->tabWidget);
 	ui->tabWidget->addTab(tab1, tabName);
 	Reader r;
-	tab1->setUrl(r.getShowTable());
+	QUrl url = r.getShowTable();
+	url.addQueryItem("tableName", tabName);
+	tab1->setUrl(url);
 }
 
 void MainWindow::showError(const QString & title, const QString & errorMessage)
