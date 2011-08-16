@@ -12,8 +12,7 @@ CardEvaluator::CardEvaluator(QWidget *parent)
 		connect(ui->addColor, SIGNAL(clicked()), this, SLOT(addColor()));
 		connect(ui->addValue, SIGNAL(clicked()), this, SLOT(addValue()));
 		connect(ui->value, SIGNAL(editTextChanged(QString)), this, SLOT(changePostfix()));
-
-		ui->textEdit->setText("Card 1:\n");
+		connect(ui->newCard, SIGNAL(clicked()), this, SLOT(addCard()));
 
 		for(int i=2; i<=10; ++i){
 			postfixes.append(QString::number(i));
@@ -26,6 +25,9 @@ CardEvaluator::CardEvaluator(QWidget *parent)
 		ui->postfix->setDisabled(true);
 		ui->postfix_minus->setDisabled(true);
 		ui->postfix_plus->setDisabled(true);
+
+		selectedCard = ui->card0;
+		selectedCard->setText("Card 1:\n");
 }
 
 CardEvaluator::~CardEvaluator()
@@ -46,12 +48,12 @@ void CardEvaluator::changePostfix(){
 }
 
 void CardEvaluator::addColor(){
-	QString previous = ui->textEdit->toPlainText();
-	ui->textEdit->setText(previous.append("\tColor: ").append(ui->color->currentText()));
+	QString previous = selectedCard->text();
+	selectedCard->setText(previous.append("\tColor: ").append(ui->color->currentText()));
 }
 
 void CardEvaluator::addValue(){
-	QString previous = ui->textEdit->toPlainText();
+	QString previous = selectedCard->text();
 	QString new0 = previous.append("\tValue: ");
 	QString new1 = new0.append(ui->prefix->currentText());
 	QString new2 = new1.append(ui->value->currentText());
@@ -65,8 +67,16 @@ void CardEvaluator::addValue(){
 		}
 
 		QString new4 = new3.append(ui->postfix->currentText());
-		ui->textEdit->setText(new4);
+		selectedCard->setText(new4);
 	} else {
-		ui->textEdit->setText(new2);
+		selectedCard->setText(new2);
 	}
+}
+
+void CardEvaluator::addCard(){
+	QPushButton *btn = new QPushButton(ui->cards);
+	btn->setGeometry(20, 80, 250, 50);
+	btn->setText("Card 2:\n");
+	btn->show();
+	selectedCard = btn;
 }
