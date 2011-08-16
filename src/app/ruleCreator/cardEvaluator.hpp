@@ -25,6 +25,7 @@ private:
 		Ui::CardEvaluator *ui;
 		QVector<QString> postfixes;
 		QPushButton *selectedCard;
+		int numberOfCards;
 };
 
 #endif // CARDEVALUATOR_HPP

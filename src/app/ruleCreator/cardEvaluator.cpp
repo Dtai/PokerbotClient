@@ -28,6 +28,8 @@ CardEvaluator::CardEvaluator(QWidget *parent)
 
 		selectedCard = ui->card0;
 		selectedCard->setText("Card 1:\n");
+
+		numberOfCards = 1;
 }
 
 CardEvaluator::~CardEvaluator()
@@ -75,8 +77,9 @@ void CardEvaluator::addValue(){
 
 void CardEvaluator::addCard(){
 	QPushButton *btn = new QPushButton(ui->cards);
-	btn->setGeometry(20, 80, 250, 50);
-	btn->setText("Card 2:\n");
+	btn->setGeometry(20, 20 + (60*numberOfCards), 250, 50);
+	++numberOfCards;
+	btn->setText("Card " + QString::number(numberOfCards) + ":\n");
 	btn->show();
 	selectedCard = btn;
 }
