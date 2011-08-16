@@ -68,6 +68,8 @@
 
 #include "config/reader.hpp"
 
+#include "cardEvaluator.hpp"
+
 using namespace ruleSystem;
 using namespace ruleSystem::graphicsView;
 using namespace poker;
@@ -114,6 +116,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 	connect(ui->actionShow_information, SIGNAL(triggered()), this, SLOT(showInformation()));
 	connect(ui->actionConnect_to_table, SIGNAL(triggered()), this, SLOT(showConnectToTable()));
+	connect(ui->actionEvaluator, SIGNAL(triggered()), this, SLOT(showCardEvaluator()));
 
 	tabs = new QVector<QString>();
 
@@ -126,6 +129,11 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
 	delete ui;
+}
+
+void MainWindow::showCardEvaluator(){
+	CardEvaluator *ce = new CardEvaluator();
+	ce->show();
 }
 
 void MainWindow::showWelcomeWindow(){
@@ -225,7 +233,7 @@ void MainWindow::exportCode(QAction * action)
 	connect(cs, SIGNAL(finished()), this, SLOT(correctExportCode()));
 	connect(cs, SIGNAL(errored()), this, SLOT(incorrectExportCode()));
 
-	ui->tabWidget->setCurrentIndex(tabs->indexOf(d.tableName)+1);
+	ui->tabWidget->setCurrentIndex(tabs->indexOf(d.tableName));
 }
 
 void MainWindow::correctExportCode(){

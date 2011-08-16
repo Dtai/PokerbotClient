@@ -38,6 +38,8 @@ set (SOURCES
 	network/codeSender.cpp
 
 	config/reader.cpp
+
+	cardEvaluator.cpp
 )
 
 set (HEADERS
@@ -62,6 +64,8 @@ set (HEADERS
 	network/codeSender.hpp
 
 	config/reader.hpp
+
+	cardEvaluator.hpp
 )
 
 set (Q_MOC_HPP
@@ -82,6 +86,7 @@ set (Q_MOC_HPP
 	network/helloSender.hpp
 	network/codeSender.hpp
 	config/reader.hpp
+	cardEvaluator.hpp
 )
 
 set (Q_UI
@@ -91,6 +96,7 @@ set (Q_UI
 	view/predefinedrulesdescriptor.ui
 	helpWindow.ui
 	welcomeWindow.ui
+	cardEvaluator.ui
 )
 set (Q_RES
  resources/resources.qrc
