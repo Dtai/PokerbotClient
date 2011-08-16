@@ -41,8 +41,21 @@ CodeSender::CodeSender(const ConnectionTarget & target, const QString &code, QOb
 
 QUrl CodeSender::getURL(){
 	Reader r;
-	QString u = r.getJoinTableURL().toString();
-	return QUrl("http://tias.pagekite.me/joinTable.php");
+	connect(&r, SIGNAL(noConfigFile()), this, SLOT(showNoConfigFile()));
+	connect(&r, SIGNAL(wrongConfigFile()), this, SLOT(showWrongConfigFile()));
+	return r.getJoinTableURL();
+}
+
+void CodeSender::showNoConfigFile(){
+	QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, "Error", "Can't open config file");
+	qmb->show();
+	emit errored();
+}
+
+void CodeSender::showWrongConfigFile(){
+	QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, "Error", "Can't parse config file");
+	qmb->show();
+	emit errored();
 }
 
 void CodeSender::send()
