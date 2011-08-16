@@ -42,6 +42,7 @@ void WelcomeWindow::correctData(ConnectionTarget target, QString testTable){
 	ConnectionTarget testTarget;
 	testTarget.playerName = target.playerName;
 	testTarget.tableName = testTable;
+	HelloSender::add(target);
 	HelloSender::add(testTarget);
 
 	_settingsManager->addConnection(target);

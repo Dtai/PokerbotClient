@@ -74,7 +74,6 @@ void HelloSender::send(){
 	params.addQueryItem("playerName", _target.playerName);
 	params.addQueryItem("tableName", _target.tableName);
 	data = params.encodedQuery();
-	targets->push_back(_target);
 
 	reply = m->post(request, data);
 	connect(reply, SIGNAL(finished()), this, SLOT(finish()));

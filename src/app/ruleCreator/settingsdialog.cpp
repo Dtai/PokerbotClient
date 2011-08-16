@@ -91,6 +91,14 @@ void SettingsDialog::onNewConnection()
 		return;
 	}
 
+	for(int i=0; i<ui->connectionsWidget->count(); ++i){
+		ConnectionTarget t = ui->connectionsWidget->item(i)->data(Qt::UserRole).value<ConnectionTarget>();
+		if(t.playerName == ui->playerName->text() && t.tableName == ui->tableName->text()){
+			ui->statusbar->showMessage("This connection already exists.");
+			return;
+		}
+	}
+
 	// add the new connection
 	ConnectionTarget d;
 
@@ -100,6 +108,7 @@ void SettingsDialog::onNewConnection()
 
 	_curSelected = new QListWidgetItem(d.format());
 	_curSelected->setData(Qt::UserRole, QVariant::fromValue<ConnectionTarget>(d));
+
 	ui->connectionsWidget->addItem(_curSelected);
 
 	// and select this item

@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1054</width>
-    <height>829</height>
+    <width>829</width>
+    <height>807</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Rule Creator</string>
+   <string>MainWindow</string>
   </property>
   <property name="dockNestingEnabled">
    <bool>true</bool>
@@ -19,201 +19,30 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
+     <widget class="QScrollArea" name="scrollArea">
+      <property name="styleSheet">
+       <string notr="true">#listSelector{ background-color: black; }</string>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="widget">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>263</width>
+         <height>746</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>-1</number>
       </property>
-      <widget class="QWidget" name="tab1">
-       <attribute name="title">
-        <string>Regels</string>
-       </attribute>
-       <layout class="QFormLayout" name="formLayout">
-        <property name="fieldGrowthPolicy">
-         <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
-        </property>
-        <item row="0" column="0">
-         <widget class="QWidget" name="widget_2" native="true">
-          <property name="minimumSize">
-           <size>
-            <width>300</width>
-            <height>0</height>
-           </size>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_4">
-           <item row="0" column="0">
-            <widget class="QDockWidget" name="dwFunction">
-             <property name="minimumSize">
-              <size>
-               <width>274</width>
-               <height>117</height>
-              </size>
-             </property>
-             <property name="features">
-              <set>QDockWidget::DockWidgetMovable</set>
-             </property>
-             <property name="windowTitle">
-              <string>Functies</string>
-             </property>
-             <widget class="QWidget" name="dockWidgetContents_7">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <layout class="QVBoxLayout" name="verticalLayout_3">
-               <item>
-                <widget class="ElementView" name="vwFunction"/>
-               </item>
-              </layout>
-             </widget>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QDockWidget" name="dwAction">
-             <property name="minimumSize">
-              <size>
-               <width>112</width>
-               <height>117</height>
-              </size>
-             </property>
-             <property name="features">
-              <set>QDockWidget::DockWidgetMovable</set>
-             </property>
-             <property name="windowTitle">
-              <string>Acties</string>
-             </property>
-             <widget class="QWidget" name="dockWidgetContents_9">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <layout class="QVBoxLayout" name="verticalLayout_4">
-               <item>
-                <widget class="ElementView" name="vwAction"/>
-               </item>
-              </layout>
-             </widget>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QDockWidget" name="dwConstant">
-             <property name="minimumSize">
-              <size>
-               <width>207</width>
-               <height>151</height>
-              </size>
-             </property>
-             <property name="features">
-              <set>QDockWidget::DockWidgetMovable</set>
-             </property>
-             <property name="windowTitle">
-              <string>Constanten</string>
-             </property>
-             <widget class="QWidget" name="dockWidgetContents_10">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <layout class="QHBoxLayout" name="horizontalLayout_6">
-               <item>
-                <widget class="ElementView" name="vwConstant"/>
-               </item>
-              </layout>
-             </widget>
-            </widget>
-           </item>
-           <item row="3" column="0">
-            <widget class="QDockWidget" name="dwFeature">
-             <property name="minimumSize">
-              <size>
-               <width>112</width>
-               <height>111</height>
-              </size>
-             </property>
-             <property name="features">
-              <set>QDockWidget::DockWidgetMovable</set>
-             </property>
-             <property name="windowTitle">
-              <string>Eigenschappen</string>
-             </property>
-             <widget class="QWidget" name="dockWidgetContents_11">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <layout class="QHBoxLayout" name="horizontalLayout_7">
-               <item>
-                <widget class="ElementView" name="vwFeature"/>
-               </item>
-              </layout>
-             </widget>
-            </widget>
-           </item>
-           <item row="4" column="0">
-            <widget class="QDockWidget" name="dwPredef">
-             <property name="minimumSize">
-              <size>
-               <width>224</width>
-               <height>113</height>
-              </size>
-             </property>
-             <property name="features">
-              <set>QDockWidget::DockWidgetMovable</set>
-             </property>
-             <property name="windowTitle">
-              <string>Voorgedefinieerde elementen</string>
-             </property>
-             <widget class="QWidget" name="dockWidgetContents_8">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <layout class="QHBoxLayout" name="horizontalLayout_5">
-               <item>
-                <widget class="PredefinedElementView" name="vwPredef">
-                 <property name="acceptDrops">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QScrollArea" name="scrollArea">
-          <property name="styleSheet">
-           <string notr="true">#listSelector{ background-color: black; }</string>
-          </property>
-          <property name="widgetResizable">
-           <bool>true</bool>
-          </property>
-          <widget class="QWidget" name="widget">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>704</width>
-             <height>724</height>
-            </rect>
-           </property>
-          </widget>
-         </widget>
-        </item>
-       </layout>
-      </widget>
      </widget>
     </item>
    </layout>
@@ -223,7 +52,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1054</width>
+     <width>829</width>
      <height>21</height>
     </rect>
    </property>
@@ -265,6 +94,160 @@
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QDockWidget" name="dwFeature">
+   <property name="minimumSize">
+    <size>
+     <width>112</width>
+     <height>111</height>
+    </size>
+   </property>
+   <property name="features">
+    <set>QDockWidget::DockWidgetMovable</set>
+   </property>
+   <property name="windowTitle">
+    <string>Eigenschappen</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents">
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="ElementView" name="vwFeature"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="dwConstant">
+   <property name="minimumSize">
+    <size>
+     <width>112</width>
+     <height>111</height>
+    </size>
+   </property>
+   <property name="features">
+    <set>QDockWidget::DockWidgetMovable</set>
+   </property>
+   <property name="windowTitle">
+    <string>Constanten</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_2">
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="ElementView" name="vwConstant"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="dwFunction">
+   <property name="minimumSize">
+    <size>
+     <width>274</width>
+     <height>111</height>
+    </size>
+   </property>
+   <property name="features">
+    <set>QDockWidget::DockWidgetMovable</set>
+   </property>
+   <property name="windowTitle">
+    <string>Functies</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_3">
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="ElementView" name="vwFunction"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="dwAction">
+   <property name="minimumSize">
+    <size>
+     <width>112</width>
+     <height>111</height>
+    </size>
+   </property>
+   <property name="features">
+    <set>QDockWidget::DockWidgetMovable</set>
+   </property>
+   <property name="windowTitle">
+    <string>Acties</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_5">
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="ElementView" name="vwAction"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="dwPredef">
+   <property name="minimumSize">
+    <size>
+     <width>93</width>
+     <height>113</height>
+    </size>
+   </property>
+   <property name="features">
+    <set>QDockWidget::DockWidgetMovable</set>
+   </property>
+   <property name="windowTitle">
+    <string>Voorgedefinieerde elementen</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_6">
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <widget class="PredefinedElementView" name="vwPredef">
+       <property name="acceptDrops">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
   <action name="action_New">
    <property name="text">
     <string>&amp;new</string>
@@ -315,19 +298,24 @@
     <string>Naar &amp;Prolog</string>
    </property>
   </action>
+  <action name="actionEdit_Settings">
+   <property name="text">
+    <string>Change Settings</string>
+   </property>
+  </action>
   <action name="actionShow_Code">
    <property name="text">
     <string>Show rules (prolog code)</string>
    </property>
   </action>
-  <action name="actionShow_information">
-   <property name="text">
-    <string>Show information</string>
-   </property>
-  </action>
   <action name="actionConnect_to_table">
    <property name="text">
     <string>Connect to table</string>
+   </property>
+  </action>
+  <action name="actionShow_information">
+   <property name="text">
+    <string>Show information</string>
    </property>
   </action>
  </widget>
