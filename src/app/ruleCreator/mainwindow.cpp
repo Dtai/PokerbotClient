@@ -229,9 +229,9 @@ void MainWindow::exportCode(QAction * action)
 		return;
 
 	CodeSender *cs = new CodeSender(d, code);
-	cs->send();
 	connect(cs, SIGNAL(finished()), this, SLOT(correctExportCode()));
 	connect(cs, SIGNAL(errored()), this, SLOT(incorrectExportCode()));
+	cs->send();
 
 	ui->tabWidget->setCurrentIndex(tabs->indexOf(d.tableName));
 }
