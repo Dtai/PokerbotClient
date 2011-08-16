@@ -144,9 +144,7 @@ void SettingsDialog::onCancelClicked()
 
 void SettingsDialog::onOKClicked()
 {
-
 	ui->statusbar->showMessage("Sending data");
-
 	hellos = new QVector<HelloSender*>();
 
 	for(int i=0; i<ui->connectionsWidget->count(); ++i){
@@ -154,9 +152,9 @@ void SettingsDialog::onOKClicked()
 		if(!HelloSender::alreadySent(t)){
 			hellos->push_back(new HelloSender(t));
 			hellos->last()->setObjectName(ui->tableName->text());
-			hellos->last()->send();
 			connect(hellos->last(), SIGNAL(finished(ConnectionTarget, QString)), this, SLOT(correctData(ConnectionTarget, QString)));
 			connect(hellos->last(), SIGNAL(errored()), this, SLOT(incorrectData()));
+			hellos->last()->send();
 		}
 	}
 
