@@ -19,13 +19,6 @@ set (SOURCES
 	main.cpp
 	mainwindow.cpp
 	rulewidget.cpp
-	view/elementview.cpp
-	view/garbagecanlabel.cpp
-	view/predefinedrulesdescriptor.cpp
-	view/predefinedelementview.cpp
-	model/elementmodel.cpp
-	model/predefinedelementmodel.cpp
-	serialization/qt/ruleserialization.cpp
 	documentcontroller.cpp
 	rulelistwidget.cpp
 	settingsmanager.cpp
@@ -33,25 +26,28 @@ set (SOURCES
 	connectiontarget.cpp	
 	helpWindow.cpp
 	welcomeWindow.cpp
+	cardEvaluator.cpp
+	cardEvaluatorCreator.cpp
+
+	view/elementview.cpp
+	view/garbagecanlabel.cpp
+	view/predefinedrulesdescriptor.cpp
+	view/predefinedelementview.cpp
+
+	model/elementmodel.cpp
+	model/predefinedelementmodel.cpp
+
+	serialization/qt/ruleserialization.cpp
 
 	network/helloSender.cpp
 	network/codeSender.cpp
 
 	config/reader.cpp
-
-	cardEvaluator.cpp
 )
 
 set (HEADERS
 	mainwindow.hpp
 	rulewidget.hpp
-	view/elementview.hpp
-	view/garbagecanlabel.hpp
-	view/predefinedrulesdescriptor.hpp
-	view/predefinedelementview.hpp
-	model/elementmodel.hpp
-	model/predefinedelementmodel.hpp
-	serialization/qt/ruleserialization.hpp
 	documentcontroller.hpp
 	rulelistwidget.hpp
 	settingsmanager.hpp
@@ -59,13 +55,23 @@ set (HEADERS
     connectiontarget.hpp
 	helpWindow.hpp
 	welcomeWindow.hpp
+	cardEvaluator.hpp
+	cardEvaluatorCreator.cpp
+
+	view/elementview.hpp
+	view/garbagecanlabel.hpp
+	view/predefinedrulesdescriptor.hpp
+	view/predefinedelementview.hpp
+
+	model/elementmodel.hpp
+	model/predefinedelementmodel.hpp
+
+	serialization/qt/ruleserialization.hpp
 
 	network/helloSender.hpp
 	network/codeSender.hpp
 
 	config/reader.hpp
-
-	cardEvaluator.hpp
 )
 
 set (Q_MOC_HPP

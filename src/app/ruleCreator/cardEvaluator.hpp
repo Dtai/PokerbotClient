@@ -5,6 +5,8 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 
+#include "cardEvaluatorCreator.hpp"
+
 namespace Ui {
 class CardEvaluator;
 }
@@ -22,20 +24,29 @@ private slots:
 		void addValue();
 		void changePostfix();
 		void selectCard();
-		void redrawCard();
+		void redrawSelectedCard();
 
 private:
 		Ui::CardEvaluator *ui;
-		QVector<QString> postfixes;
 		QPushButton *selectedCard;
-		int numberOfCards;
-		QVBoxLayout *layout;
+		QVBoxLayout *layoutCards;
+		QVBoxLayout *layoutValues;
 		QVector<QPushButton*> *cards;
 		QMap<QPushButton*, QMap<QString, QString>*> *information;
+		bool separatedColors;
+		CardEvaluatorCreator *creator;
+
+		QVector<QComboBox*> *operators;
+		QVector<QComboBox*> *values;
+		QVector<QRadioButton*> *minusses;
+		QVector<QRadioButton*> *plusses;
+		QVector<QComboBox*> *postfixValues;
+		QVector<bool> *separatedValues;
 
 		void loadInformationFromSelectedCard();
-		void updateInformationCurrentCard();
+		void updateSelectedCard();
 		QMap<QString, QString> *getCurrentInformation();
+		void updateOwnVariables();
 };
 
 #endif // CARDEVALUATOR_HPP
