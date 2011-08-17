@@ -33,20 +33,24 @@ private:
 		QVBoxLayout *layoutValues;
 		QVector<QPushButton*> *cards;
 		QMap<QPushButton*, QMap<QString, QString>*> *information;
+		bool cardExists;
 		bool separatedColors;
 		CardEvaluatorCreator *creator;
 
-		QVector<QComboBox*> *operators;
-		QVector<QComboBox*> *values;
-		QVector<QRadioButton*> *minusses;
-		QVector<QRadioButton*> *plusses;
-		QVector<QComboBox*> *postfixValues;
-		QVector<bool> *separatedValues;
+		QMap<QPushButton*, QVector<QComboBox*>*> *operators;
+		QMap<QPushButton*, QVector<QComboBox*>*> *values;
+		QMap<QPushButton*, QVector<QRadioButton*>*> *minusses;
+		QMap<QPushButton*, QVector<QRadioButton*>*> *plusses;
+		QMap<QPushButton*, QVector<QComboBox*>*> *postfixValues;
+		QMap<QPushButton*, QVector<bool>*> *separatedValues;
 
 		void loadInformationFromSelectedCard();
 		void updateSelectedCard();
 		QMap<QString, QString> *getCurrentInformation();
 		void updateOwnVariables();
+		void initValues();
+		void showValues();
+		void hideValues();
 };
 
 #endif // CARDEVALUATOR_HPP
