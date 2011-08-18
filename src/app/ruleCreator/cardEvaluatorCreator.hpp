@@ -4,6 +4,7 @@
 #include <QStringList>
 #include <QComboBox>
 #include <QRadioButton>
+#include <QPushButton>
 
 class CardEvaluatorCreator
 {
@@ -16,14 +17,18 @@ public:
 		QComboBox *createPostfixValues(QWidget *parent);
 		QRadioButton *createRadioButtonPlus(QWidget *parent);
 		QRadioButton *createRadioButtonMinus(QWidget *parent);
+		QPushButton *createDeleteValue(QWidget *parent, QString name);
+		void addValue(QString value);
 
 private:
 		QStringList *operators;
 		QStringList *values;
+		QStringList *ownValues;
 		QStringList *postfixValues;
 
 		void initOperators();
 		void initValues();
+		void initOwnValues();
 		void initPostfixValues();
 };
 

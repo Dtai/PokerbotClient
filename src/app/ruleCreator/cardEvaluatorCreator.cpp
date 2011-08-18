@@ -3,6 +3,7 @@
 CardEvaluatorCreator::CardEvaluatorCreator(){
 	initOperators();
 	initValues();
+	initOwnValues();
 	initPostfixValues();
 }
 
@@ -37,6 +38,10 @@ void CardEvaluatorCreator::initValues(){
 	values->append("A");
 }
 
+void CardEvaluatorCreator::initOwnValues(){
+	ownValues = new QStringList();
+}
+
 void CardEvaluatorCreator::initPostfixValues(){
 	postfixValues = new QStringList();
 	postfixValues->append("0");
@@ -56,6 +61,11 @@ QComboBox *CardEvaluatorCreator::createValues(QWidget *parent){
 	QComboBox *result = new QComboBox(parent);
 	result->addItems(*values);
 	result->setEditable(true);
+
+	if(ownValues->size() > 0){
+		result->insertSeparator(result->count());
+		result->addItems(*ownValues);
+	}
 
 	return result;
 }
@@ -83,4 +93,15 @@ QRadioButton *CardEvaluatorCreator::createRadioButtonPlus(QWidget *parent){
 	result->setDisabled(true);
 
 	return result;
+}
+
+QPushButton *CardEvaluatorCreator::createDeleteValue(QWidget *parent, QString name){
+	QPushButton *result = new QPushButton("X", parent);
+	result->setObjectName(name);
+
+	return result;
+}
+
+void CardEvaluatorCreator::addValue(QString value){
+	ownValues->append(value);
 }

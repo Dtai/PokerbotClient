@@ -25,6 +25,7 @@ private slots:
 		void changePostfix();
 		void selectCard();
 		void redrawSelectedCard();
+		void deleteValue();
 
 private:
 		Ui::CardEvaluator *ui;
@@ -35,6 +36,7 @@ private:
 		QMap<QPushButton*, QMap<QString, QString>*> *information;
 		bool cardExists;
 		bool separatedColors;
+		bool separatedValues;
 		CardEvaluatorCreator *creator;
 
 		QMap<QPushButton*, QVector<QComboBox*>*> *operators;
@@ -42,7 +44,7 @@ private:
 		QMap<QPushButton*, QVector<QRadioButton*>*> *minusses;
 		QMap<QPushButton*, QVector<QRadioButton*>*> *plusses;
 		QMap<QPushButton*, QVector<QComboBox*>*> *postfixValues;
-		QMap<QPushButton*, QVector<bool>*> *separatedValues;
+		QMap<QPushButton*, QVector<QPushButton*>*> *deleteValues;
 
 		void loadInformationFromSelectedCard();
 		void updateSelectedCard();
