@@ -120,7 +120,6 @@ void CardEvaluator::deleteValue(){
 	minusses->value(selectedCard)->at(index)->deleteLater();
 	plusses->value(selectedCard)->at(index)->deleteLater();
 	postfixValues->value(selectedCard)->at(index)->deleteLater();
-	sender()->deleteLater();
 
 	operators->value(selectedCard)->remove(index);
 	values->value(selectedCard)->remove(index);
@@ -133,12 +132,45 @@ void CardEvaluator::deleteValue(){
 	redrawSelectedCard();
 }
 
+void CardEvaluator::deleteValuesOfCard(QPushButton *card){
+	for(int i=0; i<operators->value(card)->size(); ++i){
+		operators->value(card)->at(i)->deleteLater();
+		values->value(card)->at(i)->deleteLater();
+		minusses->value(card)->at(i)->deleteLater();
+		plusses->value(card)->at(i)->deleteLater();
+		postfixValues->value(card)->at(i)->deleteLater();
+		deleteValues->value(card)->at(i)->deleteLater();
+	}
+
+	operators->remove(card);
+	values->remove(selectedCard);
+	minusses->remove(selectedCard);
+	plusses->remove(selectedCard);
+	postfixValues->remove(selectedCard);
+	deleteValues->remove(selectedCard);
+}
+
+int CardEvaluator::newCardName(){
+	for(int i=0; i<cards->size(); ++i){
+		bool exists = false;
+		foreach(QPushButton *card, *cards){
+			if(card->objectName().toInt() == i){
+				exists = true;
+			}
+		}
+		if(!exists){
+			return i;
+		}
+	}
+	return cards->size();
+}
+
 void CardEvaluator::addCard(){
 	if(cardExists){
 		updateOwnVariables();
 	}
-	QPushButton *btn = new QPushButton("Card " + QString::number(cards->size()) + ":\n", ui->cards);
-	btn->setObjectName(QString::number(cards->size()));
+	QPushButton *btn = new QPushButton("Card " + QString::number(newCardName()) + ":\n", ui->cards);
+	btn->setObjectName(QString::number(newCardName()));
 	connect(btn, SIGNAL(clicked()), this, SLOT(selectCard()));
 
 	layoutCards->addWidget(btn);
@@ -153,6 +185,7 @@ void CardEvaluator::addCard(){
 	cardExists = true;
 	initValues();
 	redrawSelectedCard();
+	colorizeCards();
 }
 
 void CardEvaluator::hideValues(){
@@ -196,12 +229,22 @@ void CardEvaluator::selectCard(){
 	hideValues();
 
 	QString card = sender()->objectName();
-	selectedCard = cards->at(card.toInt());
+	selectedCard = qobject_cast<QPushButton*>(sender());
+	//selectedCard = cards->at(card.toInt());
 	showValues();
 	loadInformationFromSelectedCard();
+	colorizeCards();
+}
+
+void CardEvaluator::colorizeCards(){
+	foreach(QPushButton *card, *cards){
+		QGraphicsColorizeEffect *ce = new QGraphicsColorizeEffect(card);
+		ce->setColor(Qt::darkGray);
+		card->setGraphicsEffect(ce);
+	}
 
 	QGraphicsColorizeEffect *ce = new QGraphicsColorizeEffect(selectedCard);
-	ce->setColor(Qt::darkBlue);
+	ce->setColor(Qt::blue);
 	selectedCard->setGraphicsEffect(ce);
 }
 
@@ -310,10 +353,15 @@ void CardEvaluator::updateSelectedCard(){
 void CardEvaluator::deleteCard(){
 	int index = cards->indexOf(selectedCard);
 	cards->remove(index);
+	deleteValuesOfCard(selectedCard);
 	delete selectedCard;
-	if(index > 0){
-		selectedCard = cards->at(index-1);
+	if(cards->size() > 0){
+		int newIndex = (index-1<0) ? index+1 : index-1;
+		selectedCard = cards->at(newIndex);
+		colorizeCards();
 	} else {
+		cardExists = false;
 		addCard();
 	}
+	showValues();
 }

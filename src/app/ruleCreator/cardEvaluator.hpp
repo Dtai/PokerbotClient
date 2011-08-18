@@ -53,6 +53,9 @@ private:
 		void initValues();
 		void showValues();
 		void hideValues();
+		void colorizeCards();
+		void deleteValuesOfCard(QPushButton *card);
+		int newCardName();
 };
 
 #endif // CARDEVALUATOR_HPP
