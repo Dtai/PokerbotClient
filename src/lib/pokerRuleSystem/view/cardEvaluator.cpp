@@ -9,7 +9,6 @@ CardEvaluator::CardEvaluator(QList<poker::Card> givenCards, ruleSystem::Constant
 {
 		ui->setupUi(this);
 
-		this->givenCards = givenCards;
 		this->constant = constant;
 		returnValue = false;
 
@@ -38,12 +37,95 @@ CardEvaluator::CardEvaluator(QList<poker::Card> givenCards, ruleSystem::Constant
 
 		creator = new CardEvaluatorCreator();
 
-		addCard();
+		insertGivenCards(givenCards);
 }
 
 CardEvaluator::~CardEvaluator()
 {
         delete ui;
+}
+
+void CardEvaluator::parse(QStringList values, QStringList *ops, QStringList *vals, QStringList *postOps, QStringList *postVals){
+	foreach(QString s, values){
+		QString op = "";
+		QString val = "";
+		QString postOp = "";
+		QString postVal = "";
+
+		if(s.at(1) == '='){
+			op = s.mid(0, 2);
+			if(s.at(2).isDigit() || s.at(2) == 'J' || s.at(2) == 'Q' || s.at(2) == 'K' || s.at(2) == 'A'){
+				val = s.at(2);
+			} else {
+				int i = 2;
+				while(s.at(i) != '+' && s.at(i) != '-'){
+					val.append(s.at(i));
+					++i;
+				}
+				postOp.append(s.at(i));
+				i++;
+				postVal = s.mid(i);
+			}
+
+		} else {
+			op = s.mid(0, 1);
+			if(s.at(1).isDigit() || s.at(1) == 'J' || s.at(1) == 'Q' || s.at(1) == 'K' || s.at(1) == 'A'){
+				val = s.at(1);
+			} else {
+				int i = 1;
+				while(s.at(i) != '+' && s.at(i) != '-'){
+					val.append(s.at(i));
+					++i;
+				}
+				postOp.append(s.at(i));
+				i++;
+				postVal = s.mid(i);
+			}
+		}
+
+		ops->append(op);
+		vals->append(val);
+		postOps->append(postOp);
+		postVals->append(postVal);
+	}
+}
+
+void CardEvaluator::insertGivenCards(QList<poker::Card> givenCards){
+	for(int i=0; i<givenCards.size(); ++i){
+		QString color = givenCards.at(i).suitExpression();
+		QStringList values = givenCards.at(i).rankExpressions();
+
+		QStringList *ops = new QStringList();
+		QStringList *vals = new QStringList();
+		QStringList *postOps = new QStringList();
+		QStringList *postVals = new QStringList();
+
+		parse(values, ops, vals, postOps, postVals);
+
+		addCard();
+		ui->color->setCurrentIndex(ui->color->findText(color));
+		for(int i=0; i<values.size(); ++i){
+			operators->value(selectedCard)->at(i)->setCurrentIndex(operators->value(selectedCard)->at(i)->findText(ops->at(i)));
+			if(this->values->value(selectedCard)->at(i)->findText(vals->at(i)) == -1){
+				this->values->value(selectedCard)->at(i)->addItem(vals->at(i));
+			}
+			this->values->value(selectedCard)->at(i)->setCurrentIndex(this->values->value(selectedCard)->at(i)->findText(vals->at(i)));
+
+			if(postOps->at(i) == "+"){
+				plusses->value(selectedCard)->at(i)->setChecked(true);
+				minusses->value(selectedCard)->at(i)->setChecked(false);
+			} else {
+				plusses->value(selectedCard)->at(i)->setChecked(false);
+				minusses->value(selectedCard)->at(i)->setChecked(true);
+			}
+			postfixValues->value(selectedCard)->at(i)->setCurrentIndex(postfixValues->value(selectedCard)->at(i)->findText(postVals->at(i)));
+			if(i != values.size()-1){
+				addValue();
+			}
+		}
+
+		updateSelectedCard();
+	}
 }
 
 void CardEvaluator::redrawSelectedCard(){

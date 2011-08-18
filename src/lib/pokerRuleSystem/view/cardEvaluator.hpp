@@ -34,7 +34,6 @@ private slots:
 
 private:
 		ruleSystem::Constant *constant;
-		QList<poker::Card> givenCards;
 		Ui::CardEvaluator *ui;
 		QPushButton *selectedCard;
 		QVBoxLayout *layoutCards;
@@ -63,6 +62,8 @@ private:
 		void colorizeCards();
 		void deleteValuesOfCard(QPushButton *card);
 		int newCardName();
+		void insertGivenCards(QList<poker::Card>);
+		void parse(QStringList values, QStringList *ops, QStringList *vals, QStringList *postOps, QStringList *postVals);
 
 signals:
 		void ready();
