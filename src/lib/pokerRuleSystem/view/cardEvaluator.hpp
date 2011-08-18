@@ -18,9 +18,10 @@ class CardEvaluator : public QWidget
         Q_OBJECT
 
 public:
-		CardEvaluator(ruleSystem::Constant *c, QWidget *parent = 0);
+		CardEvaluator(QList<poker::Card> givenCards, ruleSystem::Constant *constant, QWidget *parent = 0);
 		~CardEvaluator();
 		QList<poker::Card> cards() const;
+		bool returnValue;
 private slots:
 		void addCard();
 		void deleteCard();
@@ -32,7 +33,8 @@ private slots:
 		void save();
 
 private:
-		ruleSystem::Constant *c;
+		ruleSystem::Constant *constant;
+		QList<poker::Card> givenCards;
 		Ui::CardEvaluator *ui;
 		QPushButton *selectedCard;
 		QVBoxLayout *layoutCards;
@@ -61,6 +63,9 @@ private:
 		void colorizeCards();
 		void deleteValuesOfCard(QPushButton *card);
 		int newCardName();
+
+signals:
+		void ready();
 };
 
 #endif // CARDEVALUATOR_HPP

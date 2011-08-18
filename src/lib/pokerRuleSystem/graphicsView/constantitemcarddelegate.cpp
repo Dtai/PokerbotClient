@@ -125,11 +125,18 @@ namespace poker
 */
 
 			Constant *c = toCardListConstant(element);
-			if(c == 0)
+			if(c == 0){
 				return false;
-			CardEvaluator *ce = new CardEvaluator(c);
+			}
+			CardEvaluator *ce = new CardEvaluator(getCards(c), c);
+
+			QEventLoop loop;
 			ce->show();
-			return true;
+			QObject::connect(ce, SIGNAL(ready()), &loop, SLOT(quit()));
+			loop.exec();
+			bool result = ce->returnValue;
+			ce->deleteLater();
+			return result;
 		}
 	}
 }

@@ -1,16 +1,17 @@
 #include "cardEvaluator.hpp"
 #include "ui_cardEvaluator.h"
 
-#include <iostream>
 #include <QGraphicsColorizeEffect>
 
-CardEvaluator::CardEvaluator(ruleSystem::Constant *c, QWidget *parent)
+CardEvaluator::CardEvaluator(QList<poker::Card> givenCards, ruleSystem::Constant *constant, QWidget *parent)
         : QWidget(parent),
 		  ui(new Ui::CardEvaluator)
 {
 		ui->setupUi(this);
 
-		this->c = c;
+		this->givenCards = givenCards;
+		this->constant = constant;
+		returnValue = false;
 
 		connect(ui->addValue, SIGNAL(clicked()), this, SLOT(addValue()));
 		connect(ui->newCard, SIGNAL(clicked()), this, SLOT(addCard()));
@@ -58,9 +59,6 @@ void CardEvaluator::changePostfix(){
 		minusses->value(selectedCard)->at(index)->setEnabled(true);
 		plusses->value(selectedCard)->at(index)->setEnabled(true);
 	} else {
-		std::cout << postfixValues->size() << std::endl;
-		std::cout << postfixValues->value(selectedCard)->size() << std::endl;
-		std::cout << index << std::endl;
 		postfixValues->value(selectedCard)->at(index)->setDisabled(true);
 		minusses->value(selectedCard)->at(index)->setDisabled(true);
 		plusses->value(selectedCard)->at(index)->setDisabled(true);
@@ -397,6 +395,7 @@ QList<poker::Card> CardEvaluator::cards() const{
 }
 
 void CardEvaluator::save(){
-	c->setValue(QVariant::fromValue<QList<poker::Card> >(cards()));
-	deleteLater();
+	constant->setValue(QVariant::fromValue<QList<poker::Card> >(cards()));
+	returnValue = true;
+	emit ready();
 }

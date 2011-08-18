@@ -80,7 +80,7 @@ QComboBox *CardEvaluatorCreator::createPostfixValues(QWidget *parent){
 
 QRadioButton *CardEvaluatorCreator::createRadioButtonMinus(QWidget *parent){
 	QRadioButton *result = new QRadioButton(parent);
-	result->setText("+");
+	result->setText("-");
 	result->setChecked(true);
 	result->setDisabled(true);
 
@@ -89,7 +89,7 @@ QRadioButton *CardEvaluatorCreator::createRadioButtonMinus(QWidget *parent){
 
 QRadioButton *CardEvaluatorCreator::createRadioButtonPlus(QWidget *parent){
 	QRadioButton *result = new QRadioButton(parent);
-	result->setText("-");
+	result->setText("+");
 	result->setDisabled(true);
 
 	return result;
