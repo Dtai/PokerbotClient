@@ -88,17 +88,10 @@
     </property>
     <addaction name="actionShow_information"/>
    </widget>
-   <widget class="QMenu" name="menuCard">
-    <property name="title">
-     <string>Card</string>
-    </property>
-    <addaction name="actionEvaluator"/>
-   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuExport"/>
    <addaction name="menuSettings"/>
    <addaction name="menuHelp"/>
-   <addaction name="menuCard"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QDockWidget" name="dwFeature">
@@ -323,11 +316,6 @@
   <action name="actionShow_information">
    <property name="text">
     <string>Show information</string>
-   </property>
-  </action>
-  <action name="actionEvaluator">
-   <property name="text">
-    <string>Evaluator</string>
    </property>
   </action>
  </widget>

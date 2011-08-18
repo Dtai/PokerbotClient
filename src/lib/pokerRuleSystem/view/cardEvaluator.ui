@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>998</width>
-    <height>451</height>
+    <height>490</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -103,7 +103,7 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>490</x>
@@ -143,27 +143,27 @@
           </property>
           <item>
            <property name="text">
-            <string>maakt niet uit</string>
+            <string>?</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>harten</string>
+            <string>hearts</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>klaveren</string>
+            <string>clubs</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>schoppen</string>
+            <string>spades</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>ruit</string>
+            <string>diamonds</string>
            </property>
           </item>
          </widget>
@@ -255,6 +255,32 @@
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QPushButton" name="save">
+   <property name="geometry">
+    <rect>
+     <x>630</x>
+     <y>450</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>save</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="cancel">
+   <property name="geometry">
+    <rect>
+     <x>760</x>
+     <y>450</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>cancel</string>
+   </property>
   </widget>
  </widget>
  <resources/>

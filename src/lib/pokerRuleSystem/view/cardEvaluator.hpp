@@ -6,6 +6,8 @@
 #include <QVBoxLayout>
 
 #include "cardEvaluatorCreator.hpp"
+#include "../card/card.hpp"
+#include <ruleSystem/constant.hpp>
 
 namespace Ui {
 class CardEvaluator;
@@ -16,8 +18,9 @@ class CardEvaluator : public QWidget
         Q_OBJECT
 
 public:
-		CardEvaluator(QWidget *parent = 0);
+		CardEvaluator(ruleSystem::Constant *c, QWidget *parent = 0);
 		~CardEvaluator();
+		QList<poker::Card> cards() const;
 private slots:
 		void addCard();
 		void deleteCard();
@@ -26,13 +29,15 @@ private slots:
 		void selectCard();
 		void redrawSelectedCard();
 		void deleteValue();
+		void save();
 
 private:
+		ruleSystem::Constant *c;
 		Ui::CardEvaluator *ui;
 		QPushButton *selectedCard;
 		QVBoxLayout *layoutCards;
 		QVBoxLayout *layoutValues;
-		QVector<QPushButton*> *cards;
+		QVector<QPushButton*> *_cards;
 		QMap<QPushButton*, QMap<QString, QString>*> *information;
 		bool cardExists;
 		bool separatedColors;

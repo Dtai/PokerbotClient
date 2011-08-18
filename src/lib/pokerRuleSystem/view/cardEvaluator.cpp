@@ -4,20 +4,24 @@
 #include <iostream>
 #include <QGraphicsColorizeEffect>
 
-CardEvaluator::CardEvaluator(QWidget *parent)
+CardEvaluator::CardEvaluator(ruleSystem::Constant *c, QWidget *parent)
         : QWidget(parent),
 		  ui(new Ui::CardEvaluator)
 {
 		ui->setupUi(this);
 
+		this->c = c;
+
 		connect(ui->addValue, SIGNAL(clicked()), this, SLOT(addValue()));
 		connect(ui->newCard, SIGNAL(clicked()), this, SLOT(addCard()));
 		connect(ui->deleteCard, SIGNAL(clicked()), this, SLOT(deleteCard()));
 		connect(ui->color, SIGNAL(editTextChanged(QString)), this, SLOT(redrawSelectedCard()));
+		connect(ui->save, SIGNAL(clicked()), this, SLOT(save()));
+		connect(ui->cancel, SIGNAL(clicked()), this, SLOT(deleteLater()));
 
 		layoutValues = new QVBoxLayout;
 		layoutCards = new QVBoxLayout;
-		cards = new QVector<QPushButton*>();
+		_cards = new QVector<QPushButton*>();
 		information = new QMap<QPushButton*, QMap<QString, QString>*>();
 
 		operators = new QMap<QPushButton*, QVector<QComboBox*>*>();
@@ -151,9 +155,9 @@ void CardEvaluator::deleteValuesOfCard(QPushButton *card){
 }
 
 int CardEvaluator::newCardName(){
-	for(int i=0; i<cards->size(); ++i){
+	for(int i=0; i<_cards->size(); ++i){
 		bool exists = false;
-		foreach(QPushButton *card, *cards){
+		foreach(QPushButton *card, *_cards){
 			if(card->objectName().toInt() == i){
 				exists = true;
 			}
@@ -162,7 +166,7 @@ int CardEvaluator::newCardName(){
 			return i;
 		}
 	}
-	return cards->size();
+	return _cards->size();
 }
 
 void CardEvaluator::addCard(){
@@ -177,7 +181,7 @@ void CardEvaluator::addCard(){
 	QWidget *viewport = new QWidget;
 	viewport->setLayout(layoutCards);
 	ui->cards->setWidget(viewport);
-	cards->append(btn);
+	_cards->append(btn);
 
 	hideValues();
 
@@ -227,17 +231,14 @@ void CardEvaluator::initValues(){
 void CardEvaluator::selectCard(){
 	updateOwnVariables();
 	hideValues();
-
-	QString card = sender()->objectName();
 	selectedCard = qobject_cast<QPushButton*>(sender());
-	//selectedCard = cards->at(card.toInt());
 	showValues();
 	loadInformationFromSelectedCard();
 	colorizeCards();
 }
 
 void CardEvaluator::colorizeCards(){
-	foreach(QPushButton *card, *cards){
+	foreach(QPushButton *card, *_cards){
 		QGraphicsColorizeEffect *ce = new QGraphicsColorizeEffect(card);
 		ce->setColor(Qt::darkGray);
 		card->setGraphicsEffect(ce);
@@ -351,17 +352,51 @@ void CardEvaluator::updateSelectedCard(){
 }
 
 void CardEvaluator::deleteCard(){
-	int index = cards->indexOf(selectedCard);
-	cards->remove(index);
+	int index = _cards->indexOf(selectedCard);
+	_cards->remove(index);
 	deleteValuesOfCard(selectedCard);
 	delete selectedCard;
-	if(cards->size() > 0){
+	if(_cards->size() > 0){
 		int newIndex = (index-1<0) ? index+1 : index-1;
-		selectedCard = cards->at(newIndex);
+		selectedCard = _cards->at(newIndex);
 		colorizeCards();
 	} else {
 		cardExists = false;
 		addCard();
 	}
 	showValues();
+}
+
+QList<poker::Card> CardEvaluator::cards() const{
+	QList<poker::Card> *cards = new QList<poker::Card>();
+
+	for(int i=0; i<_cards->size(); ++i){
+		QString color = information->value(_cards->at(i))->value("color");
+		QList<QString> operators = information->value(_cards->at(i))->values("operator");
+		QList<QString> values = information->value(_cards->at(i))->values("value");
+		QList<QString> postfixOperators = information->value(_cards->at(i))->values("postfixOperator");
+		QList<QString> postfixValues = information->value(_cards->at(i))->values("postfixValue");
+
+		QStringList ranks;
+		for(int i=0; i<operators.size(); ++i){
+			QString rank = operators.at(i);
+			rank.append(values.at(i));
+			rank.append(postfixOperators.at(i));
+			rank.append(postfixValues.at(i));
+
+			ranks.append(rank);
+		}
+
+		poker::Card c;
+		c.setSuitExpression(color);
+		c.setRankExpressions(ranks);
+		cards->append(c);
+	}
+
+	return *cards;
+}
+
+void CardEvaluator::save(){
+	c->setValue(QVariant::fromValue<QList<poker::Card> >(cards()));
+	deleteLater();
 }

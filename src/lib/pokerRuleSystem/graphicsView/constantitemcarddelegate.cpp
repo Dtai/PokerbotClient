@@ -36,6 +36,8 @@
 #include "../card/carddrawer.hpp"
 #include "../card/card.hpp"
 
+#include "../view/cardEvaluator.hpp"
+
 using namespace ruleSystem;
 
 namespace poker
@@ -107,6 +109,7 @@ namespace poker
 
 		bool ConstantItemCardDelegate::edit(Element * element, const QPointF & /*position*/) const
 		{
+/*
 			Constant * c = toCardListConstant(element);
 			if(c == 0)
 				return false;
@@ -119,6 +122,14 @@ namespace poker
 			}
 			else
 				return false;
+*/
+
+			Constant *c = toCardListConstant(element);
+			if(c == 0)
+				return false;
+			CardEvaluator *ce = new CardEvaluator(c);
+			ce->show();
+			return true;
 		}
 	}
 }

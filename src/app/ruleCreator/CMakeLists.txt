@@ -26,8 +26,6 @@ set (SOURCES
 	connectiontarget.cpp	
 	helpWindow.cpp
 	welcomeWindow.cpp
-	cardEvaluator.cpp
-	cardEvaluatorCreator.cpp
 
 	view/elementview.cpp
 	view/garbagecanlabel.cpp
@@ -55,8 +53,6 @@ set (HEADERS
     connectiontarget.hpp
 	helpWindow.hpp
 	welcomeWindow.hpp
-	cardEvaluator.hpp
-	cardEvaluatorCreator.cpp
 
 	view/elementview.hpp
 	view/garbagecanlabel.hpp
@@ -92,7 +88,6 @@ set (Q_MOC_HPP
 	network/helloSender.hpp
 	network/codeSender.hpp
 	config/reader.hpp
-	cardEvaluator.hpp
 )
 
 set (Q_UI
@@ -102,7 +97,6 @@ set (Q_UI
 	view/predefinedrulesdescriptor.ui
 	helpWindow.ui
 	welcomeWindow.ui
-	cardEvaluator.ui
 )
 set (Q_RES
  resources/resources.qrc

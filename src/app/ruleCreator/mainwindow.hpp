@@ -66,7 +66,6 @@ private slots:
 
 	void showInformation();
 	void showConnectToTable();
-	void showCardEvaluator();
 
 	void numberOfRulesChanged(int numberOfRealRules);
 
