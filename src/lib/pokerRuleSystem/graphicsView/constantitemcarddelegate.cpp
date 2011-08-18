@@ -30,7 +30,6 @@
 #include <QPainter>
 #include <QLabel>
 
-#include "../view/editcardlistdialog.hpp"
 #include "../pokerrulesystem.hpp"
 
 #include "../card/carddrawer.hpp"
