@@ -40,9 +40,10 @@ public:
 	void send();
 	static bool alreadySent(const ConnectionTarget &target);
 	static void add(ConnectionTarget target);
-
+	static void setCounter(int newCounter);
+	static void initConnected();
 signals:
-	void finished(ConnectionTarget target, QString testTable);
+	void connected(ConnectionTarget target, QString testTable);
 	void errored();
 
 private slots:
@@ -55,8 +56,13 @@ private:
 	QNetworkReply *reply;
 
 	QUrl getURL();
+	void showDialog();
+	void handleFinish();
 };
 
 static QVector<ConnectionTarget> *targets = new QVector<ConnectionTarget>();
+static int counter;
+static QStringList *good;
+static QStringList *bad;
 
 #endif // HELLOSENDER_HPP

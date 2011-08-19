@@ -156,19 +156,25 @@ void SettingsDialog::onOKClicked()
 	ui->statusbar->showMessage("Sending data");
 	hellos = new QVector<HelloSender*>();
 
+	int counter = 0;
+	for(int i=0; i<ui->connectionsWidget->count(); ++i){
+		ConnectionTarget t = ui->connectionsWidget->item(i)->data(Qt::UserRole).value<ConnectionTarget>();
+		if(!HelloSender::alreadySent(t)){
+			++counter;
+		}
+	}
+	HelloSender::setCounter(counter);
+	HelloSender::initConnected();
+
 	for(int i=0; i<ui->connectionsWidget->count(); ++i){
 		ConnectionTarget t = ui->connectionsWidget->item(i)->data(Qt::UserRole).value<ConnectionTarget>();
 		if(!HelloSender::alreadySent(t)){
 			hellos->push_back(new HelloSender(t));
 			hellos->last()->setObjectName(ui->tableName->text());
-			connect(hellos->last(), SIGNAL(finished(ConnectionTarget, QString)), this, SLOT(correctData(ConnectionTarget, QString)));
+			connect(hellos->last(), SIGNAL(connected(ConnectionTarget, QString)), this, SLOT(correctData(ConnectionTarget, QString)));
 			connect(hellos->last(), SIGNAL(errored()), this, SLOT(incorrectData()));
 			hellos->last()->send();
 		}
-	}
-
-	if(hellos->isEmpty()){
-		deleteLater();
 	}
 }
 
@@ -199,7 +205,7 @@ void SettingsDialog::correctData(ConnectionTarget target, QString testTable){
 	_settingsManager->writeSettings();
 
 	connect(this, SIGNAL(sendTableName(QString)), parent1, SLOT(addTab(QString)));
-	emit sendTableName(sender()->objectName());
+	emit sendTableName(target.tableName);
 	emit sendTableName(testTable);
 	checkForDeletion(sender()->objectName());
 }

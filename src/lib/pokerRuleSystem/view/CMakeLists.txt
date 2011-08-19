@@ -23,6 +23,7 @@ set (Q_MOC_HPP
 )
 set (Q_UI
 	cardEvaluator.ui
+        editconstantdialog.ui
 )
 set (Q_RES )
 set (SUBDIRECTORIES )

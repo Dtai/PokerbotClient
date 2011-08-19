@@ -24,5 +24,3 @@ set(TRANSLATION_DIR ${PROJECT_SOURCE_DIR}/translation)
 add_custom_target(update_translations)
 
 add_subdirectory(src)
-
-
