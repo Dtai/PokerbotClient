@@ -26,7 +26,6 @@
 #include "editbooldialog.hpp"
 #include "ui_editconstantdialog.h"
 
-
 namespace poker
 {
 	namespace view

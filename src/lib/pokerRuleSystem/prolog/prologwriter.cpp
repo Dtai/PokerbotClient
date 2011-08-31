@@ -34,7 +34,6 @@
 #include "../card/rankparser.hpp"
 #include "../card/suitparser.hpp"
 
-
 using namespace poker::card;
 
 namespace poker {
@@ -80,7 +79,7 @@ struct NumericalConstantWriter : public ElementWriter
     }
 
     virtual QString writeCode(Element * element, PrologWriter::CodeInformation & info) const
-    {
+	{
         Constant * c = element_cast<Constant>(element);
         if(!c || c->type() != type::numericalType())
             throw Exception("The supplied element is not an numerical constant", "NumericalConstantWriter::writeCode");
@@ -196,7 +195,7 @@ struct CardEquationConstantWriter : public ElementWriter
     }
 
     virtual QString writeCode(Element * element, PrologWriter::CodeInformation & info) const
-    {
+	{
         Constant * c = element_cast<Constant>(element);
         if(!c || c->type() != type::cardEquationType())
             throw Exception("The supplied element is not an card equation constant", "CardEquationConstantWriter::writeCode");
@@ -226,7 +225,7 @@ struct BoolEqualFunctionWriter : public ElementWriter
     }
 
     virtual QString writeCode(Element * element, PrologWriter::CodeInformation & info) const
-    {
+	{
         Function * f = element_cast<Function>(element);
         if(!f || f->calculator()->uniqueName() != function::BoolEqualFunctor::UniqueName())
             throw Exception(QString("The supplied calculator is not named %1").arg(function::BoolEqualFunctor::UniqueName()), "BoolEqualFunctionWriter::writeCode");
@@ -255,7 +254,7 @@ public:
     }
 
     virtual QString writeCode(Element * element, PrologWriter::CodeInformation & info) const
-    {
+	{
         Function * f = element_cast<Function>(element);
         if(!f || f->calculator()->uniqueName() != T::UniqueName())
             throw Exception(QString("The supplied calculator is not of name %1").arg(f->calculator()->uniqueName()), "NAryFunctionWriter::writeCode");
@@ -304,7 +303,7 @@ struct OrFunctionWriter : public ElementWriter
     }
 
     virtual QString writeCode(Element * element, PrologWriter::CodeInformation & info) const
-    {
+	{
         Function * f = element_cast<Function>(element);
         if(!f || f->calculator()->uniqueName() != function::ORFunctor::UniqueName())
             throw Exception(QString("The supplied calculator is not of name %1").arg(f->calculator()->uniqueName()), "NAryFunctionWriter::writeCode");
@@ -376,7 +375,7 @@ struct NotFunctionWriter : public prolog::ElementWriter
     }
 
     virtual QString writeCode(Element * element, PrologWriter::CodeInformation & info) const
-    {
+	{
         Function * f = element_cast<Function>(element);
         if(!f || f->calculator()->uniqueName() != function::NOTFunctor::UniqueName())
             throw Exception("The supplied element is not a NOT-function", "NotFunctionWriter::writeCode");
@@ -416,7 +415,7 @@ class ActionWriter : public ElementWriter
     }
 
     virtual QString writeCode(Element * element, PrologWriter::CodeInformation & info) const
-    {
+	{
         Action * action  = element_cast<Action>(element);
         if(!action)
             throw Exception("The supplied element is not an action", "ActionWriter::writeCode");
@@ -442,7 +441,7 @@ struct RaiseActionWriter : public ElementWriter
     }
 
     virtual QString writeCode(Element * element, PrologWriter::CodeInformation & info) const
-    {
+	{
         RaiseAction * a = element_cast<RaiseAction>(element);
         if(!a)
             throw Exception("The supplied element is not a RaiseAction", "RaiseActionWriter::writeCode");
@@ -474,13 +473,13 @@ struct ContainsFunctionWriter : public ElementWriter
     }
 
     virtual QString writeCode(Element * element, PrologWriter::CodeInformation & info) const
-    {
+	{
         Function * f = element_cast<Function>(element);
         if(!f || f->calculator()->uniqueName() != function::ContainsFunctor::UniqueName())
             throw Exception("The supplied element is not a contains-function", "ContainsFunctionWriter::writeCode");
 
         Element * cardLst = f->functionInputs().at(0);
-        Element * cardEq = f->functionInputs().at(1);
+		Element * cardEq = f->functionInputs().at(1);
 
         const ElementWriter & wLst = PrologWriter::FindWriter(cardLst);
         const ElementWriter & wEq = PrologWriter::FindWriter(cardEq);

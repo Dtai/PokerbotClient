@@ -74,8 +74,8 @@ QString FeatureWriter::writeCode(Element * element, PrologWriter::CodeInformatio
     if(f->type() == type::booleanType())
         return f->name();
 
-    QString var = info.getUniqueVariable();
-    QString varDef = QString("%1(%2)").arg(f->name()).arg(var);
+	QString var = info.getUniqueVariable();
+	QString varDef = QString("%1(%2)").arg(f->devName()).arg(var);
     info.addPreDefinition(varDef);
 
     return var;

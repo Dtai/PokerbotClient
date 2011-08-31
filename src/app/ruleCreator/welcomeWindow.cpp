@@ -32,7 +32,9 @@ void WelcomeWindow::onOKClicked(){
 	ct.tableName = ui->leTableName->text();
 
 	HelloSender *hs = new HelloSender(ct);
-	connect(hs, SIGNAL(finished(ConnectionTarget, QString)), this, SLOT(correctData(ConnectionTarget, QString)));
+	HelloSender::setCounter(1);
+	HelloSender::initConnected();
+	connect(hs, SIGNAL(connected(ConnectionTarget, QString)), this, SLOT(correctData(ConnectionTarget, QString)));
 	connect(hs, SIGNAL(errored()), this, SLOT(incorrectData()));
 	hs->send();
 }

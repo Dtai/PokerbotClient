@@ -86,15 +86,16 @@ const ElementSerializer * ElementSerializer::FindSerializer(Element * element)
 
 ruleSystem::Element * FeatureSerializer::deserialize(QDataStream & stream) const
 {
-    QString n, d;
+	QString n, d, devName;
     Type t;
     DBWrapper w;
 
-    stream >> t >> n >> w >> d;
+	stream >> t >> n >> devName >> w >> d;
 
     Feature * f = new Feature(t, n);
     f->setDB(w.db());
     f->setDescription(d);
+	f->setDevName(devName);
 
     return f;
 }
@@ -104,7 +105,7 @@ void FeatureSerializer::serialize(QDataStream & stream, ruleSystem::Element * el
 
     DBWrapper w(f->db());
 
-    stream << f->type() << f->name() << w << f->description();
+	stream << f->type() << f->name() << f->devName() << w << f->description();
 
 }
 
