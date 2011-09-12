@@ -50,7 +50,6 @@ private slots:
 	void finish();
 	void showNoConfigFile();
 	void showWrongConfigFile();
-	void test();
 
 private:
 	ConnectionTarget _target;
