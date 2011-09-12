@@ -47,8 +47,6 @@ private:
 
 		QMap<QPushButton*, QVector<QComboBox*>*> *operators;
 		QMap<QPushButton*, QVector<QComboBox*>*> *values;
-		QMap<QPushButton*, QVector<QRadioButton*>*> *minusses;
-		QMap<QPushButton*, QVector<QRadioButton*>*> *plusses;
 		QMap<QPushButton*, QVector<QComboBox*>*> *postfixValues;
 		QMap<QPushButton*, QVector<QPushButton*>*> *deleteValues;
 
@@ -64,6 +62,7 @@ private:
 		int newCardName();
 		void insertGivenCards(QList<poker::Card>);
 		void parse(QStringList values, QStringList *ops, QStringList *vals, QStringList *postOps, QStringList *postVals);
+		void parse(QStringList values, QStringList *ops, QStringList *vals, QStringList *postVals);
 		template <class T>
 		void deleteValuesOfMap(QMap<QPushButton*, QVector<T*>*> *map);
 

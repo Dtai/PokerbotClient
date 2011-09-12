@@ -27,8 +27,6 @@ CardEvaluator::CardEvaluator(QList<poker::Card> givenCards, ruleSystem::Constant
 
 		operators = new QMap<QPushButton*, QVector<QComboBox*>*>();
 		values = new QMap<QPushButton*, QVector<QComboBox*>*>();
-		plusses = new QMap<QPushButton*, QVector<QRadioButton*>*>();
-		minusses = new QMap<QPushButton*, QVector<QRadioButton*>*>();
 		postfixValues = new QMap<QPushButton*, QVector<QComboBox*>*>();
 		deleteValues = new QMap<QPushButton*, QVector<QPushButton*>*>();
 
@@ -49,8 +47,6 @@ CardEvaluator::~CardEvaluator(){
 
 	deleteValuesOfMap(operators);
 	deleteValuesOfMap(values);
-	deleteValuesOfMap(minusses);
-	deleteValuesOfMap(plusses);
 	deleteValuesOfMap(postfixValues);
 	deleteValuesOfMap(deleteValues);
 
@@ -122,6 +118,46 @@ void CardEvaluator::parse(QStringList values, QStringList *ops, QStringList *val
 	}
 }
 
+void CardEvaluator::parse(QStringList values, QStringList *ops, QStringList *vals, QStringList *postVals){
+	foreach(QString s, values){
+		QString op = "";
+		QString val = "";
+		QString postVal = "";
+
+		if(s.at(1) == '='){
+			op = s.mid(0, 2);
+			if(s.at(2).isDigit() || s.at(2) == 'J' || s.at(2) == 'Q' || s.at(2) == 'K' || s.at(2) == 'A'){
+				val = s.at(2);
+			} else {
+				int i = 2;
+				while(s.at(i) != '+' && s.at(i) != '-'){
+					val.append(s.at(i));
+					++i;
+				}
+				postVal = s.mid(i);
+			}
+
+		} else {
+			op = s.mid(0, 1);
+			if(s.at(1).isDigit() || s.at(1) == 'J' || s.at(1) == 'Q' || s.at(1) == 'K' || s.at(1) == 'A'){
+				val = s.at(1);
+			} else {
+				int i = 1;
+				while(s.at(i) != '+' && s.at(i) != '-'){
+					val.append(s.at(i));
+					++i;
+				}
+				postVal = s.mid(i);
+			}
+		}
+
+		ops->append(op);
+		vals->append(val);
+		postVals->append(postVal);
+	}
+}
+
+
 void CardEvaluator::insertGivenCards(QList<poker::Card> givenCards){
 	for(int i=0; i<givenCards.size(); ++i){
 		QString color = givenCards.at(i).suitExpression();
@@ -129,10 +165,9 @@ void CardEvaluator::insertGivenCards(QList<poker::Card> givenCards){
 
 		QStringList *ops = new QStringList();
 		QStringList *vals = new QStringList();
-		QStringList *postOps = new QStringList();
 		QStringList *postVals = new QStringList();
 
-		parse(values, ops, vals, postOps, postVals);
+		parse(values, ops, vals, postVals);
 
 		addCard();
 		ui->color->setCurrentIndex(ui->color->findText(color));
@@ -143,13 +178,6 @@ void CardEvaluator::insertGivenCards(QList<poker::Card> givenCards){
 			}
 			this->values->value(selectedCard)->at(i)->setCurrentIndex(this->values->value(selectedCard)->at(i)->findText(vals->at(i)));
 
-			if(postOps->at(i) == "+"){
-				plusses->value(selectedCard)->at(i)->setChecked(true);
-				minusses->value(selectedCard)->at(i)->setChecked(false);
-			} else {
-				plusses->value(selectedCard)->at(i)->setChecked(false);
-				minusses->value(selectedCard)->at(i)->setChecked(true);
-			}
 			postfixValues->value(selectedCard)->at(i)->setCurrentIndex(postfixValues->value(selectedCard)->at(i)->findText(postVals->at(i)));
 			if(i != values.size()-1){
 				addValue();
@@ -170,46 +198,27 @@ void CardEvaluator::changePostfix(){
 	int index = sender()->objectName().toInt();
 	if(box->currentText().at(0).isLower()){
 		postfixValues->value(selectedCard)->at(index)->setEnabled(true);
-		minusses->value(selectedCard)->at(index)->setEnabled(true);
-		plusses->value(selectedCard)->at(index)->setEnabled(true);
 	} else {
 		postfixValues->value(selectedCard)->at(index)->setDisabled(true);
-		minusses->value(selectedCard)->at(index)->setDisabled(true);
-		plusses->value(selectedCard)->at(index)->setDisabled(true);
 	}
 }
 
 void CardEvaluator::addValue(){
 	operators->value(selectedCard)->append(creator->createOperators(ui->valuesScroll));
 	values->value(selectedCard)->append(creator->createValues(ui->valuesScroll));
-	plusses->value(selectedCard)->append(creator->createRadioButtonPlus(ui->valuesScroll));
-	minusses->value(selectedCard)->append(creator->createRadioButtonMinus(ui->valuesScroll));
 	postfixValues->value(selectedCard)->append(creator->createPostfixValues(ui->valuesScroll));
+	postfixValues->value(selectedCard)->last()->setCurrentIndex(3); //TODO magic variable
 	deleteValues->value(selectedCard)->append(creator->createDeleteValue(ui->valuesScroll, QString::number(operators->value(selectedCard)->size()-1)));
 
 	QComboBox *op = operators->value(selectedCard)->last();
 	QComboBox *val = values->value(selectedCard)->last();
-	QRadioButton *rbp = plusses->value(selectedCard)->last();
-	QRadioButton *rbm = minusses->value(selectedCard)->last();
 	QComboBox *postVal = postfixValues->value(selectedCard)->last();
 	QPushButton *del = deleteValues->value(selectedCard)->last();
-
-	QButtonGroup *group = new QButtonGroup(ui->valuesScroll);
-	group->addButton(rbp);
-	group->addButton(rbm);
-
-	QVBoxLayout *rbs = new QVBoxLayout();
-	rbs->addWidget(rbp);
-	rbs->addWidget(rbm);
-
-	QHBoxLayout *post = new QHBoxLayout();
-	post->addLayout(rbs);
-	post->addWidget(postVal);
 
 	QHBoxLayout *newVal = new QHBoxLayout();
 	newVal->addWidget(op);
 	newVal->addWidget(val);
-	newVal->addLayout(post);
+	newVal->addWidget(postVal);
 	newVal->addWidget(del);
 
 	layoutValues->addLayout(newVal);
@@ -217,13 +226,10 @@ void CardEvaluator::addValue(){
 	viewport->setLayout(layoutValues);
 	ui->valuesScroll->setWidget(viewport);
 
-	val->setObjectName(QString::number(plusses->value(selectedCard)->size()-1));
 	connect(val, SIGNAL(editTextChanged(QString)), this, SLOT(changePostfix()));
 	connect(op, SIGNAL(currentIndexChanged(int)), this, SLOT(redrawSelectedCard()));
 	connect(val, SIGNAL(editTextChanged(QString)), this, SLOT(redrawSelectedCard()));
 	connect(postVal, SIGNAL(currentIndexChanged(int)), this, SLOT(redrawSelectedCard()));
-	connect(rbm, SIGNAL(clicked()), this, SLOT(redrawSelectedCard()));
-	connect(rbp, SIGNAL(clicked()), this, SLOT(redrawSelectedCard()));
 	connect(del, SIGNAL(clicked()), this, SLOT(deleteValue()));
 
 	redrawSelectedCard();
@@ -233,14 +239,10 @@ void CardEvaluator::deleteValue(){
 	int index = sender()->objectName().toInt();
 	operators->value(selectedCard)->at(index)->deleteLater();
 	values->value(selectedCard)->at(index)->deleteLater();
-	minusses->value(selectedCard)->at(index)->deleteLater();
-	plusses->value(selectedCard)->at(index)->deleteLater();
 	postfixValues->value(selectedCard)->at(index)->deleteLater();
 
 	operators->value(selectedCard)->remove(index);
 	values->value(selectedCard)->remove(index);
-	minusses->value(selectedCard)->remove(index);
-	plusses->value(selectedCard)->remove(index);
 	postfixValues->value(selectedCard)->remove(index);
 	deleteValues->value(selectedCard)->remove(index);
 
@@ -252,16 +254,12 @@ void CardEvaluator::deleteValuesOfCard(QPushButton *card){
 	for(int i=0; i<operators->value(card)->size(); ++i){
 		operators->value(card)->at(i)->deleteLater();
 		values->value(card)->at(i)->deleteLater();
-		minusses->value(card)->at(i)->deleteLater();
-		plusses->value(card)->at(i)->deleteLater();
 		postfixValues->value(card)->at(i)->deleteLater();
 		deleteValues->value(card)->at(i)->deleteLater();
 	}
 
 	operators->remove(card);
 	values->remove(selectedCard);
-	minusses->remove(selectedCard);
-	plusses->remove(selectedCard);
 	postfixValues->remove(selectedCard);
 	deleteValues->remove(selectedCard);
 }
@@ -309,8 +307,6 @@ void CardEvaluator::hideValues(){
 		for(int i=0; i<operators->value(selectedCard)->size(); ++i){
 			operators->value(selectedCard)->at(i)->setVisible(false);
 			values->value(selectedCard)->at(i)->setVisible(false);
-			plusses->value(selectedCard)->at(i)->setVisible(false);
-			minusses->value(selectedCard)->at(i)->setVisible(false);
 			postfixValues->value(selectedCard)->at(i)->setVisible(false);
 			deleteValues->value(selectedCard)->at(i)->setVisible(false);
 		}
@@ -322,8 +318,6 @@ void CardEvaluator::showValues(){
 		for(int i=0; i<operators->value(selectedCard)->size(); ++i){
 			operators->value(selectedCard)->at(i)->setVisible(true);
 			values->value(selectedCard)->at(i)->setVisible(true);
-			plusses->value(selectedCard)->at(i)->setVisible(true);
-			minusses->value(selectedCard)->at(i)->setVisible(true);
 			postfixValues->value(selectedCard)->at(i)->setVisible(true);
 			deleteValues->value(selectedCard)->at(i)->setVisible(true);
 		}
@@ -333,8 +327,6 @@ void CardEvaluator::showValues(){
 void CardEvaluator::initValues(){
 	operators->insert(selectedCard, new QVector<QComboBox*>());
 	values->insert(selectedCard, new QVector<QComboBox*>());
-	plusses->insert(selectedCard, new QVector<QRadioButton*>());
-	minusses->insert(selectedCard, new QVector<QRadioButton*>());
 	postfixValues->insert(selectedCard,  new QVector<QComboBox*>());
 	deleteValues->insert(selectedCard, new QVector<QPushButton*>());
 	addValue();
@@ -359,8 +351,6 @@ void CardEvaluator::colorizeCards(){
 	QGraphicsColorizeEffect *ce = new QGraphicsColorizeEffect(selectedCard);
 	ce->setColor(Qt::blue);
 	selectedCard->setGraphicsEffect(ce);
-	//selectedCard->setStyleSheet("color: rgb(100, 0, 0)");
-	//selectedCard->setForegroundRole(QColor(Qt::black));
 }
 
 void CardEvaluator::updateOwnVariables(){
@@ -401,14 +391,8 @@ QMap<QString, QString> *CardEvaluator::getCurrentInformation(){
 		result->insertMulti("value", values->value(selectedCard)->at(i)->currentText());
 
 		if(postfixValues->value(selectedCard)->at(i)->isEnabled()){
-			if(minusses->value(selectedCard)->at(i)->isChecked()){
-				result->insertMulti("postfixOperator", "-");
-			} else {
-				result->insertMulti("postfixOperator", "+");
-			}
 			result->insertMulti("postfixValue", postfixValues->value(selectedCard)->at(i)->currentText());
 		} else {
-			result->insertMulti("postfixOperator", "");
 			result->insertMulti("postfixValue", "");
 		}
 	}
@@ -421,19 +405,11 @@ void CardEvaluator::loadInformationFromSelectedCard(){
 
 	QList<QString> operators = information->value(selectedCard)->values("operator");
 	QList<QString> values = information->value(selectedCard)->values("value");
-	QList<QString> postfixOperators = information->value(selectedCard)->values("postfixOperator");
 	QList<QString> postfixValues = information->value(selectedCard)->values("postfixValue");
 
 	for(int i=0; i<operators.size(); ++i){
 		this->operators->value(selectedCard)->at(i)->setCurrentIndex(this->operators->value(selectedCard)->at(i)->findText(operators.at(i)));
 		this->values->value(selectedCard)->at(i)->setCurrentIndex(this->values->value(selectedCard)->at(i)->findText(values.at(i)));
-
-		if(postfixOperators.at(i) == "+"){
-			plusses->value(selectedCard)->at(i)->setChecked(true);
-		} else {
-			minusses->value(selectedCard)->at(i)->setChecked(true);
-		}
-
 		this->postfixValues->value(selectedCard)->at(i)->setCurrentIndex(this->postfixValues->value(selectedCard)->at(i)->findText(postfixValues.at(i)));
 	}
 }
@@ -447,15 +423,7 @@ void CardEvaluator::updateSelectedCard(){
 	for(int i=0; i<operators->value(selectedCard)->size(); ++i){
 		text.append(operators->value(selectedCard)->at(i)->currentText());
 		text.append(values->value(selectedCard)->at(i)->currentText());
-		if(minusses->value(selectedCard)->at(i)->isEnabled()){
-			if(minusses->value(selectedCard)->at(i)->isChecked()){
-				text.append("-");
-			}
-			if(plusses->value(selectedCard)->at(i)->isChecked()){
-				text.append("+");
-			}
-			text.append(postfixValues->value(selectedCard)->at(i)->currentText());
-		}
+		text.append(postfixValues->value(selectedCard)->at(i)->currentText());
 
 		if(i != operators->value(selectedCard)->size()-1){
 			text.append("\n");
@@ -488,16 +456,13 @@ QList<poker::Card> CardEvaluator::cards() const{
 		QString color = information->value(_cards->at(i))->value("color");
 		QList<QString> operators = information->value(_cards->at(i))->values("operator");
 		QList<QString> values = information->value(_cards->at(i))->values("value");
-		QList<QString> postfixOperators = information->value(_cards->at(i))->values("postfixOperator");
 		QList<QString> postfixValues = information->value(_cards->at(i))->values("postfixValue");
 
 		QStringList ranks;
 		for(int i=0; i<operators.size(); ++i){
 			QString rank = operators.at(i);
 			rank.append(values.at(i));
-			rank.append(postfixOperators.at(i));
 			rank.append(postfixValues.at(i));
-
 			ranks.append(rank);
 		}
 

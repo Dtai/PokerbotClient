@@ -44,10 +44,13 @@ void CardEvaluatorCreator::initOwnValues(){
 
 void CardEvaluatorCreator::initPostfixValues(){
 	postfixValues = new QStringList();
-	postfixValues->append("0");
-	postfixValues->append("1");
-	postfixValues->append("2");
-	postfixValues->append("3");
+	postfixValues->append("-3");
+	postfixValues->append("-2");
+	postfixValues->append("-1");
+	postfixValues->append("");
+	postfixValues->append("+1");
+	postfixValues->append("+2");
+	postfixValues->append("+3");
 }
 
 QComboBox *CardEvaluatorCreator::createOperators(QWidget *parent){
