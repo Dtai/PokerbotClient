@@ -47,6 +47,15 @@ void HelloSender::initConnected(){
 	error = new QStringList();
 }
 
+void HelloSender::setCounter(int newCounter){
+	counter = newCounter;
+}
+
+void HelloSender::initConnected(){
+	good = new QStringList();
+	bad = new QStringList();
+}
+
 QUrl HelloSender::getURL(){
 	Reader r;
 	connect(&r, SIGNAL(noConfigFile()), this, SLOT(showNoConfigFile()));
@@ -161,10 +170,6 @@ void HelloSender::showDialog(){
 	QMessageBox *qmb = new QMessageBox(QMessageBox::Information, "Information", message);
 	qmb->setModal(false);
 	qmb->show();
-}
-
-void HelloSender::test(){
-	std::cout << "Test" << std::endl;
 }
 
 void HelloSender::finish(){
