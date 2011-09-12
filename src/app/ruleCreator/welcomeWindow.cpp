@@ -10,6 +10,7 @@ WelcomeWindow::WelcomeWindow(SettingsManager *manager, QWidget *parent1, QWidget
 		  _settingsManager(manager)
 {
 	ui->setupUi(this);
+	setAttribute(Qt::WA_DeleteOnClose);
 	connect(ui->btnOk, SIGNAL(clicked()), this, SLOT(onOKClicked()));
 	this->parent1 = parent1;
 
@@ -32,7 +33,9 @@ void WelcomeWindow::onOKClicked(){
 	ct.tableName = ui->leTableName->text();
 
 	HelloSender *hs = new HelloSender(ct);
-	connect(hs, SIGNAL(finished(ConnectionTarget, QString)), this, SLOT(correctData(ConnectionTarget, QString)));
+	HelloSender::setCounter(1);
+	HelloSender::initConnected();
+	connect(hs, SIGNAL(connected(ConnectionTarget, QString)), this, SLOT(correctData(ConnectionTarget, QString)));
 	connect(hs, SIGNAL(errored()), this, SLOT(incorrectData()));
 	hs->send();
 }
@@ -52,10 +55,10 @@ void WelcomeWindow::correctData(ConnectionTarget target, QString testTable){
 	connect(this, SIGNAL(sendTableName(QString)), parent1, SLOT(addTab(QString)));
 	emit sendTableName(ui->leTableName->text());
 	emit sendTableName(testTable);
-	deleteLater();
+	close();
 }
 
 void WelcomeWindow::incorrectData(){
 	ui->statusbar->showMessage("An error occured");
-	deleteLater();
+	close();
 }

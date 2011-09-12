@@ -25,266 +25,242 @@
   <property name="windowTitle">
    <string>card evaluator</string>
   </property>
-  <widget class="QScrollArea" name="cards">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>40</y>
-     <width>361</width>
-     <height>351</height>
-    </rect>
-   </property>
-   <property name="widgetResizable">
-    <bool>true</bool>
-   </property>
-   <widget class="QWidget" name="scrollAreaWidgetContents">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>359</width>
-      <height>349</height>
-     </rect>
-    </property>
-   </widget>
-  </widget>
-  <widget class="QPushButton" name="newCard">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>400</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>add card</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="deleteCard">
-   <property name="geometry">
-    <rect>
-     <x>310</x>
-     <y>400</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>delete card</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="addValue">
-   <property name="geometry">
-    <rect>
-     <x>500</x>
-     <y>290</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>add value</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_5">
-   <property name="geometry">
-    <rect>
-     <x>670</x>
-     <y>290</y>
-     <width>344</width>
-     <height>39</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Selecteer een (on)gelijkheid uit de lijst en de gewenste waarde van de kaart. Als de waarde een variabele is, kan er gekozen worden voor een postfix. Een variabele begint altijd met een kleine letter.</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignJustify|Qt::AlignVCenter</set>
-   </property>
-   <property name="wordWrap">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QWidget" name="layoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>490</x>
-     <y>43</y>
-     <width>481</width>
-     <height>231</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout_4">
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_4">
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_3">
-        <item>
-         <widget class="QLabel" name="label_6">
-          <property name="layoutDirection">
-           <enum>Qt::LeftToRight</enum>
-          </property>
-          <property name="text">
-           <string>Kleur:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_6">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QScrollArea" name="cards">
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>482</width>
+            <height>435</height>
+           </rect>
           </property>
          </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="color">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="editable">
-           <bool>true</bool>
-          </property>
-          <item>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QPushButton" name="newCard">
            <property name="text">
-            <string>?</string>
+            <string>add card</string>
            </property>
-          </item>
-          <item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="deleteCard">
            <property name="text">
-            <string>hearts</string>
+            <string>delete card</string>
            </property>
-          </item>
-          <item>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_3">
+               <item>
+                <widget class="QLabel" name="label_6">
+                 <property name="layoutDirection">
+                  <enum>Qt::LeftToRight</enum>
+                 </property>
+                 <property name="text">
+                  <string>Kleur:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="color">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="editable">
+                  <bool>true</bool>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>?</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>hearts</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>clubs</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>spades</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>diamonds</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QLabel" name="label">
+               <property name="text">
+                <string>Selecteer een kleur uit de lijst of type een variabele in. Een variabele begint altijd met een kleine letter. </string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+               </property>
+               <property name="wordWrap">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0">
+             <item>
+              <widget class="QLabel" name="label_2">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="text">
+                <string>Operator</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_3">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Waarde</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_4">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Postfix</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QScrollArea" name="valuesScroll">
+             <property name="verticalScrollBarPolicy">
+              <enum>Qt::ScrollBarAsNeeded</enum>
+             </property>
+             <property name="widgetResizable">
+              <bool>true</bool>
+             </property>
+             <widget class="QWidget" name="scrollAreaWidgetContents_2">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>478</width>
+                <height>289</height>
+               </rect>
+              </property>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QPushButton" name="addValue">
            <property name="text">
-            <string>clubs</string>
+            <string>add value</string>
            </property>
-          </item>
-          <item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_5">
            <property name="text">
-            <string>spades</string>
+            <string>Selecteer een (on)gelijkheid uit de lijst en de gewenste waarde van de kaart. Als de waarde een variabele is, kan er gekozen worden voor een postfix. Een variabele begint altijd met een kleine letter.</string>
            </property>
-          </item>
-          <item>
+           <property name="alignment">
+            <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_5">
+         <item>
+          <widget class="QPushButton" name="save">
            <property name="text">
-            <string>diamonds</string>
+            <string>save</string>
            </property>
-          </item>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Selecteer een kleur uit de lijst of type een variabele in. Een variabele begint altijd met een kleine letter. </string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignJustify|Qt::AlignVCenter</set>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0">
-      <item>
-       <widget class="QLabel" name="label_2">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string>0</string>
-        </property>
-        <property name="text">
-         <string>Operator</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_3">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Waarde</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_4">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Postfix</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <widget class="QScrollArea" name="valuesScroll">
-      <property name="verticalScrollBarPolicy">
-       <enum>Qt::ScrollBarAsNeeded</enum>
-      </property>
-      <property name="widgetResizable">
-       <bool>true</bool>
-      </property>
-      <widget class="QWidget" name="scrollAreaWidgetContents_2">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>477</width>
-         <height>159</height>
-        </rect>
-       </property>
-      </widget>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QPushButton" name="save">
-   <property name="geometry">
-    <rect>
-     <x>630</x>
-     <y>450</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>save</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="cancel">
-   <property name="geometry">
-    <rect>
-     <x>760</x>
-     <y>450</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>cancel</string>
-   </property>
-  </widget>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="cancel">
+           <property name="text">
+            <string>cancel</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>

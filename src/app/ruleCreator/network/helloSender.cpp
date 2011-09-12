@@ -35,7 +35,16 @@
 HelloSender::HelloSender(const ConnectionTarget & target, QObject * parent)
   : QObject(parent),
 	 _target(target)
-{
+{}
+
+void HelloSender::setCounter(int newCounter){
+	counter = newCounter;
+}
+
+void HelloSender::initConnected(){
+	good = new QStringList();
+	bad = new QStringList();
+	error = new QStringList();
 }
 
 QUrl HelloSender::getURL(){
@@ -87,7 +96,7 @@ void HelloSender::add(ConnectionTarget target){
 	targets->push_back(target);
 }
 
-void HelloSender::finish(){
+void HelloSender::handleFinish(){
 	if(reply->error() == QNetworkReply::NoError){
 		QByteArray ba = reply->readAll();
 
@@ -99,18 +108,71 @@ void HelloSender::finish(){
 		QVariant testTable = result.value("testTable");
 
 		if(type.toString() == "InvalidInput"){
-			QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, "Invalid input", message.toString());
-			qmb->show();
+			error->append(message.toString());
+			bad->append(_target.tableName);
 			emit errored();
 		} else if(type.toString() == "Acknowledge"){
-			QMessageBox *qmb = new QMessageBox(QMessageBox::Information, "Information", "Successfully connected to the table.");
-			qmb->show();
-			emit finished(_target, testTable.toString());
+			good->append(_target.tableName);
+			good->append(testTable.toString());
+			emit connected(_target, testTable.toString());
 		}
 
 	} else {
-		QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, "Connection error", reply->errorString());
-		qmb->show();
+		error->append(reply->errorString());
+		bad->append(_target.tableName);
 		emit errored();
+	}
+}
+
+void HelloSender::showDialog(){
+	QString message = "";
+	if(good->size() > 0){
+		message.append("Connected to: ");
+		for(int i=0; i<good->size(); ++i){
+			message.append(good->at(i));
+			if(i != good->size()-1){
+				message.append( ", ");
+			}
+		}
+		message.append("\n");
+	}
+
+	if(bad->size() > 0){
+		message.append("Failed to connect to: ");
+		for(int i=0; i<bad->size(); ++i){
+			message.append(bad->at(i));
+			if(i != bad->size()-1){
+				message.append( ", ");
+			}
+		}
+		message.append("\n");
+	}
+
+	if(error->size() > 0){
+		message.append("Errors: ");
+		for(int i=0; i<error->size(); ++i){
+			message.append(error->at(i));
+			if(i != error->size()-1){
+				message.append( ", ");
+			}
+		}
+	}
+
+	QMessageBox *qmb = new QMessageBox(QMessageBox::Information, "Information", message);
+	qmb->setModal(false);
+	qmb->show();
+}
+
+void HelloSender::test(){
+	std::cout << "Test" << std::endl;
+}
+
+void HelloSender::finish(){
+	--counter;
+	if(counter == 0){
+		handleFinish();
+		showDialog();
+	} else {
+		handleFinish();
 	}
 }

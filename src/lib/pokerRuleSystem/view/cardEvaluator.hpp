@@ -64,6 +64,8 @@ private:
 		int newCardName();
 		void insertGivenCards(QList<poker::Card>);
 		void parse(QStringList values, QStringList *ops, QStringList *vals, QStringList *postOps, QStringList *postVals);
+		template <class T>
+		void deleteValuesOfMap(QMap<QPushButton*, QVector<T*>*> *map);
 
 signals:
 		void ready();

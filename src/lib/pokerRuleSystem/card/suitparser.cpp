@@ -64,7 +64,7 @@ struct mySuitParser : public grammar<mySuitParser>
 		}
 
 		rule<ScannerT> Formula, Constant, Variable;
-		rule<ScannerT> const& start() const { return Formula; };
+		rule<ScannerT> const& start() const { return Formula; }
 	};
 
 private:

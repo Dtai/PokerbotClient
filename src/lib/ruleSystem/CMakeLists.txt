@@ -64,6 +64,9 @@ foreach(lang ${LANGUAGES})
 	qt4_create_translation(QM ${SOURCES} ${HEADERS} ${in_trans_file})
 endforeach(lang)
 
+set(QM ${TRANSLATION_DIR}/ruleSystem_nl_BE.qm)
+file(COPY ${QM} DESTINATION ${CMAKE_BINARY_DIR}/bin)
+
 add_custom_target(${LIBNAME}_trans DEPENDS ${QM})
 add_dependencies(update_translations ${LIBNAME}_trans)
 

@@ -29,7 +29,6 @@ private slots:
 
 private:
 	Ui::WelcomeWindow *ui;
-	QListWidgetItem * _curSelected;
 	SettingsManager * _settingsManager;
 	QWidget *parent1;
 };

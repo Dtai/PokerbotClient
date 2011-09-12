@@ -110,10 +110,11 @@ void RuleListWidget::clearAll()
 
 void RuleListWidget::onDeleteRule(int rule)
 {
-	if(isAutoDeleteOn())
+	if(isAutoDeleteOn()){
 		deleteRule(rule);
-	else
+	} else{
 		emit ruleWantsDeletion(rule);
+	}
 }
 
 

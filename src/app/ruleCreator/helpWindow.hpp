@@ -10,25 +10,26 @@ class HelpWindow;
 
 class HelpWindow : public QWidget
 {
-        Q_OBJECT
+	Q_OBJECT
 
 public:
-        HelpWindow(QWidget *parent = 0);
-        ~HelpWindow();
+	HelpWindow(QWidget *parent = 0);
+	~HelpWindow();
 
 private slots:
-		void menuSelection(QAction*);
+	void menuSelection(QAction*);
 
 private:
-        Ui::HelpWindow *ui;
-		QString *connectToTable;
-		QString *makeRules;
-		QString *sendRules;
+	Ui::HelpWindow *ui;
+	QString *connectToTable;
+	QString *makeRules;
+	QString *sendRules;
+	QMenu *menu;
 
-		void showHelpConnection();
-		void showHelpCreateRules();
-		void showHelpSendRules();
-		void clear();
+	void showHelpConnection();
+	void showHelpCreateRules();
+	void showHelpSendRules();
+	void clear();
 };
 
 #endif // HELPWINDOW_HPP

@@ -97,6 +97,7 @@ QRadioButton *CardEvaluatorCreator::createRadioButtonPlus(QWidget *parent){
 
 QPushButton *CardEvaluatorCreator::createDeleteValue(QWidget *parent, QString name){
 	QPushButton *result = new QPushButton("X", parent);
+	result->setFixedWidth(25);
 	result->setObjectName(name);
 
 	return result;

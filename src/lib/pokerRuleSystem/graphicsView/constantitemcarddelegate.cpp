@@ -130,11 +130,10 @@ namespace poker
 			CardEvaluator *ce = new CardEvaluator(getCards(c), c);
 
 			QEventLoop loop;
-			ce->show();
 			QObject::connect(ce, SIGNAL(ready()), &loop, SLOT(quit()));
+			ce->show();
 			loop.exec();
 			bool result = ce->returnValue;
-			ce->deleteLater();
 			return result;
 		}
 	}

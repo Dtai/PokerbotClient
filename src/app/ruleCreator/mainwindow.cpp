@@ -42,6 +42,7 @@
 #include <pokerRuleSystem/booleanfunction.hpp>
 #include <pokerRuleSystem/simpledb.hpp>
 #include <pokerRuleSystem/prolog/prologwriter.hpp>
+#include <pokerRuleSystem/dictionary/featureDictionary.hpp>
 
 #include "model/elementmodel.hpp"
 #include "model/predefinedelementmodel.hpp"
@@ -57,6 +58,7 @@
 #include <QMessageBox>
 #include <QInputDialog>
 #include <QWebView>
+#include <QtConcurrentRun>
 
 #include "rulewidget.hpp"
 #include "rulelistwidget.hpp"
@@ -79,6 +81,7 @@ namespace
 QDockWidget * createDockWidget(const QString & title, const QList<Element*> & elements, ElementModel::ElementDescriber * describer, QWidget * parent);
 QString writePrologCode(const QList<Action*> & actionList);
 ruleSystem::Feature * registerAndCreateFeature(SimpleDB & db, const QString & name, const ruleSystem::Type & type, const QString & description = QString());
+ruleSystem::Feature * registerAndCreateFeature1(SimpleDB & db, const QString & name, const QString &uiName, const ruleSystem::Type & type, const QString & description = QString());
 ruleSystem::Function * createFunction(const Calculator * calculator, const QString & description);
 ruleSystem::Constant * createConstant(const Type & type, const QVariant & value, const QString & description);
 ruleSystem::Action * createAction(ruleSystem::Action * a, const QString & description);
@@ -114,8 +117,9 @@ MainWindow::MainWindow(QWidget *parent)
 
 	connect(ui->actionShow_information, SIGNAL(triggered()), this, SLOT(showInformation()));
 	connect(ui->actionConnect_to_table, SIGNAL(triggered()), this, SLOT(showConnectToTable()));
+	//connect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(selectTab(int)));
 
-	tabs = new QVector<QString>();
+	tabs = new QVector<Tab*>();
 
 	showMaximized();
 	showWelcomeWindow();
@@ -128,6 +132,14 @@ MainWindow::~MainWindow()
 	delete ui;
 }
 
+void MainWindow::selectTab(int index){
+	for(int i=0; i<tabs->size(); ++i){
+		tabs->at(i)->setPriority(QThread::LowestPriority);
+	}
+	tabs->at(index)->setPriority(QThread::NormalPriority);
+	ui->tabWidget->setCurrentIndex(index);
+}
+
 void MainWindow::showWelcomeWindow(){
 	_settings->reloadSettings();
 	WelcomeWindow *ww = new WelcomeWindow(_settings, this);
@@ -137,18 +149,19 @@ void MainWindow::showWelcomeWindow(){
 }
 
 void MainWindow::showInformation(){
-    HelpWindow *hw = new HelpWindow();
+    HelpWindow *hw = new HelpWindow(0);
     hw->show();
 }
 
 void MainWindow::addTab(QString tabName){
-	tabs->push_back(tabName);
-	QWebView *tab1 = new QWebView(ui->tabWidget);
-	ui->tabWidget->addTab(tab1, tabName);
 	Reader r;
 	QUrl url = r.getWatchTable();
 	url.addQueryItem("name", tabName);
+
+	QWebView *tab1 = new QWebView(ui->tabWidget);
 	tab1->setUrl(url);
+
+	ui->tabWidget->addTab(tab1, tabName);
 }
 
 void MainWindow::showError(const QString & title, const QString & errorMessage)
@@ -225,7 +238,13 @@ void MainWindow::exportCode(QAction * action)
 	connect(cs, SIGNAL(errored()), this, SLOT(incorrectExportCode()));
 	cs->send();
 
-	ui->tabWidget->setCurrentIndex(tabs->indexOf(d.tableName));
+	int index = 0;
+	for(int i=0; i<tabs->size(); ++i){
+		if(tabs->at(i)->name() == d.tableName){
+			index = i;
+		}
+	}
+	ui->tabWidget->setCurrentIndex(index);
 }
 
 void MainWindow::correctExportCode(){
@@ -321,12 +340,12 @@ QList<Element*> MainWindow::createAllFeatures()
 	allFeatures << registerAndCreateFeature(db, "maximalewinst", type::numericalType(), tr("How much many can I maximally win?"));
 	allFeatures << registerAndCreateFeature(db, "minimumraise", type::numericalType(), tr("What's the minimum I should raise?"));
 	allFeatures << registerAndCreateFeature(db, "maximumraise", type::numericalType(), tr("What's the maximum I can raise?"));
-	allFeatures << registerAndCreateFeature(db, "aantalraises", type::numericalType(), tr("How many times has there been raised this round?"));
+	allFeatures << registerAndCreateFeature1(db, AmountRaises::name(), AmountRaises::devName(), type::numericalType(), tr("How many times has there been raised this round?"));
 	allFeatures << registerAndCreateFeature(db, Translator::AddTranslation("random", tr("random")), type::numericalType(), tr("A random number between zero and one."));
 
-	allFeatures << registerAndCreateFeature(db, "handkaarten", type::cardListType(), tr("What are my hand cards?"));
-	allFeatures << registerAndCreateFeature(db, "tafelkaarten", type::cardListType(), tr("What cards are there on the table?"));
-	allFeatures << registerAndCreateFeature(db, "allekaarten", type::cardListType(), tr("What cards do I have in my hand or are on the table?"));
+	allFeatures << registerAndCreateFeature1(db, HandCards::name(), HandCards::devName(), type::cardListType(), tr("What are my hand cards?"));
+	allFeatures << registerAndCreateFeature1(db, TableCards::name(), TableCards::devName(), type::cardListType(), tr("What cards are there on the table?"));
+	allFeatures << registerAndCreateFeature1(db, AllCards::name(), AllCards::devName(), type::cardListType(), tr("What cards do I have in my hand or are on the table?"));
 
 	return allFeatures;
 }
@@ -434,6 +453,16 @@ ruleSystem::Feature * registerAndCreateFeature(SimpleDB & db, const QString & na
 	db.registerFeature(name, type);
 	Feature * f = db.createFeature(name);
 	f->setDescription(description);
+
+	return f;
+}
+
+ruleSystem::Feature * registerAndCreateFeature1(SimpleDB & db, const QString & name, const QString &devName, const ruleSystem::Type & type, const QString & description)
+{
+	db.registerFeature(name, type);
+	Feature * f = db.createFeature(name);
+	f->setDescription(description);
+	f->setDevName(devName);
 
 	return f;
 }

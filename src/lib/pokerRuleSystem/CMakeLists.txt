@@ -25,8 +25,11 @@ set (HEADERS
 	pokeraction.hpp
 	raiseaction.hpp
 	types.hpp
+	dictionary/featureDictionary.hpp
 )
-set (Q_MOC_HPP )
+set (Q_MOC_HPP
+	dictionary/featureDictionary.hpp
+)
 set (Q_UI )
 set (Q_RES resources/pokerRes.qrc )
 set (SUBDIRECTORIES
@@ -56,9 +59,11 @@ foreach(lang ${LANGUAGES})
 	qt4_create_translation(QM ${SOURCES} ${HEADERS} ${in_trans_file})
 endforeach(lang)
 
+set(QM ${TRANSLATION_DIR}/pokerRuleSystem_nl_BE.qm)
+file(COPY ${QM} DESTINATION ${CMAKE_BINARY_DIR}/bin)
+
 add_custom_target(${LIBNAME}_trans DEPENDS ${QM})
 add_dependencies(update_translations ${LIBNAME}_trans)
-
 
 add_library ( ${LIBNAME} STATIC ${SOURCES} ${HEADERS})
 target_link_libraries( ${LIBNAME} ${LIBRARIES} ruleSystem)

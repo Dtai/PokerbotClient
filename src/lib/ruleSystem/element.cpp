@@ -46,7 +46,8 @@ namespace ruleSystem
 	Element::Element(const Type & type, const QString & name)
 		: _type(type),
 		_parent(0),
-		_name(name)
+		_name(name),
+		_devName(name)
 	{
 	}
 
@@ -357,5 +358,13 @@ namespace ruleSystem
 	void Element::setName(const QString & name)
 	{
 		_name = name;
+	}
+
+	void Element::setDevName(const QString &devName){
+		_devName = devName;
+	}
+
+	QString Element::devName(){
+		return _devName;
 	}
 }

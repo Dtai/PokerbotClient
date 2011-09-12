@@ -26,6 +26,7 @@ set (SOURCES
 	connectiontarget.cpp	
 	helpWindow.cpp
 	welcomeWindow.cpp
+	tab.cpp
 
 	view/elementview.cpp
 	view/garbagecanlabel.cpp
@@ -53,6 +54,7 @@ set (HEADERS
     connectiontarget.hpp
 	helpWindow.hpp
 	welcomeWindow.hpp
+	tab.hpp
 
 	view/elementview.hpp
 	view/garbagecanlabel.hpp
@@ -124,7 +126,7 @@ add_dependencies(update_translations ${PROGNAME}_trans)
 file(GLOB TRANSFILES ${TRANSLATION_DIR}/*.ts)
 foreach(transFile ${TRANSFILES})
 	qt4_add_translation(QM_TMP ${transFile})
-  set(QM ${QM} ${QM_TMP})
+	set(QM ${QM} ${QM_TMP})
 endforeach(transFile)
 
 add_executable(${PROGNAME} ${SOURCES} ${HEADERS} ${QM})

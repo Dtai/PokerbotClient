@@ -8,6 +8,7 @@ CardEvaluator::CardEvaluator(QList<poker::Card> givenCards, ruleSystem::Constant
 		  ui(new Ui::CardEvaluator)
 {
 		ui->setupUi(this);
+		setAttribute(Qt::WA_DeleteOnClose);
 
 		this->constant = constant;
 		returnValue = false;
@@ -40,9 +41,40 @@ CardEvaluator::CardEvaluator(QList<poker::Card> givenCards, ruleSystem::Constant
 		insertGivenCards(givenCards);
 }
 
-CardEvaluator::~CardEvaluator()
-{
-        delete ui;
+CardEvaluator::~CardEvaluator(){
+	delete ui;
+	delete layoutCards;
+	delete layoutValues;
+	delete creator;
+
+	deleteValuesOfMap(operators);
+	deleteValuesOfMap(values);
+	deleteValuesOfMap(minusses);
+	deleteValuesOfMap(plusses);
+	deleteValuesOfMap(postfixValues);
+	deleteValuesOfMap(deleteValues);
+
+	QList<QMap<QString, QString>*> list = information->values();
+	for(int i=0; i<list.count(); ++i){
+		delete list.at(i);
+	}
+	delete information;
+
+	for(int i=0; i<_cards->count(); ++i){
+		delete _cards->at(i);
+	}
+	delete _cards;
+}
+
+template <class T>
+void CardEvaluator::deleteValuesOfMap(QMap<QPushButton*, QVector<T*>*> *map){
+	QList<QVector<T*>*> list = map->values();
+	for(int i=0; i<list.count(); ++i){
+		for(int j=0; j<list.at(i)->count(); ++j){
+			delete list.at(i)->at(j);
+		}
+	}
+	delete map;
 }
 
 void CardEvaluator::parse(QStringList values, QStringList *ops, QStringList *vals, QStringList *postOps, QStringList *postVals){
@@ -327,6 +359,8 @@ void CardEvaluator::colorizeCards(){
 	QGraphicsColorizeEffect *ce = new QGraphicsColorizeEffect(selectedCard);
 	ce->setColor(Qt::blue);
 	selectedCard->setGraphicsEffect(ce);
+	//selectedCard->setStyleSheet("color: rgb(100, 0, 0)");
+	//selectedCard->setForegroundRole(QColor(Qt::black));
 }
 
 void CardEvaluator::updateOwnVariables(){
@@ -480,4 +514,5 @@ void CardEvaluator::save(){
 	constant->setValue(QVariant::fromValue<QList<poker::Card> >(cards()));
 	returnValue = true;
 	emit ready();
+	close();
 }

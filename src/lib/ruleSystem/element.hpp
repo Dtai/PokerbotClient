@@ -86,6 +86,9 @@ namespace ruleSystem
 		void attachListener(IElementListener * listener);
 		void removeListener(IElementListener * listener);
 
+		void setDevName(const QString &devName);
+		QString devName();
+
 	protected:
 		/* input management functions */
 		virtual QString translateInputPosition(const QString & inputPosition) const;
@@ -103,6 +106,8 @@ namespace ruleSystem
 		PtrVarGet(Element, parent);
 		RefVarGet(QString, name);
 		QList<IElementListener*> _listeners;
+
+		QString _devName;
 	};
 
 	/* Function definitions */
