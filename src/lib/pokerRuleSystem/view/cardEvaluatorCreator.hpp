@@ -28,6 +28,7 @@ private:
 		void initValues();
 		void initOwnValues();
 		void initPostfixValues();
+		friend class CardEvaluator;
 };
 
 #endif // CARDEVALUATORCREATOR_HPP

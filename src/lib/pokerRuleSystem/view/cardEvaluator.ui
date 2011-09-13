@@ -208,7 +208,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>478</width>
-                <height>289</height>
+                <height>302</height>
                </rect>
               </property>
              </widget>
@@ -226,7 +226,7 @@
          <item>
           <widget class="QLabel" name="label_5">
            <property name="text">
-            <string>Selecteer een (on)gelijkheid uit de lijst en de gewenste waarde van de kaart. Als de waarde een variabele is, kan er gekozen worden voor een postfix. Een variabele begint altijd met een kleine letter.</string>
+            <string>Selecteer een (on)gelijkheid uit de lijst en de gewenste waarde van de kaart. Als de waarde een variabele is, kan er gekozen worden voor een postfix. Een variabele bestaat altijd uit ikleine letters.</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignJustify|Qt::AlignVCenter</set>

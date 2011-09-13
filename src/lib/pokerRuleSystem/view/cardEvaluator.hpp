@@ -64,7 +64,8 @@ private:
 		void parse(QStringList values, QStringList *ops, QStringList *vals, QStringList *postVals);
 		template <class T>
 		void deleteValuesOfMap(QMap<QPushButton*, QVector<T*>*> *map);
-
+		bool areCorrectVariables();
+		bool isCorrectVariable(QString var);
 signals:
 		void ready();
 };

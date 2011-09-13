@@ -2,6 +2,7 @@
 #include "ui_cardEvaluator.h"
 
 #include <QGraphicsColorizeEffect>
+#include <QMessageBox>
 
 CardEvaluator::CardEvaluator(QList<poker::Card> givenCards, ruleSystem::Constant *constant, QWidget *parent)
         : QWidget(parent),
@@ -431,9 +432,43 @@ QList<poker::Card> CardEvaluator::cards() const{
 	return *cards;
 }
 
+bool CardEvaluator::isCorrectVariable(QString var){
+	CardEvaluatorCreator cec;
+	if(cec.values->contains(var)){
+		return true;
+	}
+
+	for(int i=0; i<var.count(); ++i){
+		if(!var.at(i).isLower()){
+			return false;
+		}
+	}
+
+	return true;
+}
+
+bool CardEvaluator::areCorrectVariables(){
+	QList<QVector<QComboBox*>*> vals = values->values();
+	for(int i=0; i<vals.count(); ++i){
+		for(int j=0; j<vals.at(i)->count(); ++j){
+			if(!isCorrectVariable(vals.at(i)->at(j)->currentText())){
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
 void CardEvaluator::save(){
-	constant->setValue(QVariant::fromValue<QList<poker::Card> >(cards()));
-	returnValue = true;
-	emit ready();
-	close();
+	if(areCorrectVariables()){
+		constant->setValue(QVariant::fromValue<QList<poker::Card> >(cards()));
+		returnValue = true;
+		emit ready();
+		close();
+	} else {
+		QMessageBox *message = new QMessageBox();
+		message->setIcon(QMessageBox::Critical);
+		message->setText("Not all variables have the correct format.");
+		message->show();
+	}
 }
