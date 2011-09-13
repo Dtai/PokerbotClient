@@ -136,6 +136,19 @@ void SettingsDialog::onItemSelectionChanged()
 
 void SettingsDialog::onConnectionChanged()
 {
+	int counter = 0;
+	for(int i=0; i<ui->connectionsWidget->count(); ++i){
+		ConnectionTarget t = ui->connectionsWidget->item(i)->data(Qt::UserRole).value<ConnectionTarget>();
+		if(t.playerName == ui->playerName->text() && t.tableName == ui->tableName->text()){
+			++counter;
+		}
+	}
+	if(counter > 0){
+		ui->statusbar->showMessage("This connection already exists.");
+	} else {
+		ui->statusbar->clearMessage();
+	}
+
 	if(!_curSelected)
 		return;
 
