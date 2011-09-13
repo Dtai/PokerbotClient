@@ -26,7 +26,6 @@ set (SOURCES
 	connectiontarget.cpp	
 	helpWindow.cpp
 	welcomeWindow.cpp
-	tab.cpp
 
 	view/elementview.cpp
 	view/garbagecanlabel.cpp
@@ -54,8 +53,6 @@ set (HEADERS
     connectiontarget.hpp
 	helpWindow.hpp
 	welcomeWindow.hpp
-	tab.hpp
-
 	view/elementview.hpp
 	view/garbagecanlabel.hpp
 	view/predefinedrulesdescriptor.hpp

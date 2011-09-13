@@ -122,9 +122,8 @@ MainWindow::MainWindow(QWidget *parent)
 
 	connect(ui->actionShow_information, SIGNAL(triggered()), this, SLOT(showInformation()));
 	connect(ui->actionConnect_to_table, SIGNAL(triggered()), this, SLOT(showConnectToTable()));
-	//connect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(selectTab(int)));
 
-	tabs = new QVector<Tab*>();
+	tabs = new QVector<QWidget*>();
 
 	showMaximized();
 	showWelcomeWindow();
@@ -135,14 +134,6 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
 	delete ui;
-}
-
-void MainWindow::selectTab(int index){
-	for(int i=0; i<tabs->size(); ++i){
-		tabs->at(i)->setPriority(QThread::LowestPriority);
-	}
-	tabs->at(index)->setPriority(QThread::NormalPriority);
-	ui->tabWidget->setCurrentIndex(index);
 }
 
 void MainWindow::showWelcomeWindow(){
@@ -163,10 +154,12 @@ void MainWindow::addTab(QString tabName){
 	QUrl url = r.getWatchTable();
 	url.addQueryItem("name", tabName);
 
-	QWebView *tab1 = new QWebView(ui->tabWidget);
-	tab1->setUrl(url);
+	QWebView *tab = new QWebView(ui->tabWidget);
+	tab->setUrl(url);
+	tab->setObjectName(tabName);
 
-	ui->tabWidget->addTab(tab1, tabName);
+	ui->tabWidget->addTab(tab, tabName);
+	tabs->append(tab);
 }
 
 void MainWindow::showError(const QString & title, const QString & errorMessage)
@@ -247,10 +240,11 @@ void MainWindow::exportCode(QAction * action)
 
 	int index = 0;
 	for(int i=0; i<tabs->size(); ++i){
-		if(tabs->at(i)->name() == d.tableName){
+		if(tabs->at(i)->objectName() == d.tableName){
 			index = i;
 		}
 	}
+
 	ui->tabWidget->setCurrentIndex(index);
 }
 

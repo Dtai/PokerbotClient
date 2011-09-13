@@ -29,7 +29,6 @@
 #include <QMainWindow>
 #include <pokerRuleSystem/simpledb.hpp>
 #include "model/predefinedelementmodel.hpp"
-#include "tab.hpp"
 
 class SettingsManager;
 
@@ -58,7 +57,6 @@ public:
 public slots:
 	void showError(const QString & title, const QString & errorMessage);
 	void addTab(QString nameTab);
-	void selectTab(int index);
 
 private slots:
 	void onDeleteRule(int rule);
@@ -94,7 +92,7 @@ private:
 	DocumentController * _docController;
 	SettingsManager * _settings;
 	PredefinedElementModel _predefModel;
-	QVector<Tab*> *tabs;
+	QVector<QWidget*> *tabs;
 };
 
 #endif // MAINWINDOW_HPP
