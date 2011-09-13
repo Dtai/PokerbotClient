@@ -130,7 +130,7 @@ void CardEvaluator::parse(QStringList values, QStringList *ops, QStringList *val
 				val = s.at(2);
 			} else {
 				int i = 2;
-				while(s.at(i) != '+' && s.at(i) != '-'){
+				while(i<s.count() && s.at(i) != '+' && s.at(i) != '-'){
 					val.append(s.at(i));
 					++i;
 				}
@@ -143,7 +143,7 @@ void CardEvaluator::parse(QStringList values, QStringList *ops, QStringList *val
 				val = s.at(1);
 			} else {
 				int i = 1;
-				while(s.at(i) != '+' && s.at(i) != '-'){
+				while(i<s.count() && s.at(i) != '+' && s.at(i) != '-'){
 					val.append(s.at(i));
 					++i;
 				}
@@ -226,6 +226,7 @@ void CardEvaluator::addValue(){
 	viewport->setLayout(layoutValues);
 	ui->valuesScroll->setWidget(viewport);
 
+	val->setObjectName(QString::number(values->value(selectedCard)->size()-1));
 	connect(val, SIGNAL(editTextChanged(QString)), this, SLOT(changePostfix()));
 	connect(op, SIGNAL(currentIndexChanged(int)), this, SLOT(redrawSelectedCard()));
 	connect(val, SIGNAL(editTextChanged(QString)), this, SLOT(redrawSelectedCard()));
