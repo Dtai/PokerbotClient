@@ -126,6 +126,9 @@ void CardEvaluator::insertGivenCards(QList<poker::Card> givenCards){
 		parse(values, ops, vals, postVals);
 
 		addCard();
+		if(ui->color->findText(color) == -1){
+			ui->color->addItem(color);
+		}
 		ui->color->setCurrentIndex(ui->color->findText(color));
 		for(int i=0; i<values.size(); ++i){
 			operators->value(selectedCard)->at(i)->setCurrentIndex(operators->value(selectedCard)->at(i)->findText(ops->at(i)));

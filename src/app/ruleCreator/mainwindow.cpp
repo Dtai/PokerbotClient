@@ -82,7 +82,7 @@ namespace
 QDockWidget * createDockWidget(const QString & title, const QList<Element*> & elements, ElementModel::ElementDescriber * describer, QWidget * parent);
 QString writePrologCode(const QList<Action*> & actionList);
 ruleSystem::Feature * registerAndCreateFeature(SimpleDB & db, const QString & name, const ruleSystem::Type & type, const QString & description = QString());
-ruleSystem::Feature * registerAndCreateFeature1(SimpleDB & db, const QString & name, const QString &uiName, const ruleSystem::Type & type, const QString & description = QString());
+ruleSystem::Feature * registerAndCreateFeature(SimpleDB & db, const QString & name, const QString &uiName, const ruleSystem::Type & type, const QString & description = QString());
 ruleSystem::Function * createFunction(const Calculator * calculator, const QString & description);
 ruleSystem::Constant * createConstant(const Type & type, const QVariant & value, const QString & description);
 ruleSystem::Action * createAction(ruleSystem::Action * a, const QString & description);
@@ -324,29 +324,29 @@ QList<Element*> MainWindow::createAllFeatures()
 	DBWrapper::RegisterDB(&db);
 
 	QList<Element*> allFeatures;
-	allFeatures << registerAndCreateFeature(db, "ispreflop", type::booleanType(), tr("Is the game in pre-flop-phase?"));
-	allFeatures << registerAndCreateFeature(db, "isflop", type::booleanType(), tr("Is the game in flop-phase?"));
-	allFeatures << registerAndCreateFeature(db, "isturn", type::booleanType(), tr("Is the game in turn fase?"));
-	allFeatures << registerAndCreateFeature(db, "isriver", type::booleanType(), tr("Is the game in river-phase?"));
-	allFeatures << registerAndCreateFeature(db, "ispostflop", type::booleanType(), tr("Is the game in post-flop-phase?"));
-	allFeatures << registerAndCreateFeature(db, "isbigblind", type::booleanType(), tr("Am I second in row?"));
-	allFeatures << registerAndCreateFeature(db, "issmallblind", type::booleanType(), tr("Am I first in row?"));
-	allFeatures << registerAndCreateFeature(db, "isbutton", type::booleanType(), tr("Am I last in row?"));
+	allFeatures << registerAndCreateFeature(db, IsPreFlop::name(), IsPreFlop::devName(), type::booleanType(), tr("Is the game in pre-flop-phase?"));
+	allFeatures << registerAndCreateFeature(db, IsFlop::name(), IsFlop::devName(), type::booleanType(), tr("Is the game in flop-phase?"));
+	allFeatures << registerAndCreateFeature(db, IsTurn::name(), IsTurn::devName(), type::booleanType(), tr("Is the game in turn fase?"));
+	allFeatures << registerAndCreateFeature(db, IsRiver::name(), IsRiver::devName(), type::booleanType(), tr("Is the game in river-phase?"));
+	allFeatures << registerAndCreateFeature(db, IsPostFlop::name(), IsPostFlop::devName(), type::booleanType(), tr("Is the game in post-flop-phase?"));
+	allFeatures << registerAndCreateFeature(db, IsBigBlind::name(), IsBigBlind::devName(), type::booleanType(), tr("Am I second in row?"));
+	allFeatures << registerAndCreateFeature(db, IsSmallBlind::name(), IsSmallBlind::devName(), type::booleanType(), tr("Am I first in row?"));
+	allFeatures << registerAndCreateFeature(db, IsButton::name(), IsButton::devName(), type::booleanType(), tr("Am I last in row?"));
 
-	allFeatures << registerAndCreateFeature(db, "tekort", type::numericalType(), tr("How much many should I add to call?"));
-	allFeatures << registerAndCreateFeature(db, "saldo", type::numericalType(), tr("How much money do I still have?"));
-	allFeatures << registerAndCreateFeature(db, "potgrootte", type::numericalType(), tr("How much many is there in the pot?"));
-	allFeatures << registerAndCreateFeature(db, "actievespelers", type::numericalType(), tr("How many players haven't folded yet?"));
-	allFeatures << registerAndCreateFeature(db, "actievespelersmetgeld", type::numericalType(), tr("How many players haven't folded yet and are not all in?"));
-	allFeatures << registerAndCreateFeature(db, "maximalewinst", type::numericalType(), tr("How much many can I maximally win?"));
-	allFeatures << registerAndCreateFeature(db, "minimumraise", type::numericalType(), tr("What's the minimum I should raise?"));
-	allFeatures << registerAndCreateFeature(db, "maximumraise", type::numericalType(), tr("What's the maximum I can raise?"));
-	allFeatures << registerAndCreateFeature1(db, AmountRaises::name(), AmountRaises::devName(), type::numericalType(), tr("How many times has there been raised this round?"));
+	allFeatures << registerAndCreateFeature(db, Shortage::name(), Shortage::devName(), type::numericalType(), tr("How much many should I add to call?"));
+	allFeatures << registerAndCreateFeature(db, Balance::name(), Balance::devName(), type::numericalType(), tr("How much money do I still have?"));
+	allFeatures << registerAndCreateFeature(db, PotSize::name(), PotSize::devName(), type::numericalType(), tr("How much many is there in the pot?"));
+	allFeatures << registerAndCreateFeature(db, ActivePlayers::name(), ActivePlayers::devName(), type::numericalType(), tr("How many players haven't folded yet?"));
+	allFeatures << registerAndCreateFeature(db, ActivePlayersWithMoney::name(), ActivePlayersWithMoney::devName(), type::numericalType(), tr("How many players haven't folded yet and are not all in?"));
+	allFeatures << registerAndCreateFeature(db, MaximumProfit::name(), MaximumProfit::devName(), type::numericalType(), tr("How much many can I maximally win?"));
+	allFeatures << registerAndCreateFeature(db, MinimumRaise::name(), MinimumRaise::devName(), type::numericalType(), tr("What's the minimum I should raise?"));
+	allFeatures << registerAndCreateFeature(db, MaximumRaise::name(), MaximumRaise::devName(), type::numericalType(), tr("What's the maximum I can raise?"));
+	allFeatures << registerAndCreateFeature(db, AmountRaises::name(), AmountRaises::devName(), type::numericalType(), tr("How many times has there been raised this round?"));
 	allFeatures << registerAndCreateFeature(db, Translator::AddTranslation("random", tr("random")), type::numericalType(), tr("A random number between zero and one."));
 
-	allFeatures << registerAndCreateFeature1(db, HandCards::name(), HandCards::devName(), type::cardListType(), tr("What are my hand cards?"));
-	allFeatures << registerAndCreateFeature1(db, TableCards::name(), TableCards::devName(), type::cardListType(), tr("What cards are there on the table?"));
-	allFeatures << registerAndCreateFeature1(db, AllCards::name(), AllCards::devName(), type::cardListType(), tr("What cards do I have in my hand or are on the table?"));
+	allFeatures << registerAndCreateFeature(db, HandCards::name(), HandCards::devName(), type::cardListType(), tr("What are my hand cards?"));
+	allFeatures << registerAndCreateFeature(db, TableCards::name(), TableCards::devName(), type::cardListType(), tr("What cards are there on the table?"));
+	allFeatures << registerAndCreateFeature(db, AllCards::name(), AllCards::devName(), type::cardListType(), tr("What cards do I have in my hand or are on the table?"));
 
 	return allFeatures;
 }
@@ -458,7 +458,7 @@ ruleSystem::Feature * registerAndCreateFeature(SimpleDB & db, const QString & na
 	return f;
 }
 
-ruleSystem::Feature * registerAndCreateFeature1(SimpleDB & db, const QString & name, const QString &devName, const ruleSystem::Type & type, const QString & description)
+ruleSystem::Feature * registerAndCreateFeature(SimpleDB & db, const QString & name, const QString &devName, const ruleSystem::Type & type, const QString & description)
 {
 	db.registerFeature(name, type);
 	Feature * f = db.createFeature(name);

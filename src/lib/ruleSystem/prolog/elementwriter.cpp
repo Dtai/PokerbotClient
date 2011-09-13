@@ -72,7 +72,7 @@ QString FeatureWriter::writeCode(Element * element, PrologWriter::CodeInformatio
         throw Exception(Exception::tr("The supplied element is not a feature"), "FeatureWriter::writeCode");
 
     if(f->type() == type::booleanType())
-        return f->name();
+		return f->devName();
 
 	QString var = info.getUniqueVariable();
 	QString varDef = QString("%1(%2)").arg(f->devName()).arg(var);
