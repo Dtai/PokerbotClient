@@ -59,6 +59,7 @@
 #include <QInputDialog>
 #include <QWebView>
 #include <QtConcurrentRun>
+#include <QDesktopWidget>
 
 #include "rulewidget.hpp"
 #include "rulelistwidget.hpp"
@@ -101,6 +102,10 @@ MainWindow::MainWindow(QWidget *parent)
 	createDockWidgets();
 	ui->scrollArea->setWidget(_ruleList);
 	ui->statusbar->showMessage("Welcome");
+
+	QDesktopWidget w;
+	int width = w.availableGeometry().width();
+	ui->tabWidget->setMaximumWidth(width/3);
 
 	connect(_ruleList, SIGNAL(ruleWantsDeletion(int)), this, SLOT(onDeleteRule(int)));
 
@@ -186,7 +191,9 @@ void MainWindow::showCode()
 		return;
 
 	QString code = writePrologCode(validActions);
-	QMessageBox::information(0, "Prolog code", code);
+	if(!code.isEmpty()){
+		QMessageBox::information(0, "Prolog code", code);
+	}
 }
 
 void MainWindow::updateExportMenu()

@@ -15,8 +15,6 @@ public:
 		QComboBox *createOperators(QWidget *parent);
 		QComboBox *createValues(QWidget *parent);
 		QComboBox *createPostfixValues(QWidget *parent);
-		QRadioButton *createRadioButtonPlus(QWidget *parent);
-		QRadioButton *createRadioButtonMinus(QWidget *parent);
 		QPushButton *createDeleteValue(QWidget *parent, QString name);
 		void addValue(QString value);
 

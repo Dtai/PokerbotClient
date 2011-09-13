@@ -169,7 +169,7 @@ struct CardEquationConstantWriter : public ElementWriter
 
         foreach(QString expr, card.rankExpressions())
         {
-            RankObject o;
+			RankObject o;
             if(p.parse(expr, o) != -1)
                 throw Exception("The rank expression in card is not valid", "CardEquationConstantWriter::translateRankExpression");
 
