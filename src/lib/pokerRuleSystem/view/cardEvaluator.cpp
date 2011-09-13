@@ -73,51 +73,6 @@ void CardEvaluator::deleteValuesOfMap(QMap<QPushButton*, QVector<T*>*> *map){
 	delete map;
 }
 
-void CardEvaluator::parse(QStringList values, QStringList *ops, QStringList *vals, QStringList *postOps, QStringList *postVals){
-	foreach(QString s, values){
-		QString op = "";
-		QString val = "";
-		QString postOp = "";
-		QString postVal = "";
-
-		if(s.at(1) == '='){
-			op = s.mid(0, 2);
-			if(s.at(2).isDigit() || s.at(2) == 'J' || s.at(2) == 'Q' || s.at(2) == 'K' || s.at(2) == 'A'){
-				val = s.at(2);
-			} else {
-				int i = 2;
-				while(s.at(i) != '+' && s.at(i) != '-'){
-					val.append(s.at(i));
-					++i;
-				}
-				postOp.append(s.at(i));
-				i++;
-				postVal = s.mid(i);
-			}
-
-		} else {
-			op = s.mid(0, 1);
-			if(s.at(1).isDigit() || s.at(1) == 'J' || s.at(1) == 'Q' || s.at(1) == 'K' || s.at(1) == 'A'){
-				val = s.at(1);
-			} else {
-				int i = 1;
-				while(s.at(i) != '+' && s.at(i) != '-'){
-					val.append(s.at(i));
-					++i;
-				}
-				postOp.append(s.at(i));
-				i++;
-				postVal = s.mid(i);
-			}
-		}
-
-		ops->append(op);
-		vals->append(val);
-		postOps->append(postOp);
-		postVals->append(postVal);
-	}
-}
-
 void CardEvaluator::parse(QStringList values, QStringList *ops, QStringList *vals, QStringList *postVals){
 	foreach(QString s, values){
 		QString op = "";
