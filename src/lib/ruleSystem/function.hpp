@@ -71,8 +71,7 @@ namespace ruleSystem
 			RefVarGet(QList<InputList::Element>, inputElements);
 		};
 
-                TYPEID_INHERIT_HEADER("Function", Evaluatable);
-
+				TYPEID_INHERIT_HEADER("Function", Evaluatable)
 		Function(const Calculator * calculator);
 
 		/* Implementation of virtual functions */

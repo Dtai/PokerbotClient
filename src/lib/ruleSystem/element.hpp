@@ -47,8 +47,8 @@ namespace ruleSystem
 
 	class Element
 	{
-		Q_DECLARE_TR_FUNCTIONS(Element);
-                TYPEID_ROOT_HEADER("Element");
+		Q_DECLARE_TR_FUNCTIONS(Element)
+				TYPEID_ROOT_HEADER("Element")
 
 	public:
 		Element(const Type & type, const QString & name = QString());

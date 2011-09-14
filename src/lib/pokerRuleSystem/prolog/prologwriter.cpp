@@ -141,7 +141,7 @@ struct CardEquationConstantWriter : public ElementWriter
         else if(o.constant == Card::Spades())		return "s";
         else
         {
-            QString varName = info.getUniqueVariable();
+			QString varName = info.getUniqueVariable();
             QString expr = translateVariables(o.variableName, PokerCodeInformation::suitVarPrefix(), QString("suit(%1)"), info);
             //expr.replace("==", "=:=");
             info.addPreDefinition(QString("%1 = %2").arg(varName).arg(expr));
@@ -191,7 +191,7 @@ struct CardEquationConstantWriter : public ElementWriter
 
     QString writeCardCode(const Card & card, PrologWriter::CodeInformation & info) const
     {
-        return QString("card(%1, %2)").arg(translateRankExpression(card, info)).arg(translateSuitExpression(card, info));
+		return QString("card(%1, %2)").arg(translateRankExpression(card, info)).arg(translateSuitExpression(card, info));
     }
 
     virtual QString writeCode(Element * element, PrologWriter::CodeInformation & info) const

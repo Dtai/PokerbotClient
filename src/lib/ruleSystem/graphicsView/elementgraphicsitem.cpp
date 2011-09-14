@@ -41,7 +41,6 @@
 #include "../serialization/qt/elementserializer.hpp"
 #include <QGraphicsScene>
 
-
 namespace ruleSystem
 {
 	namespace graphicsView
@@ -315,10 +314,16 @@ namespace ruleSystem
 			QMimeData *mime = elementToMimeData(this->element());
 			setMimeDataHotSpot(mime, hotSpot);
 
+			//Save the mime data of the element. This done via a clone so the variable mime can be safely deleted (this happens on Windows).
+			QMimeData *mimeData = new QMimeData();
+			for(int i=0; i<mime->formats().count(); ++i){
+				mimeData->setData(mime->formats().at(i), mime->data(mime->formats().at(i)));
+			}
+
 			drag->setMimeData(mime);
 
 			// create a picture for the drag
-                        drag->setPixmap(elementToPixmap(this));
+			drag->setPixmap(elementToPixmap(this));
 			drag->setHotSpot(hotSpot);
 
 			// we will remove this item for now, the rest will be done afterwards by the listeners
@@ -331,11 +336,10 @@ namespace ruleSystem
 			delete e;
 
 			Qt::DropAction a = drag->exec(Qt::CopyAction | Qt::MoveAction);
-
 			// it was cancelled
 			if(a != Qt::MoveAction)
 			{
-				e = mimeDataToElement(mime);
+				e = mimeDataToElement(mimeData);
 
 				// did we have a parent? so we should re-add the item
 				if(p)
@@ -545,13 +549,12 @@ namespace ruleSystem
 				return 0;
 
 			QByteArray ar = mimeData->data(defaults::elementGraphicsItem::mimeType());
+
 			if(ar.isEmpty())
 				return 0;
-
 			QDataStream s(&ar, QIODevice::ReadOnly);
 			Element * element = 0;
 			s >> element;
-
 			return element;
 		}
 

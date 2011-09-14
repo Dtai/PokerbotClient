@@ -53,7 +53,6 @@ namespace ruleSystem
 
 		Evaluatable * inputVal() const;
 		const Type & inputType() const;
-
 	private:
 		SimpleVarGet(bool, canHaveAllTypes);
 		Type _inputType;
