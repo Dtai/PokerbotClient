@@ -56,7 +56,8 @@ public:
 
 public slots:
 	void showError(const QString & title, const QString & errorMessage);
-	void addTab(QString nameTab);
+	void addTab(QString tabName, QString tableName);
+	void addRuleTab(QString tabName);
 
 private slots:
 	void onDeleteRule(int rule);
@@ -72,6 +73,8 @@ private slots:
 	void correctExportCode();
 	void incorrectExportCode();
 
+	void changeCurrentRuleList(int index);
+
 protected:
 	void changeEvent(QEvent * e);
 	void closeEvent(QCloseEvent * event);
@@ -79,6 +82,9 @@ protected:
 private:
 	void createDockWidgets();
 	void showWelcomeWindow();
+	void setCurrentRuleList(QString name);
+	void disconnectFromDocController();
+	void connectToDocController();
 
 	QList<ruleSystem::Element*> createAllFeatures();
 	QList<ruleSystem::Element*> createAllFunctions();
@@ -88,11 +94,14 @@ private:
 private:
 	Ui::MainWindow *ui;
 	poker::SimpleDB db;
-	RuleListWidget * _ruleList;
-	DocumentController * _docController;
 	SettingsManager * _settings;
 	PredefinedElementModel _predefModel;
 	QVector<QWidget*> *tabs;
+
+	QMap<QString, RuleListWidget*> *_ruleLists;
+	QMap<QString, DocumentController*> *_docControllers;
+	RuleListWidget *_currentRuleList;
+	DocumentController *_currentDocController;
 };
 
 #endif // MAINWINDOW_HPP

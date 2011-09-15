@@ -19,8 +19,11 @@ public:
 	WelcomeWindow(SettingsManager *manager, QWidget *parent1, QWidget *parent2 = 0);
 	~WelcomeWindow();
 
+protected:
+	virtual void closeEvent(QCloseEvent *event);
+
 signals:
-	void sendTableName(QString tableName);
+	void sendTableName(QString tabName, QString tableName);
 
 private slots:
 	void onOKClicked();
@@ -31,6 +34,7 @@ private:
 	Ui::WelcomeWindow *ui;
 	SettingsManager * _settingsManager;
 	QWidget *parent1;
+	bool OKClicked;
 };
 
 #endif // WELCOMEWINDOW_HPP

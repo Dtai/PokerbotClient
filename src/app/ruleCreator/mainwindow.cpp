@@ -91,8 +91,8 @@ ruleSystem::Action * createAction(ruleSystem::Action * a, const QString & descri
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent),
 		ui(new Ui::MainWindow),
-		_ruleList(new RuleListWidget),
-		_docController(new DocumentController(_ruleList, this)),
+		_currentRuleList(0),
+		_currentDocController(0),
 		_settings(SettingsManager::Instance()),
 		_predefModel()
 {
@@ -100,28 +100,22 @@ MainWindow::MainWindow(QWidget *parent)
 
 	ui->setupUi(this);
 	createDockWidgets();
-	ui->scrollArea->setWidget(_ruleList);
+	_ruleLists = new QMap<QString, RuleListWidget*>();
+	_docControllers = new QMap<QString, DocumentController*>();
+
 	ui->statusbar->showMessage("Welcome");
 
 	QDesktopWidget w;
 	int width = w.availableGeometry().width();
 	ui->tabWidget->setMaximumWidth(width/3);
 
-	connect(_ruleList, SIGNAL(ruleWantsDeletion(int)), this, SLOT(onDeleteRule(int)));
-
-	connect(ui->action_Save, SIGNAL(triggered()), _docController, SLOT(save()));
-	connect(ui->action_Save_As, SIGNAL(triggered()), _docController, SLOT(saveAs()));
-	connect(ui->action_Open, SIGNAL(triggered()), _docController, SLOT(open()));
-	connect(ui->action_New, SIGNAL(triggered()), _docController, SLOT(newFile()));
-
 	connect(_settings, SIGNAL(settingsChanged()), this, SLOT(updateExportMenu()));
 	connect(ui->menuExport, SIGNAL(triggered(QAction *)), this, SLOT(exportCode(QAction *)));
-    connect(ui->actionShow_Code, SIGNAL(triggered()), this, SLOT(showCode()));
-	connect(_docController, SIGNAL(numberOfRulesChanged(int)), this, SLOT(numberOfRulesChanged(int)));
-	connect(_docController, SIGNAL(error(QString,QString)), this, SLOT(showError(QString,QString)));
+	connect(ui->actionShow_Code, SIGNAL(triggered()), this, SLOT(showCode()));
 
 	connect(ui->actionShow_information, SIGNAL(triggered()), this, SLOT(showInformation()));
 	connect(ui->actionConnect_to_table, SIGNAL(triggered()), this, SLOT(showConnectToTable()));
+	connect(ui->tabWidgetRules, SIGNAL(currentChanged(int)), this, SLOT(changeCurrentRuleList(int)));
 
 	tabs = new QVector<QWidget*>();
 
@@ -149,18 +143,76 @@ void MainWindow::showInformation(){
     hw->show();
 }
 
-void MainWindow::addTab(QString tabName){
+void MainWindow::changeCurrentRuleList(int index){
+	if(_ruleLists->count() != 0){
+		disconnectFromDocController();
+		setCurrentRuleList(ui->tabWidgetRules->tabText(index));
+		connectToDocController();
+	}
+}
+
+void MainWindow::setCurrentRuleList(QString name){
+	_currentRuleList = _ruleLists->value(name);
+	_currentDocController = _docControllers->value(name);
+}
+
+void MainWindow::disconnectFromDocController(){
+	disconnect(ui->action_Save, SIGNAL(triggered()), _currentDocController, SLOT(save()));
+	disconnect(ui->action_Save_As, SIGNAL(triggered()), _currentDocController, SLOT(saveAs()));
+	disconnect(ui->action_Open, SIGNAL(triggered()), _currentDocController, SLOT(open()));
+	disconnect(ui->action_New, SIGNAL(triggered()), _currentDocController, SLOT(newFile()));
+}
+
+void MainWindow::connectToDocController(){
+	connect(ui->action_Save, SIGNAL(triggered()), _currentDocController, SLOT(save()));
+	connect(ui->action_Save_As, SIGNAL(triggered()), _currentDocController, SLOT(saveAs()));
+	connect(ui->action_Open, SIGNAL(triggered()), _currentDocController, SLOT(open()));
+	connect(ui->action_New, SIGNAL(triggered()), _currentDocController, SLOT(newFile()));
+}
+
+void MainWindow::addTab(QString tabName, QString tableName){
 	Reader r;
 	QUrl url = r.getWatchTable();
-	url.addQueryItem("name", tabName);
+	url.addQueryItem("name", tableName);
 
 	QWebView *tab = new QWebView(ui->tabWidget);
 	tab->setUrl(url);
-	tab->setObjectName(tabName);
+	tab->setObjectName(tableName);
 
 	ui->tabWidget->addTab(tab, tabName);
 	tabs->append(tab);
+
+	addRuleTab(tabName);
 }
+
+void MainWindow::addRuleTab(QString tabName){
+	QScrollArea *scroll = new QScrollArea(ui->tabWidgetRules);
+	scroll->setWidgetResizable(true);
+
+	RuleListWidget *rlw = new RuleListWidget(scroll);
+	scroll->setWidget(rlw);
+
+	QVBoxLayout *vBoxLayout = new QVBoxLayout();
+	vBoxLayout->addWidget(scroll);
+
+	delete ui->tabWidgetRules->layout();
+	ui->tabWidgetRules->setLayout(vBoxLayout);
+	ui->tabWidgetRules->addTab(scroll, tabName);
+	_ruleLists->insert(tabName, rlw);
+
+	DocumentController *dc = new DocumentController(rlw, this);
+	connect(dc, SIGNAL(numberOfRulesChanged(int)), this, SLOT(numberOfRulesChanged(int)));
+	connect(dc, SIGNAL(error(QString,QString)), this, SLOT(showError(QString,QString)));
+	_docControllers->insert(tabName, dc);
+
+	connect(rlw, SIGNAL(ruleWantsDeletion(int)), this, SLOT(onDeleteRule(int)));
+
+	if(_currentRuleList == 0){
+		setCurrentRuleList(tabName);
+		connectToDocController();
+	}
+}
+
 
 void MainWindow::showError(const QString & title, const QString & errorMessage)
 {
@@ -178,7 +230,9 @@ void MainWindow::showConnectToTable()
 
 void MainWindow::showCode()
 {
-	QList<Action*> validActions = _docController->checkAllRules();
+	//QList<Action*> validActions = _docController->checkAllRules();
+	DocumentController *dc = new DocumentController(_currentRuleList);
+	QList<Action *> validActions = dc->checkAllRules();
 
 	if(validActions.size() == 0)
 		return;
@@ -216,7 +270,8 @@ void MainWindow::exportCode(QAction * action)
 {
 	ui->statusbar->showMessage("Exporting code");
 	ConnectionTarget d = action->data().value<ConnectionTarget>();
-	QList<Action*> validActions = _docController->checkAllRules();
+	//QList<Action*> validActions = _docController->checkAllRules();
+	QList<Action*> validActions = _docControllers->value(d.format())->checkAllRules();
 
 	if(action->objectName() == emptyRuleSetSender())
 	{
@@ -276,7 +331,12 @@ void MainWindow::changeEvent(QEvent *e)
 void MainWindow::closeEvent(QCloseEvent * event)
 {
 	// save the file
-	_docController->askForSave();
+//	Ask for save for every tab
+//	for(int i=0; i< ui->tabWidgetRules->count(); ++i){
+//		ui->tabWidgetRules->setCurrentIndex(i);
+//		_docControllers->value(ui->tabWidgetRules->tabText(i))->askForSave();
+//	}
+	_currentDocController->askForSave();
 
 	// save the predefined elements
 	_settings->setPredefinedElements(_predefModel.elements());
@@ -287,12 +347,12 @@ void MainWindow::closeEvent(QCloseEvent * event)
 
 void MainWindow::onDeleteRule(int rule)
 {
-	if(_ruleList->sceneForRule(rule) == 0)
+	if(_currentRuleList->sceneForRule(rule) == 0){
 		return;
+	}
 
-	if(_ruleList->sceneForRule(rule)->isEmpty())
-	{
-		_ruleList->deleteRule(rule);
+	if(_currentRuleList->sceneForRule(rule)->isEmpty()){
+		_currentRuleList->deleteRule(rule);
 		return;
 	}
 
@@ -302,7 +362,7 @@ void MainWindow::onDeleteRule(int rule)
 	if(QMessageBox::question(this, title, text, QMessageBox::Yes | QMessageBox::Cancel) == QMessageBox::Cancel)
 		return;
 
-	_ruleList->deleteRule(rule);
+	_currentRuleList->deleteRule(rule);
 }
 
 void MainWindow::createDockWidgets()

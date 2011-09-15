@@ -19,24 +19,7 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QScrollArea" name="scrollArea">
-      <property name="styleSheet">
-       <string notr="true">#listSelector{ background-color: black; }</string>
-      </property>
-      <property name="widgetResizable">
-       <bool>true</bool>
-      </property>
-      <widget class="QWidget" name="widget">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>263</width>
-         <height>746</height>
-        </rect>
-       </property>
-      </widget>
-     </widget>
+     <widget class="QTabWidget" name="tabWidgetRules"/>
     </item>
     <item>
      <widget class="QTabWidget" name="tabWidget">

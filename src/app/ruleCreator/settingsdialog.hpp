@@ -48,7 +48,7 @@ public:
 	~SettingsDialog();
 
 signals:
-	void sendTableName(QString tableName);
+	void sendTableName(QString tabName, QString tableName);
 
 private slots:
 	void onDeleteConnection();
