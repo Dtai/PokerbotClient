@@ -79,7 +79,6 @@ void CodeSender::send()
 }
 
 void CodeSender::finish(){
-	int a = 5;
 	if(reply->error() == QNetworkReply::NoError){
 		QByteArray ba = reply->readAll();
 
@@ -91,17 +90,24 @@ void CodeSender::finish(){
 
 		if(type.toString() == "error"){
 			QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, "Error", message.toString());
+			connect(qmb, SIGNAL(finished(int)), this, SLOT(remove()));
 			qmb->show();
 			emit errored();
 		} else if(type.toString() == "Acknowledge"){
 			QMessageBox *qmb = new QMessageBox(QMessageBox::Information, "Information", "Everything went fine!");
+			connect(qmb, SIGNAL(finished(int)), this, SLOT(remove()));
 			qmb->show();
 			emit finished();
 		}
 
 	} else {
 		QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, "Connection error", reply->errorString());
+		connect(qmb, SIGNAL(finished(int)), this, SLOT(remove()));
 		qmb->show();
 		emit errored();
 	}
+}
+
+void CodeSender::remove(){
+	this->deleteLater();
 }

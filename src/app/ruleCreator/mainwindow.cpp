@@ -280,23 +280,27 @@ void MainWindow::exportCode(QAction * action)
 {
 	ui->statusbar->showMessage("Exporting code");
 	ConnectionTarget d = action->data().value<ConnectionTarget>();
-	//QList<Action*> validActions = _docController->checkAllRules();
 	QList<Action*> validActions = _docControllers->value(d.format())->checkAllRules();
 
-	if(action->objectName() == emptyRuleSetSender())
-	{
+	if(action->objectName() == emptyRuleSetSender()) {
 		CodeSender *cs = new CodeSender(d, "do(call, 1) :- true.");
+		connect(cs, SIGNAL(finished()), this, SLOT(correctExportCode()));
+		connect(cs, SIGNAL(errored()), this, SLOT(incorrectExportCode()));
 		cs->send();
 		return;
 	}
 
-	if(validActions.size() == 0)
+	if(validActions.size() == 0){
+		ui->statusbar->showMessage("Nothing to export");
 		return;
+	}
 
 	QString code = writePrologCode(validActions);
 
-	if(code.isEmpty())
+	if(code.isEmpty()){
+		ui->statusbar->showMessage("Nothing to export");
 		return;
+	}
 
 	CodeSender *cs = new CodeSender(d, code);
 	connect(cs, SIGNAL(finished()), this, SLOT(correctExportCode()));
