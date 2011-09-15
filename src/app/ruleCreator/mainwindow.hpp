@@ -58,21 +58,18 @@ public slots:
 	void showError(const QString & title, const QString & errorMessage);
 	void addTab(QString tabName, QString tableName);
 	void addRuleTab(QString tabName);
+	void removeTest();
 
 private slots:
 	void onDeleteRule(int rule);
 	void showCode();
 	void updateExportMenu();
 	void exportCode(QAction * action);
-
 	void showInformation();
 	void showConnectToTable();
-
 	void numberOfRulesChanged(int numberOfRealRules);
-
 	void correctExportCode();
 	void incorrectExportCode();
-
 	void changeCurrentRuleList(int index);
 
 protected:

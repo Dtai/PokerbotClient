@@ -49,6 +49,7 @@ public:
 
 signals:
 	void sendTableName(QString tabName, QString tableName);
+	void removeTest();
 
 private slots:
 	void onDeleteConnection();

@@ -213,6 +213,16 @@ void MainWindow::addRuleTab(QString tabName){
 	}
 }
 
+void MainWindow::removeTest(){
+	if(ui->tabWidgetRules->tabText(0) == "Test"){
+		disconnectFromDocController();
+		ui->tabWidgetRules->removeTab(0);
+		_currentRuleList = _ruleLists->values().at(0);
+		_currentDocController = _docControllers->values().at(0);
+		connectToDocController();
+	}
+}
+
 
 void MainWindow::showError(const QString & title, const QString & errorMessage)
 {

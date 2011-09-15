@@ -221,7 +221,9 @@ void SettingsDialog::correctData(ConnectionTarget target, QString testTable){
 	_settingsManager->writeSettings();
 
 	connect(this, SIGNAL(sendTableName(QString, QString)), parent1, SLOT(addTab(QString, QString)));
+	connect(this, SIGNAL(removeTest()), parent1, SLOT(removeTest()));
 	emit sendTableName(target.format(), target.tableName);
+	emit removeTest();
 	emit sendTableName(testTarget.format(), testTable);
 	checkForDeletion(sender()->objectName());
 }

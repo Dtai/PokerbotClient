@@ -64,6 +64,8 @@ void WelcomeWindow::correctData(ConnectionTarget target, QString testTable){
 }
 
 void WelcomeWindow::incorrectData(){
+	connect(this, SIGNAL(sendTableName(QString, QString)), parent1, SLOT(addRuleTab(QString)));
+	emit sendTableName("Test", "Test");
 	ui->statusbar->showMessage("An error occured");
 	close();
 }
