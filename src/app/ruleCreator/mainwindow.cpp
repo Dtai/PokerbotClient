@@ -328,6 +328,11 @@ void MainWindow::changeEvent(QEvent *e)
 	}
 }
 
+void MainWindow::resizeEvent(QResizeEvent *event){
+	ui->tabWidget->setMaximumWidth(width()/3);
+	event->accept();
+}
+
 void MainWindow::closeEvent(QCloseEvent * event)
 {
 	// save the file

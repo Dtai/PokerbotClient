@@ -78,6 +78,7 @@ private slots:
 protected:
 	void changeEvent(QEvent * e);
 	void closeEvent(QCloseEvent * event);
+	void resizeEvent(QResizeEvent *);
 
 private:
 	void createDockWidgets();
