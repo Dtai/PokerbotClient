@@ -29,7 +29,7 @@
          <string>Connectie</string>
         </property>
         <layout class="QGridLayout" name="gridLayout">
-         <item row="5" column="1">
+         <item row="4" column="1">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
            <item>
             <widget class="QPushButton" name="newButton">
@@ -59,13 +59,6 @@
             </widget>
            </item>
           </layout>
-         </item>
-         <item row="4" column="1">
-          <widget class="QCheckBox" name="emptyRuleSetExporter">
-           <property name="text">
-            <string>Ook een lege regelset exporteren?</string>
-           </property>
-          </widget>
          </item>
          <item row="1" column="1">
           <widget class="QLineEdit" name="playerName"/>
@@ -210,7 +203,6 @@
   <tabstop>okButton</tabstop>
   <tabstop>connectionsWidget</tabstop>
   <tabstop>deleteButton</tabstop>
-  <tabstop>emptyRuleSetExporter</tabstop>
   <tabstop>cancelButton</tabstop>
  </tabstops>
  <resources/>

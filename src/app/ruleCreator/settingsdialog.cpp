@@ -57,8 +57,6 @@ SettingsDialog::SettingsDialog(SettingsManager * manager, QWidget *parent1, QWid
 	connect(ui->playerName, SIGNAL(textChanged(QString)), this, SLOT(onConnectionChanged()));
 	connect(ui->tableName, SIGNAL(textChanged(QString)), this, SLOT(onConnectionChanged()));
 
-	connect(ui->emptyRuleSetExporter, SIGNAL(stateChanged(int)), this, SLOT(onConnectionChanged()));	
-
 	this->parent1 = parent1;
 }
 
@@ -77,7 +75,6 @@ void SettingsDialog::onDeleteConnection()
 
 	ui->playerName->setText("");
 	ui->tableName->setText("");
-	ui->emptyRuleSetExporter->setCheckState(Qt::Unchecked);
 }
 
 void SettingsDialog::onNewConnection()
@@ -87,7 +84,6 @@ void SettingsDialog::onNewConnection()
 		_curSelected = 0;
 		ui->playerName->setText("");
 		ui->tableName->setText("");
-		ui->emptyRuleSetExporter->setCheckState(Qt::Unchecked);
 
 		onNewConnection();
 		return;
@@ -106,7 +102,6 @@ void SettingsDialog::onNewConnection()
 
 	d.playerName = ui->playerName->text();
 	d.tableName = ui->tableName->text();
-	d.emptyRuleSetExporter = (ui->emptyRuleSetExporter->checkState() == Qt::Checked);
 
 	_curSelected = new QListWidgetItem(d.format());
 	_curSelected->setData(Qt::UserRole, QVariant::fromValue<ConnectionTarget>(d));
@@ -131,7 +126,6 @@ void SettingsDialog::onItemSelectionChanged()
 	// update the fields
 	ui->playerName->setText(d.playerName);
 	ui->tableName->setText(d.tableName);
-	ui->emptyRuleSetExporter->setCheckState(d.emptyRuleSetExporter ? Qt::Checked : Qt::Unchecked);
 }
 
 void SettingsDialog::onConnectionChanged()
@@ -155,7 +149,6 @@ void SettingsDialog::onConnectionChanged()
 	ConnectionTarget d = _curSelected->data(Qt::UserRole).value<ConnectionTarget>();
 	d.playerName = ui->playerName->text();
 	d.tableName = ui->tableName->text();
-	d.emptyRuleSetExporter = ui->emptyRuleSetExporter->checkState() == Qt::Checked;
 
 	_curSelected->setData(Qt::UserRole, QVariant::fromValue<ConnectionTarget>(d));
 	_curSelected->setText(d.format());
@@ -178,17 +171,22 @@ void SettingsDialog::onOKClicked()
 			++counter;
 		}
 	}
-	HelloSender::setCounter(counter);
-	HelloSender::initConnected();
 
-	for(int i=0; i<ui->connectionsWidget->count(); ++i){
-		ConnectionTarget t = ui->connectionsWidget->item(i)->data(Qt::UserRole).value<ConnectionTarget>();
-		if(!HelloSender::alreadySent(t)){
-			hellos->push_back(new HelloSender(t));
-			hellos->last()->setObjectName(ui->tableName->text());
-			connect(hellos->last(), SIGNAL(connected(ConnectionTarget, QString)), this, SLOT(correctData(ConnectionTarget, QString)));
-			connect(hellos->last(), SIGNAL(errored()), this, SLOT(incorrectData()));
-			hellos->last()->send();
+	if(counter == 0){
+		ui->statusbar->showMessage("Nothing to send");
+	} else {
+		HelloSender::setCounter(counter);
+		HelloSender::initConnected();
+
+		for(int i=0; i<ui->connectionsWidget->count(); ++i){
+			ConnectionTarget t = ui->connectionsWidget->item(i)->data(Qt::UserRole).value<ConnectionTarget>();
+			if(!HelloSender::alreadySent(t)){
+				hellos->push_back(new HelloSender(t));
+				hellos->last()->setObjectName(ui->tableName->text());
+				connect(hellos->last(), SIGNAL(connected(ConnectionTarget, QString)), this, SLOT(correctData(ConnectionTarget, QString)));
+				connect(hellos->last(), SIGNAL(errored()), this, SLOT(incorrectData()));
+				hellos->last()->send();
+			}
 		}
 	}
 }
