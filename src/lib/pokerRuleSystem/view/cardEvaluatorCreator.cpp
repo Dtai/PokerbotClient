@@ -1,21 +1,32 @@
 #include "cardEvaluatorCreator.hpp"
 
-CardEvaluatorCreator::CardEvaluatorCreator(){
+CardEvaluatorCreator::CardEvaluatorCreator(QObject *parent) : QObject(parent){
 	initSuits();
+	initDevNameSuits();
 	initOperators();
 	initValues();
 	initOwnValues();
 	initPostfixValues();
 }
 
-CardEvaluatorCreator::~CardEvaluatorCreator(){}
+QString CardEvaluatorCreator::devNameSuitOfIndex(int index){
+	return devNameSuits->at(index);
+}
+
+void CardEvaluatorCreator::initDevNameSuits(){
+	devNameSuits = new QStringList();
+	devNameSuits->append("hearts");
+	devNameSuits->append("spades");
+	devNameSuits->append("clubs");
+	devNameSuits->append("diamonds");
+}
 
 void CardEvaluatorCreator::initSuits(){
 	suits = new QStringList();
-	suits->append("hearts");
-	suits->append("spades");
-	suits->append("clubs");
-	suits->append("diamonds");
+	suits->append(tr("harten"));
+	suits->append(tr("spades"));
+	suits->append(tr("clubs"));
+	suits->append(tr("diamonds"));
 }
 
 void CardEvaluatorCreator::initOperators(){

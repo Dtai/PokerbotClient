@@ -26,6 +26,7 @@ CardEvaluator::CardEvaluator(QList<poker::Card> givenCards, ruleSystem::Constant
 		_cards = new QVector<QPushButton*>();
 		information = new QMap<QPushButton*, QMap<QString, QString>*>();
 
+		suitIndex = new QMap<QPushButton*, int>();
 		operators = new QMap<QPushButton*, QVector<QComboBox*>*>();
 		values = new QMap<QPushButton*, QVector<QComboBox*>*>();
 		postfixValues = new QMap<QPushButton*, QVector<QComboBox*>*>();
@@ -119,6 +120,10 @@ void CardEvaluator::parse(QStringList values, QStringList *ops, QStringList *val
 void CardEvaluator::insertGivenCards(QList<poker::Card> givenCards){
 	for(int i=0; i<givenCards.size(); ++i){
 		QString color = givenCards.at(i).suitExpression();
+		if(creator->devNameSuits->contains(color)){
+			color = creator->suits->at(creator->devNameSuits->indexOf(color));
+		}
+
 		QStringList values = givenCards.at(i).rankExpressions();
 
 		QStringList *ops = new QStringList();
@@ -151,6 +156,7 @@ void CardEvaluator::insertGivenCards(QList<poker::Card> givenCards){
 
 void CardEvaluator::redrawSelectedCard(){
 	information->insert(selectedCard, getCurrentInformation());
+	suitIndex->insert(selectedCard, ui->color->currentIndex());
 	updateSelectedCard();
 }
 
@@ -415,7 +421,12 @@ QList<poker::Card> CardEvaluator::cards() const{
 	QList<poker::Card> *cards = new QList<poker::Card>();
 
 	for(int i=0; i<_cards->size(); ++i){
-		QString color = information->value(_cards->at(i))->value("color");
+		QString color;
+		if(information->value(_cards->at(i))->value("color") == "?" || information->value(_cards->at(i))->value("color").at(0) == '$'){
+			color = information->value(_cards->at(i))->value("color");
+		} else {
+			color = creator->devNameSuitOfIndex(suitIndex->value(_cards->at(i))-1);
+		}
 		QList<QString> operators = information->value(_cards->at(i))->values("operator");
 		QList<QString> values = information->value(_cards->at(i))->values("value");
 		QList<QString> postfixValues = information->value(_cards->at(i))->values("postfixValue");

@@ -20,6 +20,7 @@ set (Q_MOC_HPP
 	editnumericaldialog.hpp
 	validcombobox.hpp
 	cardEvaluator.hpp
+	cardEvaluatorCreator.hpp
 )
 set (Q_UI
 	cardEvaluator.ui

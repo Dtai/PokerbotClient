@@ -45,6 +45,7 @@ private:
 		bool separatedValues;
 		CardEvaluatorCreator *creator;
 
+		QMap<QPushButton*, int> *suitIndex;
 		QMap<QPushButton*, QVector<QComboBox*>*> *operators;
 		QMap<QPushButton*, QVector<QComboBox*>*> *values;
 		QMap<QPushButton*, QVector<QComboBox*>*> *postfixValues;
