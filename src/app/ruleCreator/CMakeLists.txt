@@ -1,7 +1,8 @@
 find_package(Qt4 REQUIRED)
 set(QT_USE_QTTEST TRUE)
 set(QT_USE_QTNETWORK TRUE)
-SET( QT_USE_QTWEBKIT TRUE )
+set(QT_USE_QTWEBKIT TRUE)
+set(QT_USE_QTHELP TRUE)
 include(${QT_USE_FILE})
 
 #set(CMAKE_CXX_FLAGS "-g -ggdb -Wall")

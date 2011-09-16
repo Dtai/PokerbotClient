@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QAction>
+#include <QtHelp/QHelpEngineCore>
 
 namespace Ui {
 class HelpWindow;
@@ -21,14 +22,14 @@ private slots:
 
 private:
 	Ui::HelpWindow *ui;
-	QString *connectToTable;
-	QString *makeRules;
-	QString *sendRules;
+	QString *tutorial;
+	QString *poker;
+	QString *ruleCreator;
 	QMenu *menu;
+	QHelpEngineCore *helpEngine;
+	QList<QAction *> *actions;
 
-	void showHelpConnection();
-	void showHelpCreateRules();
-	void showHelpSendRules();
+	void showHelp(QString id);
 	void clear();
 };
 

@@ -2,6 +2,7 @@
 #include "ui_helpWindow.h"
 
 #include <QMenu>
+#include <QFileInfo>
 
 HelpWindow::HelpWindow(QWidget *parent)
 	: QWidget(parent),
@@ -10,53 +11,49 @@ HelpWindow::HelpWindow(QWidget *parent)
 	ui->setupUi(this);
 	setAttribute(Qt::WA_DeleteOnClose);
 
-	connectToTable = new QString("Connectie met een tafel maken");
-	makeRules = new QString("Regels maken");
-	sendRules = new QString("Regels versturen");
+	QFileInfo fileInfo("doc.qhc");
+	helpEngine = new QHelpEngineCore(fileInfo.absoluteFilePath());
+
+	tutorial = new QString("Tutorial");
+	poker = new QString("Wat is poker");
+	ruleCreator = new QString("Wat is RuleCreator");
 
 	menu = new QMenu();
-	menu->addAction(*connectToTable);
-	menu->addAction(*makeRules);
-	menu->addAction(*sendRules);
+	actions = new QList<QAction *>();
+
+	actions->append(menu->addAction(*tutorial));
+	actions->last()->setObjectName("tutorial");
+
+	actions->append(menu->addAction(*poker));
+	actions->last()->setObjectName("poker");
+
+	actions->append(menu->addAction(*ruleCreator));
+	actions->last()->setObjectName("RuleCreator");
+
 	ui->btnInformation->setMenu(menu);
 
 	connect(ui->btnInformation->menu(), SIGNAL(triggered(QAction*)), this, SLOT(menuSelection(QAction*)));
 }
 
-HelpWindow::~HelpWindow()
-{
+HelpWindow::~HelpWindow() {
 	delete ui;
-	delete connectToTable;
-	delete makeRules;
-	delete sendRules;
+	delete tutorial;
+	delete poker;
+	delete ruleCreator;
 	delete menu;
 }
 
-void HelpWindow::menuSelection(QAction* action)
-{
-	if(action->text().compare(connectToTable) == 0){
-		showHelpConnection();
-	} else if (action->text().compare(makeRules) == 0 ){
-		showHelpCreateRules();
-	} else if(action->text().compare(sendRules) == 0){
-		showHelpSendRules();
-	} else {
-		clear();
-	}
+void HelpWindow::menuSelection(QAction* action) {
+	showHelp(action->objectName());
 }
 
-void HelpWindow::showHelpConnection(){
-	ui->information->setText("Hoe moet ik connecteren met een tafel?\n---Hier moet de uitleg komen---");
-}
+void HelpWindow::showHelp(QString id){
+	QMap<QString, QUrl> links = helpEngine->linksForIdentifier(id);
 
-void HelpWindow::showHelpCreateRules(){
-	ui->information->setText("Hoe moet ik regels maken?\n---Hier moet de uitleg komen---");
-}
-
-void HelpWindow::showHelpSendRules(){
-	ui->information->setText("Hoe moet ik mijn regels versturen?\n---Hier moet de uitleg komen---");
-}
-
-void HelpWindow::clear(){
-	ui->information->setText("");
+	 if (links.count()) {
+		 QByteArray helpData = helpEngine->fileData(links.constBegin().value());
+		 if (!helpData.isEmpty()){
+			ui->information->setText(helpData);
+		 }
+	 }
 }

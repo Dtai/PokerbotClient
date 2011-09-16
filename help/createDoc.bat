@@ -1,0 +1,1 @@
+qcollectiongenerator doc.qhcp -o doc.qhc

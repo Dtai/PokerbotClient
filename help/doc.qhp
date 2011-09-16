@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QtHelpProject version="1.0">
+	<namespace>kul.dtai.rulecreator.1.0</namespace>
+	<virtualFolder>doc</virtualFolder>
+	<customFilter name="RuleCreator 1.0">
+		<filterAttribute>rulecreator</filterAttribute>
+		<filterAttribute>1.0</filterAttribute>
+	</customFilter>
+	<filterSection>
+		<filterAttribute>rulecreator</filterAttribute>
+		<filterAttribute>1.0</filterAttribute>
+			<toc>
+				<section title="RuleCreator handleiding" ref="index.html">
+					<section title="Wat is poker?" ref="poker.html"/>
+					<section title="Wat is ruleCreator" ref="ruleCreator.html"/>
+					<section title="Tutorial" ref="tutorial.html"/>
+				</section>
+			</toc>
+		<keywords>
+			<keyword name="poker" id="poker" ref="poker.html"/>
+			<keyword name="tutorial" id="tutorial" ref="tutorial.html"/>
+			<keyword name="RuleCreator" id="RuleCreator" ref="ruleCreator.html"/>
+		</keywords>
+		<files>
+			<file>*.html</file>
+		</files>
+	</filterSection>
+</QtHelpProject>
