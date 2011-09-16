@@ -105,7 +105,7 @@ struct CardEquationConstantWriter : public ElementWriter
     }
 
     QString translateVariables(const QString & expression, const QString & prefix, const QString & varDef, PrologWriter::CodeInformation & info) const
-    {
+	{
         QRegExp regex = poker::card::CardExpressionValidator::varRegex();
         QString output = expression;
 
@@ -131,7 +131,10 @@ struct CardEquationConstantWriter : public ElementWriter
         if(card.suitExpression() == Card::Unknown())
             return "_";
 
-        if(p.parse(card.suitExpression(), o) != -1)
+		QString expr = card.suitExpression();
+		expr.replace("$", "");
+
+		if(p.parse(expr, o) != -1)
             throw Exception("The suit expression in card is not valid", "CardEquationConstantWriter::translateSuitExpression");
 
 
@@ -151,7 +154,7 @@ struct CardEquationConstantWriter : public ElementWriter
     }
 
     void translateSpecialRankSymbolsForProlog(QString & expression) const
-    {
+	{
         expression.replace("<=", "=< ");
         expression.replace("J", "11");
         expression.replace("Q", "12");
@@ -168,11 +171,11 @@ struct CardEquationConstantWriter : public ElementWriter
         QString varName = info.getUniqueVariable();
 
         foreach(QString expr, card.rankExpressions())
-        {
+		{
+			expr.replace("$", "");
 			RankObject o;
             if(p.parse(expr, o) != -1)
-                throw Exception("The rank expression in card is not valid", "CardEquationConstantWriter::translateRankExpression");
-
+				throw Exception("The rank expression in card is not valid", "CardEquationConstantWriter::translateRankExpression");
             expr = translateVariables(expr, PokerCodeInformation::rankVarPrefix(), QString("rank(%1)"), info);
 
             translateSpecialRankSymbolsForProlog(expr);
@@ -370,7 +373,7 @@ struct NotFunctionWriter : public prolog::ElementWriter
 
         if(f->calculator()->uniqueName() != function::NOTFunctor::UniqueName())
             return 0;
-        else
+		else
             return 2.0f;
     }
 
@@ -510,7 +513,7 @@ void initializePrologWriter()
     PrologWriter::RegisterWriter(new NAryFunctionWriter<function::NumLesserThanFunctor>(" < "));
     PrologWriter::RegisterWriter(new NAryFunctionWriter<function::NumEqualFunctor>(" == "));
     PrologWriter::RegisterWriter(new NAryFunctionWriter<function::NumGreaterThanFunctor>(" > "));
-    PrologWriter::RegisterWriter(new NAryFunctionWriter<function::NumGreaterThanOrEqualFunctor>(" >= "));
+	PrologWriter::RegisterWriter(new NAryFunctionWriter<function::NumGreaterThanOrEqualFunctor>(" >= "));
 
     PrologWriter::RegisterWriter(new ActionWriter);
     PrologWriter::RegisterWriter(new RaiseActionWriter);

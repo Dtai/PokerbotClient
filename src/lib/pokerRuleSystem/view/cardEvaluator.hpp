@@ -65,6 +65,8 @@ private:
 		template <class T>
 		void deleteValuesOfMap(QMap<QPushButton*, QVector<T*>*> *map);
 		bool areCorrectVariables();
+		bool isCorrectValue(QString value);
+		bool isCorrectSuit(QString suit);
 		bool isCorrectVariable(QString var);
 signals:
 		void ready();

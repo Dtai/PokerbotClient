@@ -37,6 +37,8 @@ CardEvaluator::CardEvaluator(QList<poker::Card> givenCards, ruleSystem::Constant
 
 		creator = new CardEvaluatorCreator();
 
+		//QStringList *s = creator->suits;
+		ui->color->insertItems(1, *(creator->suits));
 		insertGivenCards(givenCards);
 }
 
@@ -435,13 +437,30 @@ QList<poker::Card> CardEvaluator::cards() const{
 	return *cards;
 }
 
-bool CardEvaluator::isCorrectVariable(QString var){
+bool CardEvaluator::isCorrectValue(QString value){
 	CardEvaluatorCreator cec;
-	if(cec.values->contains(var)){
+	if(cec.values->contains(value)){
 		return true;
 	}
 
-	for(int i=0; i<var.count(); ++i){
+	return isCorrectVariable(value);
+}
+
+bool CardEvaluator::isCorrectSuit(QString suit){
+	CardEvaluatorCreator cec;
+	if(cec.suits->contains(suit) || suit == "?"){
+		return true;
+	}
+
+	return isCorrectVariable(suit);
+}
+
+bool CardEvaluator::isCorrectVariable(QString var){
+	if(var.at(0) != '$' || var.count() == 1){
+		return false;
+	}
+
+	for(int i=1; i<var.count(); ++i){
 		if(!var.at(i).isLower()){
 			return false;
 		}
@@ -454,11 +473,18 @@ bool CardEvaluator::areCorrectVariables(){
 	QList<QVector<QComboBox*>*> vals = values->values();
 	for(int i=0; i<vals.count(); ++i){
 		for(int j=0; j<vals.at(i)->count(); ++j){
-			if(!isCorrectVariable(vals.at(i)->at(j)->currentText())){
+			if(!isCorrectValue(vals.at(i)->at(j)->currentText())){
 				return false;
 			}
 		}
 	}
+
+	for(int i=0; i<_cards->count(); ++i){
+		if(!isCorrectSuit(information->value(_cards->at(i))->value("color"))){
+			return false;
+		}
+	}
+
 	return true;
 }
 

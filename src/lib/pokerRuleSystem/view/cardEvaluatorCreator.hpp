@@ -19,11 +19,13 @@ public:
 		void addValue(QString value);
 
 private:
+		QStringList *suits;
 		QStringList *operators;
 		QStringList *values;
 		QStringList *ownValues;
 		QStringList *postfixValues;
 
+		void initSuits();
 		void initOperators();
 		void initValues();
 		void initOwnValues();

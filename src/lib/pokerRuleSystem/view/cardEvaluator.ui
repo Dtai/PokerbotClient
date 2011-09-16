@@ -106,26 +106,6 @@
                    <string>?</string>
                   </property>
                  </item>
-                 <item>
-                  <property name="text">
-                   <string>hearts</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>clubs</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>spades</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>diamonds</string>
-                  </property>
-                 </item>
                 </widget>
                </item>
               </layout>
@@ -133,7 +113,7 @@
              <item>
               <widget class="QLabel" name="label">
                <property name="text">
-                <string>Selecteer een kleur uit de lijst of type een variabele in. Een variabele begint altijd met een kleine letter. </string>
+                <string>Selecteer een kleur uit de lijst of typ een variabele in. Een variabele begint altijd met een $ en bestaat voor de rest uit kleine letters.</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignJustify|Qt::AlignVCenter</set>
@@ -208,7 +188,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>478</width>
-                <height>302</height>
+                <height>276</height>
                </rect>
               </property>
              </widget>
@@ -226,7 +206,7 @@
          <item>
           <widget class="QLabel" name="label_5">
            <property name="text">
-            <string>Selecteer een (on)gelijkheid uit de lijst en de gewenste waarde van de kaart. Als de waarde een variabele is, kan er gekozen worden voor een postfix. Een variabele bestaat altijd uit ikleine letters.</string>
+            <string>Selecteer een (on)gelijkheid uit de lijst en de gewenste waarde van de kaart. Als de waarde een variabele is, kan er gekozen worden voor een postfix. Een variabele begint altijd met een $ en bestaat voor de rest uit kleine letters.</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignJustify|Qt::AlignVCenter</set>

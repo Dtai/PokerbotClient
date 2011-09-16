@@ -1,6 +1,7 @@
 #include "cardEvaluatorCreator.hpp"
 
 CardEvaluatorCreator::CardEvaluatorCreator(){
+	initSuits();
 	initOperators();
 	initValues();
 	initOwnValues();
@@ -9,10 +10,17 @@ CardEvaluatorCreator::CardEvaluatorCreator(){
 
 CardEvaluatorCreator::~CardEvaluatorCreator(){}
 
+void CardEvaluatorCreator::initSuits(){
+	suits = new QStringList();
+	suits->append("hearts");
+	suits->append("spades");
+	suits->append("clubs");
+	suits->append("diamonds");
+}
+
 void CardEvaluatorCreator::initOperators(){
 	operators = new QStringList();
 	operators->append("=");
-	operators->append("!=");
 	operators->append(">");
 	operators->append(">=");
 	operators->append("<");
@@ -34,9 +42,9 @@ void CardEvaluatorCreator::initValues(){
 	values->append("Q");
 	values->append("K");
 	values->append("A");
-	values->append("a");
-	values->append("b");
-	values->append("c");
+	values->append("$a");
+	values->append("$b");
+	values->append("$c");
 }
 
 void CardEvaluatorCreator::initOwnValues(){
