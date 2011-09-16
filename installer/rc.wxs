@@ -22,7 +22,7 @@
 						Directory="DesktopFolder"
 						Name="Regelmaker"
 						WorkingDirectory="INSTALLLOCATION"
-						Description="Some description"
+						Description="Voer regelmaker uit"
 						Icon="Icon.exe">
 						<Icon Id="Icon.exe" SourceFile="ruleCreator.exe" />
 					</Shortcut>
@@ -36,6 +36,8 @@
 				<File Id="webkit" Name="QtWebKit4.dll" DiskId="1" Source="QtWebKit4.dll" />
 				<File Id="config" Name="config.json" DiskId="1" Source="config.json" />
 				<File Id="json" Name="libqjson.dll" DiskId="1" Source="libqjson.dll" />
+				<File Id="doc_qch" Name="doc.qch" DiskId="1" Source="doc.qch" />
+				<File Id="doc_qhc" Name="doc.qhc" DiskId="1" Source="doc.qhc" />
 			</Component>
 		</DirectoryRef>
 		
