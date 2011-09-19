@@ -3,6 +3,7 @@
 
 #include <QMenu>
 #include <QFileInfo>
+#include <iostream>
 
 HelpWindow::HelpWindow(QWidget *parent)
 	: QWidget(parent),
@@ -14,21 +15,20 @@ HelpWindow::HelpWindow(QWidget *parent)
 	QFileInfo fileInfo("doc.qhc");
 	helpEngine = new QHelpEngineCore(fileInfo.absoluteFilePath());
 
-	tutorial = new QString("Tutorial");
-	poker = new QString("Wat is poker");
-	ruleCreator = new QString("Wat is RuleCreator");
-
 	menu = new QMenu();
 	actions = new QList<QAction *>();
 
-	actions->append(menu->addAction(*tutorial));
+	actions->append(menu->addAction("Tutorial"));
 	actions->last()->setObjectName("tutorial");
 
-	actions->append(menu->addAction(*poker));
+	actions->append(menu->addAction("Wat is poker"));
 	actions->last()->setObjectName("poker");
 
-	actions->append(menu->addAction(*ruleCreator));
+	actions->append(menu->addAction("Wat is ruleCreator"));
 	actions->last()->setObjectName("RuleCreator");
+
+	actions->append(menu->addAction("Wat zijn de features"));
+	actions->last()->setObjectName("features");
 
 	ui->btnInformation->setMenu(menu);
 
@@ -37,9 +37,6 @@ HelpWindow::HelpWindow(QWidget *parent)
 
 HelpWindow::~HelpWindow() {
 	delete ui;
-	delete tutorial;
-	delete poker;
-	delete ruleCreator;
 	delete menu;
 }
 

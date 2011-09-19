@@ -1,2 +1,3 @@
 file(COPY doc.qhc DESTINATION ${CMAKE_BINARY_DIR}/bin)
 file(COPY doc.qch DESTINATION ${CMAKE_BINARY_DIR}/bin)
+file(COPY images DESTINATION ${CMAKE_BINARY_DIR}/bin)

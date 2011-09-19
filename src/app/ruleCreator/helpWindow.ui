@@ -22,29 +22,18 @@
   <property name="windowTitle">
    <string>Uitleg</string>
   </property>
-  <widget class="QTextBrowser" name="information">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>50</y>
-     <width>591</width>
-     <height>271</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btnInformation">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>20</y>
-     <width>591</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Uitleg</string>
-   </property>
-  </widget>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QPushButton" name="btnInformation">
+     <property name="text">
+      <string>Uitleg</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QTextBrowser" name="information"/>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>

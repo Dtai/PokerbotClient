@@ -22,9 +22,6 @@ private slots:
 
 private:
 	Ui::HelpWindow *ui;
-	QString *tutorial;
-	QString *poker;
-	QString *ruleCreator;
 	QMenu *menu;
 	QHelpEngineCore *helpEngine;
 	QList<QAction *> *actions;

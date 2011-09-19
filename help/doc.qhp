@@ -14,12 +14,14 @@
 					<section title="Wat is poker?" ref="poker.html"/>
 					<section title="Wat is ruleCreator" ref="ruleCreator.html"/>
 					<section title="Tutorial" ref="tutorial.html"/>
+					<section title="Features" ref="features.html"/>
 				</section>
 			</toc>
 		<keywords>
 			<keyword name="poker" id="poker" ref="poker.html"/>
 			<keyword name="tutorial" id="tutorial" ref="tutorial.html"/>
 			<keyword name="RuleCreator" id="RuleCreator" ref="ruleCreator.html"/>
+			<keyword name="features" id="features" ref="features.html"/>
 		</keywords>
 		<files>
 			<file>*.html</file>
