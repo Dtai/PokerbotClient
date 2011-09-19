@@ -25,7 +25,7 @@ HelpWindow::HelpWindow(QWidget *parent)
 	actions->last()->setObjectName("poker");
 
 	actions->append(menu->addAction("Wat is ruleCreator"));
-	actions->last()->setObjectName("RuleCreator");
+	actions->last()->setObjectName("ruleCreator");
 
 	actions->append(menu->addAction("Wat zijn de features"));
 	actions->last()->setObjectName("features");
@@ -41,13 +41,14 @@ HelpWindow::~HelpWindow() {
 }
 
 void HelpWindow::menuSelection(QAction* action) {
+	ui->btnInformation->setText(action->text());
 	showHelp(action->objectName());
 }
 
 void HelpWindow::showHelp(QString id){
 	QMap<QString, QUrl> links = helpEngine->linksForIdentifier(id);
 
-	 if (links.count()) {
+	 if (!links.isEmpty()) {
 		 QByteArray helpData = helpEngine->fileData(links.constBegin().value());
 		 if (!helpData.isEmpty()){
 			ui->information->setText(helpData);
