@@ -5,6 +5,8 @@
 #include "network/helloSender.hpp"
 
 #include <QCloseEvent>
+#include <QFileInfo>
+#include <QHelpEngineCore>
 
 WelcomeWindow::WelcomeWindow(SettingsManager *manager, QWidget *parent1, QWidget *parent2)
 		: QMainWindow(parent2),
@@ -12,8 +14,10 @@ WelcomeWindow::WelcomeWindow(SettingsManager *manager, QWidget *parent1, QWidget
 		  _settingsManager(manager)
 {
 	ui->setupUi(this);
+	ui->help->setVisible(false);
 	setAttribute(Qt::WA_DeleteOnClose);
 	connect(ui->btnOk, SIGNAL(clicked()), this, SLOT(onOKClicked()));
+	connect(ui->btnHelp, SIGNAL(clicked()), this, SLOT(showHelp()));
 	this->parent1 = parent1;
 
 	ui->statusbar->showMessage("Welcome");
@@ -28,6 +32,27 @@ WelcomeWindow::WelcomeWindow(SettingsManager *manager, QWidget *parent1, QWidget
 WelcomeWindow::~WelcomeWindow()
 {
 	delete ui;
+}
+
+void WelcomeWindow::showHelp(){
+	if(ui->help->isVisible()){
+		ui->help->hide();
+		resize(265, height());
+	} else {
+		ui->help->show();
+		resize(400, height());
+
+		QFileInfo fileInfo("doc.qhc");
+		QHelpEngineCore helpEngine(fileInfo.absoluteFilePath());
+		QMap<QString, QUrl> links = helpEngine.linksForIdentifier("welcomeWindow");
+
+		if (!links.isEmpty()) {
+			QByteArray helpData = helpEngine.fileData(links.constBegin().value());
+			if (!helpData.isEmpty()){
+				ui->help->setText(helpData);
+			}
+		}
+	}
 }
 
 void WelcomeWindow::onOKClicked(){

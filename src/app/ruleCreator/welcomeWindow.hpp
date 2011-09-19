@@ -27,6 +27,7 @@ signals:
 
 private slots:
 	void onOKClicked();
+	void showHelp();
 	void correctData(ConnectionTarget target, QString testTable);
 	void incorrectData();
 

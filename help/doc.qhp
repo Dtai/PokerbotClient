@@ -22,6 +22,7 @@
 			<keyword name="tutorial" id="tutorial" ref="tutorial.html"/>
 			<keyword name="RuleCreator" id="RuleCreator" ref="ruleCreator.html"/>
 			<keyword name="features" id="features" ref="features.html"/>
+			<keyword name="welcomeWindow" id="welcomeWindow" ref="welcomeWindow.html"/>
 		</keywords>
 		<files>
 			<file>*.html</file>
