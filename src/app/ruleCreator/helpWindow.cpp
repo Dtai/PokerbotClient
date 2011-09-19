@@ -30,6 +30,9 @@ HelpWindow::HelpWindow(QWidget *parent)
 	actions->append(menu->addAction("Wat zijn de features"));
 	actions->last()->setObjectName("features");
 
+	actions->append(menu->addAction("Wat zijn de functies"));
+	actions->last()->setObjectName("functions");
+
 	ui->btnInformation->setMenu(menu);
 
 	connect(ui->btnInformation->menu(), SIGNAL(triggered(QAction*)), this, SLOT(menuSelection(QAction*)));
