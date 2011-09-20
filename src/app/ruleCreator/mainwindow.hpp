@@ -72,7 +72,6 @@ private slots:
 	void correctExportCode();
 	void incorrectExportCode();
 	void changeCurrentRuleList(int index);
-	void finishGoodBye();
 
 protected:
 	void changeEvent(QEvent * e);
