@@ -15,6 +15,7 @@
 					<section title="Wat is ruleCreator" ref="ruleCreator.html"/>
 					<section title="Tutorial" ref="tutorial.html"/>
 					<section title="Features" ref="features.html"/>
+					<section title="Welkomsvenster" ref="welcomeWindow.html"/>
 				</section>
 			</toc>
 		<keywords>
@@ -22,6 +23,7 @@
 			<keyword name="tutorial" id="tutorial" ref="tutorial.html"/>
 			<keyword name="RuleCreator" id="ruleCreator" ref="ruleCreator.html"/>
 			<keyword name="features" id="features" ref="features.html"/>
+			<keyword name="function" id="functions" ref="functions.html"/>
 			<keyword name="welcomeWindow" id="welcomeWindow" ref="welcomeWindow.html"/>
 		</keywords>
 		<files>
