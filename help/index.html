@@ -1,62 +1,9 @@
 <html>
 	<head>
 		<title> Index </title>
-		<style type="text/css">
-			ul#navigation {
-				list-style: none;
-				margin: auto;
-				width: 450px;
-			}
-
-			ul#navigation li {
-				text-decoration: none;
-				padding: 5px;
-				width: 100px;
-				background: #bb0b00;
-				color: white;
-				float: left;
-				text-align: center;
-				border-left: 1px solid white;
-			}
-
-			ul#navigation li:hover {
-				background: #ff0f00;
-				color: black;
-			}
-			
-			object#dyn {
-				width: 900px;
-				height: 100%;
-			}
-		</style>
-		
-		<script type="text/javascript">
-			function clickPoker(){
-				document.getElementById("content").innerHTML =  '<object id="dyn" type="text/html" data="poker.html"> </object>';
-			}
-			
-			function clickRuleCreator(){
-				document.getElementById("content").innerHTML =  '<object id="dyn" type="text/html" data="ruleCreator.html"> </object>';
-			}
-			
-			function clickTutorial(){
-				document.getElementById("content").innerHTML =  '<object id="dyn" type="text/html" data="tutorial.html"> </object>';
-			}
-			
-			function clickFeatures(){
-				document.getElementById("content").innerHTML =  '<object id="dyn" type="text/html" data="features.html"> </object>';
-			}
-		</script>
 	</head>
 	
 	<body>
-		<ul id="navigation">
-			<li onclick="clickPoker()"> Poker</li>
-			<li onclick="clickRuleCreator()"> RuleCreator</li>
-			<li onclick="clickTutorial()"> Tutorial</li>
-			<li onclick="clickFeatures()"> Features</li>
-		</ul>
-		<br/> <br/>
-		<div id="content"> </div>
+		Welkom bij de help van ruleCreator.
 	</body>
 </html>

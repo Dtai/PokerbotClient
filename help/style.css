@@ -1,0 +1,26 @@
+ul#navigation {
+	list-style: none;
+	margin: auto;
+	width: 850px;
+}
+
+ul#navigation li {
+	text-decoration: none;
+	padding: 5px;
+	width: 100px;
+	background: #bb0b00;
+	color: white;
+	float: left;
+	text-align: center;
+	border-left: 1px solid white;
+}
+
+ul#navigation li:hover {
+	background: #ff0f00;
+	color: black;
+}
+
+body{
+	width: 60%;
+	margin: auto;
+}

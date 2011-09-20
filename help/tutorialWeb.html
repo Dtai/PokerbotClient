@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<title> Tutorial </title>
+		<link href="style.css" type="text/css" rel="stylesheet"/>
+		<script type="text/javascript" src="nav.js"> </script>
+	</head>
+	
+	<body>
+		<ul id="navigation">
+			<li onclick="href('indexWeb.html')"> Frontpage</li>
+			<li onclick="href('pokerWeb.html')"> Poker</li>
+			<li onclick="href('ruleCreatorWeb.html')"> RuleCreator</li>
+			<li onclick="href('tutorialWeb.html')"> Tutorial</li>
+			<li onclick="href('featuresWeb.html')"> Features</li>
+			<li onclick="href('functionsWeb.html')"> Functions</li>
+			<li onclick="href('welcomeWindowWeb.html')"> Welkomsvenster</li>
+		</ul>
+		<br/> <br/>
+		
+		<h3> Een call bot doorsturen </h3>
+		<ol>
+			<li> Vul in het welkomsvenster jouw naam en de naam van de tafel in. </li>
+			<li> Aan de linkerkant zie je de elementen waarmee je een pokerbot kan maken. In het midden moeten de regels van de pokerbot komen. Aan de rechterkant zie je een visualisatie hoe goed de pokerbots het doen. </li>
+			<li> Aan de linkerkant onder het kopje "acties" staat de tekst "call". Sleep deze tekst naar de eerste regel van de pokerbot. </li>
+			<li> Onder het kopje "constanten" staat de tekst "true". Sleep deze tekst in de call. Je zou nu de volgende regel moeten hebben. <br/> <img src="images/truecall.png"/> </li>
+			<li> Exporteer de code door in het menu op "exporteren" te klikken en dan de juiste tafel te kiezen. </li>
+			<li> Als er geen fouten zijn gebeurd, zou er een venster moeten verschijnen dat alles goed is verlopen anders wordt er getoond welke fout er gebeurd is. </li>
+		</ol>
+		
+		<h3> Een bot maken die raist als hij een paar heeft </h3>
+		<ol>
+			<li> Sleep raise naar het regelgedeelte. </li>
+			<li> Sleep 3.14 in de raise. </li>
+			<li> Sleep bevat in de raise. </li>
+			<li> Sleep handkaarten in bevat. </li>
+			<li> Sleep kaartvergelijking in bevat. <br/> <img src="images/raisepairbase.png" /> </li>
+			<li> Dubbelklik op 3.14 </li>
+			<li> Er verschijnt een venster waar je het gewenste raisebedrag kan instellen </li>
+			<li> Dubbelklik op de kaartvergelijking </li>
+			<li> In het venster dat nu verschijnt klik je op "voeg kaart toe". Aan de linkerkant zie je nu twee knoppen. Dit zijn de twee kaarten van het paar. </li>
+			<li> Selecteer "Kaart 0", kies als kleur "$kleura" en als waarde kies je "$waarde" </li>
+			<li> Selecteer "Kaart 1", kies als kleur "$kleurb" en als waarde kies je "$waarde" </li>
+			<li> Je hebt dus nu twee kaarten die een verschillend kleur moeten hebben maar die éénzelfde waarde hebben. Onderstaande afbeelding geeft een idee hoe het venster er zou moeten uitzien. </br> <img src="images/cardequation.png"></li>
+			<li> Druk nu op "opslaan". </li>
+			<li> Als alles goed ingevuld was zou het programma moeten terugkeren naar het hoofdvenster. Je hebt nu een bot die raist wanneer hij een paar in zijn handen heeft. De regel zou er moeten uitzien zoals op de onderstaande
+					afbeelding. <br/> <img src="images/raisepairfull.png"/> </li>
+		</ol>
+	</body>
+</html>
