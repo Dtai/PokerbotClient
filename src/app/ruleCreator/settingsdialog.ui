@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Instellingen</string>
+   <string>Settings</string>
   </property>
   <property name="dockNestingEnabled">
    <bool>true</bool>
@@ -26,7 +26,7 @@
       <item>
        <widget class="QGroupBox" name="groupBox">
         <property name="title">
-         <string>Connectie</string>
+         <string>Connection</string>
         </property>
         <layout class="QGridLayout" name="gridLayout">
          <item row="4" column="1">
@@ -34,7 +34,7 @@
            <item>
             <widget class="QPushButton" name="newButton">
              <property name="text">
-              <string>Nieuw</string>
+              <string>New</string>
              </property>
             </widget>
            </item>
@@ -54,7 +54,7 @@
            <item>
             <widget class="QPushButton" name="deleteButton">
              <property name="text">
-              <string>Verwijderen</string>
+              <string>Delete</string>
              </property>
             </widget>
            </item>
@@ -66,7 +66,7 @@
          <item row="1" column="0">
           <widget class="QLabel" name="label_4">
            <property name="text">
-            <string>Jouw Naam:</string>
+            <string>Name:</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -76,7 +76,7 @@
          <item row="3" column="0">
           <widget class="QLabel" name="label_5">
            <property name="text">
-            <string>Naam tafel:</string>
+            <string>Tablename:</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -114,7 +114,7 @@
         <item>
          <widget class="QPushButton" name="cancelButton">
           <property name="text">
-           <string>Annuleren</string>
+           <string>Cancel</string>
           </property>
          </widget>
         </item>
@@ -125,76 +125,6 @@
    </layout>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="action_New">
-   <property name="text">
-    <string>&amp;new</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+N</string>
-   </property>
-  </action>
-  <action name="action_Open">
-   <property name="text">
-    <string>&amp;Open</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+O</string>
-   </property>
-  </action>
-  <action name="action_Save_As">
-   <property name="text">
-    <string>Save &amp;As</string>
-   </property>
-  </action>
-  <action name="actionE_xit">
-   <property name="text">
-    <string>E&amp;xit</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Q</string>
-   </property>
-  </action>
-  <action name="action_Save">
-   <property name="text">
-    <string>&amp;Save</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+S</string>
-   </property>
-  </action>
-  <action name="action_Close">
-   <property name="text">
-    <string>Sluiten</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+W</string>
-   </property>
-  </action>
-  <action name="actionTo_Prolog">
-   <property name="text">
-    <string>Naar &amp;Prolog</string>
-   </property>
-  </action>
-  <action name="actionShow_Code">
-   <property name="text">
-    <string>Show rules (prolog code)</string>
-   </property>
-  </action>
-  <action name="actionShow_information">
-   <property name="text">
-    <string>Show information</string>
-   </property>
-  </action>
-  <action name="actionAdd_table">
-   <property name="text">
-    <string>Add table</string>
-   </property>
-  </action>
-  <action name="actionConnect_to_table">
-   <property name="text">
-    <string>Connect to table</string>
-   </property>
-  </action>
  </widget>
  <tabstops>
   <tabstop>playerName</tabstop>
@@ -206,22 +136,5 @@
   <tabstop>cancelButton</tabstop>
  </tabstops>
  <resources/>
- <connections>
-  <connection>
-   <sender>actionE_xit</sender>
-   <signal>triggered()</signal>
-   <receiver>SettingsDialog</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>414</x>
-     <y>402</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

@@ -38,6 +38,7 @@ class CodeSender : public QObject
 public:
 	explicit CodeSender(const ConnectionTarget &target, const QString &code, QObject * parent = 0);
 	void send();
+	void silent(bool silent);
 
 signals:
 	void finished();
@@ -53,6 +54,7 @@ private:
 	ConnectionTarget _target;
 	QString _code;
 	QNetworkReply *reply;
+	bool _silent;
 
 	QUrl getURL();
 };

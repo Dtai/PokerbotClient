@@ -112,7 +112,7 @@ RuleWidget::~RuleWidget()
 void RuleWidget::setPosition(int position)
 {
 	_position = position;
-	ui->ruleNumber->setText(QString("Regel %1:").arg(position+1));
+	ui->ruleNumber->setText(QString("Rule %1:").arg(position+1));
 
 }
 

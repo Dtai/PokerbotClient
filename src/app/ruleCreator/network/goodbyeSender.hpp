@@ -23,66 +23,36 @@
 * OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************/
 
-#include "reader.hpp"
-#include "qjson/src/json_parser.hh"
+#ifndef GOODBYESENDER_HPP
+#define GOODBYESENDER_HPP
 
-#include <QFile>
+#include <QObject>
+#include <QNetworkReply>
+#include <QVector>
+#include "../connectiontarget.hpp"
 
-Reader::Reader(QObject *parent)
-	:QObject(parent)
-{
-	read = false;
-	errored = false;
-}
+class GoodbyeSender : public QObject {
+	Q_OBJECT
 
-void Reader::readJSON(){
-	read = true;
-	QFile file("config.json");
-	if (!file.open (QIODevice::ReadOnly)){
-		emit noConfigFile();
-		return;
-	}
+public:
+	explicit GoodbyeSender(const ConnectionTarget & target, QObject * parent = 0);
+	void send();
 
-	json = file.readAll();
-	file.close();
-}
+signals:
+	void finished();
+	void errored();
 
-QUrl Reader::getURL(){
-	return QUrl(value("URL"));
-}
+private slots:
+	void finish();
+	void showNoConfigFile();
+	void showWrongConfigFile();
 
-QUrl Reader::getHelloURL(){
-	return QUrl(value("URL") + "/" + value("hello"));
-}
+private:
+	ConnectionTarget _target;
+	QString _code;
+	QNetworkReply *reply;
 
-QUrl Reader::getJoinTableURL(){
-	return QUrl(value("URL")+ "/" + value("joinTable"));
-}
+	QUrl getURL();
+};
 
-QUrl Reader::getWatchTableURL(){
-	return QUrl(value("URL") + "/" + value("watchTable"));
-}
-
-QUrl Reader::getGoodbyeURL(){
-	return QUrl(value("URL") + "/" + value("goodbye"));
-}
-
-QString Reader::value(QString key){
-	if(!read){
-		readJSON();
-	}
-
-	QJson::Parser parser;
-	bool ok;
-	QVariantMap result = parser.parse(json, &ok).toMap();
-	if(!ok){
-		if(!errored){
-			errored = true;
-			emit wrongConfigFile();
-		}
-	}
-
-	QVariant postfix = result.value(key);
-
-	return postfix.toString();
-}
+#endif // GOODBYESENDER_HPP

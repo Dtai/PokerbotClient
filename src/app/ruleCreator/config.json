@@ -2,5 +2,6 @@
 	"URL":"http://poker.jonas.pagekite.me",
 	"joinTable":"joinTable.php",
 	"hello":"hello.php",
-	"watchTable":"watchTable.php"
+	"watchTable":"watchTable.php",
+	"goodbye":"goodbye.php"
 }

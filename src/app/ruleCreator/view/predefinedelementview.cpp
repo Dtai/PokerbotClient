@@ -81,7 +81,7 @@ void PredefinedElementView::mousePressEvent(QMouseEvent * event)
 		QAction * delAction = m->addAction("Delete");
 
 		if(m->exec(event->globalPos()) == delAction)
-			if(QMessageBox::warning(0, tr("Verwijderen van element"), tr("Bent u zeker dat u dit element uit de lijst wilt verwijderen?"), QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
+			if(QMessageBox::warning(0, tr("Delete element"), tr("Are you sure you want to delete the element from the list?"), QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
 					model()->removeRow(i.row());
 
 		return;

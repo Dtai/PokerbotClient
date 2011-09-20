@@ -36,8 +36,8 @@ namespace poker
 		{
 			ui->setupUi(this);
 
-			ui->waardeBox->addItem(tr("waar"), QVariant(true));
-			ui->waardeBox->addItem(tr("onwaar"), QVariant(false));
+			ui->waardeBox->addItem(tr("true"), QVariant(true));
+			ui->waardeBox->addItem(tr("false"), QVariant(false));
 
 			connect(ui->waardeBox, SIGNAL(currentIndexChanged(int)), this, SLOT(waardeBoxChanged(int)));
 

@@ -38,7 +38,7 @@
    <item row="0" column="1">
     <widget class="QLabel" name="ruleNumber">
      <property name="text">
-      <string>Regel -1:</string>
+      <string>Rule -1:</string>
      </property>
     </widget>
    </item>
@@ -63,7 +63,7 @@
      <item>
       <widget class="QPushButton" name="arrowUp">
        <property name="toolTip">
-        <string>Plaats deze regel hoger</string>
+        <string>Move this rule higher</string>
        </property>
        <property name="text">
         <string/>
@@ -92,7 +92,7 @@
      <item>
       <widget class="QPushButton" name="deleteRule">
        <property name="toolTip">
-        <string>Verwijder regel</string>
+        <string>Delete rule</string>
        </property>
        <property name="text">
         <string/>
@@ -121,7 +121,7 @@
      <item>
       <widget class="QPushButton" name="arrowDown">
        <property name="toolTip">
-        <string>Plaats deze regel lager</string>
+        <string>Move this rule lower</string>
        </property>
        <property name="text">
         <string/>

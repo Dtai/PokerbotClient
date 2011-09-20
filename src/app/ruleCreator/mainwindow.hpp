@@ -29,6 +29,7 @@
 #include <QMainWindow>
 #include <pokerRuleSystem/simpledb.hpp>
 #include "model/predefinedelementmodel.hpp"
+#include "helpWindow.hpp"
 
 class SettingsManager;
 
@@ -71,6 +72,7 @@ private slots:
 	void correctExportCode();
 	void incorrectExportCode();
 	void changeCurrentRuleList(int index);
+	void finishGoodBye();
 
 protected:
 	void changeEvent(QEvent * e);
@@ -83,6 +85,7 @@ private:
 	void setCurrentRuleList(QString name);
 	void disconnectFromDocController();
 	void connectToDocController();
+	void sendGoodbye();
 
 	QList<ruleSystem::Element*> createAllFeatures();
 	QList<ruleSystem::Element*> createAllFunctions();
@@ -95,6 +98,7 @@ private:
 	SettingsManager * _settings;
 	PredefinedElementModel _predefModel;
 	QVector<QWidget*> *tabs;
+	HelpWindow *hw;
 
 	QMap<QString, RuleListWidget*> *_ruleLists;
 	QMap<QString, DocumentController*> *_docControllers;

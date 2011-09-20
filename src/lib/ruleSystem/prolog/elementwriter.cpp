@@ -48,7 +48,7 @@ QString BooleanConstantWriter::writeCode(Element * element, PrologWriter::CodeIn
 {
     Constant * c = element_cast<Constant>(element);
     if(!c || c->type() != type::booleanType())
-        throw Exception(Exception::tr("The supplied element is not an boolean constant"), "BooleanConstantWriter::writeCode");
+		throw Exception(Exception::tr("The supplied element is not a boolean constant"), "BooleanConstantWriter::writeCode");
 
     if(c->value().toBool())
         return "true";

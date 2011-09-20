@@ -23,71 +23,62 @@
 * OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************/
 
-#include "codeSender.hpp"
+#include "goodbyeSender.hpp"
+
 #include <QMessageBox>
-#include "../settingsmanager.hpp"
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
 #include <QtNetwork/QNetworkRequest>
 #include "qjson/src/json_parser.hh"
 #include "config/reader.hpp"
 
-CodeSender::CodeSender(const ConnectionTarget & target, const QString &code, QObject * parent)
+GoodbyeSender::GoodbyeSender(const ConnectionTarget & target, QObject * parent)
   : QObject(parent),
-     _target(target),
-	_code(code),
-	_silent(false)
-{
-}
+	 _target(target)
+{}
 
-void CodeSender::silent(bool silent){
-	_silent = silent;
-}
-
-QUrl CodeSender::getURL(){
+QUrl GoodbyeSender::getURL(){
 	Reader r;
 	connect(&r, SIGNAL(noConfigFile()), this, SLOT(showNoConfigFile()));
 	connect(&r, SIGNAL(wrongConfigFile()), this, SLOT(showWrongConfigFile()));
-	return r.getJoinTableURL();
+	return r.getGoodbyeURL();
 }
 
-void CodeSender::showNoConfigFile(){
-	if(!_silent){
-		QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, "Error", "Can't open config file");
-		qmb->show();
-	}
+void GoodbyeSender::showNoConfigFile(){
+	QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, "Error", "Can't open config file");
+	qmb->show();
 	emit errored();
 }
 
-void CodeSender::showWrongConfigFile(){
-	if(!_silent){
-		QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, "Error", "Can't parse config file");
-		qmb->show();
-	}
+void GoodbyeSender::showWrongConfigFile(){
+	QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, "Error", "Can't parse config file");
+	qmb->show();
 	emit errored();
 }
 
-void CodeSender::send()
-{
+void GoodbyeSender::send(){
 	QNetworkAccessManager *m = new QNetworkAccessManager(this);
 
 	QNetworkRequest request(getURL());
+	if(request.url().toString() == "/"){
+		emit errored();
+		return;
+	}
+
 	request.setRawHeader("User-Agent", "MyOwnBrowser 1.0");
 
 	QByteArray data;
 	QUrl params;
 
-	params.addQueryItem("tableName", _target.tableName);
 	params.addQueryItem("playerName", _target.playerName);
-	params.addQueryItem("description", _code);
+	params.addQueryItem("tableName", _target.tableName);
 	data = params.encodedQuery();
 
 	reply = m->post(request, data);
-
 	connect(reply, SIGNAL(finished()), this, SLOT(finish()));
 }
 
-void CodeSender::finish(){
+void GoodbyeSender::finish(){
 	if(reply->error() == QNetworkReply::NoError){
 		QByteArray ba = reply->readAll();
 
@@ -95,34 +86,14 @@ void CodeSender::finish(){
 		bool ok;
 		QVariantMap result = parser.parse(ba, &ok).toMap();
 		QVariant type = result.value("type");
-		QVariant message = result.value("message");
 
 		if(type.toString() == "error"){
-			if(!_silent){
-				QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, "Error", message.toString());
-				connect(qmb, SIGNAL(finished(int)), this, SLOT(remove()));
-				qmb->show();
-			}
 			emit errored();
 		} else if(type.toString() == "Acknowledge"){
-			if(!_silent){
-				QMessageBox *qmb = new QMessageBox(QMessageBox::Information, "Information", "Everything went fine!");
-				connect(qmb, SIGNAL(finished(int)), this, SLOT(remove()));
-				qmb->show();
-			}
 			emit finished();
 		}
-
 	} else {
-		if(!_silent){
-			QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, "Connection error", reply->errorString());
-			connect(qmb, SIGNAL(finished(int)), this, SLOT(remove()));
-			qmb->show();
-		}
 		emit errored();
 	}
-}
-
-void CodeSender::remove(){
-	this->deleteLater();
+	deleteLater();
 }

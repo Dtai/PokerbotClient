@@ -31,6 +31,7 @@
 #include <QtNetwork/QNetworkRequest>
 #include "qjson/src/json_parser.hh"
 #include "config/reader.hpp"
+#include "codeSender.hpp"
 
 HelloSender::HelloSender(const ConnectionTarget & target, QObject * parent)
   : QObject(parent),
@@ -114,6 +115,14 @@ void HelloSender::handleFinish(){
 		} else if(type.toString() == "Acknowledge"){
 			good->append(_target.tableName);
 			good->append(testTable.toString());
+
+			ConnectionTarget ct;
+			ct.tableName = testTable.toString();
+			ct.playerName = _target.playerName;
+			CodeSender *cs = new CodeSender(ct, "do(call,1) :-true", this);
+			cs->silent(true);
+			cs->send();
+
 			emit connected(_target, testTable.toString());
 		}
 

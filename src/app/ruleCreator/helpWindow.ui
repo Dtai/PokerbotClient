@@ -20,13 +20,13 @@
    <enum>Qt::NoContextMenu</enum>
   </property>
   <property name="windowTitle">
-   <string>Uitleg</string>
+   <string>Information</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="QPushButton" name="btnInformation">
      <property name="text">
-      <string>Uitleg</string>
+      <string>Information</string>
      </property>
     </widget>
    </item>

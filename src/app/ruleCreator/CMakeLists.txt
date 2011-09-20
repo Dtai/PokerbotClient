@@ -40,6 +40,7 @@ set (SOURCES
 
 	network/helloSender.cpp
 	network/codeSender.cpp
+	network/goodbyeSender.cpp
 
 	config/reader.cpp
 )
@@ -66,6 +67,7 @@ set (HEADERS
 
 	network/helloSender.hpp
 	network/codeSender.hpp
+	network/goodbyeSender.hpp
 
 	config/reader.hpp
 )
@@ -87,6 +89,7 @@ set (Q_MOC_HPP
 	welcomeWindow.hpp
 	network/helloSender.hpp
 	network/codeSender.hpp
+	network/goodbyeSender.hpp
 	config/reader.hpp
 )
 

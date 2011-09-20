@@ -23,7 +23,7 @@ void CardEvaluatorCreator::initDevNameSuits(){
 
 void CardEvaluatorCreator::initSuits(){
 	suits = new QStringList();
-	suits->append(tr("harten"));
+	suits->append(tr("hearts"));
 	suits->append(tr("spades"));
 	suits->append(tr("clubs"));
 	suits->append(tr("diamonds"));

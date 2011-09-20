@@ -34,7 +34,7 @@
        <item>
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>waarde:</string>
+          <string>value:</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -82,9 +82,6 @@
     </spacer>
    </item>
   </layout>
-  <zorder>buttonBox</zorder>
-  <zorder>label</zorder>
-  <zorder>waardeBox</zorder>
   <zorder>horizontalSpacer</zorder>
   <zorder>horizontalSpacer_2</zorder>
   <zorder></zorder>

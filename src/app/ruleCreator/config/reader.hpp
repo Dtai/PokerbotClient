@@ -38,7 +38,8 @@ public:
 	QUrl getURL();
 	QUrl getJoinTableURL();
 	QUrl getHelloURL();
-	QUrl getWatchTable();
+	QUrl getWatchTableURL();
+	QUrl getGoodbyeURL();
 
 signals:
 	void noConfigFile();

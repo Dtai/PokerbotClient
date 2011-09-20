@@ -48,6 +48,7 @@
 #include "model/predefinedelementmodel.hpp"
 #include "view/elementview.hpp"
 #include "network/codeSender.hpp"
+#include "network/goodbyeSender.hpp"
 
 #include <QDockWidget>
 #include <QTreeView>
@@ -66,7 +67,6 @@
 #include "documentcontroller.hpp"
 #include "settingsmanager.hpp"
 #include "settingsdialog.hpp"
-#include "helpWindow.hpp"
 #include "welcomeWindow.hpp"
 
 #include "config/reader.hpp"
@@ -139,7 +139,7 @@ void MainWindow::showWelcomeWindow(){
 }
 
 void MainWindow::showInformation(){
-    HelpWindow *hw = new HelpWindow(0);
+	hw = new HelpWindow();
     hw->show();
 }
 
@@ -172,12 +172,12 @@ void MainWindow::connectToDocController(){
 
 void MainWindow::addTab(QString tabName, QString tableName){
 	Reader r;
-	QUrl url = r.getWatchTable();
+	QUrl url = r.getWatchTableURL();
 	url.addQueryItem("name", tableName);
 
 	QWebView *tab = new QWebView(ui->tabWidget);
 	tab->setUrl(url);
-	tab->setObjectName(tableName);
+	tab->setObjectName(tabName);
 
 	ui->tabWidget->addTab(tab, tabName);
 	tabs->append(tab);
@@ -309,7 +309,7 @@ void MainWindow::exportCode(QAction * action)
 
 	int index = 0;
 	for(int i=0; i<tabs->size(); ++i){
-		if(tabs->at(i)->objectName() == d.tableName){
+		if(tabs->at(i)->objectName() == d.playerName + "@" + d.tableName){
 			index = i;
 		}
 	}
@@ -347,8 +347,21 @@ void MainWindow::resizeEvent(QResizeEvent *event){
 	event->accept();
 }
 
-void MainWindow::closeEvent(QCloseEvent * event)
-{
+void MainWindow::sendGoodbye(){
+	for(int i=0; i<_settings->connections().count(); ++i){
+		ConnectionTarget ct;
+		ct.playerName = _settings->connections().at(i).playerName;
+		ct.tableName = _settings->connections().at(i).tableName;
+
+		GoodbyeSender *gs = new GoodbyeSender(ct);
+		gs->send();
+	}
+}
+
+void MainWindow::closeEvent(QCloseEvent * event) {
+	ui->statusbar->showMessage("Goodbye");
+	sendGoodbye();
+
 	// save the file
 //	Ask for save for every tab
 //	for(int i=0; i< ui->tabWidgetRules->count(); ++i){
@@ -360,6 +373,10 @@ void MainWindow::closeEvent(QCloseEvent * event)
 	// save the predefined elements
 	_settings->setPredefinedElements(_predefModel.elements());
 	_settings->writeSettings();
+
+	if(hw !=0 && hw->isVisible()){
+		hw->close();
+	}
 
 	event->accept();
 }
@@ -375,8 +392,8 @@ void MainWindow::onDeleteRule(int rule)
 		return;
 	}
 
-	QString title = QString(tr("Verwijder regel %1")).arg(rule+1);
-	QString text = QString(tr("Ben je zeker dat je regel %1 wil verwijderen?")).arg(rule+1);
+	QString title = QString(tr("Delete rule %1")).arg(rule+1);
+	QString text = QString(tr("Are you sure you want to delete rule %1?")).arg(rule+1);
 
 	if(QMessageBox::question(this, title, text, QMessageBox::Yes | QMessageBox::Cancel) == QMessageBox::Cancel)
 		return;

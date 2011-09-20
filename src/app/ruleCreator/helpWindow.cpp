@@ -3,7 +3,6 @@
 
 #include <QMenu>
 #include <QFileInfo>
-#include <iostream>
 
 HelpWindow::HelpWindow(QWidget *parent)
 	: QWidget(parent),

@@ -83,7 +83,7 @@
                   <enum>Qt::LeftToRight</enum>
                  </property>
                  <property name="text">
-                  <string>Kleur:</string>
+                  <string>Suit:</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>
@@ -113,7 +113,7 @@
              <item>
               <widget class="QLabel" name="label">
                <property name="text">
-                <string>Selecteer een kleur uit de lijst of typ een variabele in. Een variabele begint altijd met een $ en bestaat voor de rest uit kleine letters.</string>
+                <string>Select a suit from the list or enter a variable. A variable always starts with a $ and the remaining characters are lower case.</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignJustify|Qt::AlignVCenter</set>
@@ -155,7 +155,7 @@
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>Waarde</string>
+                <string>Value</string>
                </property>
               </widget>
              </item>
@@ -206,7 +206,7 @@
          <item>
           <widget class="QLabel" name="label_5">
            <property name="text">
-            <string>Selecteer een (on)gelijkheid uit de lijst en de gewenste waarde van de kaart. Als de waarde een variabele is, kan er gekozen worden voor een postfix. Een variabele begint altijd met een $ en bestaat voor de rest uit kleine letters.</string>
+            <string>Select an (in)equality from the list and enter the desired rank of the card. If the rank is a variable you can choose a postfix. A variable always starts with a $ and the remaining characters are lower case.</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignJustify|Qt::AlignVCenter</set>
