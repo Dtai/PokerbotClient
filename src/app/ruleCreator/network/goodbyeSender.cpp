@@ -25,7 +25,6 @@
 
 #include "goodbyeSender.hpp"
 
-#include <QMessageBox>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
 #include <QtNetwork/QNetworkRequest>
@@ -39,21 +38,7 @@ GoodbyeSender::GoodbyeSender(const ConnectionTarget & target, QObject * parent)
 
 QUrl GoodbyeSender::getURL(){
 	Reader r;
-	connect(&r, SIGNAL(noConfigFile()), this, SLOT(showNoConfigFile()));
-	connect(&r, SIGNAL(wrongConfigFile()), this, SLOT(showWrongConfigFile()));
 	return r.getGoodbyeURL();
-}
-
-void GoodbyeSender::showNoConfigFile(){
-	QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, "Error", "Can't open config file");
-	qmb->show();
-	emit errored();
-}
-
-void GoodbyeSender::showWrongConfigFile(){
-	QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, "Error", "Can't parse config file");
-	qmb->show();
-	emit errored();
 }
 
 void GoodbyeSender::send(){

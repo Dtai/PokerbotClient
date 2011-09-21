@@ -43,9 +43,7 @@ signals:
 	void errored();
 
 private slots:
-	void finish();
-	void showNoConfigFile();
-	void showWrongConfigFile();
+	void finish();;
 
 private:
 	ConnectionTarget _target;

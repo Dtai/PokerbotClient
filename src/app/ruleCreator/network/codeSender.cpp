@@ -53,7 +53,7 @@ QUrl CodeSender::getURL(){
 
 void CodeSender::showNoConfigFile(){
 	if(!_silent){
-		QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, "Error", "Can't open config file");
+		QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, tr("Error"), tr("Can't open config file"));
 		qmb->show();
 	}
 	emit errored();
@@ -61,7 +61,7 @@ void CodeSender::showNoConfigFile(){
 
 void CodeSender::showWrongConfigFile(){
 	if(!_silent){
-		QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, "Error", "Can't parse config file");
+		QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, tr("Error"), tr("Can't parse config file"));
 		qmb->show();
 	}
 	emit errored();
@@ -72,7 +72,7 @@ void CodeSender::send()
 	QNetworkAccessManager *m = new QNetworkAccessManager(this);
 
 	QNetworkRequest request(getURL());
-	request.setRawHeader("User-Agent", "MyOwnBrowser 1.0");
+	request.setRawHeader("User-Agent", "RuleCreator");
 
 	QByteArray data;
 	QUrl params;
@@ -99,14 +99,14 @@ void CodeSender::finish(){
 
 		if(type.toString() == "error"){
 			if(!_silent){
-				QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, "Error", message.toString());
+				QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, tr("Error"), message.toString());
 				connect(qmb, SIGNAL(finished(int)), this, SLOT(remove()));
 				qmb->show();
 			}
 			emit errored();
 		} else if(type.toString() == "Acknowledge"){
 			if(!_silent){
-				QMessageBox *qmb = new QMessageBox(QMessageBox::Information, "Information", "Everything went fine!");
+				QMessageBox *qmb = new QMessageBox(QMessageBox::Information, tr("Information"), tr("Everything went fine!"));
 				connect(qmb, SIGNAL(finished(int)), this, SLOT(remove()));
 				qmb->show();
 			}
@@ -115,7 +115,7 @@ void CodeSender::finish(){
 
 	} else {
 		if(!_silent){
-			QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, "Connection error", reply->errorString());
+			QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, tr("Connection error"), reply->errorString());
 			connect(qmb, SIGNAL(finished(int)), this, SLOT(remove()));
 			qmb->show();
 		}

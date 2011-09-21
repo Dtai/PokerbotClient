@@ -68,6 +68,11 @@
         <source>cancel</source>
         <translation>annuleren</translation>
     </message>
+    <message>
+        <location filename="../../../../../src/lib/pokerRuleSystem/view/cardEvaluator.cpp" line="511"/>
+        <source>Not all variables have the correct format.</source>
+        <translation>Niet alle variabelen hebben het correcte formaat.</translation>
+    </message>
 </context>
 <context>
     <name>CardEvaluatorCreator</name>
@@ -300,8 +305,8 @@
     <name>poker::view::EditConstantDialog</name>
     <message>
         <location filename="../ui_editconstantdialog.h" line="96"/>
-        <source>Dialog</source>
-        <translation>Dialoog</translation>
+        <source>Constant</source>
+        <translation>Constante</translation>
     </message>
     <message>
         <location filename="../ui_editconstantdialog.h" line="97"/>

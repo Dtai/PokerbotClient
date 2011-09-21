@@ -20,7 +20,7 @@ WelcomeWindow::WelcomeWindow(SettingsManager *manager, QWidget *parent1, QWidget
 	connect(ui->btnHelp, SIGNAL(clicked()), this, SLOT(showHelp()));
 	this->parent1 = parent1;
 
-	ui->statusbar->showMessage("Welcome");
+	ui->statusbar->showMessage(tr("Welcome"));
 
 	while(_settingsManager->connections().size() != 0)
 		_settingsManager->removeConnection(0);
@@ -57,7 +57,7 @@ void WelcomeWindow::showHelp(){
 
 void WelcomeWindow::onOKClicked(){
 	OKClicked = true;
-	ui->statusbar->showMessage("Sending data");
+	ui->statusbar->showMessage(tr("Sending data"));
 	ConnectionTarget ct;
 	ct.playerName = ui->lePlayerName->text();
 	ct.tableName = ui->leTableName->text();
@@ -71,7 +71,7 @@ void WelcomeWindow::onOKClicked(){
 }
 
 void WelcomeWindow::correctData(ConnectionTarget target, QString testTable){
-	ui->statusbar->showMessage("Successfully connected");
+	ui->statusbar->showMessage(tr("Successfully connected"));
 	ConnectionTarget testTarget;
 	testTarget.playerName = target.playerName;
 	testTarget.tableName = testTable;
@@ -91,7 +91,7 @@ void WelcomeWindow::correctData(ConnectionTarget target, QString testTable){
 void WelcomeWindow::incorrectData(){
 	connect(this, SIGNAL(sendTableName(QString, QString)), parent1, SLOT(addRuleTab(QString)));
 	emit sendTableName("Test", "Test");
-	ui->statusbar->showMessage("An error occured");
+	ui->statusbar->showMessage(tr("An error occured"));
 	close();
 }
 

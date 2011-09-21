@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>RuleCreator</string>
   </property>
   <property name="dockNestingEnabled">
    <bool>true</bool>
@@ -42,7 +42,7 @@
      <x>0</x>
      <y>0</y>
      <width>829</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -87,7 +87,7 @@
    <property name="minimumSize">
     <size>
      <width>112</width>
-     <height>111</height>
+     <height>121</height>
     </size>
    </property>
    <property name="features">
@@ -117,7 +117,7 @@
    <property name="minimumSize">
     <size>
      <width>112</width>
-     <height>111</height>
+     <height>121</height>
     </size>
    </property>
    <property name="features">
@@ -147,7 +147,7 @@
    <property name="minimumSize">
     <size>
      <width>274</width>
-     <height>111</height>
+     <height>121</height>
     </size>
    </property>
    <property name="features">
@@ -177,7 +177,7 @@
    <property name="minimumSize">
     <size>
      <width>112</width>
-     <height>111</height>
+     <height>121</height>
     </size>
    </property>
    <property name="features">
@@ -206,8 +206,8 @@
   <widget class="QDockWidget" name="dwPredef">
    <property name="minimumSize">
     <size>
-     <width>93</width>
-     <height>113</height>
+     <width>96</width>
+     <height>121</height>
     </size>
    </property>
    <property name="features">

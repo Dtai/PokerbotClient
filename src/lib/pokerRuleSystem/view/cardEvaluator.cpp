@@ -508,7 +508,7 @@ void CardEvaluator::save(){
 	} else {
 		QMessageBox *message = new QMessageBox();
 		message->setIcon(QMessageBox::Critical);
-		message->setText("Not all variables have the correct format.");
+		message->setText(tr("Not all variables have the correct format."));
 		message->show();
 	}
 }

@@ -94,7 +94,8 @@ MainWindow::MainWindow(QWidget *parent)
 		_currentRuleList(0),
 		_currentDocController(0),
 		_settings(SettingsManager::Instance()),
-		_predefModel()
+		_predefModel(),
+		hw(0)
 {
 	poker::initialise();
 
@@ -103,7 +104,7 @@ MainWindow::MainWindow(QWidget *parent)
 	_ruleLists = new QMap<QString, RuleListWidget*>();
 	_docControllers = new QMap<QString, DocumentController*>();
 
-	ui->statusbar->showMessage("Welcome");
+	ui->statusbar->showMessage(tr("Welcome"));
 
 	QDesktopWidget w;
 	int width = w.availableGeometry().width();
@@ -249,7 +250,7 @@ void MainWindow::showCode()
 
 	QString code = writePrologCode(validActions);
 	if(!code.isEmpty()){
-		QMessageBox::information(0, "Prolog code", code);
+		QMessageBox::information(0, tr("Prolog code"), code);
 	}
 }
 
@@ -278,7 +279,7 @@ void MainWindow::updateExportMenu()
 
 void MainWindow::exportCode(QAction * action)
 {
-	ui->statusbar->showMessage("Exporting code");
+	ui->statusbar->showMessage(tr("Exporting code"));
 	ConnectionTarget d = action->data().value<ConnectionTarget>();
 	QList<Action*> validActions = _docControllers->value(d.format())->checkAllRules();
 
@@ -291,14 +292,14 @@ void MainWindow::exportCode(QAction * action)
 	}
 
 	if(validActions.size() == 0){
-		ui->statusbar->showMessage("Nothing to export");
+		ui->statusbar->showMessage(tr("Nothing to export"));
 		return;
 	}
 
 	QString code = writePrologCode(validActions);
 
 	if(code.isEmpty()){
-		ui->statusbar->showMessage("Nothing to export");
+		ui->statusbar->showMessage(tr("Nothing to export"));
 		return;
 	}
 
@@ -318,11 +319,11 @@ void MainWindow::exportCode(QAction * action)
 }
 
 void MainWindow::correctExportCode(){
-	ui->statusbar->showMessage("Code correct exported");
+	ui->statusbar->showMessage(tr("Code correct exported"));
 }
 
 void MainWindow::incorrectExportCode(){
-	ui->statusbar->showMessage("Code incorrect exported");
+	ui->statusbar->showMessage(tr("Code incorrect exported"));
 }
 
 void MainWindow::numberOfRulesChanged(int numberOfRealRules)
@@ -359,7 +360,7 @@ void MainWindow::sendGoodbye(){
 }
 
 void MainWindow::closeEvent(QCloseEvent * event) {
-	ui->statusbar->showMessage("Goodbye");
+	ui->statusbar->showMessage(tr("Goodbye"));
 	sendGoodbye();
 
 	// save the file

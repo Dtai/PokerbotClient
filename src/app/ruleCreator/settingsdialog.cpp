@@ -92,7 +92,7 @@ void SettingsDialog::onNewConnection()
 	for(int i=0; i<ui->connectionsWidget->count(); ++i){
 		ConnectionTarget t = ui->connectionsWidget->item(i)->data(Qt::UserRole).value<ConnectionTarget>();
 		if(t.playerName == ui->playerName->text() && t.tableName == ui->tableName->text()){
-			ui->statusbar->showMessage("This connection already exists.");
+			ui->statusbar->showMessage(tr("This connection already exists."));
 			return;
 		}
 	}
@@ -138,7 +138,7 @@ void SettingsDialog::onConnectionChanged()
 		}
 	}
 	if(counter > 0){
-		ui->statusbar->showMessage("This connection already exists.");
+		ui->statusbar->showMessage(tr("This connection already exists."));
 	} else {
 		ui->statusbar->clearMessage();
 	}
@@ -161,7 +161,7 @@ void SettingsDialog::onCancelClicked()
 
 void SettingsDialog::onOKClicked()
 {
-	ui->statusbar->showMessage("Sending data");
+	ui->statusbar->showMessage(tr("Sending data"));
 	hellos = new QVector<HelloSender*>();
 
 	int counter = 0;
@@ -173,7 +173,7 @@ void SettingsDialog::onOKClicked()
 	}
 
 	if(counter == 0){
-		ui->statusbar->showMessage("Nothing to send");
+		ui->statusbar->showMessage(tr("Nothing to send"));
 	} else {
 		HelloSender::setCounter(counter);
 		HelloSender::initConnected();

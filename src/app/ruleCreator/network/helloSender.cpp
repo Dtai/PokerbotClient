@@ -56,13 +56,13 @@ QUrl HelloSender::getURL(){
 }
 
 void HelloSender::showNoConfigFile(){
-	QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, "Error", "Can't open config file");
+	QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, tr("Error"), tr("Can't open config file"));
 	qmb->show();
 	emit errored();
 }
 
 void HelloSender::showWrongConfigFile(){
-	QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, "Error", "Can't parse config file");
+	QMessageBox *qmb = new QMessageBox(QMessageBox::Critical, tr("Error"), tr("Can't parse config file"));
 	qmb->show();
 	emit errored();
 }
@@ -76,7 +76,7 @@ void HelloSender::send(){
 		return;
 	}
 
-	request.setRawHeader("User-Agent", "MyOwnBrowser 1.0");
+	request.setRawHeader("User-Agent", "RuleCreator");
 
 	QByteArray data;
 	QUrl params;
@@ -136,7 +136,7 @@ void HelloSender::handleFinish(){
 void HelloSender::showDialog(){
 	QString message = "";
 	if(good->size() > 0){
-		message.append("Connected to: ");
+		message.append(tr("Connected to: "));
 		for(int i=0; i<good->size(); ++i){
 			message.append(good->at(i));
 			if(i != good->size()-1){
@@ -147,7 +147,7 @@ void HelloSender::showDialog(){
 	}
 
 	if(bad->size() > 0){
-		message.append("Failed to connect to: ");
+		message.append(tr("Failed to connect to: "));
 		for(int i=0; i<bad->size(); ++i){
 			message.append(bad->at(i));
 			if(i != bad->size()-1){
@@ -158,7 +158,7 @@ void HelloSender::showDialog(){
 	}
 
 	if(error->size() > 0){
-		message.append("Errors: ");
+		message.append(tr("Errors: "));
 		for(int i=0; i<error->size(); ++i){
 			message.append(error->at(i));
 			if(i != error->size()-1){
@@ -167,7 +167,7 @@ void HelloSender::showDialog(){
 		}
 	}
 
-	QMessageBox *qmb = new QMessageBox(QMessageBox::Information, "Information", message);
+	QMessageBox *qmb = new QMessageBox(QMessageBox::Information, tr("Information"), message);
 	qmb->setModal(false);
 	qmb->show();
 }
