@@ -29,6 +29,7 @@
 
 #include <QObject>
 #include <ruleSystem/util/macro.hpp>
+#include <QCloseEvent>
 
 namespace ruleSystem
 {
@@ -53,7 +54,7 @@ public slots:
 	void saveAs();
 	void open();
 	void newFile();
-	void askForSave();
+	bool askForSave();
 
 signals:
 	void error(const QString & title, const QString & errorMessage);

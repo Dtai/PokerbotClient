@@ -369,17 +369,20 @@ void MainWindow::closeEvent(QCloseEvent * event) {
 //		ui->tabWidgetRules->setCurrentIndex(i);
 //		_docControllers->value(ui->tabWidgetRules->tabText(i))->askForSave();
 //	}
-	_currentDocController->askForSave();
 
-	// save the predefined elements
-	_settings->setPredefinedElements(_predefModel.elements());
-	_settings->writeSettings();
+	if(_currentDocController->askForSave()){
+		// save the predefined elements
+		_settings->setPredefinedElements(_predefModel.elements());
+		_settings->writeSettings();
 
-	if(hw !=0 && hw->isVisible()){
-		hw->close();
+		if(hw !=0 && hw->isVisible()){
+			hw->close();
+		}
+
+		event->accept();
+	} else {
+		event->ignore();
 	}
-
-	event->accept();
 }
 
 void MainWindow::onDeleteRule(int rule)

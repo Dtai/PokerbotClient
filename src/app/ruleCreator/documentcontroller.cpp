@@ -71,13 +71,17 @@ void DocumentController::saveAs()
 	writeToFile(filename());
 }
 
-void DocumentController::askForSave()
-{
+bool DocumentController::askForSave(){
 	// if document is changed, ask for saving first
 	if(isChanged())
 	{
-		if(QMessageBox::warning(0, tr("Unsaved data"), tr("The current document has unsaved data. Save first?"), QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
+		int btn = QMessageBox::warning(0, tr("Unsaved data"), tr("The current document has unsaved data. Save first?"), QMessageBox::Yes, QMessageBox::No, QMessageBox::Cancel);
+		if(btn == QMessageBox::Yes){
 			save();
+			return true;
+		} else if(btn == QMessageBox::Cancel) {
+			return false;
+		}
 	}
 }
 
