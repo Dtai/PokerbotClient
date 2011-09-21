@@ -38,6 +38,9 @@
 				<File Id="json" Name="libqjson.dll" DiskId="1" Source="libqjson.dll" />
 				<File Id="doc_qch" Name="doc.qch" DiskId="1" Source="doc.qch" />
 				<File Id="doc_qhc" Name="doc.qhc" DiskId="1" Source="doc.qhc" />
+				<File Id="pokerRuleSystem_nl_BE.qm" Name="pokerRuleSystem_nl_BE.qm" DiskId="1" Source="pokerRuleSystem_nl_BE.qm" />
+				<File Id="ruleCreator_nl_BE.qm" Name="ruleCreator_nl_BE.qm" DiskId="1" Source="ruleCreator_nl_BE.qm" />
+				<File Id="ruleSystem_nl_BE.qm" Name="ruleSystem_nl_BE.qm" DiskId="1" Source="ruleSystem_nl_BE.qm" />
 			</Component>
 		</DirectoryRef>
 		

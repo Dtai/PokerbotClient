@@ -73,16 +73,17 @@ void DocumentController::saveAs()
 
 bool DocumentController::askForSave(){
 	// if document is changed, ask for saving first
-	if(isChanged())
-	{
+	if(isChanged()) {
 		int btn = QMessageBox::warning(0, tr("Unsaved data"), tr("The current document has unsaved data. Save first?"), QMessageBox::Yes, QMessageBox::No, QMessageBox::Cancel);
 		if(btn == QMessageBox::Yes){
 			save();
 			return true;
-		} else if(btn == QMessageBox::Cancel) {
+		} else if(btn == QMessageBox::Cancel){
 			return false;
 		}
+		return true;
 	}
+	return true;
 }
 
 void DocumentController::open()
