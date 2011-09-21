@@ -26,11 +26,8 @@ HelpWindow::HelpWindow(QWidget *parent)
 	actions->append(menu->addAction("Wat is ruleCreator"));
 	actions->last()->setObjectName("ruleCreator");
 
-	actions->append(menu->addAction("Wat zijn de features"));
-	actions->last()->setObjectName("features");
-
-	actions->append(menu->addAction("Wat zijn de functies"));
-	actions->last()->setObjectName("functions");
+	actions->append(menu->addAction("Wat zijn de bouwblokken"));
+	actions->last()->setObjectName("blocks");
 
 	ui->btnInformation->setMenu(menu);
 

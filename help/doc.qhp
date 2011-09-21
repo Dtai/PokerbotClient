@@ -13,8 +13,7 @@
 				<section title="RuleCreator handleiding" ref="index2.html">
 					<section title="Wat is poker?" ref="poker.html"/>
 					<section title="Wat is ruleCreator" ref="ruleCreator.html"/>
-					<section title="Tutorial" ref="tutorial.html"/>
-					<section title="Features" ref="features.html"/>
+					<section title="Bouwblokken" ref="blocks.html"/>
 					<section title="Welkomsvenster" ref="welcomeWindow.html"/>
 				</section>
 			</toc>
@@ -22,8 +21,7 @@
 			<keyword name="poker" id="poker" ref="poker.html"/>
 			<keyword name="tutorial" id="tutorial" ref="tutorial.html"/>
 			<keyword name="RuleCreator" id="ruleCreator" ref="ruleCreator.html"/>
-			<keyword name="features" id="features" ref="features.html"/>
-			<keyword name="function" id="functions" ref="functions.html"/>
+			<keyword name="Bouwblokken" id="blocks" ref="blocks.html"/>
 			<keyword name="welcomeWindow" id="welcomeWindow" ref="welcomeWindow.html"/>
 		</keywords>
 		<files>
