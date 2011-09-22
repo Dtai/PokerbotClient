@@ -90,6 +90,7 @@ private:
 	QList<ruleSystem::Element*> createAllFunctions();
 	QList<ruleSystem::Element*> createAllConstants();
 	QList<ruleSystem::Element*> createAllActions();
+	QList<ruleSystem::Element*> createCard();
 
 private:
 	Ui::MainWindow *ui;

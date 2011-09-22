@@ -37,7 +37,6 @@ PredefinedRulesDescriptor::PredefinedRulesDescriptor(QWidget *parent) :
 
 		connect(ui->name, SIGNAL(textChanged(QString)), this, SLOT(updateButtonStates(QString)));
 		connect(ui->name, SIGNAL(textEdited(QString)), this, SLOT(nameChanged(QString)));
-		connect(ui->description, SIGNAL(textEdited(QString)), this, SLOT(descriptionChanged(QString)));
 
 		setElement(PredefinedElement());
 }
@@ -57,17 +56,11 @@ void PredefinedRulesDescriptor::nameChanged(const QString & str)
 	_element.name = str;
 }
 
-void PredefinedRulesDescriptor::descriptionChanged(const QString & str)
-{
-	_element.description = str;
-}
-
 void PredefinedRulesDescriptor::setElement(const PredefinedElement & element)
 {
 	_element = element;
 
 	ui->name->setText(element.name);
-	ui->description->setText(element.description);
 
 	updateButtonStates(element.name);
 }

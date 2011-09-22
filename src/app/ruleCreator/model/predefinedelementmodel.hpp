@@ -39,7 +39,6 @@ struct PredefinedElement
 	PredefinedElement() : predefinedElement(0) {}
 
 	QString name;
-	QString description;
 	ruleSystem::Element * predefinedElement;
 };
 

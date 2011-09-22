@@ -101,6 +101,10 @@ MainWindow::MainWindow(QWidget *parent)
 
 	ui->setupUi(this);
 	createDockWidgets();
+	ui->dwAction->setMaximumHeight(100);
+	ui->dwConstant->setMaximumHeight(100);
+	ui->dwPredef->setMaximumHeight(100);
+
 	_ruleLists = new QMap<QString, RuleListWidget*>();
 	_docControllers = new QMap<QString, DocumentController*>();
 
@@ -418,7 +422,38 @@ void MainWindow::createDockWidgets()
 	ui->vwFunction->setModel(new ElementModel(new FunctionDescriber, createAllFunctions(), this));
 	ui->vwAction->setModel(new ElementModel(new ActionDescriber, createAllActions(), this));
 
+	ui->vwCard->setModel(new ElementModel(new UniversalDescriber, createCard(), this));
+
 	ui->vwPredef->setModel(&_predefModel);
+}
+
+QList<Element*> MainWindow::createCard(){
+	QList<Element*> elements;
+
+	Feature *f1 = new Feature(type::cardListType(), HandCards::name());
+	f1->setDevName(HandCards::devName());
+	f1->setDescription(tr("What are my hand cards?"));
+	elements.append(f1);
+
+	Feature *f2 = new Feature(type::cardListType(), TableCards::name());
+	f2->setDevName(TableCards::devName());
+	f2->setDescription(tr("What cards are there on the table?"));
+	elements.append(f2);
+
+	Feature *f3 = new Feature(type::cardListType(), AllCards::name());
+	f3->setDevName(AllCards::devName());
+	f3->setDescription(tr("What cards do I have in my hand or are on the table?"));
+	elements.append(f3);
+
+	Function *f4 = new Function(CalculatorCreator<function::ContainsFunctor>::Create());
+	f4->setDescription(tr("This functions checks if the cardlist matches the cardequation"));
+	elements.append(f4);
+
+	Constant *c = new Constant(type::cardEquationType(), QVariant::fromValue<QList<Card> >(QList<Card>() << Card()));
+	c->setDescription(tr("A cardequation consisting out of one or more cards"));
+	elements.append(c);
+
+	return elements;
 }
 
 QList<Element*> MainWindow::createAllFeatures()

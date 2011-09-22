@@ -134,6 +134,29 @@ bool ElementModel::setData(const QModelIndex & /*index*/, const QVariant & /*val
 	return false;
 }
 
+QString UniversalDescriber::headers(int column) const {
+	switch(column) {
+		case 0:
+			return ElementModel::tr("name");
+		case 1:
+			return ElementModel::tr("type");
+		default:
+			return QString();
+	}
+}
+
+QString UniversalDescriber::data(ruleSystem::Element *element, int column) const {
+	if(column == 0){
+		return Translator::TranslationFor(element->name());
+	} else if (column == 1){
+		return Translator::TranslationFor(element->type().typeName());
+	}
+	return QString();
+}
+
+int UniversalDescriber::numberOfColumns() const{
+	return 2;
+}
 
 QString FeatureDescriber::headers(int column) const
 {

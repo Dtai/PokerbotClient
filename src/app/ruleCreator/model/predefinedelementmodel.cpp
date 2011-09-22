@@ -73,10 +73,6 @@ QVariant PredefinedElementModel::data(const QModelIndex &index, int role) const
 		return _elements.at(index.row()).name;
 		break;
 
-	case Qt::ToolTipRole:
-		return _elements.at(index.row()).description;
-		break;
-
 	case Qt::UserRole:
 		return qVariantFromValue(static_cast<void*>(_elements.at(index.row()).predefinedElement));
 

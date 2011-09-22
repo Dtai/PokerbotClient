@@ -89,7 +89,7 @@ QByteArray predefinedElementsToByteArray(const QList<PredefinedElement> & elemen
 	s << elements.size();
 
 	for(int i = 0; i < elements.size(); i++)
-		s << elements.at(i).name << elements.at(i).description << elements.at(i).predefinedElement;
+		s << elements.at(i).name << elements.at(i).predefinedElement;
 
 	return ar;
 }
@@ -106,7 +106,7 @@ QList<PredefinedElement> byteArrayToPredefinedElements(QByteArray ar)
 	for(int i =0 ;i < size; i++)
 	{
 		PredefinedElement e;
-		s >> e.name >> e.description >> e.predefinedElement;
+		s >> e.name >> e.predefinedElement;
 		retVal << e;
 	}
 

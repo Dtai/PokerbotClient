@@ -62,6 +62,13 @@ private:
 	QList<ruleSystem::Element*> _elements;
 };
 
+class UniversalDescriber : public ElementModel::ElementDescriber {
+public:
+	virtual QString headers(int column) const;
+	virtual QString data(ruleSystem::Element * element, int column) const;
+	virtual int numberOfColumns() const;
+};
+
 class FeatureDescriber : public ElementModel::ElementDescriber
 {
 public:

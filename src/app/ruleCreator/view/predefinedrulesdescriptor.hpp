@@ -48,7 +48,6 @@ public:
 private slots:
 	void updateButtonStates(const QString & str);
 	void nameChanged(const QString & str);
-	void descriptionChanged(const QString & str);
 
 private:
 	RefVarGet(PredefinedElement, element);
