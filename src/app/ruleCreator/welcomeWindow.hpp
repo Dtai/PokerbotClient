@@ -23,7 +23,7 @@ protected:
 	virtual void closeEvent(QCloseEvent *event);
 
 signals:
-	void sendTableName(QString tabName, QString tableName);
+	void sendTableName(QString tabName, QString tableName, bool test);
 
 private slots:
 	void onOKClicked();

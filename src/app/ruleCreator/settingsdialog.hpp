@@ -48,7 +48,7 @@ public:
 	~SettingsDialog();
 
 signals:
-	void sendTableName(QString tabName, QString tableName);
+	void sendTableName(QString tabName, QString tableName, bool test);
 	void removeTest();
 
 private slots:

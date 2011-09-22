@@ -119,7 +119,7 @@ void HelloSender::handleFinish(){
 			ConnectionTarget ct;
 			ct.tableName = testTable.toString();
 			ct.playerName = _target.playerName;
-			CodeSender *cs = new CodeSender(ct, "do(call,1) :-true.", this);
+			CodeSender *cs = new CodeSender(ct, "do(fold,1) :-true.", this);
 			cs->silent(true);
 			cs->send();
 

@@ -175,25 +175,30 @@ void MainWindow::connectToDocController(){
 	connect(ui->action_New, SIGNAL(triggered()), _currentDocController, SLOT(newFile()));
 }
 
-void MainWindow::addTab(QString tabName, QString tableName){
+void MainWindow::addTab(QString playerName, QString tableName, bool test){
 	Reader r;
 	QUrl url = r.getWatchTableURL();
 	url.addQueryItem("name", tableName);
+	url.addQueryItem("playerName", playerName);
 
-	int index = tabName.lastIndexOf('@');
-	url.addQueryItem("playerName", tabName.mid(0, index));
-
+	QString tabName = "";
+	if(test){
+		tabName = "Testafel: " + tableName + " (" + playerName + ")";
+	} else{
+		tabName = "Tafel: " + tableName + " (" + playerName + ")";
+	}
+	QString objectName = playerName + "@" + tableName;
 	QWebView *tab = new QWebView(ui->tabWidget);
 	tab->setUrl(url);
-	tab->setObjectName(tabName);
+	tab->setObjectName(objectName);
 
 	ui->tabWidget->addTab(tab, tabName);
 	tabs->append(tab);
 
-	addRuleTab(tabName);
+	addRuleTab(tabName, objectName);
 }
 
-void MainWindow::addRuleTab(QString tabName){
+void MainWindow::addRuleTab(QString tabName, QString objectName){
 	QScrollArea *scroll = new QScrollArea(ui->tabWidgetRules);
 	scroll->setWidgetResizable(true);
 
@@ -206,17 +211,17 @@ void MainWindow::addRuleTab(QString tabName){
 	delete ui->tabWidgetRules->layout();
 	ui->tabWidgetRules->setLayout(vBoxLayout);
 	ui->tabWidgetRules->addTab(scroll, tabName);
-	_ruleLists->insert(tabName, rlw);
+	_ruleLists->insert(objectName, rlw);
 
 	DocumentController *dc = new DocumentController(rlw, this);
 	connect(dc, SIGNAL(numberOfRulesChanged(int)), this, SLOT(numberOfRulesChanged(int)));
 	connect(dc, SIGNAL(error(QString,QString)), this, SLOT(showError(QString,QString)));
-	_docControllers->insert(tabName, dc);
+	_docControllers->insert(objectName, dc);
 
 	connect(rlw, SIGNAL(ruleWantsDeletion(int)), this, SLOT(onDeleteRule(int)));
 
 	if(_currentRuleList == 0){
-		setCurrentRuleList(tabName);
+		setCurrentRuleList(objectName);
 		connectToDocController();
 	}
 }

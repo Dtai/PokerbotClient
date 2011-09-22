@@ -82,23 +82,23 @@ void WelcomeWindow::correctData(ConnectionTarget target, QString testTable){
 	_settingsManager->addConnection(testTarget);
 	_settingsManager->writeSettings();
 
-	connect(this, SIGNAL(sendTableName(QString, QString)), parent1, SLOT(addTab(QString, QString)));
-	emit sendTableName(target.format(), target.tableName);
-	emit sendTableName(testTarget.format(), testTarget.tableName);
+	connect(this, SIGNAL(sendTableName(QString, QString, bool)), parent1, SLOT(addTab(QString, QString, bool)));
+	emit sendTableName(target.playerName, target.tableName, false);
+	emit sendTableName(testTarget.playerName, testTarget.tableName, true);
 	close();
 }
 
 void WelcomeWindow::incorrectData(){
-	connect(this, SIGNAL(sendTableName(QString, QString)), parent1, SLOT(addRuleTab(QString)));
-	emit sendTableName("Test", "Test");
+	connect(this, SIGNAL(sendTableName(QString, QString, bool)), parent1, SLOT(addRuleTab(QString, QString)));
+	emit sendTableName("Test", "Test", false);
 	ui->statusbar->showMessage(tr("An error occured"));
 	close();
 }
 
 void WelcomeWindow::closeEvent(QCloseEvent *event) {
 	if(!OKClicked){
-		connect(this, SIGNAL(sendTableName(QString, QString)), parent1, SLOT(addRuleTab(QString)));
-		emit sendTableName("Test", "Test");
+		connect(this, SIGNAL(sendTableName(QString, QString, bool)), parent1, SLOT(addRuleTab(QString, QString)));
+		emit sendTableName("Test", "Test", false);
 	}
 	event->accept();
 }

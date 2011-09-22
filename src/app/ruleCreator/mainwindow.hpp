@@ -57,8 +57,8 @@ public:
 
 public slots:
 	void showError(const QString & title, const QString & errorMessage);
-	void addTab(QString tabName, QString tableName);
-	void addRuleTab(QString tabName);
+	void addTab(QString playerName, QString tableName, bool test);
+	void addRuleTab(QString tabName, QString objectName);
 	void removeTest();
 
 private slots:
