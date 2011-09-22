@@ -21,7 +21,7 @@
 						Id="MyProductDesktopShortcut"
 						Directory="DesktopFolder"
 						Name="Regelmaker"
-						WorkingDirectory="INSTALLLOCATION"
+						WorkingDirectory="APPLICATIONROOTDIRECTORY"
 						Description="Voer regelmaker uit"
 						Icon="Icon.exe">
 						<Icon Id="Icon.exe" SourceFile="ruleCreator.exe" />
@@ -34,6 +34,12 @@
 				<File Id="gui" Name="QtGui4.dll" DiskId="1" Source="QtGui4.dll" />
 				<File Id="network" Name="QtNetwork4.dll" DiskId="1" Source="QtNetwork4.dll" />
 				<File Id="webkit" Name="QtWebKit4.dll" DiskId="1" Source="QtWebKit4.dll" />
+				
+				<File Id="lucene" Name="QtCLucene4.dll" DiskId="1" Source="QtCLucene4.dll" />
+				<File Id="help" Name="QtHelp4.dll" DiskId="1" Source="QtHelp4.dll" />
+				<File Id="sql" Name="QtSql4.dll" DiskId="1" Source="QtSql4.dll" />
+				<File Id="xml" Name="QtXml4.dll" DiskId="1" Source="QtXml4.dll" />
+				
 				<File Id="config" Name="config.json" DiskId="1" Source="config.json" />
 				<File Id="json" Name="libqjson.dll" DiskId="1" Source="libqjson.dll" />
 				<File Id="doc_qch" Name="doc.qch" DiskId="1" Source="doc.qch" />
