@@ -163,7 +163,7 @@ void CardEvaluator::redrawSelectedCard(){
 void CardEvaluator::changePostfix(){
 	QComboBox *box = qobject_cast<QComboBox*>(sender());
 	int index = sender()->objectName().toInt();
-	if(box->currentText().at(0).isLower()){
+	if(box->currentText().at(0) == '$'){
 		postfixValues->value(selectedCard)->at(index)->setEnabled(true);
 	} else {
 		postfixValues->value(selectedCard)->at(index)->setDisabled(true);

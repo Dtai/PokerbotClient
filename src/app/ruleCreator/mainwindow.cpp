@@ -176,6 +176,9 @@ void MainWindow::addTab(QString tabName, QString tableName){
 	QUrl url = r.getWatchTableURL();
 	url.addQueryItem("name", tableName);
 
+	int index = tabName.lastIndexOf('@');
+	url.addQueryItem("playerName", tabName.mid(0, index));
+
 	QWebView *tab = new QWebView(ui->tabWidget);
 	tab->setUrl(url);
 	tab->setObjectName(tabName);
