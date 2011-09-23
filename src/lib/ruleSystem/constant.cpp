@@ -71,7 +71,7 @@ namespace ruleSystem
 		else if(value.canConvert(QVariant::String))
 			setName(value.toString());
 		else
-			setName("object");
+			setName("cardEquation");
 	}
 
 	Type Constant::inputType(const QString & /*inputPosition*/, bool & isValid) const

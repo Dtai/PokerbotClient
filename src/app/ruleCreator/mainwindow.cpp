@@ -115,7 +115,7 @@ MainWindow::MainWindow(QWidget *parent)
 	ui->tabWidget->setMaximumWidth(width/3);
 
 	connect(_settings, SIGNAL(settingsChanged()), this, SLOT(updateExportMenu()));
-	connect(ui->menuExport, SIGNAL(triggered(QAction *)), this, SLOT(exportCode(QAction *)));
+	connect(ui->menuExport, SIGNAL(triggered(QAction *)), this, SLOT(exportCode()));
 	connect(ui->actionShow_Code, SIGNAL(triggered()), this, SLOT(showCode()));
 
 	connect(ui->actionShow_information, SIGNAL(triggered()), this, SLOT(showInformation()));
@@ -151,7 +151,7 @@ void MainWindow::showInformation(){
 void MainWindow::changeCurrentRuleList(int index){
 	if(_ruleLists->count() != 0){
 		disconnectFromDocController();
-		setCurrentRuleList(ui->tabWidgetRules->tabText(index));
+		setCurrentRuleList(ui->tabWidgetRules->widget(index)->objectName());
 		connectToDocController();
 	}
 }
@@ -201,6 +201,7 @@ void MainWindow::addTab(QString playerName, QString tableName, bool test){
 void MainWindow::addRuleTab(QString tabName, QString objectName){
 	QScrollArea *scroll = new QScrollArea(ui->tabWidgetRules);
 	scroll->setWidgetResizable(true);
+	scroll->setObjectName(objectName);
 
 	RuleListWidget *rlw = new RuleListWidget(scroll);
 	scroll->setWidget(rlw);
@@ -270,38 +271,18 @@ void MainWindow::updateExportMenu()
 {
 	ui->menuExport->clear();
 	ui->menuExport->setEnabled(!_settings->connections().isEmpty());
-
-	for(int i = 0; i < _settings->connections().size(); i++)
-	{
-		const ConnectionTarget & d = _settings->connections().at(i);
-		QVariant val = QVariant::fromValue(d);
-
-		QAction * subMenu = ui->menuExport->addAction(d.format());
-		subMenu->setData(val);
-		subMenu->setObjectName(QString("%1").arg(i));
-
-		if(d.emptyRuleSetExporter)
-		{
-			QAction * subMenu = ui->menuExport->addAction(d.extendedFormat());
-			subMenu->setData(val);
-			subMenu->setObjectName(emptyRuleSetSender());
-		}
-	}
+	ui->menuExport->addAction(tr("Send rules current tab to table"));
 }
 
-void MainWindow::exportCode(QAction * action)
-{
+void MainWindow::exportCode() {
 	ui->statusbar->showMessage(tr("Exporting code"));
-	ConnectionTarget d = action->data().value<ConnectionTarget>();
-	QList<Action*> validActions = _docControllers->value(d.format())->checkAllRules();
 
-	if(action->objectName() == emptyRuleSetSender()) {
-		CodeSender *cs = new CodeSender(d, "do(call, 1) :- true.");
-		connect(cs, SIGNAL(finished()), this, SLOT(correctExportCode()));
-		connect(cs, SIGNAL(errored()), this, SLOT(incorrectExportCode()));
-		cs->send();
-		return;
-	}
+	ConnectionTarget d;
+	QString o = _ruleLists->key(_currentRuleList);
+	d.playerName = o.mid(0, o.lastIndexOf("@"));
+	d.tableName = o.mid(o.lastIndexOf("@")+1);
+
+	QList<Action*> validActions = _docControllers->value(d.format())->checkAllRules();
 
 	if(validActions.size() == 0){
 		ui->statusbar->showMessage(tr("Nothing to export"));
