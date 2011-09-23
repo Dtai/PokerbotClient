@@ -6,7 +6,7 @@
 		
 		<Directory Id="TARGETDIR" Name="SourceDir">
 			<Directory Id="ProgramFilesFolder">
-				<Directory Id="APPLICATIONROOTDIRECTORY" Name="Regelmaker"/>
+				<Directory Id="APPLICATIONROOTDIRECTORY" Name="Regelmaker"/>				
 			</Directory>
 			<Directory Id="ProgramMenuFolder">
 				<Directory Id="ApplicationProgramsFolder" Name="Regelmaker"/>
@@ -44,9 +44,22 @@
 				<File Id="json" Name="libqjson.dll" DiskId="1" Source="libqjson.dll" />
 				<File Id="doc_qch" Name="doc.qch" DiskId="1" Source="doc.qch" />
 				<File Id="doc_qhc" Name="doc.qhc" DiskId="1" Source="doc.qhc" />
+				
 				<File Id="pokerRuleSystem_nl_BE.qm" Name="pokerRuleSystem_nl_BE.qm" DiskId="1" Source="pokerRuleSystem_nl_BE.qm" />
 				<File Id="ruleCreator_nl_BE.qm" Name="ruleCreator_nl_BE.qm" DiskId="1" Source="ruleCreator_nl_BE.qm" />
 				<File Id="ruleSystem_nl_BE.qm" Name="ruleSystem_nl_BE.qm" DiskId="1" Source="ruleSystem_nl_BE.qm" />
+				
+				<File Id="cardEquation_png" Name="cardEquation.png" DiskId="1" Source="cardEquation.png" />
+				<File Id="raisepairbase_png" Name="raisepairbase.png" DiskId="1" Source="raisepairbase.png" />
+				<File Id="raisepairfull_png" Name="raisepairfull.png" DiskId="1" Source="raisepairfull.png" />
+				<File Id="truecall_png" Name="truecall.png" DiskId="1" Source="truecall.png" />
+				<File Id="welcomeWindow_png" Name="welcomeWindow.png" DiskId="1" Source="welcomeWindow.png" />
+				<File Id="window_png" Name="window.png" DiskId="1" Source="window.png" />
+				<File Id="windowBottom_png" Name="windowBottom.png" DiskId="1" Source="windowBottom.png" />
+				<File Id="windowLeft_png" Name="windowLeft.png" DiskId="1" Source="windowLeft.png" />
+				<File Id="windowMiddle_png" Name="windowMiddle.png" DiskId="1" Source="windowMiddle.png" />
+				<File Id="windowRight_png" Name="windowRight.png" DiskId="1" Source="windowRight.png" />
+				<File Id="windowTop_png" Name="windowTop.png" DiskId="1" Source="windowTop.png" />
 			</Component>
 		</DirectoryRef>
 		
