@@ -18,6 +18,15 @@ Vervolgens moet een gewenste build directory gekozen worden.
 Daarna zorgt de toetsencombinatie CTRL+SHIFT+B ervoor dat het programma gebuild wordt, er kan ook op de knop "Build All" geklikt worden.
 
 
+Configureren
+------------
+Zoek naar 'config.json',
+onder linux is dit in 'build/bin'.
+Pas daar 
+	"URL":"http://localhost",
+aan zodat die naar de server wijst waar de pokerbot WEBserver draait
+
+
 Uitvoeren (GNU/Linux)
 ---------
 Het programma kan je uitvoeren door de 'ruleCreator' applicatie uit te voeren.
