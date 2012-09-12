@@ -73,6 +73,7 @@ void CodeSender::send()
 
 	QNetworkRequest request(getURL());
 	request.setRawHeader("User-Agent", "RuleCreator");
+	request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
 
 	QByteArray data;
 	QUrl params;

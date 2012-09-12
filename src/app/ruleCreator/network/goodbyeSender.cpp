@@ -50,7 +50,8 @@ void GoodbyeSender::send(){
 		return;
 	}
 
-	request.setRawHeader("User-Agent", "MyOwnBrowser 1.0");
+	request.setRawHeader("User-Agent", "RuleCreator");
+	request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
 
 	QByteArray data;
 	QUrl params;
