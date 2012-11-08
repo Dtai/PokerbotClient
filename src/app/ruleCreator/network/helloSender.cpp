@@ -107,24 +107,25 @@ void HelloSender::handleFinish(){
 		QVariantMap result = parser.parse(ba, &ok).toMap();
 		QVariant type = result.value("type");
 		QVariant message = result.value("message");
-		QVariant testTable = result.value("testTable");
 
 		if(type.toString() == "InvalidInput"){
 			error->append(message.toString());
 			bad->append(_target.tableName);
 			emit errored();
 		} else if(type.toString() == "Acknowledge"){
+			// No longer launch a test-table
+			//QVariant testTable = result.value("testTable");
+			//good->append(testTable.toString());
+
+			//ConnectionTarget ct;
+			//ct.tableName = testTable.toString();
+			//ct.playerName = _target.playerName;
+			//CodeSender *cs = new CodeSender(ct, "do(fold,1) :-true.", this);
+			//cs->silent(true);
+			//cs->send();
+
 			good->append(_target.tableName);
-			good->append(testTable.toString());
-
-			ConnectionTarget ct;
-			ct.tableName = testTable.toString();
-			ct.playerName = _target.playerName;
-			CodeSender *cs = new CodeSender(ct, "do(fold,1) :-true.", this);
-			cs->silent(true);
-			cs->send();
-
-			emit connected(_target, testTable.toString());
+			emit connected(_target, _target.tableName);
 		}
 
 	} else {

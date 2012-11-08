@@ -209,19 +209,20 @@ void SettingsDialog::incorrectData(){
 }
 
 void SettingsDialog::correctData(ConnectionTarget target, QString testTable){
-	ConnectionTarget testTarget;
-	testTarget.playerName = target.playerName;
-	testTarget.tableName = testTable;
-	HelloSender::add(testTarget);
+	// No longer launch a test-table
+	//ConnectionTarget testTarget;
+	//testTarget.playerName = target.playerName;
+	//testTarget.tableName = testTable;
+	//HelloSender::add(testTarget);
 
 	_settingsManager->addConnection(target);
-	_settingsManager->addConnection(testTarget);
+	//_settingsManager->addConnection(testTarget);
 	_settingsManager->writeSettings();
 
 	connect(this, SIGNAL(sendTableName(QString, QString, bool)), parent1, SLOT(addTab(QString, QString, bool)));
-	connect(this, SIGNAL(removeTest()), parent1, SLOT(removeTest()));
+	//connect(this, SIGNAL(removeTest()), parent1, SLOT(removeTest()));
 	emit sendTableName(target.playerName, target.tableName, false);
-	emit removeTest();
-	emit sendTableName(testTarget.playerName, testTable, true);
+	//emit removeTest();
+	//emit sendTableName(testTarget.playerName, testTable, true);
 	checkForDeletion(sender()->objectName());
 }
