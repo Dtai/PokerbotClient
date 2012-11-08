@@ -383,11 +383,12 @@ void CardEvaluator::loadInformationFromSelectedCard(){
 }
 
 void CardEvaluator::updateSelectedCard(){
-	QString text = "Card ";
+	QString text = tr("Card ");
 	text.append(QString::number(selectedCard->objectName().toInt()+1)).append("\n");
-	text.append("Color: ").append(information->value(selectedCard)->value("color"));
+	text.append(tr("Color: ")).append(information->value(selectedCard)->value("color"));
 
-	text.append("\nValue: ");
+	text.append("\n");
+	text.append(tr("Value: "));
 	for(int i=0; i<operators->value(selectedCard)->size(); ++i){
 		text.append(operators->value(selectedCard)->at(i)->currentText());
 		text.append(values->value(selectedCard)->at(i)->currentText());

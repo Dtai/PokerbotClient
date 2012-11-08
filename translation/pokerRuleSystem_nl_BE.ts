@@ -69,7 +69,22 @@
         <translation>annuleren</translation>
     </message>
     <message>
-        <location filename="../../../../../src/lib/pokerRuleSystem/view/cardEvaluator.cpp" line="511"/>
+        <location filename="../../../../../src/lib/pokerRuleSystem/view/cardEvaluator.cpp" line="386"/>
+        <source>Card </source>
+        <translation>Kaart </translation>
+    </message>
+    <message>
+        <location filename="../../../../../src/lib/pokerRuleSystem/view/cardEvaluator.cpp" line="388"/>
+        <source>Color: </source>
+        <translation>Kleur: </translation>
+    </message>
+    <message>
+        <location filename="../../../../../src/lib/pokerRuleSystem/view/cardEvaluator.cpp" line="391"/>
+        <source>Value: </source>
+        <translation>Waarde: </translation>
+    </message>
+    <message>
+        <location filename="../../../../../src/lib/pokerRuleSystem/view/cardEvaluator.cpp" line="512"/>
         <source>Not all variables have the correct format.</source>
         <translation>Niet alle variabelen hebben het correcte formaat.</translation>
     </message>
