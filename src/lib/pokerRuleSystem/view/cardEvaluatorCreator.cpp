@@ -53,9 +53,7 @@ void CardEvaluatorCreator::initValues(){
 	values->append("Q");
 	values->append("K");
 	values->append("A");
-	values->append("$a");
-	values->append("$b");
-	values->append("$c");
+	values->append("$var");
 }
 
 void CardEvaluatorCreator::initOwnValues(){
