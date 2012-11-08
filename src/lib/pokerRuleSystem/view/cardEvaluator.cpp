@@ -384,7 +384,7 @@ void CardEvaluator::loadInformationFromSelectedCard(){
 
 void CardEvaluator::updateSelectedCard(){
 	QString text = "Card ";
-	text.append(selectedCard->objectName()).append("\n");
+	text.append(QString::number(selectedCard->objectName().toInt()+1)).append("\n");
 	text.append("Color: ").append(information->value(selectedCard)->value("color"));
 
 	text.append("\nValue: ");
