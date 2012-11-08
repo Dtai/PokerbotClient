@@ -85,7 +85,7 @@ void CardEvaluator::parse(QStringList values, QStringList *ops, QStringList *val
 
 		if(s.at(1) == '='){
 			op = s.mid(0, 2);
-			if(s.at(2).isDigit() || s.at(2) == 'J' || s.at(2) == 'Q' || s.at(2) == 'K' || s.at(2) == 'A'){
+			if(s.at(2) == 'J' || s.at(2) == 'Q' || s.at(2) == 'K' || s.at(2) == 'A'){
 				val = s.at(2);
 			} else {
 				int i = 2;
@@ -98,7 +98,7 @@ void CardEvaluator::parse(QStringList values, QStringList *ops, QStringList *val
 
 		} else {
 			op = s.mid(0, 1);
-			if(s.at(1).isDigit() || s.at(1) == 'J' || s.at(1) == 'Q' || s.at(1) == 'K' || s.at(1) == 'A'){
+			if(s.at(1) == 'J' || s.at(1) == 'Q' || s.at(1) == 'K' || s.at(1) == 'A'){
 				val = s.at(1);
 			} else {
 				int i = 1;
