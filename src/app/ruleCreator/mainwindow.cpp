@@ -113,6 +113,9 @@ MainWindow::MainWindow(QWidget *parent)
 	QDesktopWidget w;
 	int width = w.availableGeometry().width();
 	ui->tabWidget->setMaximumWidth(width/3);
+	addRuleTab("tab1");
+	addRuleTab("tab2");
+	addRuleTab("tab3");
 
 	connect(_settings, SIGNAL(settingsChanged()), this, SLOT(updateExportMenu()));
 	connect(ui->menuExport, SIGNAL(triggered(QAction *)), this, SLOT(exportCode()));
@@ -190,14 +193,12 @@ void MainWindow::addTab(QString playerName, QString tableName){
 
 	ui->tabWidget->addTab(tab, tabName);
 	tabs->append(tab);
-
-	addRuleTab(tabName, objectName);
 }
 
-void MainWindow::addRuleTab(QString tabName, QString objectName){
+void MainWindow::addRuleTab(QString tabName){
 	QScrollArea *scroll = new QScrollArea(ui->tabWidgetRules);
 	scroll->setWidgetResizable(true);
-	scroll->setObjectName(objectName);
+	scroll->setObjectName(tabName);
 
 	RuleListWidget *rlw = new RuleListWidget(scroll);
 	scroll->setWidget(rlw);
@@ -208,17 +209,18 @@ void MainWindow::addRuleTab(QString tabName, QString objectName){
 	delete ui->tabWidgetRules->layout();
 	ui->tabWidgetRules->setLayout(vBoxLayout);
 	ui->tabWidgetRules->addTab(scroll, tabName);
-	_ruleLists->insert(objectName, rlw);
+	_ruleLists->insert(tabName, rlw);
 
 	DocumentController *dc = new DocumentController(rlw, this);
 	connect(dc, SIGNAL(numberOfRulesChanged(int)), this, SLOT(numberOfRulesChanged(int)));
 	connect(dc, SIGNAL(error(QString,QString)), this, SLOT(showError(QString,QString)));
-	_docControllers->insert(objectName, dc);
+	_docControllers->insert(tabName, dc);
 
 	connect(rlw, SIGNAL(ruleWantsDeletion(int)), this, SLOT(onDeleteRule(int)));
 
+	// GUI will have first tab open, so that one is the current one
 	if(_currentRuleList == 0){
-		setCurrentRuleList(objectName);
+		setCurrentRuleList(tabName);
 		connectToDocController();
 	}
 }
