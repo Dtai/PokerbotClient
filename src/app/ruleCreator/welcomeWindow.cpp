@@ -77,8 +77,8 @@ void WelcomeWindow::correctData(ConnectionTarget target, QString testTable){
 	_settingsManager->addConnection(target);
 	_settingsManager->writeSettings();
 
-	connect(this, SIGNAL(sendTableName(QString, QString, bool)), parent1, SLOT(addTab(QString, QString, bool)));
-	emit sendTableName(target.playerName, target.tableName, false);
+	connect(this, SIGNAL(sendTableName(QString, QString)), parent1, SLOT(addTab(QString, QString)));
+	emit sendTableName(target.playerName, target.tableName);
 	close();
 }
 

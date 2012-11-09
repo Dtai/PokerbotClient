@@ -175,18 +175,14 @@ void MainWindow::connectToDocController(){
 	connect(ui->action_New, SIGNAL(triggered()), _currentDocController, SLOT(newFile()));
 }
 
-void MainWindow::addTab(QString playerName, QString tableName, bool test){
+void MainWindow::addTab(QString playerName, QString tableName){
 	Reader r;
 	QUrl url = r.getWatchTableURL();
 	url.addQueryItem("name", tableName);
 	url.addQueryItem("playerName", playerName);
 
 	QString tabName = "";
-	if(test){
-		tabName = "Testafel: " + tableName + " (" + playerName + ")";
-	} else{
-		tabName = "Tafel: " + tableName + " (" + playerName + ")";
-	}
+	tabName = "Tafel: " + tableName + " (" + playerName + ")";
 	QString objectName = playerName + "@" + tableName;
 	QWebView *tab = new QWebView(ui->tabWidget);
 	tab->setUrl(url);
