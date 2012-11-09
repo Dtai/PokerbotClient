@@ -721,12 +721,12 @@
         <translation>Deze connectie bestaat al.</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/settingsdialog.cpp" line="164"/>
+        <location filename="../src/app/ruleCreator/settingsdialog.cpp" line="169"/>
         <source>Sending data</source>
         <translation>Data aan het versturen</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/settingsdialog.cpp" line="176"/>
+        <location filename="../src/app/ruleCreator/settingsdialog.cpp" line="181"/>
         <source>Nothing to send</source>
         <translation>Niets om te versturen</translation>
     </message>

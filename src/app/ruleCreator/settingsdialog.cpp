@@ -161,6 +161,11 @@ void SettingsDialog::onCancelClicked()
 
 void SettingsDialog::onOKClicked()
 {
+	// add new connection too?
+	if (ui->playerName->text() != "" or ui->tableName->text() != "") {
+		onNewConnection();
+	}
+
 	ui->statusbar->showMessage(tr("Sending data"));
 	hellos = new QVector<HelloSender*>();
 
