@@ -185,8 +185,8 @@ void MainWindow::addTab(QString playerName, QString tableName){
 	url.addQueryItem("playerName", playerName);
 
 	QString tabName = "";
-	tabName = "Tafel: " + tableName + " (" + playerName + ")";
-	QString objectName = playerName + "@" + tableName;
+	tabName = "Tafel: " + tableName;
+	QString objectName = tableName;
 	QWebView *tab = new QWebView(ui->tabWidget);
 	tab->setUrl(url);
 	tab->setObjectName(objectName);
@@ -302,7 +302,7 @@ void MainWindow::exportCode(QAction* choice)
 
 	int index = 0;
 	for(int i=0; i<tabs->size(); ++i){
-		if(tabs->at(i)->objectName() == d.playerName + "@" + d.tableName){
+		if(tabs->at(i)->objectName() == d.tableName){
 			index = i;
 		}
 	}
