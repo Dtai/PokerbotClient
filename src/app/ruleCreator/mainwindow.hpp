@@ -59,7 +59,6 @@ public slots:
 	void showError(const QString & title, const QString & errorMessage);
 	void addTab(QString playerName, QString tableName);
 	void addRuleTab(QString tabName, QString objectName);
-	void removeTest();
 
 private slots:
 	void onDeleteRule(int rule);
