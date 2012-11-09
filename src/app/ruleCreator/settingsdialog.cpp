@@ -214,14 +214,7 @@ void SettingsDialog::incorrectData(){
 }
 
 void SettingsDialog::correctData(ConnectionTarget target, QString testTable){
-	// No longer launch a test-table
-	//ConnectionTarget testTarget;
-	//testTarget.playerName = target.playerName;
-	//testTarget.tableName = testTable;
-	//HelloSender::add(testTarget);
-
 	_settingsManager->addConnection(target);
-	//_settingsManager->addConnection(testTarget);
 	_settingsManager->writeSettings();
 
 	connect(this, SIGNAL(sendTableName(QString, QString)), parent1, SLOT(addTab(QString, QString)));
