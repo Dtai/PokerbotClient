@@ -64,7 +64,7 @@ private slots:
 	void onDeleteRule(int rule);
 	void showCode();
 	void updateExportMenu();
-	void exportCode();
+	void exportCode(QAction * action);
 	void showInformation();
 	void showConnectToTable();
 	void numberOfRulesChanged(int numberOfRealRules);

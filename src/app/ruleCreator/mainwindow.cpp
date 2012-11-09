@@ -118,7 +118,7 @@ MainWindow::MainWindow(QWidget *parent)
 	addRuleTab("tab3");
 
 	connect(_settings, SIGNAL(settingsChanged()), this, SLOT(updateExportMenu()));
-	connect(ui->menuExport, SIGNAL(triggered(QAction *)), this, SLOT(exportCode()));
+	connect(ui->menuExport, SIGNAL(triggered(QAction *)), this, SLOT(exportCode(QAction *)));
 	connect(ui->actionShow_Code, SIGNAL(triggered()), this, SLOT(showCode()));
 
 	connect(ui->actionShow_information, SIGNAL(triggered()), this, SLOT(showInformation()));
@@ -259,17 +259,24 @@ void MainWindow::updateExportMenu()
 {
 	ui->menuExport->clear();
 	ui->menuExport->setEnabled(!_settings->connections().isEmpty());
-	ui->menuExport->addAction(tr("Send rules current tab to table"));
+
+    QString prefix = tr("Current tab to ");
+
+	for(int i = 0; i < _settings->connections().size(); i++)
+	{
+		const ConnectionTarget & d = _settings->connections().at(i);
+		QVariant val = QVariant::fromValue(d);
+
+		QAction * subMenu = ui->menuExport->addAction(prefix + d.format());
+		subMenu->setData(val);
+		subMenu->setObjectName(QString("%1").arg(i));
+	}
 }
 
-void MainWindow::exportCode() {
+void MainWindow::exportCode(QAction * action)
+{
 	ui->statusbar->showMessage(tr("Exporting code"));
-
-	ConnectionTarget d;
-	QString o = _ruleLists->key(_currentRuleList);
-	d.playerName = o.mid(0, o.lastIndexOf("@"));
-	d.tableName = o.mid(o.lastIndexOf("@")+1);
-
+	ConnectionTarget d = action->data().value<ConnectionTarget>();
 	QList<Action*> validActions = _docControllers->value(d.format())->checkAllRules();
 
 	if(validActions.size() == 0){
