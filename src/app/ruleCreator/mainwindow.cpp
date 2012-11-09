@@ -200,6 +200,19 @@ void MainWindow::addTab(QString playerName, QString tableName){
 
 	ui->tabWidget->addTab(tab, tabName);
 	tabs->append(tab);
+
+	activateTab(tableName);
+}
+
+void MainWindow::activateTab(QString tableName){
+	int index = 0;
+	for(int i=0; i<tabs->size(); ++i){
+		if(tabs->at(i)->objectName() == tableName){
+			index = i;
+		}
+	}
+
+	ui->tabWidget->setCurrentIndex(index);
 }
 
 void MainWindow::addRuleTab(QString tabName){
@@ -307,14 +320,7 @@ void MainWindow::exportCode(QAction* choice)
 	connect(cs, SIGNAL(errored()), this, SLOT(incorrectExportCode()));
 	cs->send();
 
-	int index = 0;
-	for(int i=0; i<tabs->size(); ++i){
-		if(tabs->at(i)->objectName() == d.tableName){
-			index = i;
-		}
-	}
-
-	ui->tabWidget->setCurrentIndex(index);
+	activateTab(d.tableName);
 }
 
 void MainWindow::correctExportCode(){
