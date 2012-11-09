@@ -124,7 +124,7 @@ void HelloSender::handleFinish(){
 			//cs->silent(true);
 			//cs->send();
 
-			good->append(_target.tableName);
+			good->append(_target.playerName +"@"+ _target.tableName);
 			emit connected(_target, _target.tableName);
 		}
 
