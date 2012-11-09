@@ -179,6 +179,13 @@ void MainWindow::connectToDocController(){
 }
 
 void MainWindow::addTab(QString playerName, QString tableName){
+	// check if we already have a tab to the table open
+	for(int i=0; i<tabs->size(); ++i){
+		if(tabs->at(i)->objectName() == tableName){
+	        return;
+		}
+	}
+
 	Reader r;
 	QUrl url = r.getWatchTableURL();
 	url.addQueryItem("name", tableName);
