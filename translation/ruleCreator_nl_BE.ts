@@ -739,29 +739,29 @@
 <context>
     <name>WelcomeWindow</name>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_welcomeWindow.h" line="143"/>
-        <location filename="../build/src/app/ruleCreator/ui_welcomeWindow.h" line="144"/>
+        <location filename="../build/src/app/ruleCreator/ui_welcomeWindow.h" line="145"/>
+        <location filename="../build/src/app/ruleCreator/ui_welcomeWindow.h" line="146"/>
         <location filename="../src/app/ruleCreator/welcomeWindow.cpp" line="23"/>
         <source>Welcome</source>
         <translation>Welkom</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_welcomeWindow.h" line="145"/>
+        <location filename="../build/src/app/ruleCreator/ui_welcomeWindow.h" line="147"/>
         <source>Name:</source>
         <translation>Naam:</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_welcomeWindow.h" line="146"/>
+        <location filename="../build/src/app/ruleCreator/ui_welcomeWindow.h" line="148"/>
         <source>Tablename:</source>
         <translation>Tafelnaam:</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_welcomeWindow.h" line="147"/>
+        <location filename="../build/src/app/ruleCreator/ui_welcomeWindow.h" line="149"/>
         <source>Help</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_welcomeWindow.h" line="148"/>
+        <location filename="../build/src/app/ruleCreator/ui_welcomeWindow.h" line="150"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
