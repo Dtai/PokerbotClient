@@ -68,8 +68,8 @@
     <property name="title">
      <string>Settings</string>
     </property>
-    <addaction name="actionShow_Code"/>
     <addaction name="actionConnect_to_table"/>
+    <addaction name="actionShow_Code"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
