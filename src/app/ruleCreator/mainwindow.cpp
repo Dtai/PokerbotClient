@@ -273,18 +273,22 @@ void MainWindow::updateExportMenu()
 	}
 }
 
-void MainWindow::exportCode(QAction * action)
+void MainWindow::exportCode(QAction* choice)
 {
 	ui->statusbar->showMessage(tr("Exporting code"));
-	ConnectionTarget d = action->data().value<ConnectionTarget>();
-	QList<Action*> validActions = _docControllers->value(d.format())->checkAllRules();
 
-	if(validActions.size() == 0){
+	// retrieve connection (from choice)
+	ConnectionTarget d = choice->data().value<ConnectionTarget>();
+
+	// retrieve rules (from _currentDocController)
+	QList<Action*> validRules = _currentDocController->checkAllRules();
+
+	if(validRules.size() == 0){
 		ui->statusbar->showMessage(tr("Nothing to export"));
 		return;
 	}
 
-	QString code = writePrologCode(validActions);
+	QString code = writePrologCode(validRules);
 
 	if(code.isEmpty()){
 		ui->statusbar->showMessage(tr("Nothing to export"));
