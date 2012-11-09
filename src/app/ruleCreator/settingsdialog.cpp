@@ -214,6 +214,9 @@ void SettingsDialog::incorrectData(){
 }
 
 void SettingsDialog::correctData(ConnectionTarget target, QString testTable){
+	ui->statusbar->showMessage(tr("Successfully connected"));
+	HelloSender::add(target);
+
 	_settingsManager->addConnection(target);
 	_settingsManager->writeSettings();
 

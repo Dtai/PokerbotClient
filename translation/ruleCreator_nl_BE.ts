@@ -337,273 +337,273 @@
         <translation>Welkom</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="254"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="261"/>
         <source>Prolog code</source>
         <translation>Prolog code</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="278"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="285"/>
         <source>Exporting code</source>
         <translation>Code aan het exporteren</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="287"/>
         <location filename="../src/app/ruleCreator/mainwindow.cpp" line="294"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="301"/>
         <source>Nothing to export</source>
         <translation>Niets om te exporteren</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="314"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="321"/>
         <source>Code correct exported</source>
         <translation>Code correct geëxporteerd</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="318"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="325"/>
         <source>Code incorrect exported</source>
         <translation>Code incorrect geëxporteerd</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="355"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="362"/>
         <source>Goodbye</source>
         <translation>Tot ziens</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="391"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="398"/>
         <source>Delete rule %1</source>
         <translation>Verwijder regel %1</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="392"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="399"/>
         <source>Are you sure you want to delete rule %1?</source>
         <translation>Ben je zeker dat je regel %1 wilt verwijderen?</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="450"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="457"/>
         <source>Is the game in pre-flop-phase?</source>
         <translation>Is het spel in pre-flop fase?</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="451"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="458"/>
         <source>Is the game in flop-phase?</source>
         <translation>Is het spel in flop fase?</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="452"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="459"/>
         <source>Is the game in turn fase?</source>
         <translation>is het spel in turn fase?</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="453"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="460"/>
         <source>Is the game in river-phase?</source>
         <translation>Is het spel in river fase?</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="454"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="461"/>
         <source>Is the game in post-flop-phase?</source>
         <translation>Is het spel in post-flop fase?</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="455"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="462"/>
         <source>Am I second in row?</source>
         <translation>Ban ik de tweede in rij?</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="456"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="463"/>
         <source>Am I first in row?</source>
         <translation>Ben ik de eerste in rij?</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="457"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="464"/>
         <source>Am I last in row?</source>
         <translation>Ben ik de laatste in rij?</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="459"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="466"/>
         <source>How much many should I add to call?</source>
         <translation>Hoeveel moet ik toevoegen om te kunnen callen?</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="460"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="467"/>
         <source>How much money do I still have?</source>
         <translation>Hoeveel geld heb ik nog?</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="461"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="468"/>
         <source>How much many is there in the pot?</source>
         <translation>Hoeveel geld zit er in de pot?</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="462"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="469"/>
         <source>How many players haven&apos;t folded yet?</source>
         <translation>Hoeveel spelers hebben nog niet gefold?</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="463"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="470"/>
         <source>How many players haven&apos;t folded yet and are not all in?</source>
         <translation>Hoeveel spelers hebben nog niet gefold en zijn nog niet all-in?</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="464"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="471"/>
         <source>How much many can I maximally win?</source>
         <translation>Hoeveel geld kan ik maximaal winnen?</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="465"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="472"/>
         <source>What&apos;s the minimum I should raise?</source>
         <translation>Wat is het minimum waarmee ik moet raisen?</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="466"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="473"/>
         <source>What&apos;s the maximum I can raise?</source>
         <translation>Wat is het maximum waarmee ik mag raisen?</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="467"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="474"/>
         <source>How many times has there been raised this round?</source>
         <translation>Hoeveel keer is er al geraised deze ronde?</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="468"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="475"/>
         <source>random</source>
         <translation>random</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="468"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="475"/>
         <source>A random number between zero and one.</source>
         <translation>Een random getal tussen nul en één.</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="420"/>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="470"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="427"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="477"/>
         <source>What are my hand cards?</source>
         <translation>Welke kaarten heb ik in mijn hand?</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="263"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="270"/>
         <source>Current tab to </source>
         <translation>Huidige tab naar </translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="425"/>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="471"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="432"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="478"/>
         <source>What cards are there on the table?</source>
         <translation>Welke kaarten liggen er op tafel?</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="430"/>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="472"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="437"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="479"/>
         <source>What cards do I have in my hand or are on the table?</source>
         <translation>Welke kaarten heb ik in mijn hand of liggen op tafel?</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="481"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="488"/>
         <source>This function returns true if all the inputs are true</source>
         <translation>Deze functie geeft waar terug als elke invoer waar is</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="482"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="489"/>
         <source>This function returns true as soon as one if the inputs is tru</source>
         <translation>Deze functie geeft waar terug als er minstens één invoer waar is</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="483"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="490"/>
         <source>This function return true to false and vice versa</source>
         <translation>Deze functie geeft waar terug als de invoer onwaar is en vice versa</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="485"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="492"/>
         <source>This function returns true if two numbers are equal</source>
         <translation>Deze functie geeft waar terug als de twee getallen gelijk zijn</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="486"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="493"/>
         <source>This function returns true if number one is smaller than the second number</source>
         <translation>Deze functie geeft waar terug als getal één kleiner is dan getal twee</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="487"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="494"/>
         <source>This function returns true if number one is smalleror equal  than the second number</source>
         <translation>Deze functie geeft waar terug als getal één kleiner of gelijk is aan het tweede getal</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="488"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="495"/>
         <source>This function returns true if number one is larger than the second number</source>
         <translation>Deze functie geeft waar terug als getal één groter is dan het tweede getal</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="489"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="496"/>
         <source>This function returns true if number one is larger or equal than the second number</source>
         <translation>Deze functie geeft waar terug als getal één groter of gelijk is aan het tweede getal</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="491"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="498"/>
         <source>This function returns true if both the inputs have the same value</source>
         <translation>Deze functie geeft waar terug als beide invoeren dezelfde waardes hebben</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="493"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="500"/>
         <source>This functions calculates the sum of the inputs</source>
         <translation>Deze functie berekent de som van de invoer</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="494"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="501"/>
         <source>This functions calculates the product of the inputs</source>
         <translation>Deze functie berekent het product van de invoer</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="495"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="502"/>
         <source>This functions calculates the difference of the inputs</source>
         <translation>Deze functie berekent het verschil van de invoer</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="496"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="503"/>
         <source>This functions divides number one by number two</source>
         <translation>Deze functie deelt getal één door getal twee</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="434"/>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="498"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="441"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="505"/>
         <source>This functions checks if the cardlist matches the cardequation</source>
         <translation>Deze functie controleert of de kaartlijst overeenkomt met de kaartvergelijking</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="507"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="514"/>
         <source>A boolean constant, true or false</source>
         <translation>Een booleaanse constante, waar of onwaar</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="508"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="515"/>
         <source>A rational number</source>
         <translation>Een rationaal getal</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="438"/>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="509"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="445"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="516"/>
         <source>A cardequation consisting out of one or more cards</source>
         <translation>Een kaartvergelijking bestaande uit één of meerder kaarten</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="518"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="525"/>
         <source>call if the input is true</source>
         <translation>call als de invoer waar is</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="519"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="526"/>
         <source>fold if the input is true</source>
         <translation>fold als de invoer waar is</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="520"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="527"/>
         <source>raise with a certain value if the input is true</source>
         <translation>raise met een bepaald bedrag als de invoer waar is</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="562"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="569"/>
         <source>Error creating prolog code</source>
         <translation>Fout tijdens het maken van de prolog code</translation>
     </message>
     <message>
-        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="563"/>
+        <location filename="../src/app/ruleCreator/mainwindow.cpp" line="570"/>
         <source>Error for rule %1: %2</source>
         <translation>Fout voor regel %1: %2</translation>
     </message>
@@ -729,6 +729,11 @@
         <location filename="../src/app/ruleCreator/settingsdialog.cpp" line="181"/>
         <source>Nothing to send</source>
         <translation>Niets om te versturen</translation>
+    </message>
+    <message>
+        <location filename="../src/app/ruleCreator/settingsdialog.cpp" line="217"/>
+        <source>Successfully connected</source>
+        <translation>Succesvol geconnecteerd</translation>
     </message>
 </context>
 <context>
