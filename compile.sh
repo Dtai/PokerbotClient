@@ -1,3 +1,7 @@
+# generate .qm translation files
+./translate.sh
+
+# build the thing
 mkdir -p build
 cd build
 cmake ..
