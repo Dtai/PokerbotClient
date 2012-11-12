@@ -1,2 +1,6 @@
 build/
 translation/*.qm
+installer/*.dll
+installer/*.qm
+installer/*.exe
+installer/*.msi
