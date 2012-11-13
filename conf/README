@@ -1,0 +1,4 @@
+The client creates (on linux) the folder $HOME/.config/KULeuven/
+it creates a file Rule\ Creator.conf in it, which contains the predefined elements you put in the 'predefined elements' box.
+
+The Rule\ Creator.conf file in this dir contains 3 often-used elements that can be used as a starting point.
