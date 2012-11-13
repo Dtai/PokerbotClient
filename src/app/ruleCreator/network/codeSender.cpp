@@ -78,9 +78,9 @@ void CodeSender::send()
 	QByteArray data;
 	QUrl params;
 
-	params.addQueryItem("tableName", _target.tableName);
-	params.addQueryItem("playerName", _target.playerName);
-	params.addQueryItem("description", _code);
+	params.addEncodedQueryItem("tableName", QUrl::toPercentEncoding(_target.tableName));
+	params.addEncodedQueryItem("playerName", QUrl::toPercentEncoding(_target.playerName));
+	params.addEncodedQueryItem("description", QUrl::toPercentEncoding(_code));
 	data = params.encodedQuery();
 
 	reply = m->post(request, data);
