@@ -1,5 +1,5 @@
 {
-	"URL":"http://seldon.cs.kuleuven.be/pokerdemo/",
+	"URL":"http://bear.cs.kuleuven.be/pokerdemo/",
 	"joinTable":"joinTable.php",
 	"hello":"hello.php",
 	"watchTable":"watchTable.php",
