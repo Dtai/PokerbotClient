@@ -1,3 +1,5 @@
 # runs the client in English
 
-./build/bin/ruleCreator
+rm build/bin/*.qm
+cd build/bin
+./ruleCreator
