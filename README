@@ -27,6 +27,8 @@ Pas daar
 	"URL":"http://localhost",
 aan zodat die naar de server wijst waar de pokerbot WEBserver draait
 
+Voor experts: de voorgedefinieerde elementen van de GUI worden in een aparte file opgeslagen, zie conf/
+
 
 Uitvoeren (GNU/Linux)
 ---------
