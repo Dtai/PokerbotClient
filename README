@@ -4,6 +4,7 @@ Compileren (algemeen)
 ----------
 Om de client te compileren moeten minstens volgende stukken software geinstalleerd zijn: cmake, automake (make), qt4-dev-tools (qmake), libqt4-dev, boost
 
+If you get an error regarding 'lrelease' not found, you might have a mixed qt4/qt5 installation. Install: qttools5-dev-tools
 
 Compileren (GNU/Linux)
 ----------
