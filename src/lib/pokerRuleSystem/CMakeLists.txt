@@ -53,6 +53,7 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR} . ${PROJECT_SOURCE_DIR}/src/lib 
 
 list(APPEND SOURCES ${HWQ_MOC_CPP} ${HWQ_UI_CPP} ${HWQ_RES_H})
 list(APPEND LIBRARIES ${QT_LIBRARIES} )
+list(APPEND LIBRARIES ${Boost_LIBRARIES} )
 
 foreach(lang ${LANGUAGES})
 	set(in_trans_file ${TRANSLATION_DIR}/${LIBNAME}_${lang}.ts)

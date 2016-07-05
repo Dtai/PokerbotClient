@@ -182,8 +182,8 @@
 <context>
     <name>HelpWindow</name>
     <message>
+        <location filename="../build/src/app/ruleCreator/ui_helpWindow.h" line="62"/>
         <location filename="../build/src/app/ruleCreator/ui_helpWindow.h" line="63"/>
-        <location filename="../build/src/app/ruleCreator/ui_helpWindow.h" line="64"/>
         <source>Information</source>
         <translation>Informatie</translation>
     </message>
@@ -191,143 +191,143 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="274"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="273"/>
         <source>RuleCreator</source>
         <translation>RuleCreator</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="275"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="274"/>
         <source>&amp;New</source>
         <translation>&amp;Nieuw</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="276"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="275"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="277"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="276"/>
         <source>&amp;Open</source>
         <translation>&amp;Openen</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="278"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="277"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="279"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="278"/>
         <source>Save &amp;As</source>
         <translation>Opslaan &amp;Als</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="280"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="279"/>
         <source>E&amp;xit</source>
         <translation>E&amp;xit</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="281"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="280"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="282"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="281"/>
         <source>&amp;Save</source>
         <translation>Op&amp;slaan</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="283"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="282"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="284"/>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="286"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="283"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="285"/>
         <source>Close</source>
         <translation>Sluiten</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="288"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="287"/>
         <source>Ctrl+W</source>
         <translation>Ctrl+W</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="289"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="288"/>
         <source>To &amp;Prolog</source>
         <translation>Naar &amp;Prolog</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="291"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="290"/>
         <source>To Prolog</source>
         <translation>Naar Prolog</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="293"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="292"/>
         <source>Change Settings</source>
         <translation>Verander instellingen</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="294"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="293"/>
         <source>Show rules (prolog code)</source>
         <translation>Toon regels (prolog code)</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="295"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="294"/>
         <source>Connect to table</source>
         <translation>Verbind met tafel</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="296"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="295"/>
         <source>Show information</source>
         <translation>Toon informatie</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="297"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="296"/>
         <source>&amp;File</source>
         <translation>&amp;Bestand</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="298"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="297"/>
         <source>Export</source>
         <translation>Exporteer</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="299"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="298"/>
         <source>Settings</source>
         <translation>Instellingen</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="300"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="299"/>
         <source>Help</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="301"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="300"/>
         <source>Properties</source>
         <translation>Eigenschappen</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="303"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="302"/>
         <source>Constants</source>
         <translation>Constanten</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="306"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="305"/>
         <source>Cards</source>
         <translation>Kaarten</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="302"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="301"/>
         <source>Functions</source>
         <translation>Functies</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="304"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="303"/>
         <source>Actions</source>
         <translation>Acties</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="305"/>
+        <location filename="../build/src/app/ruleCreator/ui_mainwindow.h" line="304"/>
         <source>Predefined elements</source>
         <translation>Voorgedefinieerde elementen</translation>
     </message>
@@ -624,17 +624,17 @@
 <context>
     <name>PredefinedRulesDescriptor</name>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_predefinedrulesdescriptor.h" line="90"/>
+        <location filename="../build/src/app/ruleCreator/ui_predefinedrulesdescriptor.h" line="89"/>
         <source>Predefined rule</source>
         <translation>Voorgedefinieerde regel</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_predefinedrulesdescriptor.h" line="91"/>
+        <location filename="../build/src/app/ruleCreator/ui_predefinedrulesdescriptor.h" line="90"/>
         <source>Give a name for the element:</source>
         <translation>Geef een naam voor het element:</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_predefinedrulesdescriptor.h" line="92"/>
+        <location filename="../build/src/app/ruleCreator/ui_predefinedrulesdescriptor.h" line="91"/>
         <source>Name:</source>
         <translation>Naam:</translation>
     </message>
@@ -642,27 +642,27 @@
 <context>
     <name>RuleWidget</name>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_rulewidget.h" line="122"/>
+        <location filename="../build/src/app/ruleCreator/ui_rulewidget.h" line="121"/>
         <source>Rule</source>
         <translation>Regel</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_rulewidget.h" line="123"/>
+        <location filename="../build/src/app/ruleCreator/ui_rulewidget.h" line="122"/>
         <source>Rule -1:</source>
         <translation>Regel -1:</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_rulewidget.h" line="125"/>
+        <location filename="../build/src/app/ruleCreator/ui_rulewidget.h" line="124"/>
         <source>Move this rule higher</source>
         <translation>Plaats deze regel hoger</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_rulewidget.h" line="129"/>
+        <location filename="../build/src/app/ruleCreator/ui_rulewidget.h" line="128"/>
         <source>Delete rule</source>
         <translation>Verwijder regel</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_rulewidget.h" line="133"/>
+        <location filename="../build/src/app/ruleCreator/ui_rulewidget.h" line="132"/>
         <source>Move this rule lower</source>
         <translation>Plaats deze regel lager</translation>
     </message>
@@ -675,42 +675,42 @@
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_settingsdialog.h" line="161"/>
+        <location filename="../build/src/app/ruleCreator/ui_settingsdialog.h" line="160"/>
         <source>Settings</source>
         <translation>Instellingen</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_settingsdialog.h" line="162"/>
+        <location filename="../build/src/app/ruleCreator/ui_settingsdialog.h" line="161"/>
         <source>Connection</source>
         <translation>Connectie</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_settingsdialog.h" line="163"/>
+        <location filename="../build/src/app/ruleCreator/ui_settingsdialog.h" line="162"/>
         <source>New</source>
         <translation>Nieuw</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_settingsdialog.h" line="164"/>
+        <location filename="../build/src/app/ruleCreator/ui_settingsdialog.h" line="163"/>
         <source>Delete</source>
         <translation>Verwijderen</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_settingsdialog.h" line="165"/>
+        <location filename="../build/src/app/ruleCreator/ui_settingsdialog.h" line="164"/>
         <source>Name:</source>
         <translation>Naam:</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_settingsdialog.h" line="166"/>
+        <location filename="../build/src/app/ruleCreator/ui_settingsdialog.h" line="165"/>
         <source>Tablename:</source>
         <translation>Tafelnaam:</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_settingsdialog.h" line="167"/>
+        <location filename="../build/src/app/ruleCreator/ui_settingsdialog.h" line="166"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_settingsdialog.h" line="168"/>
+        <location filename="../build/src/app/ruleCreator/ui_settingsdialog.h" line="167"/>
         <source>Cancel</source>
         <translation>Annuleren</translation>
     </message>
@@ -739,29 +739,29 @@
 <context>
     <name>WelcomeWindow</name>
     <message>
+        <location filename="../build/src/app/ruleCreator/ui_welcomeWindow.h" line="144"/>
         <location filename="../build/src/app/ruleCreator/ui_welcomeWindow.h" line="145"/>
-        <location filename="../build/src/app/ruleCreator/ui_welcomeWindow.h" line="146"/>
         <location filename="../src/app/ruleCreator/welcomeWindow.cpp" line="23"/>
         <source>Welcome</source>
         <translation>Welkom</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_welcomeWindow.h" line="147"/>
+        <location filename="../build/src/app/ruleCreator/ui_welcomeWindow.h" line="146"/>
         <source>Name:</source>
         <translation>Naam:</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_welcomeWindow.h" line="148"/>
+        <location filename="../build/src/app/ruleCreator/ui_welcomeWindow.h" line="147"/>
         <source>Tablename:</source>
         <translation>Tafelnaam:</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_welcomeWindow.h" line="149"/>
+        <location filename="../build/src/app/ruleCreator/ui_welcomeWindow.h" line="148"/>
         <source>Help</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="../build/src/app/ruleCreator/ui_welcomeWindow.h" line="150"/>
+        <location filename="../build/src/app/ruleCreator/ui_welcomeWindow.h" line="149"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>

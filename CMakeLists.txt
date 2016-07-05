@@ -9,7 +9,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 project(poker)
 ENABLE_TESTING()
 
-find_package(Boost REQUIRED)
+find_package(Boost COMPONENTS regex system REQUIRED)
 find_package(Qt4 REQUIRED)
 
 set(MY_INCLUDE_DIRS ${Boost_INCLUDE_DIRS})
